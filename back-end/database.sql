@@ -9,6 +9,7 @@ CREATE TABLE membre(
     fonction varchar(255) NOT NULL,
     pdc varchar(255) NOT NULL,
     mail varchar(255) NOT NULL,
+    admin boolean NOT NULL,
     password varchar(255) NOT NULL
 );
 
