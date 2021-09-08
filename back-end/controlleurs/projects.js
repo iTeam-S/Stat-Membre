@@ -69,8 +69,6 @@ exports.deleteProject=(async(req,res)=>{
     }
 });
 
-
-
 //ADMIN ADDS MEMBER AND HIS TASK ON A PROJECT
 
 
