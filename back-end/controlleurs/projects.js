@@ -1,4 +1,7 @@
 
+const pool=require("../db");
+
+
 //------------------create project----------------------------------------------------------
 exports.createProject=(async(req,res)=>{
     const {name,repos,delai}=req.body;
