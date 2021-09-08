@@ -9,4 +9,5 @@ router.post("/login",validInfo,authCtrl.login);
 
 
 
+
 module.exports=router;
