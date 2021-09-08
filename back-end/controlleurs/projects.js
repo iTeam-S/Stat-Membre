@@ -18,10 +18,10 @@ exports.getAllProject=(async(req,res)=>{
     try {
         const allProject=await pool.query("SELECT * FROM projects");
         res.json(allProject.rows);
-        
+
     } catch (err) {
         console.error(err.message);
-    }        
+    }
 });
 
 
@@ -31,10 +31,10 @@ exports.getOneProject=(async(req,res)=>{
     try {
         const prjt=await pool.query("SELECT * FROM projects WHERE nom=$1",[name]);
         res.json(prjt.rows[0]);
-        
+
     } catch (err) {
         console.error(err.message);
-    }       
+    }
 });
 
 //------------------update project-----------------------------------------------------------
@@ -44,10 +44,10 @@ exports.updateProject=(async(req,res)=>{
     try {
         const upproject=await pool.query("UPDATE projects SET nom=$1,repos=$1,repos=$3,delai=$4",[nom,repos,delai]);
         res.json(upprojet.rows);
-        
+
     } catch (err) {
         console.error(err.message);
-        
+
     }
 });
 
@@ -57,12 +57,12 @@ exports.updateProject=(async(req,res)=>{
 exports.deleteProject=(async(req,res)=>{
     const {name}=req.params;
     try {
-        const delproject=await pool.query("DELETE * FROM project WHERE nom=$1"[name]);
+        const delproject=await pool.query("DELETE * FROM project WHERE nom=$1",[name]);
         res.json("Project deleted");
-        
+
     } catch (err) {
         console.error(err.message);
-        
+
     }
 });
 
@@ -132,10 +132,10 @@ app.get("/projects",async(req,res)=>{
     try {
         const allProject=await pool.query("SELECT * FROM projects");
         res.json(allProject.rows);
-        
+
     } catch (err) {
         console.error(err.message);
-    }        
+    }
     }
 });
 
@@ -144,10 +144,10 @@ app.get("/projects/:nom",async(req,res)=>{
     try {
         const prjt=await pool.query("SELECT * FROM projects WHERE nom=$1",[name]);
         res.json(prjt.rows[0]);
-        
+
     } catch (err) {
         console.error(err.message);
-    }       
+    }
     }
 })
 
@@ -160,10 +160,10 @@ app.put("/projects/:nom",async(req,res)=>{
     try {
         const upproject=await pool.query("UPDATE projects SET nom=$1,repos=$1,repos=$3,delai=$4",[nom,repos,delai]);
         res.json(upprojet.rows);
-        
+
     } catch (err) {
         console.error(err.message);
-        
+
     }
 })
 
@@ -175,10 +175,10 @@ app.delete("/:nom",async(req,res)=>{
     try {
         const delproject=await pool.query("DELETE * FROM project WHERE nom=$1"[name]);
         res.json("Project deleted");
-        
+
     } catch (err) {
         console.error(err.message);
-        
+
     }
 })
 

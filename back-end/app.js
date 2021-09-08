@@ -2,10 +2,14 @@ const path=require('path');
 const _=require("lodash");
 const bodyparser=require('body-parser');
 const fileUpload=require('express-fileupload');
+const cors=require("cors");
 
 
 const app=express();
 app.use(fileUpload());
+app.use(express.json);
+app.use(cors());
+
 
 app.use((req, res, next) => {
     res.setHeader('Access-Control-Allow-Origin', '*');
@@ -23,17 +27,15 @@ app.use(
 
 app.use(express.static('public'));
 
-const adminRoutes=require('./routes/admin');
-app.use('api/auth',adminRoutes);
+//user routes(login and register);
+const userRoutes=require("./routes/Auth")
+app.use("api/auth",userRoutes);
 
-const userRoutes=require('./routes/user');
-app.use('api/auth',userRoutes);
-
+//member routes (crude membre)
 const membreRoutes=require('./routes/membre');
 app.use('api/membre',membreRoutes);
-
+//projects routes (crude projects)
 const projectRoute=require('./routes/projects');
 app.use('api/projects',projectRoutes);
 
 module.exports= app;
-
