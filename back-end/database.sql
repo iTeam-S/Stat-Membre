@@ -1,6 +1,6 @@
 CREATE DATABASE iteams;
 
-CREATE TABLE membre(
+CREATE TABLE membres(
     id uuid PRIMARY KEY DEFAULT
     uuid_generate_v4(),
     nom varchar(255) NOT NULL,
