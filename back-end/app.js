@@ -1,6 +1,6 @@
 const path=require('path');
 const _=require("lodash");
-const bodyparser=require('body-parser');
+const bodyParser=require('body-parser');
 const fileUpload=require('express-fileupload');
 const cors=require("cors");
 
