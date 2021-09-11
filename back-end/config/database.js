@@ -1,8 +1,8 @@
 
 const Sequelize=require('sequelize');
 
-const db=new Sequelize('iteams','postgres','vltn21/m',{
-    host:'localhost',
+const db=new Sequelize('iteams-s.mg',app.env("POSTGRES_USER"),app.env("POSTGRES_PASSWORD"),{
+    host:'iteams-s.mg'',
     dialect:'postgres',
 
     define:{
