@@ -1,41 +1,45 @@
-const path=require('path');
-const _=require("lodash");
+const express=require("express");
+const exphbs=require('express-handlebars');
 const bodyParser=require('body-parser');
-const fileUpload=require('express-fileupload');
-const cors=require("cors");
-
-
+const path=require('path');
+const cors = require("cors");
+const db=require('./config/database');
 const app=express();
-app.use(fileUpload());
-app.use(express.json);
-app.use(cors());
+
+var corsOptions = {
+    origin: "http://localhost:5000"
+  };
+
+  app.use(cors(corsOptions));
+
+  app.use(bodyParser.json());
+
+  app.use(bodyParser.urlencoded({ extended: true }));
 
 
-app.use((req, res, next) => {
-    res.setHeader('Access-Control-Allow-Origin', '*');
-    res.setHeader('Access-Control-Allow-Headers', '*');
-    res.setHeader('Access-Control-Allow-Methods', '*');
-    next();
+
+db.authenticate()
+    .then(()=>console.log("connected to the database,,,"))
+    .catch((err)=>console.log("Errer:"+err))
+
+//ROUTES
+app.get("/", (req, res) => {
+    res.json({ message: "Welcome to bezkoder application." });
   });
 
-app.use(bodyParser.json());
-app.use(
-  bodyParser.urlencoded({
-    extended:true,
-  })
-);
+app.use('/project',require('./routes/project'));
+app.use("/members",require('./routes/member'));
+app.use("/criteres",require('./routes/criteres'));
 
-app.use(express.static('public'));
 
-//user routes(login and register);
-const userRoutes=require("./routes/Auth")
-app.use("api/auth",userRoutes);
+require('./app/routes/auth.routes')(app);
+require('./app/routes/user.routes')(app);
 
-//member routes (crude membre)
-const membreRoutes=require('./routes/membre');
-app.use('api/membre',membreRoutes);
-//projects routes (crude projects)
-const projectRoute=require('./routes/projects');
-app.use('api/projects',projectRoutes);
 
-module.exports= app;
+
+
+
+const PORT =5000|| process.env.PORT;
+app.listen(PORT,()=>{
+    console.log(`Server listening on port ${PORT}`);
+})
