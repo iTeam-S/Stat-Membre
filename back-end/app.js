@@ -32,8 +32,8 @@ app.use("/members",require('./routes/member'));
 app.use("/criteres",require('./routes/criteres'));
 
 
-require('./app/routes/auth.routes')(app);
-require('./app/routes/user.routes')(app);
+app.require('./routes/authroutes');
+app.require('./routes/userroutes');
 
 
 
