@@ -1,7 +1,5 @@
-//POST signup & signin
-
 const { verifySignUp } = require("../middleware");
-const controller = require("../controllers/auth.controller");
+const controller = require("../controller/authcontroller");
 
 module.exports = function(app) {
   app.use(function(req, res, next) {

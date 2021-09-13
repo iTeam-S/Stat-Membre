@@ -1,45 +1,62 @@
-const express=require("express");
-const exphbs=require('express-handlebars');
-const bodyParser=require('body-parser');
-const path=require('path');
+const express = require("express");
+const bodyParser = require("body-parser");
 const cors = require("cors");
-const db=require('./config/database');
-const app=express();
+
+
+
+const app = express();
+
+const db = require("./models");
+const Role = db.role;
+db.sequelize.sync();
+
+
+
+db.sequelize.sync({force: true}).then(() => {
+  console.log('Drop and Resync Db');
+  initial();
+});
+
 
 var corsOptions = {
-    origin: "http://localhost:5000"
-  };
+  origin: "http://localhost:5000"
+};
 
-  app.use(cors(corsOptions));
+app.use(cors(corsOptions));
 
-  app.use(bodyParser.json());
+// parse requests of content-type - application/json
+app.use(express.json());
 
-  app.use(bodyParser.urlencoded({ extended: true }));
+// parse requests of content-type - application/x-www-form-urlencoded
+app.use(express.urlencoded({ extended: true }));
 
-
-
-db.authenticate()
-    .then(()=>console.log("connected to the database,,,"))
-    .catch((err)=>console.log("Errer:"+err))
-
-//ROUTES
+// simple route
 app.get("/", (req, res) => {
-    res.json({ message: "Welcome to bezkoder application." });
+  res.json({ message: "Welcome Stat-Membre." });
+});
+
+function initial() {
+  Role.create({
+    id: 1,
+    name: "user"
   });
-
-app.use('/project',require('./routes/project'));
-app.use("/members",require('./routes/member'));
-app.use("/criteres",require('./routes/criteres'));
-
-
-app.require('./routes/authroutes');
-app.require('./routes/userroutes');
+ 
+  Role.create({
+    id: 2,
+    name: "admin"
+  });
+}
 
 
+require("./routes/member")(app)
+require("./routes/project")(app)
+require("./routes/criteres")(app)
+require('./routes/authroutes')(app);
+require('./routes/userroutes')(app);
 
 
-
-const PORT =5000|| process.env.PORT;
-app.listen(PORT,()=>{
-    console.log(`Server listening on port ${PORT}`);
-})
+// set port, listen for requests
+const PORT = process.env.PORT || 5000;
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}.`);
+});

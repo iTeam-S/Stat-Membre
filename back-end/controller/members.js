@@ -1,9 +1,9 @@
-const express=require('express');
-const Sequelize=require('sequelize');
-const Member = require('../models/Member');
+const db = require("../models");
+const Member = db.membre;
+const Op = db.Sequelize.Op;
 
-//Create and save a new Project
-exports.create=(req,res)=>{
+// Create and Save a new Member 
+exports.create = (req, res) => {
     //validate request
     if(!req.body.nom){
         res.status(400).send({
@@ -17,16 +17,17 @@ exports.create=(req,res)=>{
     const member={
         nom:req.body.nom,
         prenom:req.body.prenom,
+        user_github:req.body.user_github,
         fonction:req.body.fonction,
         pdc:req.body.pdc,
         mail:req.body.mail,
-        admin:req.body.admin ? req.body.published : false,
+        admin:req.body.admin ? req.body.admin : false,
         password:req.body.password
 
     };
 
     //save membre in the database
-    Member.create(membre)
+    Member.create(member)
         .then(data=>{
             res.send(data);
         })
@@ -35,10 +36,11 @@ exports.create=(req,res)=>{
                 message:err.message || "somme error occured"
             });
         });
+  
 };
 
-//Retrieve all members  from the database.
-exports.findAll = (req,res)=>{
+// Retrieve all Members  from the database.
+exports.findAll = (req, res) => {
     const nom=req.query.nom;
     var condition = nom ? { nom: { [Op.iLike]: `%${nom}%` } } : null;
    
@@ -52,10 +54,11 @@ exports.findAll = (req,res)=>{
           err.message || "Some error occurred while retrieving Members."
       });
     });
+  
 };
-//find a single membre with an nom
 
-exports.findOne = (req,res)=>{
+// Find a single Members with an id
+exports.findOne = (req, res) => {
     const id=req.params.id;
     Member.findByPk(id)
         .then(data=>{
@@ -63,14 +66,14 @@ exports.findOne = (req,res)=>{
         })
         .catch(err=>{
             res.status(500).send({
-                message:`Member with nom ${id} not found`
+                message:`Member with id ${id} not found`
             });
         });
+  
 };
 
-//update a member by the id in the request
-
-exports.update=(req,res)=>{
+// Update a Members by the id in the request
+exports.update = (req, res) => {
     const id = req.params.id;
 
     Member.update(req.body,{
@@ -92,9 +95,10 @@ exports.update=(req,res)=>{
                 message:"Error updating the Member"
             });
         });
+  
 };
 
-// Delete e member with the specified id in the request
+// Delete a Members with the specified id in the request
 exports.delete = (req, res) => {
     const id = req.params.id;
   
@@ -117,21 +121,22 @@ exports.delete = (req, res) => {
           message: "Could not delete Member with id=" + id
         });
       });
-  };
   
-  // Delete all Projects from the database.
-  exports.deleteAll = (req, res) => {
+};
+
+// Delete all Members from the database.
+exports.deleteAll = (req, res) => {
     Member.destroy({
-      where: {},
-      truncate: false
-    })
-      .then(nums => {
-        res.send({ message: `${nums} Member were deleted successfully!` });
+        where: {},
+        truncate: false
       })
-      .catch(err => {
-        res.status(500).send({
-          message:
-            err.message || "Some error occurred while removing all Members."
+        .then(nums => {
+          res.send({ message: `${nums} Member were deleted successfully!` });
+        })
+        .catch(err => {
+          res.status(500).send({
+            message:
+              err.message || "Some error occurred while removing all Members."
+          });
         });
-      });
-  };
+};

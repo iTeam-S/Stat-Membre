@@ -1,25 +1,26 @@
-const express=require("express");
-const router=express.Router();
-const db=require('../config/database');
-const criteres=require('../controller/criteres');
-
-// Create criteres
-router.post("/", criteres.create);
-
-// Retrieve all criteres
-router.get("/", criteres.findAll);
-
-// Retrieve a single criteres with id
-router.get("/:id", criteres.findOne);
-
-// Update a Tutorial with id
-router.put("/:id", criteres.update);
-
-// Delete a Tutorial with id
-router.delete("/:id", criteres.delete);
-
-// Delete all Tutorials
-router.delete("/", criteres.deleteAll);
-
-
-module.exports=router;
+module.exports = app => {
+    const Critere = require("../controller/criteres");
+  
+    var router = require("express").Router();
+  
+    // Create a new project_criteres
+    router.post("/", Critere.create);
+  
+    // Retrieve all projects_criteres
+    router.get("/", Critere.findAll);
+  
+    // Retrieve a single projects_criteres with id
+    router.get("/:id", Critere.findOne);
+  
+    // Update a projects_criteres with id
+    router.put("/:id", Critere.update);
+  
+    // Delete a projects_criteres with id
+    router.delete("/:id", Critere.delete);
+  
+    //delete all projects_criteres
+    router.delete("/", Critere.deleteAll);
+  
+    app.use('/api/criteres', router);
+   
+  };

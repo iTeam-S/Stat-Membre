@@ -1,9 +1,9 @@
-const express=require('express');
-const Sequelize=require('sequelize');
-const Project= require("../models/Project")
+const db = require("../models");
+const Project = db.project;
+const Op = db.Sequelize.Op;
 
-//Create and save a new Project
-exports.create=(req,res)=>{
+// Create and Save a new project 
+exports.create = (req, res) => {
     //validate request
     if(!req.body.nom){
         res.status(400).send({
@@ -12,12 +12,14 @@ exports.create=(req,res)=>{
         return;
     }
 
-    //create a membre/user
+    //create a project
 
     const project={
         nom:req.body.nom,
         repos:req.body.repos,
-        delai:req.body.delai
+        delai:req.body.delai,
+       
+
     };
 
     //save project in the database
@@ -30,10 +32,11 @@ exports.create=(req,res)=>{
                 message:err.message || "somme error occured"
             });
         });
+  
 };
 
-//Retrieve all Tutorials from the database.
-exports.findAll = (req,res)=>{
+// Retrieve all projects  from the database.
+exports.findAll = (req, res) => {
     const nom=req.query.nom;
     var condition = nom ? { nom: { [Op.iLike]: `%${nom}%` } } : null;
    
@@ -44,13 +47,14 @@ exports.findAll = (req,res)=>{
     .catch(err => {
       res.status(500).send({
         message:
-          err.message || "Some error occurred while retrieving tutorials."
+          err.message || "Some error occurred while retrieving projects."
       });
     });
+  
 };
-//find a single project with an nom
 
-exports.findOne = (req,res)=>{
+// Find a single project with an id
+exports.findOne = (req, res) => {
     const id=req.params.id;
     Project.findByPk(id)
         .then(data=>{
@@ -58,14 +62,14 @@ exports.findOne = (req,res)=>{
         })
         .catch(err=>{
             res.status(500).send({
-                message:`Project with id ${id} not found`
+                message:`projects with id ${id} not found`
             });
         });
+  
 };
 
-//update a tutorial by the id in the request
-
-exports.update=(req,res)=>{
+// Update a project by the id in the request
+exports.update = (req, res) => {
     const id = req.params.id;
 
     Project.update(req.body,{
@@ -74,7 +78,7 @@ exports.update=(req,res)=>{
         .then(num=>{
             if(num ==1){
                 res.send({
-                    message:"Project was updated successfuly"
+                    message:"Project  was updated successfuly"
                 });
             } else{
                 res.send({
@@ -87,9 +91,10 @@ exports.update=(req,res)=>{
                 message:"Error updating the project"
             });
         });
+  
 };
 
-// Delete a Project with the specified id in the request
+// Delete a project with the specified id in the request
 exports.delete = (req, res) => {
     const id = req.params.id;
   
@@ -103,31 +108,31 @@ exports.delete = (req, res) => {
           });
         } else {
           res.send({
-            message: `Cannot delete Project with id=${id}. Maybe Tutorial was not found!`
+            message: `Cannot delete project with id=${id}. Maybe project was not found!`
           });
         }
       })
       .catch(err => {
         res.status(500).send({
-          message: "Could not delete Project with id=" + id
+          message: "Could not delete project with id=" + id
         });
       });
-  };
   
-  // Delete all Projects from the database.
-  exports.deleteAll = (req, res) => {
+};
+
+// Delete all Projects from the database.
+exports.deleteAll = (req, res) => {
     Project.destroy({
-      where: {},
-      truncate: false
-    })
-      .then(nums => {
-        res.send({ message: `${nums} Projects were deleted successfully!` });
+        where: {},
+        truncate: false
       })
-      .catch(err => {
-        res.status(500).send({
-          message:
-            err.message || "Some error occurred while removing all Projects."
+        .then(nums => {
+          res.send({ message: `${nums} project were deleted successfully!` });
+        })
+        .catch(err => {
+          res.status(500).send({
+            message:
+              err.message || "Some error occurred while removing all projects."
+          });
         });
-      });
-  };
-  
+};

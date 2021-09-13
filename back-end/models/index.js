@@ -1,20 +1,52 @@
-const Sequelize=require("sequelize");
-const db=require("../config/database");
+const dbConfig = require("../config/dbconfig");
 
-db.user=require('../models/usermodels');
-db.role=require('../models/rolemodels');
+const Sequelize = require("sequelize");
+const sequelize = new Sequelize(dbConfig.DB, dbConfig.USER, dbConfig.PASSWORD, {
+  host: dbConfig.HOST,
+  dialect: dbConfig.dialect,
+  operatorsAliases: false,
 
-db.role.belongsToMany(db.user,{
-    through:"user_roles",
-    foreignKey:"roleId",
-    otherKey:"userId"
+  define:{
+    timestamps: false,
+    freezeTableName: true
+  },
+  pool: {
+    max: dbConfig.pool.max,
+    min: dbConfig.pool.min,
+    acquire: dbConfig.pool.acquire,
+    idle: dbConfig.pool.idle
+  }
+});
+
+const db = {};
+
+db.Sequelize = Sequelize;
+db.sequelize = sequelize;
+
+db.membre = require("./Member.js")(sequelize, Sequelize);
+db.critere = require("./Criteres.js")(sequelize, Sequelize);
+db.project = require("./Project.js")(sequelize, Sequelize);
+db.user = require("../models/usermodels")(sequelize, Sequelize);
+db.role = require("../models/rolemodels")(sequelize, Sequelize);
+
+
+
+//Relation entre table
+
+db.role.belongsToMany(db.user, {
+  through: "user_roles",
+  foreignKey: "roleId",
+  otherKey: "userId"
 });
 db.user.belongsToMany(db.role, {
-    through: "user_roles",
-    foreignKey: "userId",
-    otherKey: "roleId"
-  });
+  through: "user_roles",
+  foreignKey: "userId",
+  otherKey: "roleId"
+});
 
 db.ROLES = ["user", "admin"];
+
+
+
 
 module.exports = db;

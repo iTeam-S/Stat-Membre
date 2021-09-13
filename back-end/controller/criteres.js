@@ -1,9 +1,9 @@
-const express=require('express');
-const Sequelize=require('sequelize');
-const Critere= require("../models/Criteres")
+const db = require("../models");
+const Critere = db.critere;
+const Op = db.Sequelize.Op;
 
-//Create and save criteres
-exports.create=(req,res)=>{
+// Create and Save critere 
+exports.create = (req, res) => {
     //validate request
     if(!req.body.difficulte){
         res.status(400).send({
@@ -12,7 +12,7 @@ exports.create=(req,res)=>{
         return;
     }
 
-    //create criteres
+    //create a critere
 
     const critere={
         difficulte:req.body.difficulte ,
@@ -23,16 +23,17 @@ exports.create=(req,res)=>{
         id_project:req.body.id_project,
         id_membre:req.body.id_membre 
     };
-    //save criteres in the database
-    Critere.create(critere)
-        .then(data=>{
-            res.send(data);
-        })
-        .catch(err=>{
-            res.status(500).send({
-                message:err.message || "somme error occured"
-            });
-        });
+
+   //save criteres in the database
+   Critere.create(critere)
+   .then(data=>{
+       res.send(data);
+   })
+   .catch(err=>{
+       res.status(500).send({
+           message:err.message || "somme error occured"
+       });
+   });
 };
 
 //Retrieve all criteres  from the database.
@@ -55,7 +56,7 @@ exports.findAll = (req,res)=>{
 
 exports.findOne = (req,res)=>{
     const id=req.params.id;
-    Project.findByPk(id)
+    Critere.findByPk(id)
         .then(data=>{
             res.send(data);
         })
@@ -112,14 +113,14 @@ exports.delete = (req, res) => {
       })
       .catch(err => {
         res.status(500).send({
-          message: "Could not delete Project with id=" + id
+          message: "Could not delete criteres with id=" + id
         });
       });
   };
   
   // Delete all criteres  from the database.
   exports.deleteAll = (req, res) => {
-    Project.destroy({
+    Critere.destroy({
       where: {},
       truncate: false
     })
@@ -134,5 +135,3 @@ exports.delete = (req, res) => {
       });
   };
   
- 
-

@@ -1,26 +1,21 @@
-const Sequelize=require("sequelize");
-const db=require("../config/database");
-
-
-const Criteres=db.define('criteres',{
-    difficulte:{
-        type: Sequelize.INTEGER
-    },
-    deadline:{
-        type: Sequelize.INTEGER
-    },
-    impact:{
-        type: Sequelize.INTEGER
-    },
-    implication:{
-        type: Sequelize.INTEGER
-    },
-    id_project:{
-        type: Sequelize.INTEGER
-    },
-    id_membre:{
-        type: Sequelize.INTEGER
-    }
-})
-
-module.exports=Criteres;
+module.exports = (sequelize, Sequelize) => {
+    const Critere = sequelize.define("critere", {
+        difficulte:{
+            type: Sequelize.INTEGER
+        },
+        deadline:{
+            type: Sequelize.INTEGER
+        },
+        impact:{
+            type: Sequelize.INTEGER
+        },
+        implication:{
+            type: Sequelize.INTEGER
+        },
+        point_git:{
+            type:Sequelize.INTEGER
+        }
+    });
+  
+    return Critere;
+  };

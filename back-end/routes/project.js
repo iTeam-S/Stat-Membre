@@ -1,25 +1,27 @@
-const express=require('express');
-const router=express.Router();
-const Sequelize=require('sequelize');
-const Project=require("../controller/projects")
-
-  // Create a new Project
-  router.post("/create", Project.create);
-
-  // Retrieve all Project
-  router.get("/allproject", Project.findAll);
-
-  // Retrieve a single Project with id
-  router.get("/findone/:id", Project.findOne);
-
-  // Update a Project with id
-  router.put("/update/:id", Project.update);
-
-  // Delete a Project with id
-  router.delete("/delete/:id", Project.delete);
-
-  // Delete all Project
-  router.delete("/delall", Project.deleteAll);
-
-
-  module.exports=router;
+module.exports = app => {
+    const Project = require("../controller/projects");
+  
+    var router = require("express").Router();
+  
+    // Create a new Project
+    router.post("/", Project.create);
+  
+    // Retrieve all projects
+    router.get("/", Project.findAll);
+  
+  
+    // Retrieve a single project with id
+    router.get("/:id", Project.findOne);
+  
+    // Update a project with id
+    router.put("/:id", Project.update);
+  
+    // Delete a project with id
+    router.delete("/:id", Project.delete);
+  
+    // delete all project
+    router.delete("/", Project.deleteAll);
+  
+    app.use('/api/projects', router);
+   
+  };
