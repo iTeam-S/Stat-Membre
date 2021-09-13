@@ -1,9 +1,9 @@
 
 //---------------------database model config--------------------
 module.exports = {
-    HOST: "localhost",
-    USER: "postgres",
-    PASSWORD: "vltn21/m",
+    HOST: "iteam-s.mg",
+    USER: app.env('USER_POSTGRES'),
+    PASSWORD: app.env('password',
     DB: "iteams",
     dialect: "postgres",
 
