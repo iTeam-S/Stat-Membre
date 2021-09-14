@@ -1,5 +1,6 @@
 const db = require("../models");
 const Project = db.project;
+const Critere=db.critere;
 const Op = db.Sequelize.Op;
 
 // Create and Save a new project 
@@ -17,9 +18,7 @@ exports.create = (req, res) => {
     const project={
         nom:req.body.nom,
         repos:req.body.repos,
-        delai:req.body.delai,
-       
-
+        delai:req.body.delai
     };
 
     //save project in the database
@@ -37,10 +36,12 @@ exports.create = (req, res) => {
 
 // Retrieve all projects  from the database.
 exports.findAll = (req, res) => {
-    const nom=req.query.nom;
-    var condition = nom ? { nom: { [Op.iLike]: `%${nom}%` } } : null;
-   
-    Project.findAll({ where: condition })
+    Project.findAll({
+      include: [{
+        model: Critere,
+        as: 'critere'
+      }]
+    })
     .then(data => {
       res.send(data);
     })
@@ -56,7 +57,12 @@ exports.findAll = (req, res) => {
 // Find a single project with an id
 exports.findOne = (req, res) => {
     const id=req.params.id;
-    Project.findByPk(id)
+    Project.findByPk(id,{
+      include: [{
+        model: Critere,
+        as: 'critere'
+      }]
+    })
         .then(data=>{
             res.send(data);
         })
@@ -119,7 +125,6 @@ exports.delete = (req, res) => {
       });
   
 };
-
 // Delete all Projects from the database.
 exports.deleteAll = (req, res) => {
     Project.destroy({
