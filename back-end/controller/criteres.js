@@ -15,13 +15,12 @@ exports.create = (req, res) => {
     //create a critere
 
     const critere={
-        difficulte:req.body.difficulte ,
-        deadline:req.body.deadline ,
-        impact:req.body.difficulte,
-        implication:req.body.implication,
-        point_git:req.body.point_git ,
-        id_project:req.body.id_project,
-        id_membre:req.body.id_membre 
+      difficulte:req.body.difficulte ,
+      deadline:req.body.deadline ,
+      impact:req.body.difficulte,
+      implication:req.body.implication,
+      point_git:req.body.point_git,
+      projectId:req.body.projectId
     };
 
    //save criteres in the database
