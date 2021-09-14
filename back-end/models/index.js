@@ -29,10 +29,31 @@ db.project = require("./Project.js")(sequelize, Sequelize);
 db.user = require("../models/usermodels")(sequelize, Sequelize);
 db.role = require("../models/rolemodels")(sequelize, Sequelize);
 
+//Relation entre table membre et project
+
+/*db.membre.belongsToMany(db.project,{
+  through:'ProjectMember',
+
+});
+db.project.belongsToMany(db.membre,{
+  through:'ProjectMember',
+  
+});
+
+*/
+// relation entre table project et ses criteres
+
+db.project.hasOne(db.critere)
+
+db.critere.belongsTo(db.project)
+
+/*
+db.project.hasOne(db.critere);
+db.critere.belongsTo(db.project);
+*/
 
 
-//Relation entre table
-
+//relation betwen users and his roles
 db.role.belongsToMany(db.user, {
   through: "user_roles",
   foreignKey: "roleId",
