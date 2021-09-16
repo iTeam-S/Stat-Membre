@@ -1,6 +1,7 @@
 const db = require("../models");
 const Project = db.project;
 const Critere=db.critere;
+const Member=db.member;
 const Op = db.Sequelize.Op;
 
 // Create and Save a new project 
@@ -141,3 +142,25 @@ exports.deleteAll = (req, res) => {
           });
         });
 };
+exports.addMemberToProject=(req,res)=>{
+      const memberId=req.body.memberId;
+      const projectId=req.body.projectId;
+  Project.findByPk(projectId)
+    .then((project)=>{
+      if(!project){
+        res.status(500).send(err.message);
+      }
+      project.addMember(memberId)
+      .then((response) => {
+        return res.status(200).send(response)
+      })
+      .catch((error) => {
+        return res.status(400).json(error)
+      })
+  })
+    .catch((error) => {
+    return res.status(400).json(error)
+  });
+
+}
+
