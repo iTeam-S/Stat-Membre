@@ -21,6 +21,8 @@ module.exports = app => {
   
     // delete all project
     router.delete("/", Project.deleteAll);
+    
+    router.post('/add',Project.addMemberToProject);
   
     app.use('/api/projects', router);
    
