@@ -31,16 +31,20 @@ db.role = require("../models/rolemodels")(sequelize, Sequelize);
 
 //Relation entre table membre et project
 
-/*db.membre.belongsToMany(db.project,{
+db.membre.belongsToMany(db.project,{
   through:'ProjectMember',
+  as:"pro",
+  foreignKey:"projectId"
 
 });
 db.project.belongsToMany(db.membre,{
   through:'ProjectMember',
+  as:"participants",
+  foreignKey:"membreId"
   
 });
 
-*/
+
 // relation entre table project et ses criteres
 
 db.project.hasOne(db.critere)
