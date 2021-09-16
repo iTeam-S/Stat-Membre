@@ -8,7 +8,7 @@ module.exports = app => {
   
     // Retrieve all projects
     router.get("/", Project.findAll);
-  
+ 
   
     // Retrieve a single project with id
     router.get("/:id", Project.findOne);
