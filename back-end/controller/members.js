@@ -41,10 +41,18 @@ exports.create = (req, res) => {
 
 // Retrieve all Members  from the database.
 exports.findAll = (req, res) => {
-    const nom=req.query.nom;
-    var condition = nom ? { nom: { [Op.iLike]: `%${nom}%` } } : null;
    
-    Member.findAll({ where: condition })
+    Member.findAll(
+        {
+      include:[{
+        model: Project,
+        as:'pro',
+        attributes:['nom',"repos","delai"],
+        through:{
+          attributes:[]
+        }
+        }],
+    })
     .then(data => {
       res.send(data);
     })
@@ -60,7 +68,17 @@ exports.findAll = (req, res) => {
 // Find a single Members with an id
 exports.findOne = (req, res) => {
     const id=req.params.id;
-    Member.findByPk(id)
+    Member.findByPk(id,{
+        {
+      include:[{
+        model: Project,
+        as:'pro',
+        attributes:['nom',"repos","delai"],
+        through:{
+          attributes:[]
+        }
+        }],
+    })
         .then(data=>{
             res.send(data);
         })
