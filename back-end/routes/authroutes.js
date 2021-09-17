@@ -21,3 +21,10 @@ module.exports = function(app) {
 
   app.post("/api/auth/signin", controller.signin);
 };
+
+/*ROUTES
+
+/api/auth/signup = routes pour s'enregistrer
+/api/auth/signin =routes pour se loger
+
+*/

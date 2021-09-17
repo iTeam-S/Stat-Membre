@@ -8,7 +8,7 @@ module.exports = app => {
   
     // Retrieve all projects
     router.get("/", Project.findAll);
- 
+  
   
     // Retrieve a single project with id
     router.get("/:id", Project.findOne);
@@ -21,9 +21,11 @@ module.exports = app => {
   
     // delete all project
     router.delete("/", Project.deleteAll);
-    
-    router.post('/add',Project.addMemberToProject);
+
+    router.post('/addMember',Project.addMemberToproject);
   
     app.use('/api/projects', router);
    
   };
+
+  

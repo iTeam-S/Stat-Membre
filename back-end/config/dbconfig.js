@@ -1,11 +1,11 @@
 
 //---------------------database model config--------------------
 module.exports = {
-    HOST: "iteam-s.mg",
-    USER: app.env('USER_POSTGRES'),
-    PASSWORD: app.env('password',
-    DB: "iteams",
-    dialect: "postgres",
+    HOST: process.env.DB_HOSTNAME,
+    USER: process.env.DB_USERNAME,
+    PASSWORD: process.env.DB_PASSWORD,
+    DB: process.env.DB_NAME,
+    dialect: "postgresql",
 
     
     pool: {

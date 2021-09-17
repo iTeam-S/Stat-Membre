@@ -2,12 +2,21 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
 
+
+
 const app = express();
 
 const db = require("./models");
 const Role = db.role;
 
 db.sequelize.sync();
+
+/*db.sequelize.sync({ force: true }).then(() => {
+  console.log("Drop and re-sync db.");
+});
+*/
+
+
 
 
 var corsOptions = {
@@ -40,9 +49,9 @@ function initial() {
 }
 
 
-require("./routes/member")(app)
-require("./routes/project")(app)
-require("./routes/criteres")(app)
+require("./routes/member")(app);
+require("./routes/project")(app);
+require("./routes/criteres")(app);
 require('./routes/authroutes')(app);
 require('./routes/userroutes')(app);
 

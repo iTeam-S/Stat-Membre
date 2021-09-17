@@ -1,8 +1,9 @@
 const db = require("../models");
 const Member = db.membre;
+const Project=db.project;
 const Op = db.Sequelize.Op;
 
-// Create and Save a new Member 
+// Create and Save a new Member
 exports.create = (req, res) => {
     //validate request
     if(!req.body.nom){
@@ -36,23 +37,22 @@ exports.create = (req, res) => {
                 message:err.message || "somme error occured"
             });
         });
-  
+
 };
 
 // Retrieve all Members  from the database.
 exports.findAll = (req, res) => {
-   
-    Member.findAll(
-        {
-      include:[{
-        model: Project,
-        as:'pro',
-        attributes:['nom',"repos","delai"],
-        through:{
-          attributes:[]
-        }
-        }],
-    })
+    Member.findAll({
+      include: [{
+      model: Project,
+      attributes: [ "nom","repos","delai"],
+      through: {
+        attributes: [],
+      },
+    }
+  ]
+  })
+
     .then(data => {
       res.send(data);
     })
@@ -62,23 +62,22 @@ exports.findAll = (req, res) => {
           err.message || "Some error occurred while retrieving Members."
       });
     });
-  
+
 };
 
 // Find a single Members with an id
 exports.findOne = (req, res) => {
     const id=req.params.id;
     Member.findByPk(id,{
-        {
-      include:[{
+        include: [{
         model: Project,
-        as:'pro',
-        attributes:['nom',"repos","delai"],
-        through:{
-          attributes:[]
-        }
-        }],
-    })
+        attributes: [ "nom","repos","delai"],
+        through: {
+          attributes: [],
+        },
+      }
+    ]
+  })
         .then(data=>{
             res.send(data);
         })
@@ -87,7 +86,7 @@ exports.findOne = (req, res) => {
                 message:`Member with id ${id} not found`
             });
         });
-  
+
 };
 
 // Update a Members by the id in the request
@@ -96,7 +95,7 @@ exports.update = (req, res) => {
 
     Member.update(req.body,{
         where:{ id: id}
-    }) 
+    })
         .then(num=>{
             if(num ==1){
                 res.send({
@@ -113,13 +112,13 @@ exports.update = (req, res) => {
                 message:"Error updating the Member"
             });
         });
-  
+
 };
 
 // Delete a Members with the specified id in the request
 exports.delete = (req, res) => {
     const id = req.params.id;
-  
+
     Member.destroy({
       where: { id: id }
     })
@@ -139,7 +138,7 @@ exports.delete = (req, res) => {
           message: "Could not delete Member with id=" + id
         });
       });
-  
+
 };
 
 // Delete all Members from the database.

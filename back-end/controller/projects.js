@@ -1,7 +1,7 @@
 const db = require("../models");
 const Project = db.project;
 const Critere=db.critere;
-const Member=db.member;
+const Member=db.membre;
 const Op = db.Sequelize.Op;
 
 // Create and Save a new project 
@@ -41,7 +41,16 @@ exports.findAll = (req, res) => {
       include: [{
         model: Critere,
         as: 'critere'
-      }]
+      },
+    {
+      model: Member,
+      as: "members",
+      attributes: [ "nom","prenom","user_github","fonction","pdc","mail","admin","password"],
+      through: {
+        attributes: [],
+      },
+    }
+  ]
     })
     .then(data => {
       res.send(data);
@@ -62,8 +71,17 @@ exports.findOne = (req, res) => {
       include: [{
         model: Critere,
         as: 'critere'
-      }]
-    })
+      },
+    {
+      model: Member,
+      as: "members",
+      attributes: [ "nom","prenom","user_github","fonction","pdc","mail","admin","password"],
+      through: {
+        attributes: [],
+      },
+    }
+  ]
+})
         .then(data=>{
             res.send(data);
         })
@@ -140,27 +158,39 @@ exports.deleteAll = (req, res) => {
             message:
               err.message || "Some error occurred while removing all projects."
           });
-        });
+      });
 };
-exports.addMemberToProject=(req,res)=>{
-      const memberId=req.body.memberId;
-      const projectId=req.body.projectId;
-  Project.findByPk(projectId)
-    .then((project)=>{
+exports.addMemberToproject=(req,res)=>{
+    const projectId=req.body.projectId;
+    const membersId=req.body.membersId;
+
+    Project.findByPk(projectId)
+    .then(project =>{
       if(!project){
-        res.status(500).send(err.message);
+        res.status(500).send({
+          message:"errer"
+        })
       }
-      project.addMember(memberId)
-      .then((response) => {
-        return res.status(200).send(response)
-      })
-      .catch((error) => {
-        return res.status(400).json(error)
-      })
-  })
-    .catch((error) => {
-    return res.status(400).json(error)
-  });
-
+      Member.findByPk(membersId)
+        .then(member=>{
+          if(!member){
+            res.status(500).send({
+              message:`Errer,le membre avec l'id ${membersId} est introuvable`
+            })
+          }
+        project.addMember(member)
+          .then((response)=>{
+            res.status(200).json(response)
+          })
+          .catch((error)=>{
+            res.status(400).json(error)
+          })
+        })
+        .catch(error=>{
+          res.status(500).json(error)
+        })
+    })
+    .catch(err=>{
+      res.status(500).send(err.message)
+    })
 }
-

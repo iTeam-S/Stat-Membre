@@ -25,3 +25,10 @@ module.exports = function(app) {
     controller.adminBoard
   );
 };
+/*ROUTES 
+ 
+   /api/content/all  =le contenu public (sans login)
+   /api/content/user  =l'interface pour les simples utulisateurs
+   /api/content/admin =l'interface pour l'admin et admin seulement
+
+*/

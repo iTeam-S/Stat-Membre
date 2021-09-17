@@ -1,4 +1,7 @@
 const dbConfig = require("../config/dbconfig");
+var env       = process.env.NODE_ENV || 'development';
+var config    = require(__dirname + './../config/config.json')[env];
+
 
 const Sequelize = require("sequelize");
 const sequelize = new Sequelize(dbConfig.DB, dbConfig.USER, dbConfig.PASSWORD, {
@@ -31,18 +34,18 @@ db.role = require("../models/rolemodels")(sequelize, Sequelize);
 
 //Relation entre table membre et project
 
+
 db.membre.belongsToMany(db.project,{
-  through:'ProjectMember',
-  as:"pro",
+  through:'projectmember',
   foreignKey:"projectId"
 
 });
 db.project.belongsToMany(db.membre,{
-  through:'ProjectMember',
-  as:"participants",
-  foreignKey:"membreId"
-  
+  through:'projectmember',
+  foreignKey:"membersId"
+
 });
+
 
 
 // relation entre table project et ses criteres
