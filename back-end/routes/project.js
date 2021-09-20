@@ -1,4 +1,4 @@
-module.exports = app => {
+
     const Project = require("../controller/projects");
   
     var router = require("express").Router();
@@ -24,8 +24,6 @@ module.exports = app => {
 
     router.post('/addMember',Project.addMemberToproject);
   
-    app.use('/api/projects', router);
-   
-  };
+   module.exports=router;
 
   

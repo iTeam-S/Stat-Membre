@@ -22,9 +22,7 @@ exports.create = (req, res) => {
         fonction:req.body.fonction,
         pdc:req.body.pdc,
         mail:req.body.mail,
-        admin:req.body.admin ? req.body.admin : false,
-        password:req.body.password
-
+        admin:req.body.admin ? req.body.admin : false
     };
 
     //save membre in the database

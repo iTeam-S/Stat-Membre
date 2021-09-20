@@ -45,7 +45,7 @@ exports.findAll = (req, res) => {
     {
       model: Member,
       as: "members",
-      attributes: [ "nom","prenom","user_github","fonction","pdc","mail","admin","password"],
+      attributes: [ "nom","prenom","user_github","fonction","pdc","mail","admin"],
       through: {
         attributes: [],
       },
@@ -75,7 +75,7 @@ exports.findOne = (req, res) => {
     {
       model: Member,
       as: "members",
-      attributes: [ "nom","prenom","user_github","fonction","pdc","mail","admin","password"],
+      attributes: [ "nom","prenom","user_github","fonction","pdc","mail","admin"],
       through: {
         attributes: [],
       },

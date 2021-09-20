@@ -1,7 +1,7 @@
 const { authJwt } = require("../middleware");
 const controller = require("../controller/usercontroller");
 
-module.exports = function(app) {
+module.exports =(app) => {
   app.use(function(req, res, next) {
     res.header(
       "Access-Control-Allow-Headers",
@@ -12,8 +12,7 @@ module.exports = function(app) {
 
   app.get("/api/content/all", controller.allAccess);
 
-  app.get(
-    "/api/content/user",
+  app.get("/api/content/user",
     [authJwt.verifyToken],
     controller.userBoard
   );
@@ -25,10 +24,4 @@ module.exports = function(app) {
     controller.adminBoard
   );
 };
-/*ROUTES 
- 
-   /api/content/all  =le contenu public (sans login)
-   /api/content/user  =l'interface pour les simples utulisateurs
-   /api/content/admin =l'interface pour l'admin et admin seulement
 
-*/

@@ -1,22 +1,27 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
-
+const path=require("path");
 
 
 const app = express();
 
+app.use((req, res, next) => {
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content, Accept, Content-Type, Authorization');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS');
+  next();
+});
+
+
 const db = require("./models");
 const Role = db.role;
 
-db.sequelize.sync();
+/*db.sequelize.sync();*/
 
-/*db.sequelize.sync({ force: true }).then(() => {
+db.sequelize.sync({ force: true }).then(() => {
   console.log("Drop and re-sync db.");
 });
-*/
-
-
 
 
 var corsOptions = {
@@ -31,10 +36,8 @@ app.use(express.json());
 // parse requests of content-type - application/x-www-form-urlencoded
 app.use(express.urlencoded({ extended: true }));
 
-// simple route
-app.get("/", (req, res) => {
-  res.json({ message: "Welcome Stat-Membre." });
-});
+
+app.use(express.static('public'));
 
 function initial() {
   Role.create({
@@ -48,16 +51,20 @@ function initial() {
   });
 }
 
+const MemberRoute=require("./routes/member");
+app.use("/api/members",MemberRoute);
 
-require("./routes/member")(app);
-require("./routes/project")(app);
-require("./routes/criteres")(app);
+const ProjectRoute=require("./routes/project");
+app.use("/api/project",ProjectRoute);
+
+const CritereRoute=require("./routes/criteres");
+app.use("./api/criteres",CritereRoute);
+
+
+//Authentification routes
 require('./routes/authroutes')(app);
 require('./routes/userroutes')(app);
 
 
-// set port, listen for requests
-const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}.`);
-});
+
+module.exports=app;

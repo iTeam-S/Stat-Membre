@@ -1,4 +1,3 @@
-module.exports = app => {
     const Critere = require("../controller/criteres");
   
     var router = require("express").Router();
@@ -20,7 +19,6 @@ module.exports = app => {
   
     //delete all projects_criteres
     router.delete("/", Critere.deleteAll);
-  
-    app.use('/api/criteres', router);
+
+    module.exports=router;
    
-  };

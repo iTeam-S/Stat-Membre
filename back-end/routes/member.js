@@ -1,29 +1,25 @@
-module.exports = app => {
-    const Member = require("../controller/members");
+const Member = require("../controller/members");
   
-    var router = require("express").Router();
+var router = require("express").Router();
   
-    // Create a new Member
-    router.post("/", Member.create);
+// Create a new Member
+router.post("/", Member.create);
   
-    // Retrieve all Members
-    router.get("/", Member.findAll);
+// Retrieve all Members
+ router.get("/", Member.findAll);
   
   
-    // Retrieve a single Member with id
-    router.get("/:id", Member.findOne);
+// Retrieve a single Member with id
+ router.get("/:id", Member.findOne);
   
-    // Update a Member with id
-    router.put("/:id", Member.update);
+// Update a Member with id
+router.put("/:id", Member.update);
   
-    // Delete a Member with id
-    router.delete("/:id", Member.delete);
+// Delete a Member with id
+router.delete("/:id", Member.delete);
   
-    // delete all Member
-    router.delete("/", Member.deleteAll);
-
-  
-    app.use('/api/members', router);
-   
-  };
+// delete all Member
+router.delete("/", Member.deleteAll); 
+ 
+module.exports=router;
   

@@ -20,10 +20,6 @@ module.exports = (sequelize, Sequelize) => {
         },
         admin:{ 
             type: Sequelize.BOOLEAN
-        },
-
-        password:{  
-            type: Sequelize.STRING
         }
     });
   
