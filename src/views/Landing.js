@@ -1,11 +1,29 @@
-import React from "react";
+import React , { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+import axios from "axios";
 
 // components
 
 import Navbar from "components/Navbars/AuthNavbar.js";
 import Footer from "components/Footers/Footer.js";
 
+const baseUrl = "http://localhost:5000/api/members";
+
+
 export default function Landing() {
+
+    const [post, setPost] = useState(null);
+    useEffect(() => {
+        axios.get(
+            baseUrl
+           ).then((response) => {
+            const users = response.data;
+            setPost(users);
+        });
+    }, []);
+    
+if(!post) return null;
+    
     return ( 
         <>
             <Navbar transparent/>
@@ -41,116 +59,29 @@ export default function Landing() {
                     </div> 
                 </div>
 
-                <section className = "pt-20 pb-48" >
-                    <div className = "container mx-auto px-4" >
-                        <div className = "flex flex-wrap justify-center text-center mb-24" >
-                            <div className = "w-full lg:w-6/12 px-4" >
-                                <h2 className = "text-4xl font-semibold" > Here are our heroes </h2> 
-                            </div> 
-                        </div> 
-                        <div className = "flex flex-wrap" >
-                            <div className = "w-full md:w-6/12 lg:w-3/12 lg:mb-0 mb-12 px-4" >
-                                <div className = "px-6" >
-                                    <img alt = "..." src = { require("assets/img/team-1-800x800.jpg").default } className = "shadow-lg rounded-full mx-auto max-w-120-px" />
-                                    <div className = "pt-6 text-center" >
-                                        <h5 className = "text-xl font-bold" > Gaetan </h5> 
-                                        <p className = "mt-1 text-sm text-blueGray-400 uppercase font-semibold" >Leader </p> 
-                                        <div className = "mt-6" >
-                                            <button className = "bg-lightBlue-400 text-white w-8 h-8 rounded-full outline-none focus:outline-none mr-1 mb-1" type = "button" >
-                                                <i className = "fab fa-twitter" > </i> 
-                                            </button> 
-                                            <button className = "bg-lightBlue-600 text-white w-8 h-8 rounded-full outline-none focus:outline-none mr-1 mb-1" type = "button" >
-                                                <i className = "fab fa-facebook-f" > </i> 
-                                            </button> 
-                                            <button className = "bg-pink-500 text-white w-8 h-8 rounded-full outline-none focus:outline-none mr-1 mb-1" type = "button" >
-                                                <i className = "fab fa-dribbble" > </i> 
-                                            </button> 
-                                        </div> 
+                <section>
+                    <Link to="/profile">
+                        <div className="flex flex-row flex-wrap pt-4" style={ {margin: '60px 0px 30px 50px'} }>
+                            {post.map((membre) => (
+                                <div className="mt-8" style = { {margin: '0px 50px', padding: '9px'} }>
+                                    <img alt = "..." src = {membre.pdc} className = "shadow-lg rounded-full mx-auto max-w-120-px" />
+                                    <div className = "pt-3 text-center" >
+                                        <h5 className = "text-xl font-bold" > {membre.prenom}</h5> 
+                                        <h6> {membre.nom}</h6> 
+                                        <p className = "mt-1 m-4 text-sm text-blueGray-400 uppercase font-semibold break-words" >{membre.fonction} </p> 
                                     </div> 
-                                </div> 
-                            </div> 
-                            <div className = "w-full md:w-6/12 lg:w-3/12 lg:mb-0 mb-12 px-4" >
-                                <div className = "px-6" >
-                                    <img alt = "..." src = { require("assets/img/team-2-800x800.jpg").default } className = "shadow-lg rounded-full mx-auto max-w-120-px" />
-                                    <div className = "pt-6 text-center" >
-                                        <h5 className = "text-xl font-bold" > Rojo </h5> 
-                                        <p className = "mt-1 text-sm text-blueGray-400 uppercase font-semibold" >Leader </p> 
-                                        <div className = "mt-6" >
-                                            <button className = "bg-red-600 text-white w-8 h-8 rounded-full outline-none focus:outline-none mr-1 mb-1" type = "button" >
-                                                <i className = "fab fa-google" > </i> 
-                                            </button> 
-                                            <button className = "bg-lightBlue-600 text-white w-8 h-8 rounded-full outline-none focus:outline-none mr-1 mb-1" type = "button" >
-                                                <i className = "fab fa-facebook-f" > </i> 
-                                            </button> 
-                                        </div> 
-                                    </div> 
-                                </div> 
-                            </div> 
-                            <div className = "w-full md:w-6/12 lg:w-3/12 lg:mb-0 mb-12 px-4" >
-                                <div className = "px-6" >
-                                    <img alt = "..." src = { require("assets/img/team-3-800x800.jpg").default } className = "shadow-lg rounded-full mx-auto max-w-120-px" />
-                                    <div className = "pt-6 text-center" >
-                                        <h5 className = "text-xl font-bold" > Ianel </h5> 
-                                        <p className = "mt-1 text-sm text-blueGray-400 uppercase font-semibold" >
-                                        Developpeur back </p> 
-                                        <div className = "mt-6" >
-                                            <button className = "bg-red-600 text-white w-8 h-8 rounded-full outline-none focus:outline-none mr-1 mb-1" type = "button" >
-                                                <i className = "fab fa-google" > </i> 
-                                            </button> 
-                                            <button className = "bg-lightBlue-400 text-white w-8 h-8 rounded-full outline-none focus:outline-none mr-1 mb-1" type = "button" >
-                                                <i className = "fab fa-twitter" > </i> 
-                                            </button> 
-                                            <button className = "bg-blueGray-700 text-white w-8 h-8 rounded-full outline-none focus:outline-none mr-1 mb-1" type = "button" >
-                                                <i className = "fab fa-instagram" > </i> 
-                                            </button> 
-                                        </div> 
-                                    </div> 
-                                </div> 
-                            </div> 
-                            <div className = "w-full md:w-6/12 lg:w-3/12 lg:mb-0 mb-12 px-4" >
-                                <div className = "px-6" >
-                                    <img alt = "..." src = { require("assets/img/team-4-470x470.png").default } className = "shadow-lg rounded-full mx-auto max-w-120-px" />
-                                    <div className = "pt-6 text-center" >
-                                        <h5 className = "text-xl font-bold" > Dama </h5> 
-                                        <p className = "mt-1 text-sm text-blueGray-400 uppercase font-semibold" >Developpeur front </p> 
-                                        <div className = "mt-6" >
-                                            <button className = "bg-pink-500 text-white w-8 h-8 rounded-full outline-none focus:outline-none mr-1 mb-1"type = "button" >
-                                                <i className = "fab fa-dribbble" > </i> 
-                                            </button> 
-                                            <button className = "bg-red-600 text-white w-8 h-8 rounded-full outline-none focus:outline-none mr-1 mb-1" type = "button" >
-                                                <i className = "fab fa-google" > </i> 
-                                            </button> 
-                                            <button className = "bg-lightBlue-400 text-white w-8 h-8 rounded-full outline-none focus:outline-none mr-1 mb-1" type = "button" >
-                                                <i className = "fab fa-twitter" > </i> 
-                                            </button>
-                                            <button className = "bg-blueGray-700 text-white w-8 h-8 rounded-full outline-none focus:outline-none mr-1 mb-1" type = "button" >
-                                                <i className = "fab fa-instagram" > </i> 
-                                            </button> 
-                                        </div> 
-                                    </div> 
-                                </div> 
-                            </div> 
-                        </div> 
-                    </div> 
+                                </div>
+                            ))}
+                        </div>
+                    </Link>
                 </section>
-
+                           
+                        
                 <section className = "pb-20 relative block bg-blueGray-800" >
-                    <div className = "bottom-auto top-0 left-0 right-0 w-full absolute pointer-events-none overflow-hidden -mt-20 h-20"
-                        style = {
-                            { transform: "translateZ(0)" } } >
-                        <svg className = "absolute bottom-0 overflow-hidden" xmlns = "http://www.w3.org/2000/svg"
-                            preserveAspectRatio = "none"
-                            version = "1.1"
-                            viewBox = "0 0 2560 100"
-                            x = "0"
-                            y = "0" >
-                            <polygon className = "text-blueGray-800 fill-current" points = "2560 0 2560 100 0 100" ></polygon> 
-                        </svg> 
-                    </div>
 
                     <div className = "container mx-auto px-4 lg:pt-24 lg:pb-64" >
                         <div className = "flex flex-wrap text-center justify-center" >
-                            <div className = "w-full lg:w-6/12 px-4" >
+                            <div className = "w-full lg:w-6/12 px-4">
                                 <h2 className = "text-4xl font-semibold text-white" >Build something </h2> 
                                 <p className = "text-lg leading-relaxed mt-4 mb-4 text-blueGray-400" >
                                     Put the potentially record low maximum sea ice extent tihs year down to low ice.According to the National Oceanic and Atmospheric Administration, Ted, Scambos. </p> 
@@ -164,7 +95,7 @@ export default function Landing() {
                                 <h6 className = "text-xl mt-5 font-semibold text-white" >Excelent Services </h6> 
                                 <p className = "mt-2 mb-4 text-blueGray-400" >Some quick example text to build on the card title and make up the bulk of the card 's content. </p> 
                             </div> 
-                            <div className = "w-full lg:w-3/12 px-4 text-center" >
+                            <div className = "w-full lg:w-3/12 px-4 text-center">
                                 <div className = "text-blueGray-800 p-3 w-12 h-12 shadow-lg rounded-full bg-white inline-flex items-center justify-center" >
                                     <i className = "fas fa-poll text-xl" > </i> 
                                 </div> 
