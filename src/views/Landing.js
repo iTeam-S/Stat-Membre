@@ -1,28 +1,13 @@
-import React , { useState, useEffect } from "react";
+import React  from "react";
 import { Link } from "react-router-dom";
-import axios from "axios";
 
 // components
 
 import Navbar from "components/Navbars/AuthNavbar.js";
 import Footer from "components/Footers/Footer.js";
 
-const baseUrl = "http://localhost:5000/api/members";
 
-
-export default function Landing() {
-
-    const [post, setPost] = useState(null);
-    useEffect(() => {
-        axios.get(
-            baseUrl
-           ).then((response) => {
-            const users = response.data;
-            setPost(users);
-        });
-    }, []);
-    
-if(!post) return null;
+export default function Landing({data}) {
     
     return ( 
         <>
@@ -59,24 +44,30 @@ if(!post) return null;
                     </div> 
                 </div>
 
+
+
+
                 <section>
-                    <Link to="/profile">
                         <div className="flex flex-row flex-wrap pt-4" style={ {margin: '60px 0px 30px 50px'} }>
-                            {post.map((membre) => (
-                                <div className="mt-8" style = { {margin: '0px 50px', padding: '9px'} }>
-                                    <img alt = "..." src = {membre.pdc} className = "shadow-lg rounded-full mx-auto max-w-120-px" />
-                                    <div className = "pt-3 text-center" >
-                                        <h5 className = "text-xl font-bold" > {membre.prenom}</h5> 
-                                        <h6> {membre.nom}</h6> 
-                                        <p className = "mt-1 m-4 text-sm text-blueGray-400 uppercase font-semibold break-words" >{membre.fonction} </p> 
-                                    </div> 
-                                </div>
+                            {data.map((membre) => (
+                                <Link to={`/profile/${membre.id}`}>
+                                    <div className="mt-8" style = { {margin: '0px 50px', padding: '9px'} }>
+                                        <img alt = "..." src = {membre.pdc} className = "shadow-lg rounded-full mx-auto max-w-120-px" />
+                                        <div className = "pt-3 text-center" >
+                                            <h5 className = "text-xl font-bold" > {membre.prenom}</h5>
+                                            <h6> {membre.nom}</h6> 
+                                            <p className = "mt-1 m-4 text-sm text-blueGray-400 uppercase font-semibold break-words" >{membre.fonction} </p> 
+                                        </div> 
+                                    </div>
+                                </Link>
                             ))}
                         </div>
-                    </Link>
                 </section>
                            
                         
+
+
+
                 <section className = "pb-20 relative block bg-blueGray-800" >
 
                     <div className = "container mx-auto px-4 lg:pt-24 lg:pb-64" >

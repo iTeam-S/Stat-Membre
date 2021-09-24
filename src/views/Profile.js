@@ -1,10 +1,13 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 import Navbar from "components/Navbars/AuthNavbar.js";
 import Footer from "components/Footers/Footer.js";
 
-export default function Profile() {
+
+export default function Profile({data}) {
+    const { id } = useParams();
+
     return ( 
         <>
             <Navbar transparent/>
@@ -30,44 +33,56 @@ export default function Profile() {
                         </svg> 
                     </div> 
                 </section> 
-                <section className = "relative py-16 bg-blueGray-200" >
-                    <div className = "container mx-auto px-4" >
-                        <div className = "relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-xl rounded-lg -mt-64" >
-                            <div className = "px-6" >
-                                <div className = "flex flex-wrap justify-center" >
-                                    <div className = "w-full lg:w-3/12 px-4 lg:order-2 flex justify-center" >
-                                        <div className = "relative" >
-                                            <img alt = "..." src = { require("assets/img/team-2-800x800.jpg").default } className = "shadow-xl rounded-full h-auto align-middle border-none absolute -m-16 -ml-20 lg:-ml-16 max-w-150-px" />
-                                            <h4 style={ {marginTop: '100px'} }>Dama</h4>
-                                        </div> 
-                                    </div> 
-                                    <div className = "w-full lg:w-4/12 px-4 lg:order-3 lg:text-right lg:self-center" >
-                                        <Link to = "/auth/register">
-                                            <div className = "py-6 px-3 mt-32 sm:mt-0" >
-                                                <button className = "bg-lightBlue-500 active:bg-lightBlue-600 uppercase text-white font-bold hover:shadow-md shadow text-xs px-4 py-2 rounded outline-none focus:outline-none sm:mr-2 mb-1 ease-linear transition-all duration-150"type = "button" >Ajout projet </button> 
-                                            </div> 
-                                        </Link>
-                                    </div> 
-                                    <div className = "w-full lg:w-4/12 px-4 lg:order-1" >
-                                        <div className = "flex justify-center py-4 lg:pt-4 pt-8" >
-                                            <div className = "mr-4 p-3 text-center" >
-                                                <span className = "text-xl font-bold block uppercase tracking-wide text-blueGray-600" >0 </span> 
-                                                <span className = "text-sm text-blueGray-400" >Projet </span> 
-                                            </div> 
-                                            
-                                            <div className = "lg:mr-4 p-3 text-center" >
-                                                <span className = "text-xl font-bold block uppercase tracking-wide text-blueGray-600" >0 </span> 
-                                                <span className = "text-sm text-blueGray-400" >Technologie </span> 
-                                            </div> 
-                                        </div> 
-                                    </div> 
-                                </div> 
-                                
+                
 
-                            </div>  
-                        </div> 
-                    </div> 
-                </section> 
+
+               <section className = "relative py-16 bg-blueGray-200" >
+                    {
+                        data
+                        .filter((membre) => membre.id === parseInt(id))
+                        .map((membre) => (
+                            <div className = "container mx-auto px-4" >
+                                <div className = "relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-xl rounded-lg -mt-64" >
+                                    <div className = "px-6" >
+                                        <div className = "flex flex-wrap justify-center" >
+                                            <div className = "w-full lg:w-3/12 px-4 lg:order-2 flex justify-center" >
+                                                <div className = "relative" >
+                                                    <img alt = "..." src = { require("assets/img/team-2-800x800.jpg").default } className = "shadow-xl rounded-full h-auto align-middle border-none absolute -m-16 -ml-20 lg:-ml-16 max-w-150-px" />
+                                                </div>
+                                                <div>
+                                                    <h1 className="text-xl font-bold" style={ {marginTop: '90px', marginLeft: '-18px'} }>{ membre.prenom }</h1>
+                                                </div>
+                                            </div> 
+                                            <div className = "w-full lg:w-4/12 px-4 lg:order-3 lg:text-right lg:self-center" >
+                                                <Link to = "/auth/register">
+                                                    <div className = "py-6 px-3 mt-32 sm:mt-0" >
+                                                        <button className = "bg-lightBlue-500 active:bg-lightBlue-600 uppercase text-white font-bold hover:shadow-md shadow text-xs px-4 py-2 rounded outline-none focus:outline-none sm:mr-2 mb-1 ease-linear transition-all duration-150"type = "button" >Ajout projet </button> 
+                                                    </div> 
+                                                </Link>
+                                            </div> 
+                                            <div className = "w-full lg:w-4/12 px-4 lg:order-1" >
+                                                <div className = "flex justify-center py-4 lg:pt-4 pt-8" >
+                                                    <div className = "mr-4 p-3 text-center" >
+                                                        <span className = "text-xl font-bold block uppercase tracking-wide text-blueGray-600" >0 </span> 
+                                                        <span className = "text-sm text-blueGray-400" >Projet </span> 
+                                                    </div> 
+                                                            
+                                                    <div className = "lg:mr-4 p-3 text-center" >
+                                                        <span className = "text-xl font-bold block uppercase tracking-wide text-blueGray-600" >0 </span> 
+                                                            <span className = "text-sm text-blueGray-400" >Technologie </span> 
+                                                    </div> 
+                                                </div> 
+                                            </div> 
+                                        </div> 
+                                    </div>  
+                                </div> 
+                            </div> 
+                        ))
+
+                    }
+                </section>
+
+
             </main> 
             <Footer/>
         </>
