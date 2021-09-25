@@ -24,15 +24,19 @@ export default function Footer() {
                             <h5 className = "text-lg mt-0 mb-2 text-blueGray-600" > Suivez - nous sur les réseau sociaux. </h5>  
                             <div className = "mt-6 lg:mb-0 mb-6" >
                                 <button className = "bg-white text-lightBlue-400 shadow-lg font-normal h-10 w-10 items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2" type = "button" > 
-                                    <i className = "fab fa-twitter" > </i> 
+                                    <a href="https://iteam-s.mg/website/social/twitter" target="_blank" rel="noreferrer" ><i className = "fab fa-twitter" > </i> </a>
                                 </button >
 
                                 <button className = "bg-white text-lightBlue-600 shadow-lg font-normal h-10 w-10 items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2" type = "button" > 
-                                <   i className = "fab fa-facebook-square" > </i> 
+                                    <a href="https://github.com/iTeam-S" target="_blank" rel="noreferrer" ><i className = "fab fa-github" > </i> </a>
                                 </button >
 
                                 <button className = "bg-white text-blueGray-800 shadow-lg font-normal h-10 w-10 items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2" type = "button" > 
-                                    <i className = "fab fa-github" > </i> 
+                                    <a href="https://facebook.com/iTeam.Community?_rdc=1&_rdr" target="_blank" rel="noreferrer" ><i className = "fab fa-facebook" > </i> </a>
+                                </button >
+
+                                <button className = "bg-white text-blueGray-800 shadow-lg font-normal h-10 w-10 items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2" type = "button" > 
+                                    <a href="https://iteam-s.mg/website/social/linkedin" target="_blank" rel="noreferrer" ><i className = "fab fa-linkedin" > </i> </a>
                                 </button >
                             </div>  
                         </div>  
@@ -43,22 +47,22 @@ export default function Footer() {
                                     <ul className = "list-unstyled">
                                         <li> 
                                             <a className = "text-blueGray-600 hover:text-blueGray-800 font-semibold block pb-2 text-sm"
-                                                href = "https://iteams.mg" > About Us </a>
+                                                href = "https://iteam-s.mg/qui-sommes-nous" target="_blank" rel="noreferrer" > About Us </a>
                                         </li>
 
                                         <li> 
                                             <a className = "text-blueGray-600 hover:text-blueGray-800 font-semibold block pb-2 text-sm"
-                                                href = "https://iteams.mg" > Page </a> 
+                                                href = "https://iteam-s.mg/" target="_blank" rel="noreferrer" > Page </a> 
                                         </li>
 
                                         <li> 
                                             <a className = "text-blueGray-600 hover:text-blueGray-800 font-semibold block pb-2 text-sm"
-                                                href = "https://iteams.mg" > Github </a> 
+                                                href = "https://github.com/iTeam-S" target="_blank" rel="noreferrer" > Github </a> 
                                         </li>
 
                                         <li> 
                                             <a className = "text-blueGray-600 hover:text-blueGray-800 font-semibold block pb-2 text-sm"
-                                                href = "https://iteams.mg" > Products </a> 
+                                                href = "https://iteam-s.mg/projets" target="_blank" rel="noreferrer" > Projets </a> 
                                         </li>
                                     </ul>  
                                 </div>  
@@ -67,7 +71,7 @@ export default function Footer() {
                                     <ul className = "list-unstyled" >
                                         <li> 
                                             <a className = "text-blueGray-600 hover:text-blueGray-800 font-semibold block pb-2 text-sm"
-                                                href = "https://iteams.mg" > Contact Us 
+                                                href = "https://iteam-s.mg/contactus" target="_blank" rel="noreferrer" > Contact Us 
                                             </a> 
                                         </li>
                                     </ul>  
@@ -79,7 +83,7 @@ export default function Footer() {
                     <div className = "flex flex-wrap items-center md:justify-between justify-center" >
                         <div className = "w-full md:w-4/12 px-4 mx-auto text-center" >
                             <div className = "text-sm text-blueGray-500 font-semibold py-1" >Copyright© { new Date().getFullYear() } { " " } by { " " } 
-                                < a href = "https://iteams.mg" className = "text-blueGray-500 hover:text-blueGray-800" > Iteam - $ </a> 
+                                < a href = "https://iteam-s.mg/" className = "text-blueGray-500 hover:text-blueGray-800" rel="noreferrer"  target="_blank"> Iteam - $ </a> 
                             </div>  
                         </div>  
                     </div>  
