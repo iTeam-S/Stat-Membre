@@ -15,13 +15,13 @@ export default function FooterAdmin() {
                         <div className = "w-full md:w-8/12 px-4" >
                             <ul className = "flex flex-wrap list-none md:justify-end  justify-center" >
                                 <li >
-                                    <a href = "https://www.iteams.mg" className = "text-blueGray-600 hover:text-blueGray-800 text-sm font-semibold block py-1 px-3" >Iteams </a> 
+                                    <a href = "https://iteam-s.mg/" target="_blank" rel="noreferrer" className = "text-blueGray-600 hover:text-blueGray-800 text-sm font-semibold block py-1 px-3" >Iteams </a> 
                                 </li> 
                                 <li>
-                                    <a href = "https://www.iteams.mg/about/" className = "text-blueGray-600 hover:text-blueGray-800 text-sm font-semibold block py-1 px-3" >About Us </a> 
+                                    <a href = "https://www.iteams.mg/about/" target="_blank" rel="noreferrer" className = "text-blueGray-600 hover:text-blueGray-800 text-sm font-semibold block py-1 px-3" >About Us </a> 
                                 </li> 
                                 <li>
-                                    <a href = "http://iteams.mg" className = "text-blueGray-600 hover:text-blueGray-800 text-sm font-semibold block py-1 px-3" >Blog </a> 
+                                    <a href = "https://iteam-s.mg/contactus" target="_blank" rel="noreferrer" className = "text-blueGray-600 hover:text-blueGray-800 text-sm font-semibold block py-1 px-3" >Contact Us </a> 
                                 </li> 
                             </ul> 
                         </div> 

@@ -15,13 +15,13 @@ export default function FooterSmall(props) {
                         <div className = "w-full md:w-8/12 px-4" >
                             <ul className = "flex flex-wrap list-none md:justify-end  justify-center" >
                                 <li>
-                                    <a href = "https://iteams.mg" className = "text-white hover:text-blueGray-300 text-sm font-semibold block py-1 px-3" >Iteam - $ </a> 
+                                    <a href = "https://iteam-s.mg/" target="_blank" rel="noreferrer" className = "text-white hover:text-blueGray-300 text-sm font-semibold block py-1 px-3" >Iteam - $ </a> 
                                 </li> 
                                 <li>
-                                    <a href = "https://iteams.mg/about/" className = "text-white hover:text-blueGray-300 text-sm font-semibold block py-1 px-3" >About Us </a> 
+                                    <a href = "https://www.iteams.mg/about/" target="_blank" rel="noreferrer" className = "text-white hover:text-blueGray-300 text-sm font-semibold block py-1 px-3" >About Us </a> 
                                 </li> 
                                 <li >
-                                    <a href = "http://www.iteams.mg" className = "text-white hover:text-blueGray-300 text-sm font-semibold block py-1 px-3" >Blog </a> 
+                                    <a href = "https://iteam-s.mg/contactus" target="_blank" rel="noreferrer" className = "text-white hover:text-blueGray-300 text-sm font-semibold block py-1 px-3" >Contact Us </a> 
                                 </li> 
                             </ul> 
                         </div> 
