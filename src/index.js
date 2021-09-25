@@ -17,19 +17,34 @@ import Landing from "views/Landing.js";
 import Profile from "views/Profile.js";
 import Index from "views/Index.js";
 
-const baseUrl = "http://localhost:5000/api/members";
+
+const memberUrl = "http://localhost:5000/api/members";
+const projectUrl = "http://localhost:5000/api/project"
 
 
 const App = () => {
-  const [post, setPost] = useState(null);
+  //get member
+  const [member, setMember] = useState([]);
     useEffect(() => {
-        axios.get(
-            baseUrl
-           ).then((response) => {
-            const users = response.data;
-            setPost(users);
+        axios.get(memberUrl)
+             .then((response) => {
+                const users = response.data;
+                setMember(users);
         });
     }, []);
+    // get project
+    const [ project, setProject] = useState([]);
+    useEffect(() => {
+      axios.get(projectUrl)
+          .then((response) => {
+              const projet = response.data;
+              setProject(projet);
+        });
+    }, []);
+
+
+
+
   return (
       <BrowserRouter>
         <Switch>
@@ -38,12 +53,14 @@ const App = () => {
           <Route path="/auth" component={Auth} />
           {/* add routes without layouts */}
           <Route path="/landing" exact>
-              <Landing data={post}/>
+              <Landing data={member}/>
           </Route>
           <Route path="/profile/:id" exact>
-              <Profile data={post}/>
+              <Profile data={member}/>
           </Route>
-          <Route path="/" exact component={Index} />
+          <Route path="/" exact>
+            <Index data={project}/>
+          </Route>
           {/* add redirect for first page */}
           <Redirect from="*" to="/" />
         </Switch>
