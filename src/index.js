@@ -49,8 +49,12 @@ const App = () => {
       <BrowserRouter>
         <Switch>
           {/* add routes with layouts */}
-          <Route path="/admin" component={Admin} />
-          <Route path="/auth" component={Auth} />
+          <Route path="/admin">
+              <Admin />
+          </Route>
+          <Route path="/auth">
+              <Auth />
+          </Route>
           {/* add routes without layouts */}
           <Route path="/landing" exact>
               <Landing data={member}/>

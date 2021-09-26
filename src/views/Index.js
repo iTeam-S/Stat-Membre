@@ -144,7 +144,7 @@ export default function Index({ data }) {
                         ))}
                     </div>
                     <a
-                        href="https://iteam-s.mg/projets"
+                        href="https://github.com/orgs/iTeam-S/repositories"
                         target="_blank"
                         className="font-bold text-blueGray-700 hover:text-blueGray-500 transition-all duration-150" style = {{ textAlign: 'text-center'}}
                     >
