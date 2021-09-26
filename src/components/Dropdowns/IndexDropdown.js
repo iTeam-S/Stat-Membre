@@ -41,7 +41,7 @@ const IndexDropdown = () => {
             "text-sm pt-2 pb-0 px-4 font-bold block w-full whitespace-nowrap bg-transparent text-blueGray-400"
           }
         >
-          Admin Layout
+          Page admin
         </span>
         <Link
           to="/admin/dashboard"
@@ -73,13 +73,13 @@ const IndexDropdown = () => {
             "text-sm pt-2 pb-0 px-4 font-bold block w-full whitespace-nowrap bg-transparent text-blueGray-400"
           }
         >
-          Auth Layout
+          Page projet
         </span>
         <Link
           to="/auth/login"
           className="text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700"
         >
-          Login
+          View
         </Link>
         <Link
           to="/auth/register"
@@ -93,19 +93,13 @@ const IndexDropdown = () => {
             "text-sm pt-2 pb-0 px-4 font-bold block w-full whitespace-nowrap bg-transparent text-blueGray-400"
           }
         >
-          No Layout
+          Autre page
         </span>
         <Link
           to="/landing"
           className="text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700"
         >
-          Landing
-        </Link>
-        <Link
-          to="/profile"
-          className="text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700"
-        >
-          Profile
+          Equipes
         </Link>
       </div>
     </>

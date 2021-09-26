@@ -1,3 +1,4 @@
+/*eslint-disable*/
 import React from "react";
 import { Link, useParams } from "react-router-dom";
 
@@ -41,44 +42,77 @@ export default function Profile({data}) {
                         data
                         .filter((membre) => membre.id === parseInt(id))
                         .map((membre) => (
-                            <div className = "container mx-auto px-4" >
-                                <div className = "relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-xl rounded-lg -mt-64" >
-                                    <div className = "px-6" >
-                                        <div className = "flex flex-wrap justify-center" >
-                                            <div className = "w-full lg:w-3/12 px-4 lg:order-2 flex justify-center" >
-                                                <div className = "relative" >
-                                                    <img alt = "..." src = { require("assets/img/team-2-800x800.jpg").default } className = "shadow-xl rounded-full h-auto align-middle border-none absolute -m-16 -ml-20 lg:-ml-16 max-w-150-px" />
-                                                </div>
-                                                <div>
-                                                    <h1 className="text-xl font-bold" style={ {marginTop: '90px', marginLeft: '-18px'} }>{ membre.prenom }</h1>
-                                                </div>
-                                            </div> 
-                                            <div className = "w-full lg:w-4/12 px-4 lg:order-3 lg:text-right lg:self-center" >
-                                                <Link to = "/auth/register">
-                                                    <div className = "py-6 px-3 mt-32 sm:mt-0" >
-                                                        <button className = "bg-lightBlue-500 active:bg-lightBlue-600 uppercase text-white font-bold hover:shadow-md shadow text-xs px-4 py-2 rounded outline-none focus:outline-none sm:mr-2 mb-1 ease-linear transition-all duration-150"type = "button" >Ajout projet </button> 
-                                                    </div> 
-                                                </Link>
-                                            </div> 
-                                            <div className = "w-full lg:w-4/12 px-4 lg:order-1" >
-                                                <div className = "flex justify-center py-4 lg:pt-4 pt-8" >
-                                                    <div className = "mr-4 p-3 text-center" >
-                                                        <span className = "text-xl font-bold block uppercase tracking-wide text-blueGray-600" >0 </span> 
-                                                        <span className = "text-sm text-blueGray-400" >Projet </span> 
-                                                    </div> 
-                                                            
-                                                    <div className = "lg:mr-4 p-3 text-center" >
-                                                        <span className = "text-xl font-bold block uppercase tracking-wide text-blueGray-600" >0 </span> 
-                                                            <span className = "text-sm text-blueGray-400" >Technologie </span> 
-                                                    </div> 
-                                                </div> 
-                                            </div> 
-                                        </div> 
-                                    </div>  
-                                </div> 
-                            </div> 
+                            <div className="container mx-auto px-4">
+                                <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-xl rounded-lg -mt-64">
+                                  <div className="px-6">
+                                    <div className="flex flex-wrap justify-center">
+                                      <div className="w-full lg:w-3/12 px-4 lg:order-2 flex justify-center">
+                                        <div className="relative">
+                                          <img
+                                            alt="..."
+                                            src={ membre.pdc }
+                                            className="shadow-xl rounded-full h-auto align-middle border-none absolute -m-16 -ml-20 lg:-ml-16 max-w-150-px"
+                                          />
+                                        </div>
+                                      </div>
+                                      <div className="w-full lg:w-4/12 px-4 lg:order-3 lg:text-right lg:self-center">
+                                        <div className="py-6 px-3 mt-32 sm:mt-0">
+                                          <button
+                                            className="bg-lightBlue-500 active:bg-lightBlue-600 uppercase text-white font-bold hover:shadow-md shadow text-xs px-4 py-2 rounded outline-none focus:outline-none sm:mr-2 mb-1 ease-linear transition-all duration-150"
+                                            type="button"
+                                          >
+                                            Send mail
+                                          </button>
+                                        </div>
+                                      </div>
+                                      <div className="w-full lg:w-4/12 px-4 lg:order-1">
+                                        <div className="flex justify-center py-4 lg:pt-4 pt-8">
+                                          <div className="mr-4 p-3 text-center">
+                                            <button className="bg-white text-lightBlue-400 shadow-lg font-normal h-10 w-10 items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2">
+                                                <a href="https://facebook.com/iTeam.Community?_rdc=1&_rdr" target="_blank" rel="noreferrer" ><i className = "fab fa-facebook" > </i> </a>
+                                            </button>
+                                          </div>
+                                          <div className="mr-4 p-3 text-center">
+                                            <button className="bg-white text-lightBlue-400 shadow-lg font-normal h-10 w-10 items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2">
+                                                <a href="https://github.com/iTeam-S" target="_blank" rel="noreferrer" ><i className = "fab fa-github" > </i> </a>
+                                            </button>
+                                          </div>
+                                          <div className="mr-4 p-3 text-center">
+                                            <button className="bg-white text-lightBlue-400 shadow-lg font-normal h-10 w-10 items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2">
+                                                <a href="https://iteam-s.mg/website/social/linkedin" target="_blank" rel="noreferrer" ><i className = "fab fa-linkedin" > </i> </a>
+                                            </button>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                    <div className="text-center mt-12">
+                                      <h3 className="text-4xl font-semibold leading-normal mb-2 text-blueGray-700 mb-2">
+                                        { membre.prenom } { membre.nom }
+                                      </h3>
+                                      <div className="text-sm leading-normal mt-0 mb-2 text-blueGray-400 font-bold uppercase">
+                                        <i className="fas fa-map-marker-alt mr-2 text-lg text-blueGray-400"></i>{" "}
+                                        Antananarivo, Madagascar
+                                      </div>
+                                      <div className="mb-2 text-blueGray-600 mt-10">
+                                        <i className="fas fa-briefcase mr-2 text-lg text-blueGray-400"></i>
+                                        { membre.fonction }
+                                      </div>
+                                    </div>
+                                    <div className="mt-10 py-10 border-t border-blueGray-200 text-center">
+                                      <div className="flex flex-wrap justify-center">
+                                        <div className="w-full lg:w-9/12 px-4">
+                                          <p className="mb-4 text-lg leading-relaxed text-blueGray-700">
+                                            Une communauté fondé récemment par des jeunes. 
+                                            Des jeunes dans le domaine de l'informatique,  digitale, management et  communication qui se sont 
+                                            regroupés pour mettre en œuvre une communauté jeune et dynamique.. 
+                                          </p>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
                         ))
-
                     }
                 </section>
 

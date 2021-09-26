@@ -16,14 +16,12 @@ export default function Index({ data }) {
                     <div className = "w-full md:w-8/12 lg:w-6/12 xl:w-6/12 px-4" >
                         <div className = "pt-32 sm:pt-0" >
                             <h2 className = "font-semibold text-4xl text-blueGray-600" >Bienvenue sur Iteam - $ stats </h2> 
-                            <p className = "mt-4 text-lg leading-relaxed text-blueGray-500" >Sur cette site web, ovus pouvez trouvez les statistiques des membres dans 
-                                <a href = "https://Iteam-$.mg" className = "text-blueGray-600" target = "_blank" >Iteam - $ </a>.Une communauté fondé récemment par des jeunes. 
-                                Des jeunes dans le domaine de l'informatique,  digitale, management et  communication qui se sont 
-                                regroupés pour mettre en œuvre une communauté jeune et dynamique.. 
+                            <p className = "mt-4 text-lg leading-relaxed text-blueGray-500" >Sur cette site web, vous pouvez trouvez les statistiques des membres dans 
+                                <a href = "https://Iteam-$.mg" className = "text-blueGray-600" target = "_blank" >{" "}Iteam - $ </a>.
                             </p> 
                             <div className = "mt-12" >
                                 <a href = "https://iteam-s.mg/" target = "_blank" className = "get-started text-white font-bold px-6 py-4 rounded outline-none focus:outline-none mr-1 mb-1 bg-lightBlue-500 active:bg-lightBlue-600 uppercase text-sm shadow hover:shadow-lg ease-linear transition-all duration-150" >Get started </a> 
-                                <a href = "https://github.com/iTeam-S" className = "github-star ml-1 text-white font-bold px-6 py-4 rounded outline-none focus:outline-none mr-1 mb-1 bg-blueGray-700 active:bg-blueGray-600 uppercase text-sm shadow hover:shadow-lg ease-linear transition-all duration-150" target = "_blank" >Github Star </a> 
+                                <a href = "https://github.com/iTeam-S" className = "github-star ml-1 text-white font-bold px-6 py-4 rounded outline-none focus:outline-none mr-1 mb-1 bg-blueGray-700 active:bg-blueGray-600 uppercase text-sm shadow hover:shadow-lg ease-linear transition-all duration-150" target = "_blank"  style = {{ backgroundColor: '#116466' }}>Github Star </a> 
                             </div> 
                         </div> 
                     </div> 
@@ -133,7 +131,7 @@ export default function Index({ data }) {
                         <i className="fas fa-drafting-compass text-xl"></i>
                     </div>
                     <h3 className="text-3xl mb-2 font-semibold text-center">
-                        Nos projets
+                        Nos quelques projets
                     </h3>
                     <p className="text-lg font-light mt-4 mb-4 text-blueGray-600">
                         Voici la liste de nos projets en cours et terminés.                        
@@ -166,11 +164,11 @@ export default function Index({ data }) {
                                     href= { projet.repos }
                                     target="_blank"
                                 >
-                                    <div className="bg-emerald-500 shadow-lg rounded-lg text-center p-8 mt-3">
+                                    <div className=" shadow-lg rounded-lg text-center p-8 mt-3"  style = {{ backgroundColor: '#116466' }}>
                                       <img
                                         alt="..."
                                         className="shadow-md rounded-full max-w-full w-16 mx-auto p-2 bg-white"
-                                        src="https://raw.githubusercontent.com/creativetimofficial/public-assets/master/logos/nextjs.jpg"
+                                        src="https://raw.githubusercontent.com/creativetimofficial/public-assets/master/logos/vue.jpg"
                                       />
                                       <p className="text-lg text-white mt-4 font-semibold">
                                         { projet.nom }
@@ -194,7 +192,7 @@ export default function Index({ data }) {
                                       <img
                                         alt="..."
                                         className="shadow-md rounded-full max-w-full w-16 mx-auto p-2 bg-white"
-                                        src="https://raw.githubusercontent.com/creativetimofficial/public-assets/master/logos/nextjs.jpg"
+                                        src="https://raw.githubusercontent.com/creativetimofficial/public-assets/master/logos/react.jpg"
                                       />
                                       <p className="text-lg text-white mt-4 font-semibold">
                                         { projet.nom }
@@ -207,34 +205,34 @@ export default function Index({ data }) {
                 </div>
             </div>
 
-            <section className = "block relative z-1 bg-blueGray-600 pb-48" >
+            <section className = "block relative z-1  pb-48" style = {{ backgroundColor: '#116466' }}>
                 <div className = "container mx-auto" >
                     <div className = "justify-center flex flex-wrap" >
                         <div className = "w-full lg:w-12/12 px-4  -mt-24" >
                             <div className = "flex flex-wrap" >
                                 <div className = "w-full lg:w-4/12 px-4" >
-                                    <h5 className = "text-xl font-semibold pb-4 text-center" >Register projet</h5> 
-                                    <Link to = "/auth/register" >
+                                    <h5 className = "text-xl font-semibold pb-4 text-center" >Login Iteam-$</h5> 
+                                   <a href="https://iteam-s.mg/web/login" target="_blank" rel="noreferrer" >
                                         <div className = "hover:-mt-4 relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded-lg ease-linear transition-all duration-150" >
-                                            <img alt = "..." className = "align-middle border-none max-w-full h-auto rounded-lg" src = { require("assets/img/register.png").default }/> 
+                                            <img alt = "..." className = "align-middle border-none max-w-full h-auto rounded-lg" style={{height: '270px'}} src = { require("assets/img/login.png").default }/> 
                                         </div> 
-                                    </Link> 
+                                    </a>
                                 </div>
 
                                 <div className = "w-full lg:w-4/12 px-4" >
-                                    <h5 className = "text-xl font-semibold pb-4 text-center" >Projet </h5> 
-                                    <Link to = "/profile" >
+                                    <h5 className = "text-xl font-semibold pb-4 text-center" >All project </h5> 
+                                     <a href="https://iteam-s.mg/projets" target="_blank" rel="noreferrer" >
                                         <div className = "hover:-mt-4 relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded-lg ease-linear transition-all duration-150" >
-                                            <img alt = "..." className = "align-middle border-none max-w-full h-auto rounded-lg" src = { require("assets/img/profile.jpg").default }/> 
+                                            <img alt = "..." className = "align-middle border-none max-w-full h-auto rounded-lg" style={{height: '270px'}} src = { require("assets/img/projet.png").default }/> 
                                         </div> 
-                                    </Link> 
+                                    </a>
                                 </div>
 
                                 <div className = "w-full lg:w-4/12 px-4" >
                                     <h5 className = "text-xl font-semibold pb-4 text-center" >Equipe Iteam-$ </h5> 
                                     <Link to = "/landing" >
                                         <div className = "hover:-mt-4 relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded-lg ease-linear transition-all duration-150" >
-                                            <img alt = "..." className = "align-middle border-none max-w-full h-auto rounded-lg" src = { require("assets/img/equipe.png").default }/> 
+                                            <img alt = "..." className = "align-middle border-none max-w-full h-auto rounded-lg" style={{height: '270px'}} src = { require("assets/img/equipe.png").default }/> 
                                         </div> 
                                     </Link> 
                                 </div> 
