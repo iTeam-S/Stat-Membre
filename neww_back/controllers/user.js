@@ -62,7 +62,7 @@ module.exports={
         }
     },
 
-    updat:async(req,res)=>{
+    update:async(req,res)=>{
         try {
             let id=parseInt(req.params.id);
             let {nom,mail,password}=req.body;
@@ -88,7 +88,35 @@ module.exports={
             res.status(500).send(error)
             
         }
+    },
+    allaccess:async(req,res)=>{
+        try {
+            res.status(200).send("Public Content")
+            
+        } catch (error) {
+            res.status(500).send(error)
+            
+        }
+    },
+    userBoard:async(req,res)=>{
+        try {
+            res.status(200).send("Simple user content")
+            
+        } catch (error) {
+            res.status(500).send(error)
+            
+        }
+    },
+    adminBoard:async(req,res)=>{
+        try {
+            res.status(200).send("Admin dashboard");
+            
+        } catch (error) {
+            res.status(500).send(error)
+            
+        }
     }
+
 
 
 }
