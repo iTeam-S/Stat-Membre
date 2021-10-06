@@ -3,34 +3,39 @@ const mdlsUser=require("../models/users");
 const mdlsRole=require("../models/roles");
 
 module.exports={
-    checkName:async(req,res)=>{
+    checkMail:async(req,res,next)=>{
         try {
-            let name=req.body.name;
-            let userBn=await mdlsUser.checkUserByName(name)
-            if(userBn){
+            let mail=req.body.email;
+            let userBm=await mdlsUser.checkUserByMail(mail)
+            if(userBm){
                 res.send({
-                    message:"Name already in use,chose other name please"
+                    message:"Mail is already in use,please use other mail"
                 })
-            }   
+            }else{
+                next();
+            }
         } catch (error) {
             res.status(500).send(error)
             
         }
     },
-    checkMail:async(req,res)=>{
+    checkName:async(req,res,next)=>{
         try {
-            let mail=req.body.mail;
-            let userBm=await mdlsUser.checkUserByMail(mail)
-            if(userBm){
+            let name=req.body.prenom;
+            let userBn=await mdlsUser.checkUserByName(name)
+            if(userBn){
                 res.send({
-                    message:"Mail is already in use,please ease other mail"
+                    message:"Name already in use,chose other name please"
                 })
-            }    
+            }else{
+                next();
+
+            }  
         } catch (error) {
             res.status(500).send(error)
             
         }
-    }
+    },
 }
 
 
