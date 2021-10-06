@@ -2,8 +2,8 @@ const jwt=require("jsonwebtoken")
 const config = require("../config/authconfig");
 const db=require("../service/connect")
 const mdlsUser=require("../models/users")
-
-verifyToken = (req, res, next) => {
+module.exports={
+  verifyToken:(req, res, next) => {
     let token = req.headers["x-access-token"];
   
     if (!token) {
@@ -21,12 +21,12 @@ verifyToken = (req, res, next) => {
       req.userId = decoded.id;
       next();
     });
-};
+},
 
-isAdmin=(req,res,next)=>{
+  isAdmin:(req,res,next)=>{
   try {
-    let id=parseInt(req.params.id);
-    let userR=mdlsUser.getUserWithRoles(id);
+    let name=req.body.nom;
+    let userR=mdlsUser.getUserWithRoles(name);
     if(userR.user_role==="Admin"){
       next;
       return;
@@ -40,15 +40,8 @@ isAdmin=(req,res,next)=>{
       message:"Error while finding user"
     })
   }
+  }
 }
-
-
-const authJwt={
-  verifyToken:verifyToken,
-  isAdmin:isAdmin
-};
-
-module.exports = authJwt;
   
   
   
