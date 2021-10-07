@@ -25,7 +25,7 @@ module.exports={
 
   isAdmin:(req,res,next)=>{
   try {
-    let name=req.body.nom;
+    let name=req.body.prenom;
     let userR=mdlsUser.getUserWithRoles(name);
     if(userR.user_role==="Admin"){
       next;
