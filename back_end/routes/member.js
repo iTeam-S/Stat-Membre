@@ -6,19 +6,27 @@ const multer = require('../middleware/multer-config');
 const MemberCtrl = require('../controllers/member');
 
 //Creer un membre
-router.post('/', MemberCtrl.create)
+router.post('/create', MemberCtrl.create);
 
 //Afficher tous les membres
-router.get('/All',MemberCtrl.listAll);
+router.get('/getAll',MemberCtrl.listAll);
 
 //Afficher un membre
-router.get('/:id',MemberCtrl.getOne);
+router.get('/getOne/:id',MemberCtrl.getOne);
+
+//afficher tous les projets aux quelles le membre participent
+
+router.get('/allproject/:id',MemberCtrl.getAllMemberProject)
+
+//all projet and member
+
+router.get('/allproject',MemberCtrl.getAllMemberP)
 
 //Mettre à jour un membre
 router.put('/:id',MemberCtrl.update);
 
 //Supprimer un membre
-router.delete('/:id',MemberCtrl.del)
+router.delete('/:id',MemberCtrl.del);
 
 
 module.exports = router;

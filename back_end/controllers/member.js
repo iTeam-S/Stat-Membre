@@ -6,7 +6,9 @@ module.exports = {
         try {
             let {nom,prenom,user_github,fonction,pdc,mail,admin}=req.body;
             let newMember=await mdlsMember.create(nom,prenom,user_github,fonction,pdc,mail,admin);
-            res.send(newMember.rows);
+            res.status(200).send({
+                message:"Create member successfully"
+            });
             
         } catch (error) {
             res.status(500).send(error)
@@ -38,6 +40,29 @@ module.exports = {
             
         }
   
+    },
+    getAllMemberProject:async(req,res)=>{
+        try {
+            let id=parseInt(req.params.id);
+            let projects=await mdlsMember.getAllMemberProject(id);
+            res.status(200).json(projects.rows)
+            
+        } catch (error) {
+            res.status(500).send(error)
+            
+        }
+
+    },
+    getAllMemberP:async(req,res)=>{
+        try {
+            let projects=await mdlsMember.getAllMemberProject();
+            res.status(200).json(projects.rows)
+            
+        } catch (error) {
+            res.status(500).send(error)
+            
+        }
+
     },
     update:async(req,res)=>{
         try {

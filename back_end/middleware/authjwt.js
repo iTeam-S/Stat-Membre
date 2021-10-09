@@ -2,6 +2,9 @@ const jwt=require("jsonwebtoken")
 const config = require("../config/authconfig");
 const db=require("../service/connect")
 const mdlsRole=require("../models/roles")
+
+
+
 module.exports={
   verifyToken:(req, res, next) => {
     let token = req.headers["x-access-token"];

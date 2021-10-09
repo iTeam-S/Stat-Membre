@@ -18,8 +18,8 @@ router.get('/ProjectCritere',ProjectCtrl.listAllWithCritere);
 
 router.get('/onewithcrit/:id',ProjectCtrl.listOneWithCritere);
 
+router.get('/getPoint/:id',ProjectCtrl.getPoint)
 
-router.get('/cal/:id',ProjectCtrl.calculPoint);
 
 router.get('/nbpart',ProjectCtrl.calculNbParticipant);
 

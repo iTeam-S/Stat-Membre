@@ -8,7 +8,8 @@ CREATE TABLE members(
     fonction varchar(255) NOT NULL,
     pdc varchar(255) NOT NULL,
     mail varchar(255) NOT NULL,
-    admin boolean NOT NULL
+    admin boolean NOT NULL,
+    point_experience INTEGER
 );
 
 
@@ -32,6 +33,7 @@ CREATE TABLE role(
    id SERIAL PRIMARY KEY,
     name varchar(255) NOT NULL
 );
+
 CREATE TABLE users(
    id SERIAL PRIMARY KEY,
    prenom varchar(255) NOT NULL,
@@ -51,7 +53,7 @@ CREATE TABLE project_member(
     id_member INTEGER NOT NULL,
     id_project INTEGER NOT NULL,
     PRIMARY KEY (id_member,id_project),
-    FOREIGN KEY (id_project) REFERENCES peoject(id) ON UPDATE CASCADE,
-    FOREIGN KEY (id_member) REFERENCES member(id) ON UPDATE CASCADE
+    FOREIGN KEY (id_project) REFERENCES project(id) ON UPDATE CASCADE,
+    FOREIGN KEY (id_member) REFERENCES members(id) ON UPDATE CASCADE
 );
 
