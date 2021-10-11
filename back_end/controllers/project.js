@@ -16,45 +16,7 @@ module.exports = {
             res.status(500).send(error)
         }
     },
-    add: async (req, res) => {
-        
-        try {
-            let id_membre = parseInt(req.body.id_member), id_project = parseInt(req.body.id_project);
-            let membre = await mdlsProject.checkMember(id_membre);
-            let project = await mdlsProject.checkProject(id_project);
-            let pointAct=await mdlsMember.getPoint(id_membre);
-            if(pointAct.rows[0].point_experience == null){
-                pointAct.rows[0].point_experience=0;
-            };
-
-            let pact=pointAct.rows[0].point_experience;
-                     
-            let umber=await mdlsProject.addMemberToProject(membre.rows[0].id, project.rows[0].id);
-            console.log(umber);
-
-            let Pp = await mdlsProject.getOneProjectCritere(id_project);
-            let i = Pp.rows[0]
-
-            let ps = i.difficulte + i.deadline + i.impact + i.implication + i.point_git
-
-            let scoef = (i.difficulte * 25) + (i.deadline * 10) + (i.impact * 30) + (i.implication * 15) + (i.point_git * 20)
-
-            let new_point=pact+scoef;
-
-
-            await mdlsMember.setPoint(new_point,id_membre);
-
-            res.status(200).send({
-                message: "Member added on a project successfully"
-            })
-           
-        } catch (error) {
-            res.status(500).send(error);
-
-        }
-
-    },
-
+    
     listAll: async (req, res) => {
         try {
             let listProject = await mdlsProject.getListProject();
@@ -91,28 +53,41 @@ module.exports = {
         }
 
     },
-    getPoint: async (req, res) => {
+    add: async (req, res) => {
+        
         try {
-            let projectPoint = {}
+            let id_membre = parseInt(req.body.id_member), id_project = parseInt(req.body.id_project);
+            let membre = await mdlsProject.checkMember(id_membre);
+            let project = await mdlsProject.checkProject(id_project);
+            let pointAct=await mdlsMember.getPoint(id_membre);
+            if(pointAct.rows[0].point_experience == null){
+                pointAct.rows[0].point_experience=0;
+            };
 
-            let id = parseInt(req.params.id);
-            let Pp = await mdlsProject.getOneProjectCritere(id);
+            let pact=pointAct.rows[0].point_experience;
+                     
+            let umber=await mdlsProject.addMemberToProject(membre.rows[0].id, project.rows[0].id);
+            console.log(umber);
+
+            let Pp = await mdlsProject.getOneProjectCritere(id_project);
             let i = Pp.rows[0]
-
-            let ps = i.difficulte + i.deadline + i.impact + i.implication + i.point_git
 
             let scoef = (i.difficulte * 25) + (i.deadline * 10) + (i.impact * 30) + (i.implication * 15) + (i.point_git * 20)
 
-            projectPoint.point_projet = ps;
-            projectPoint.point_with_coef = scoef;
-
-            res.status(200).json(projectPoint)
+            let new_point=pact+scoef;
 
 
+            await mdlsMember.setPoint(new_point,id_membre);
+
+            res.status(200).send({
+                message: "Member added on a project successfully"
+            })
+           
         } catch (error) {
-            res.status(500).send(error)
+            res.status(500).send(error);
 
         }
+
     },
     listAllWithMember: async (req, res) => {
         try {
@@ -187,7 +162,7 @@ module.exports = {
     del: async (req, res) => {
         try {
             let id = parseInt(req.params.id);
-            let delProject = await mdlsProject.deleteProject(id);
+            await mdlsProject.deleteProject(id);
             res.send({
                 message: `Project with id ${id} is removed`
             })

@@ -59,6 +59,18 @@ module.exports = {
         })
 
     },
+    getTopFive:()=>{
+        return new Promise((resolve,reject)=>{
+            db.query("SELECT  members.prenom,members.fonction,members.pdc,members.point_experience FROM members ORDER BY point_experience DESC LIMIT 5",(err,resultat)=>{
+                if(err){
+                    reject(new Error("Error while fetching member"))
+                }else{
+                    resolve(resultat)
+                }
+            })
+        })
+
+    },
     getPoint:(id_m)=>{
         return new Promise((resolve,reject)=>{
             db.query("SELECT members.point_experience FROM members WHERE members.id=$1",[id_m],(err,resultat)=>{
@@ -95,6 +107,7 @@ module.exports = {
         })
 
     },
+    
 
     deleteMember:(id)=> {
         return new Promise((resolve, reject) => {

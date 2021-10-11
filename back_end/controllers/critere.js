@@ -6,7 +6,9 @@ module.exports = {
         try {
             let {difficulte,deadline,impact,implication,point_git}=req.body;
             let newCritere=await mdlsCritere.create(difficulte,deadline,impact,implication,point_git);
-            res.send(newCritere.rows);
+            res.status(200).send({
+                message:"critere is added successfully"
+            });
             
         } catch (error) {
             res.status(500).send(error)

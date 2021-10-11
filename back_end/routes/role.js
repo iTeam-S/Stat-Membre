@@ -3,7 +3,7 @@ const express=require('express');
 const router=express.Router()
 
 //create a role
-router.post('/',roleCtrl.createRole)
+router.post('/create',roleCtrl.createRole)
 
 //give role to user
 

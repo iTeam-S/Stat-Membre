@@ -6,7 +6,9 @@ module.exports={
         try {
             let {nom,mail,password}=req.body;
             let user=await mdlsUser.create(nom,mail,password);
-            res.status(200).send(user)
+            res.status(200).send({
+                message:'user is created successffully'
+            })
             
         } catch (error) {
             res.send(error)

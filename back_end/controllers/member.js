@@ -7,7 +7,7 @@ module.exports = {
             let {nom,prenom,user_github,fonction,pdc,mail,admin}=req.body;
             let newMember=await mdlsMember.create(nom,prenom,user_github,fonction,pdc,mail,admin);
             res.status(200).send({
-                message:"Create member successfully"
+                message:"add member successfully"
             });
             
         } catch (error) {
@@ -58,6 +58,16 @@ module.exports = {
             let projects=await mdlsMember.getAllMemberProject();
             res.status(200).json(projects.rows)
             
+        } catch (error) {
+            res.status(500).send(error)
+            
+        }
+
+    },
+    getTopFive:async(req,res)=>{
+        try {
+            let topfive=await mdlsMember.getTopFive();
+            res.status(200).json(topfive.rows)     
         } catch (error) {
             res.status(500).send(error)
             

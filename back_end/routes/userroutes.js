@@ -4,8 +4,6 @@ const express=require("express");
 
 const router=express.Router()
 
-
-
   //public content
 
   router.get("/api/content/all", userCtrl.allaccess)

@@ -22,6 +22,10 @@ router.get('/allproject/:id',MemberCtrl.getAllMemberProject)
 
 router.get('/allproject',MemberCtrl.getAllMemberP)
 
+//get topfive with their point
+
+router.get('/point/gettopfive',MemberCtrl.getTopFive)
+
 //Mettre à jour un membre
 router.put('/:id',MemberCtrl.update);
 

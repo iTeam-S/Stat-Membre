@@ -6,7 +6,7 @@ const multer = require('../middleware/multer-config');
 const CritereCtrl = require('../controllers/critere');
 
 //Creer un critere
-router.post('/', CritereCtrl.create)
+router.post('/create', CritereCtrl.create)
 
 //Afficher tous les criteres
 router.get('/All',CritereCtrl.listAll);

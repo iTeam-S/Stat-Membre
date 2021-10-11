@@ -17,7 +17,7 @@ CREATE TABLE project(
     id SERIAL PRIMARY KEY,
     nom varchar(255) NOT NULL,
     repos varchar(255) NOT NULL,
-    delai varchar(255) NOT NULL,
+    delai INTEGER NOT NULL,
     id_critere INTEGER NOT NULL
     
 );
