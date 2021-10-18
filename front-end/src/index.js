@@ -50,7 +50,7 @@ const App = () => {
         <Switch>
           {/* add routes with layouts */}
           <Route path="/admin">
-              <Admin />
+              <Admin membre={member} projet={project}/>
           </Route>
           <Route path="/auth">
               <Auth />

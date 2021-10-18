@@ -20,8 +20,8 @@ export default function Index({ data }) {
                                 <a href = "https://Iteam-$.mg" className = "text-blueGray-600" target = "_blank" >{" "}Iteam - $ </a>.
                             </p> 
                             <div className = "mt-12" >
-                                <a href = "https://iteam-s.mg/" target = "_blank" className = "get-started text-white font-bold px-6 py-4 rounded outline-none focus:outline-none mr-1 mb-1 bg-lightBlue-500 active:bg-lightBlue-600 uppercase text-sm shadow hover:shadow-lg ease-linear transition-all duration-150" >Get started </a> 
-                                <a href = "https://github.com/iTeam-S" className = "github-star ml-1 text-white font-bold px-6 py-4 rounded outline-none focus:outline-none mr-1 mb-1 bg-blueGray-700 active:bg-blueGray-600 uppercase text-sm shadow hover:shadow-lg ease-linear transition-all duration-150" target = "_blank"  style = {{ backgroundColor: '#116466' }}>Github Star </a> 
+                                <a href = "https://iteam-s.mg/" target = "_blank" className = "get-started text-white font-bold px-6 py-4 rounded outline-none focus:outline-none mr-1 mb-1 bg-lightBlue-500 active:bg-lightBlue-600 uppercase text-sm shadow hover:shadow-lg ease-linear transition-all duration-150" style = {{ backgroundColor: '#008080' }}>Get started </a> 
+                                <a href = "https://github.com/iTeam-S" className = "github-star ml-1 text-white font-bold px-6 py-4 rounded outline-none focus:outline-none mr-1 mb-1 bg-blueGray-700 active:bg-blueGray-600 uppercase text-sm shadow hover:shadow-lg ease-linear transition-all duration-150" target = "_blank"  style = {{ backgroundColor: '#18b7b7' }}>Github Star </a> 
                             </div> 
                         </div> 
                     </div> 
@@ -164,7 +164,7 @@ export default function Index({ data }) {
                                     href= { projet.repos }
                                     target="_blank"
                                 >
-                                    <div className=" shadow-lg rounded-lg text-center p-8 mt-3"  style = {{ backgroundColor: '#116466' }}>
+                                    <div className=" shadow-lg rounded-lg text-center p-8 mt-3"  style = {{ backgroundColor: '#008080' }}>
                                       <img
                                         alt="..."
                                         className="shadow-md rounded-full max-w-full w-16 mx-auto p-2 bg-white"
@@ -188,7 +188,7 @@ export default function Index({ data }) {
                                     href= { projet.repos }
                                     target="_blank"
                                 >
-                                    <div className="bg-lightBlue-500 shadow-lg rounded-lg text-center p-8 mt-3">
+                                    <div className="shadow-lg rounded-lg text-center p-8 mt-3" style = {{ backgroundColor: '#18b7b7' }}>
                                       <img
                                         alt="..."
                                         className="shadow-md rounded-full max-w-full w-16 mx-auto p-2 bg-white"
@@ -205,7 +205,7 @@ export default function Index({ data }) {
                 </div>
             </div>
 
-            <section className = "block relative z-1  pb-48" style = {{ backgroundColor: '#116466' }}>
+            <section className = "block relative z-1  pb-48" style = {{ backgroundColor: '#008080' }}>
                 <div className = "container mx-auto" >
                     <div className = "justify-center flex flex-wrap" >
                         <div className = "w-full lg:w-12/12 px-4  -mt-24" >
