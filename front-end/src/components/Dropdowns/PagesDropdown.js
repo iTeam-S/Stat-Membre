@@ -49,6 +49,12 @@ const PagesDropdown = () => {
         >
           Statistique
         </Link>
+        <Link
+          to="/admin/dashboard"
+          className="text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700"
+        >
+          Top-5
+        </Link>
         
         <div className="h-0 mx-4 my-2 border border-solid border-blueGray-100" />
         <span
@@ -62,13 +68,19 @@ const PagesDropdown = () => {
           to="/admin/tables"
           className="text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700"
         >
-          Table Project
+          En cours
         </Link>
         <Link
-          to="/auth/register"
+          to="/admin/tables"
           className="text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700"
         >
-          Register
+          Deployé
+        </Link>
+        <Link
+          to="/admin/tables"
+          className="text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700"
+        >
+          Ajouter un projet
         </Link>
         <div className="h-0 mx-4 my-2 border border-solid border-blueGray-100" />
         <span
@@ -76,7 +88,7 @@ const PagesDropdown = () => {
             "text-sm pt-2 pb-0 px-4 font-bold block w-full whitespace-nowrap bg-transparent text-blueGray-400"
           }
         >
-          Other page
+          Membres
         </span>
         <Link
           to="/landing"
