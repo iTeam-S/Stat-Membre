@@ -16,11 +16,15 @@ export default function Register() {
                             <div className = "flex-auto px-4 lg:px-10 py-10 pt-0" >
                                 <form>
                                     <div className = "relative w-full mb-3" >
-                                        <label className = "block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlFor = "grid-password" >Projet </label> 
+                                        <label className = "block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlFor = "grid-password" >Nom du projet </label> 
                                         <input type = "password" className = "border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150" placeholder = "Nom de votre projet" />
                                     </div>
                                     <div className = "relative w-full mb-3" >
-                                        <label className = "block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlFor = "grid-password" >lien Github </label> 
+                                        <label className = "block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlFor = "grid-password" >lien github </label> 
+                                        <input type = "password" className = "border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150" placeholder = "Nom de votre projet" />
+                                    </div>
+                                    <div className = "relative w-full mb-3" >
+                                        <label className = "block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlFor = "grid-password" >Delai du projet</label> 
                                         <input type = "password" className = "border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150" placeholder = "Nom de votre projet" />
                                     </div>
 

@@ -8,8 +8,8 @@ import FooterSmall from "components/Footers/FooterSmall.js";
 
 // views
 
-import Login from "views/auth/Login.js";
-import Register from "views/auth/Register.js";
+
+import Thisproject from "views/Trieve/Hisproject";
 
 
 export default function Auth() {
@@ -26,9 +26,8 @@ export default function Auth() {
             }}
           ></div>
           <Switch>
-            <Route path="/auth/login" exact component={Login} />
-            <Route path="/auth/register" exact component={Register} />
-            <Redirect from="/auth" to="/auth/login" />
+            <Route path="/trieve/hisproject" exact component={Thisproject} />
+            <Redirect from="/trieve" to="/trieve/hisproject" />
           </Switch>
           <FooterSmall absolute />
         </section>
