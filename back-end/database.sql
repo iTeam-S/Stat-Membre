@@ -18,7 +18,8 @@ CREATE TABLE project(
     nom varchar(255) NOT NULL,
     repos varchar(255) NOT NULL,
     delai INTEGER NOT NULL,
-    id_critere INTEGER NOT NULL
+    id_critere INTEGER NOT NULL,
+    total_point INTEGER
     
 );
 CREATE TABLE critere(
@@ -57,3 +58,29 @@ CREATE TABLE project_member(
     FOREIGN KEY (id_member) REFERENCES members(id) ON UPDATE CASCADE
 );
 
+
+{
+    "nom":"RAMAMIHARIVELO",
+    "prenom":"Marihasina",
+    "user_github":"hasina821",
+    "fonction":"devellopeur_junior",
+    "pdc":"image",
+    "mail":"rmnarry.mr@gmail.com",
+    "admin":"false"
+
+
+}
+{
+    "nom":"buildeo",
+    "repos":"github",
+    "delai":"4",
+    "id_critere":"1"
+}
+
+{
+    "difficulte":"5",
+    "deadline":"5",
+    "impact":"5",
+    "implication":"5",
+    "point_git":"5"
+}

@@ -1,17 +1,22 @@
 const mdlsMember = require('../models/Member');
+const mdlsProject= require("../models/Project");
+const mdlsCritere=require("../models/Critere")
+
 const fs = require('fs');
 
 module.exports = {
     create:async(req,res)=>{
         try {
             let {nom,prenom,user_github,fonction,pdc,mail,admin}=req.body;
-            let newMember=await mdlsMember.create(nom,prenom,user_github,fonction,pdc,mail,admin);
+            await mdlsMember.create(nom,prenom,user_github,fonction,pdc,mail,admin);
             res.status(200).send({
                 message:"add member successfully"
             });
             
         } catch (error) {
-            res.status(500).send(error)
+            res.status(500).send({
+                message :"errer lors de creation"
+            })
             
         }
         
@@ -43,8 +48,10 @@ module.exports = {
     },
     getAllMemberProject:async(req,res)=>{
         try {
-            let id=parseInt(req.params.id);
-            let projects=await mdlsMember.getAllMemberProject(id);
+            let nom_member=req.body.membername;
+
+            let membre=await mdlsProject.checkMember(nom_member)
+            let projects=await mdlsMember.getAllMemberProject(membre.rows[0].id);
             res.status(200).json(projects.rows)
             
         } catch (error) {
@@ -82,7 +89,7 @@ module.exports = {
             res.send(updatedMember.rows)
             
         } catch (error) {
-            res.status(500).send(error)           
+            res.status(500).send(error)         
         }
         
     },

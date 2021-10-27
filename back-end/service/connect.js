@@ -11,4 +11,12 @@ const db=new Pool({
     database: process.env.DB_NAME
 })
 
+db.connect((err) => {
+    if (err) {
+      console.log("Impossible de se connecter à la base de donnée");
+      return;
+    }
+    console.log("Connexion à la base de donnée reussie");
+  });
+
 module.exports=db;

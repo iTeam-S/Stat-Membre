@@ -1,12 +1,21 @@
 const mdlsProject = require('../models/Project');
 const mdlsMember=require('../models/Member')
+const mdlsCritere=require("../models/Critere")
 const fs = require('fs');
 
 module.exports = {
     create: async (req, res) => {
         try {
-            let { nom, repos, delai, id_critere } = req.body;
-            await mdlsProject.create(nom, repos, delai, id_critere);
+            let dern_cri=await mdlsCritere.getListCritere();
+            let dern_id=dern_cri.rows[0].id;
+    
+            let { nom, repos, delai} = req.body;
+
+            let Pp = await mdlsCritere.getOneCritere(dern_id);
+            let i = Pp.rows[0]
+
+            let scoef = (i.difficulte * 25) + (i.deadline * 10) + (i.impact * 30) + (i.implication * 15) + (i.point_git * 20)
+            let project=await mdlsProject.create(nom, repos, delai, dern_id,scoef);
 
             res.status(200).send({
                 message: "Project created successfully"
@@ -56,10 +65,14 @@ module.exports = {
     add: async (req, res) => {
         
         try {
-            let id_membre = parseInt(req.body.id_member), id_project = parseInt(req.body.id_project);
-            let membre = await mdlsProject.checkMember(id_membre);
-            let project = await mdlsProject.checkProject(id_project);
-            let pointAct=await mdlsMember.getPoint(id_membre);
+            let nom_member=req.body.membername;
+            let nom_project=req.body.projectname;
+
+            let membre = await mdlsProject.checkMember(nom_member);
+            let project = await mdlsProject.checkProject(nom_project);
+
+
+            let pointAct=await mdlsMember.getPoint(membre.rows[0].id);
             if(pointAct.rows[0].point_experience == null){
                 pointAct.rows[0].point_experience=0;
             };
@@ -67,9 +80,8 @@ module.exports = {
             let pact=pointAct.rows[0].point_experience;
                      
             let umber=await mdlsProject.addMemberToProject(membre.rows[0].id, project.rows[0].id);
-            console.log(umber);
 
-            let Pp = await mdlsProject.getOneProjectCritere(id_project);
+            let Pp = await mdlsProject.getOneProjectCritere(project.rows[0].id);
             let i = Pp.rows[0]
 
             let scoef = (i.difficulte * 25) + (i.deadline * 10) + (i.impact * 30) + (i.implication * 15) + (i.point_git * 20)
@@ -77,7 +89,7 @@ module.exports = {
             let new_point=pact+scoef;
 
 
-            await mdlsMember.setPoint(new_point,id_membre);
+            await mdlsMember.setPoint(new_point,membre.rows[0].id);
 
             res.status(200).send({
                 message: "Member added on a project successfully"
@@ -159,6 +171,7 @@ module.exports = {
         }
 
     },
+
     del: async (req, res) => {
         try {
             let id = parseInt(req.params.id);

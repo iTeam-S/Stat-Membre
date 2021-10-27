@@ -16,7 +16,7 @@ router.get('/getOne/:id',MemberCtrl.getOne);
 
 //afficher tous les projets aux quelles le membre participent
 
-router.get('/allproject/:id',MemberCtrl.getAllMemberProject)
+router.get('/allproject',MemberCtrl.getAllMemberProject)
 
 //all projet and member
 

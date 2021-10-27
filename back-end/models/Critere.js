@@ -27,7 +27,7 @@ module.exports = {
     },
     getListCritere: () => {
         return new Promise((resolve, reject) => {
-            db.query("SELECT * FROM critere", function(err, resultat){
+            db.query("SELECT * FROM critere ORDER BY id DESC", function(err, resultat){
                 if(err){
                     reject(new Error("Errer resource while fetching critere "));
                 }else{

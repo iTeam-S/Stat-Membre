@@ -1,9 +1,9 @@
 const db = require('../service/connect');
 
 module.exports = {
-    create:(nom,repos,delai,id_critere)=>{
+    create:(nom,repos,delai,id_critere,total_point)=>{
         return new Promise((resolve, reject) => {
-        db.query("INSERT INTO project(nom,repos,delai,id_critere) values($1,$2,$3,$4)",[nom,repos,delai,id_critere],function(err,resultat){
+        db.query("INSERT INTO project(nom,repos,delai,id_critere,total_point) values($1,$2,$3,$4,$5)",[nom,repos,delai,id_critere,total_point],function(err,resultat){
             if(err){
                 reject(new Error("Errer resource while creating project"));
             }else{
@@ -12,9 +12,9 @@ module.exports = {
         })
     })
     },
-    checkProject:(id_project)=>{
+    checkProject:(nom_project)=>{
         return new Promise((resolve,reject)=>{ 
-             db.query("SELECT * FROM project where id=$1",[id_project],function(err,project){
+             db.query("SELECT * FROM project where nom=$1",[nom_project],function(err,project){
                 if(err){
                     reject(new Error("Errer resource while fetching project"));
                 }else{
@@ -25,9 +25,9 @@ module.exports = {
         })
 
     },
-    checkMember:(id_member)=>{
+    checkMember:(nom_member)=>{
         return new Promise((resolve,reject)=>{
-            db.query("SELECT * FROM members where id=$1",[id_member],function(err,member){
+            db.query("SELECT * FROM members where nom=$1",[nom_member],function(err,member){
                 if(err){
                     reject(new Error("Errer resource while fetching project"));
                 }else{
@@ -45,7 +45,6 @@ module.exports = {
                     reject(new Error("Errer while adding member to project"));
                 }else{
                     resolve(resultat)
-                    //Many-to-Many relation
                 }
             })
 
@@ -65,7 +64,7 @@ module.exports = {
     },
     getProjectMember:()=>{
         return new Promise((resolve,reject)=>{
-            db.query("SELECT members.nom as nom_participant, members.prenom as prenom_participant,members.pdc as pdc_participant,members.fonction as fonction_participant,project.nom as Nom_project,project.repos as Repos_project,project.delai as Delai_project FROM members LEFT JOIN project_member ON members.id=project_member.id_member LEFT JOIN project ON project.id=project_member.id_project",function(err,resultat){
+            db.query("SELECT members.nom as nom_participant, members.prenom as prenom_participant,members.pdc as pdc_participant,members.fonction as fonction_participant,project.nom as Nom_project,project.repos as Repos_project,project.delai as Delai_project,project.total_point  FROM members LEFT JOIN project_member ON members.id=project_member.id_member LEFT JOIN project ON project.id=project_member.id_project",function(err,resultat){
                 if(err){
                     reject(new Error("Errer resource while fetching project"));
                 }else{
