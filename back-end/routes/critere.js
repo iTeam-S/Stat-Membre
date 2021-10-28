@@ -9,7 +9,7 @@ const CritereCtrl = require('../controllers/critere');
 router.post('/create', CritereCtrl.create)
 
 //Afficher tous les criteres
-router.get('/All',CritereCtrl.listAll);
+router.get('/getAll',CritereCtrl.listAll);
 
 //Affcher un critere
 router.get('/:id',CritereCtrl.getOne);

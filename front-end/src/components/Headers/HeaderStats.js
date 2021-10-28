@@ -16,9 +16,9 @@ export default function HeaderStats() {
               <div className="w-full lg:w-6/12 xl:w-3/12 px-4">
                 <CardStats
                   statSubtitle="PARTICIPATION DES MEMBRES"
-                  statTitle="350,897"
+                  statTitle="25"
                   statArrow="up"
-                  statPercent="3.48"
+                  statPercent="43.48"
                   statPercentColor="text-emerald-500"
                   statDescripiron="Since last month"
                   statIconName="far fa-chart-bar"
@@ -40,11 +40,11 @@ export default function HeaderStats() {
               <div className="w-full lg:w-6/12 xl:w-3/12 px-4">
                 <CardStats
                   statSubtitle="PRODUCTION"
-                  statTitle="924"
+                  statTitle="50"
                   statArrow="down"
                   statPercent="1.10"
-                  statPercentColor="text-orange-500"
-                  statDescripiron="Since yesterday"
+                  statPercentColor="text-emerald-500"
+                  statDescripiron="Since last yer"
                   statIconName="fas fa-users"
                   statIconColor="bg-orange-500"
                 />

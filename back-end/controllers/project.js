@@ -28,15 +28,14 @@ module.exports = {
     
     listAll: async (req, res) => {
         try {
-            let listProject = await mdlsProject.getListProject();
+            let listProject = await mdlsMember.getListProject();
             res.send(listProject.rows);
-
-
+            
         } catch (error) {
             res.status(500).send(error)
-
+            
         }
-
+        
     },
 
     listAllWithCritere: async (req, res) => {
@@ -70,6 +69,11 @@ module.exports = {
 
             let membre = await mdlsProject.checkMember(nom_member);
             let project = await mdlsProject.checkProject(nom_project);
+            let project_part=await mdlsProject.getProjectTotalParticipants(nom_project);
+
+            if(project_part.rows[0].total_participant ==null){
+                project_part.rows[0].total_participant =0
+            }
 
 
             let pointAct=await mdlsMember.getPoint(membre.rows[0].id);
@@ -81,6 +85,8 @@ module.exports = {
                      
             let umber=await mdlsProject.addMemberToProject(membre.rows[0].id, project.rows[0].id);
 
+            let new_participant=project_part.rows[0].total_participant+1;
+
             let Pp = await mdlsProject.getOneProjectCritere(project.rows[0].id);
             let i = Pp.rows[0]
 
@@ -88,8 +94,9 @@ module.exports = {
 
             let new_point=pact+scoef;
 
-
+            await mdlsProject.setParticipant(new_participant,nom_project);
             await mdlsMember.setPoint(new_point,membre.rows[0].id);
+            
 
             res.status(200).send({
                 message: "Member added on a project successfully"
@@ -123,6 +130,7 @@ module.exports = {
         }
 
     },
+
     calculPoint: async (req, res) => {
         try {
             let id = parseInt(req.params.id)

@@ -8,6 +8,9 @@ const ProjectCtrl = require('../controllers/project');
 //poster un projet
 router.post('/create', ProjectCtrl.create)
 
+//afficher tous les projet sans critere ni participant
+router.get('/getAll',ProjectCtrl.listAll);
+
 //Ajouter un membre à un projet
 router.post('/addMember',ProjectCtrl.add);
 
@@ -28,8 +31,7 @@ router.get('/onewithpart/:id',ProjectCtrl.listOneWithParticipant);
 //afficher un projet sans critere ni participant
 router.get('/:id',ProjectCtrl.getOne);
 
-//afficher tous les projet sans critere ni participant
-router.get('/All',ProjectCtrl.listAll);
+
 
 //Mettre à jour un projet
 router.put('/:id',ProjectCtrl.update);

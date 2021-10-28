@@ -21,8 +21,8 @@ import Profile from "views/Profile.js";
 import Index from "views/Index.js";
 
 
-const memberUrl = "http://localhost:5000/api/members";
-const projectUrl = "http://localhost:5000/api/project"
+const memberUrl = "http://localhost:8000/api/member/getAll";
+const projectUrl = "http://localhost:8000/api/project/ProjectCritere";
 
 
 const App = () => {

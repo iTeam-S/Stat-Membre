@@ -19,7 +19,8 @@ CREATE TABLE project(
     repos varchar(255) NOT NULL,
     delai INTEGER NOT NULL,
     id_critere INTEGER NOT NULL,
-    total_point INTEGER
+    total_point INTEGER,
+    total_participant INTEGER
     
 );
 CREATE TABLE critere(

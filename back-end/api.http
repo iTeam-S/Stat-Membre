@@ -1,8 +1,8 @@
-GET  http://localhost:8000/api/member/allproject
+POST  http://localhost:8000/api/member/create
 Content-Type: application/json
 
 
 {
-    "membername":"RAMAMIHARIVELO"
+      
 }
 
