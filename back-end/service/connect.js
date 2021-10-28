@@ -4,11 +4,11 @@ const Pool=require("pg").Pool;
 
 
 const db=new Pool({
-    host: '127.0.0.1',
-    database: 'iteams',
-    user: 'postgres',
-    password: 'vltn21/m',
-    port: 5432,
+    host: process.env.DB_HOST,
+    database: process.env.DB_NAME,
+    password: process.env.DB_PASSWORD,
+    user: process.env.DB_USER,
+    port: process.env.DB_PORT,
 })
 
 db.connect((err) => {
