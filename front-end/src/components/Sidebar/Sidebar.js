@@ -98,14 +98,14 @@ export default function Sidebar() {
                         <ul className = "md:flex-col md:min-w-full flex flex-col list-none md:mb-4" >
                             <li className = "items-center" >
                                 <Link className = "text-blueGray-700 hover:text-blueGray-500 text-xs uppercase py-3 font-bold block"
-                                to = "/auth/register" >
+                                to = "/project/admin/addproject" >
                                 <i className = "fas fa-database text-blueGray-400 mr-2 text-sm" > </i>{" "}
                                     Ajouter un projet
                                 </Link> 
                             </li>
                             <li className = "items-center" >
                                 <Link className = "text-blueGray-700 hover:text-blueGray-500 text-xs uppercase py-3 font-bold block"
-                                to = "/auth/register" >
+                                to = "/validate/project" >
                                 <i className = "fas fa-star text-blueGray-400 mr-2 text-sm" > </i>{" "}
                                     Valider un projet
                                 </Link> 
@@ -128,7 +128,7 @@ export default function Sidebar() {
                         <ul className = "md:flex-col md:min-w-full flex flex-col list-none md:mb-4" >
                             <li className = "items-center" >
                                 <Link className = "text-blueGray-700 hover:text-blueGray-500 text-xs uppercase py-3 font-bold block"
-                                to = "/add/addmember" >
+                                to = "/member/admin/addmember">
                                 <i className = "fas fa-users text-blueGray-400 mr-2 text-sm" > </i>{" "}
                                     Add member on project
                                 </Link> 

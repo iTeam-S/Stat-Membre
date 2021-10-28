@@ -9,10 +9,10 @@ import FooterSmall from "components/Footers/FooterSmall.js";
 // views
 
 
-import Thisproject from "views/Trieve/Hisproject";
+import Add_Member from "views/admin/AddMember"
+import Add_Project from "views/admin/AddProject.js"
 
-
-export default function Auth() {
+export default function AddProject() {
   return (
     <>
       <Navbar transparent />
@@ -26,10 +26,9 @@ export default function Auth() {
             }}
           ></div>
           <Switch>
-            <Route path="/trieve/hisproject" exact component={Thisproject} />
-            <Redirect from="/trieve" to="/trieve/hisproject" />
-          </Switch>
+            <Route path="/project/admin/addproject" exact component={Add_Project}/>
           <FooterSmall absolute />
+          </Switch>
         </section>
       </main>
     </>

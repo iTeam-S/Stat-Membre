@@ -8,10 +8,10 @@ import FooterSmall from "components/Footers/FooterSmall.js";
 
 // views
 
+import Validate from "views/admin/ValidateProject";
 
-import Add_Member from "views/add/AddMember.js"
 
-export default function AddMember() {
+export default function Auth() {
   return (
     <>
       <Navbar transparent />
@@ -25,10 +25,9 @@ export default function AddMember() {
             }}
           ></div>
           <Switch>
-            <Route path="/add/addmember" exact component = {Add_Member}/>
-            <Redirect from="/add" to="/add/AddMember"/>
-          <FooterSmall absolute />
+            <Route path="/validate/project" exact component={Validate}/>
           </Switch>
+          <FooterSmall absolute />
         </section>
       </main>
     </>

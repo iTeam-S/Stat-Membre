@@ -8,10 +8,11 @@ import FooterSmall from "components/Footers/FooterSmall.js";
 
 // views
 
-import DelMember from "views/delmember/Del_member.js";
 
+import Add_Member from "views/admin/AddMember"
+import Add_Project from "views/admin/AddProject.js"
 
-export default function Auth() {
+export default function AddMember() {
   return (
     <>
       <Navbar transparent />
@@ -25,10 +26,9 @@ export default function Auth() {
             }}
           ></div>
           <Switch>
-            <Route path="/del/delmember" exact component={DelMember} />
-            <Redirect from="/del" to="/del/delmember" />
-          </Switch>
+            <Route path="/member/admin/addmember" exact component={Add_Member}/>
           <FooterSmall absolute />
+          </Switch>
         </section>
       </main>
     </>

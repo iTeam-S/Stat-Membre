@@ -13,6 +13,7 @@ import FooterAdmin from "components/Footers/FooterAdmin.js";
 import Dashboard from "views/admin/Dashboard.js";
 import Settings from "views/admin/Settings.js";
 import Tables from "../components/Cards/CardTable";
+import Action from "./AdminAction"
 
 
 export default function Admin({ membre, projet }) {

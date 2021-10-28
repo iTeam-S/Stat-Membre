@@ -10,9 +10,11 @@ import "assets/styles/tailwind.css";
 
 import Admin from "layouts/Admin.js";
 import Auth from "layouts/Auth.js";
-import Add from "layouts/Add.js";
-import Trieve from "layouts/Trieve.js"
-import Delmember from "layouts/Delmember.js"
+import AddMember from "layouts/Addmember"
+import AddProject from "layouts/Addproject"
+import Validate from "layouts/Validateproject"
+
+
 
 // views without layouts
 
@@ -55,19 +57,18 @@ const App = () => {
           <Route path="/admin">
               <Admin membre={member} projet={project}/>
           </Route>
+          <Route path="/member">
+              <AddMember/>
+          </Route>
+          <Route path="/project">
+              <AddProject/>
+          </Route>
+          <Route path="/validate">
+              <Validate/>
+          </Route>
           <Route path="/auth">
               <Auth />
           </Route>
-          <Route path="/add">
-              <Add/>
-          </Route>
-          <Route path="/trieve">
-              <Trieve/>
-          </Route>
-          <Route path="/del">
-              <Delmember/>
-          </Route>
-
           {/* add routes without layouts */}
           <Route path="/landing" exact>
               <Landing data={member}/>
