@@ -8,8 +8,12 @@ const MemberAxios=Axios.create({
     baseURL:"http://localhost:8000/api/v1/member"
 })
 
+const CritereAxios=Axios.create({
+    baseURL:"http://localhost:8000/api/v1/critere"
+}) 
 
 export{
     ProjectAxios,
-    MemberAxios
+    MemberAxios,
+    CritereAxios 
 }

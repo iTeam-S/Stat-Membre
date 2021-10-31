@@ -24,6 +24,7 @@ import Profile from "views/Profile.js";
 import Index from "views/Index.js";
 import { ProjectContextProvider } from "context/ProjectContext";
 import { MemberContextProvider } from "context/MemberContext";
+import { CritereContextProvider } from "context/CritereContext";
 
 
 
@@ -56,43 +57,45 @@ const App = () => {
 
   return (
       <ProjectContextProvider>
-      <MemberContextProvider>
-      <BrowserRouter>
-        <Switch>
-          {/* add routes with layouts */}
-          <Route path="/admin">
-              <Admin membre={member} projet={project}/>
-          </Route>
-          <Route path="/member">
-              <AddMember/>
-          </Route>
-          <Route path="/project">
-              <AddProject/>
-          </Route>
-          <Route path="/validate"> 
-              <Validate/>
-          </Route>
-          <Route path="/check">
-              <CheckProject/>
-          </Route>
-          <Route path="/auth">
-              <Auth />
-          </Route>
-          {/* add routes without layouts */}
-          <Route path="/landing" exact>
-              <Landing data={member}/>
-          </Route>
-          <Route path="/profile/:id" exact>
-              <Profile data={member}/>
-          </Route>
-          <Route path="/" exact>
-            <Index data={project}/>
-          </Route>
-          {/* add redirect for first page */}
-          <Redirect from="*" to="/" />
-        </Switch>
-      </BrowserRouter>
-      </MemberContextProvider>
+        <CritereContextProvider>
+            <MemberContextProvider>
+                <BrowserRouter>
+                    <Switch>
+                        {/* add routes with layouts */}
+                        <Route path="/admin">
+                            <Admin membre={member} projet={project}/>
+                        </Route>
+                        <Route path="/member">
+                            <AddMember/>
+                        </Route>
+                        <Route path="/project">
+                            <AddProject/>
+                        </Route>
+                        <Route path="/validate"> 
+                            <Validate/>
+                        </Route>
+                        <Route path="/check">
+                            <CheckProject/>
+                        </Route>
+                        <Route path="/auth">
+                            <Auth />
+                        </Route>
+                        {/* add routes without layouts */}
+                        <Route path="/landing" exact>
+                            <Landing data={member}/>
+                        </Route>
+                        <Route path="/profile/:id" exact>
+                            <Profile data={member}/>
+                        </Route>
+                        <Route path="/" exact>
+                            <Index data={project}/>
+                        </Route>
+                        {/* add redirect for first page */}
+                        <Redirect from="*" to="/" />
+                    </Switch>
+                </BrowserRouter>
+            </MemberContextProvider>
+        </CritereContextProvider>
       </ProjectContextProvider>
     );
 };

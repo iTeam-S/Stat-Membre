@@ -2,7 +2,7 @@ import {useEffect,useState,useRef} from "react";
 import React from "react";
 import Axios from "axios";
 
-const addurl="http://localhost:8000/api/project/addMember"
+const addurl="http://localhost:8000/api/v1/project/addMember"
 
 export default function AddMember() {
     const [data,setData]=useState({

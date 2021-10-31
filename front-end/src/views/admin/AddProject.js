@@ -1,57 +1,51 @@
-import React from "react";
+import React, { useContext } from "react";
 import Axios from "axios"
 import {useEffect,useState} from "react"
+import { CritereAxios } from "apis/Stat";
+import { ProjectAxios } from "apis/Stat";
+import { CritereContext } from "context/CritereContext";
+import { ProjectContext } from "context/ProjectContext";
 
-const CritereUrl="http://localhost:8000/api/critere/create"
-const ProjectUrl="http://localhost:8000/api/project/create"
 
 export default function AddProject() {
-    const [critere,setCritere]=useState({
-        difficulte:"",
-        deadline:"",
-        impact:"",
-        implication:"",
-        point_git:""
-
-    })
-    const [project,setProject]=useState({
-        nom:"",
-        repos:"",
-        delai:""
-
-    })
-    function submit(e){
+    const {addCritere}=useContext(CritereContext)
+    const {addProject}=useContext(ProjectContext)
+    {/* Difficulte */}
+    const [difficulte,setDifficulte]=useState("")
+    const [deadline,setDeadline]=useState("")
+    const [impact,setImpact]=useState("")
+    const [implication,setImplication]=useState("")
+    const [point_git,setPoint_git]=useState("")
+    
+    {/* Project */}
+    const [nom,setNom]=useState("")
+    const [repos,setRepos]=useState("")
+    const [delai,setDelai]=useState("")
+   const  handleSubmit= async (e)=>{
         e.preventDefault();
-        Axios.post(CritereUrl,{
-            difficulte:critere.difficulte,
-            deadline:critere.deadline,
-            impact:critere.impact,
-            implication:critere.implication,
-            point_git:critere.point_git
-        })
-        Axios.post(ProjectUrl,{
-            nom:project.nom,
-            repos:project.repos,
-            delai:project.delai
-
-        })
-        .then(res=>{
-            console.log(res.project);
-        })
-    }
-    function handle(e){
-        const newCritere={...critere}
-        const newProject={...project}
-
-        newCritere[e.target.id]=e.target.value
-        setCritere(newCritere)
-
-        newProject[e.target.id]=e.target.value
-        setProject(newProject)
+        try {
+            const critere=await CritereAxios.post("/create",{
+                difficulte,
+                deadline,
+                impact,
+                implication,
+                point_git
+    
+            });
+            const project=await ProjectAxios.post("/create",{
+                nom,
+                repos,
+                delai
+            });
+            console.log(project.data);
+            addCritere(critere.data);
+            addProject(project.data);
+        } catch (error) {
+            console.log(error);
+            
+        }
         
-        console.log(newCritere);
     }
-
     return ( 
         <>
             <div className = "container mx-auto px-4 h-full" >
@@ -65,23 +59,23 @@ export default function AddProject() {
                                 
                             </div> 
                             <div className = "flex-auto px-4 lg:px-10 py-10 pt-0" >
-                                <form onSubmit={(e)=>submit(e)}>
+                                <form action="">
                                 <div className = "relative w-full mb-3" >
                                         <label className = "block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlFor = "nom" >Nom du projet </label> 
-                                        <input type = "text" id="nom" onChange={(e)=>handle(e)} value={project.nom} className = "border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150" placeholder = "nom du projet" />
+                                        <input type = "text" id="nom"  value={nom} onChange={e =>setNom(e.target.value)} className = "border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150" placeholder = "nom du projet" />
                                     </div>
                                     <div className = "relative w-full mb-3" >
                                         <label className = "block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlFor = "repos" >lien github </label> 
-                                        <input type = "text" id="repos" onChange={(e)=>handle(e)} value={project.repos} className = "border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150" placeholder = "lien github" />
+                                        <input type = "text" id="repos"  value={repos} onChange={e =>setRepos(e.target.value)}  className = "border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150" placeholder = "lien github" />
                                     </div>
                                     <div className = "relative w-full mb-3" >
                                         <label className = "block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlFor = "delai" >Delai du projet</label> 
-                                        <input type = "number" id="delai" onChange={(e)=>handle(e)} value={project.delai} className = "border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150" placeholder = "delai de votre projet" />
+                                        <input type = "number" id="delai"  value={delai} onChange={e =>setDelai(e.target.value)}  className = "border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150" placeholder = "delai de votre projet" />
                                     </div>
 
                                     <div className = "relative w-full mb-3" >
                                         <label className = "block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlFor = "grid-password" >Impact Projet </label> 
-                                        <select id="impact" onChange={(e)=>handle(e)} value={critere.impact} className = "border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150">
+                                        <select id="impact" value={impact} onChange={e =>setImpact(e.target.value)}  className = "border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150">
                                             <option value="1">Debutant</option>
                                             <option value="2">Amateur</option>
                                             <option value="3">Normal</option>
@@ -92,7 +86,7 @@ export default function AddProject() {
 
                                      <div className = "relative w-full mb-3" >
                                         <label className = "block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlFor = "grid-password" >Difficulté </label> 
-                                        <select id="difficulte" onChange={(e)=>handle(e)} value={critere.difficulte} className = "border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150">
+                                        <select id="difficulte" value={difficulte} onChange={e =>setDifficulte(e.target.value)} className = "border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150">
                                             <option value="1">Debutant</option>
                                             <option value="2">Amateur</option>
                                             <option value="3">Normal</option>
@@ -103,7 +97,7 @@ export default function AddProject() {
 
                                      <div className = "relative w-full mb-3" >
                                         <label className = "block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlFor = "implication" >Implication </label> 
-                                        <select id="implication" onChange={(e)=>handle(e)} value={critere.implication}className = "border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150">
+                                        <select id="implication" value={implication} onChange={e =>setImplication(e.target.value)} className = "border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150">
                                             <option value="1">Debutant</option>
                                             <option value="2">Amateur</option>
                                             <option value="3">Normal</option>
@@ -114,7 +108,17 @@ export default function AddProject() {
 
                                      <div className = "relative w-full mb-3" >
                                         <label className = "block uppercase text-blueGray-600 text-xs font-bold mb-2"  htmlFor = "deadline" >DeadLine </label> 
-                                        <select id="deadline" onChange={(e)=>handle(e)} value={critere.deadline}  className = "border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150">
+                                        <select id="deadline"  value={deadline} onChange={e =>setDeadline(e.target.value)} className = "border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150">
+                                            <option value="1">Debutant</option>
+                                            <option value="2">Amateur</option>
+                                            <option value="3">Normal</option>
+                                            <option value="4">Haut Niveau</option>
+                                            <option value="5">Legende</option>
+                                        </select>
+                                     </div>
+                                     <div className = "relative w-full mb-3" >
+                                        <label className = "block uppercase text-blueGray-600 text-xs font-bold mb-2"  htmlFor = "deadline" >Point_git </label> 
+                                        <select id="point_git"  value={point_git} onChange={e =>setPoint_git(e.target.value)} className = "border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150">
                                             <option value="1">Debutant</option>
                                             <option value="2">Amateur</option>
                                             <option value="3">Normal</option>
@@ -124,8 +128,9 @@ export default function AddProject() {
                                      </div>
 
                                     <div className = "text-center mt-6" >
-                                        <button className = "bg-blueGray-800 text-white active:bg-blueGray-600 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full ease-linear transition-all duration-150" >Valider</button> 
-                                    </div> 
+                                        <button onClick={handleSubmit} type="submit" className = "bg-blueGray-800 text-white active:bg-blueGray-600 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full ease-linear transition-all duration-150" >Valider</button> 
+                                    </div>
+                                    
                                 </form> 
                             </div> 
                         </div> 
