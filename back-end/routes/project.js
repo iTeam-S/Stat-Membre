@@ -34,10 +34,10 @@ router.get('/:id',ProjectCtrl.getOne);
 
 
 //Mettre à jour un projet
-router.put('/:id',ProjectCtrl.update);
+router.put('/update/:id',ProjectCtrl.update);
 
 //Supprimer un projet
-router.delete('/:id',ProjectCtrl.del);
+router.delete('/delete/:id',ProjectCtrl.del);
 
 
 

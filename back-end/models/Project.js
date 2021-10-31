@@ -103,7 +103,7 @@ module.exports = {
     },
     getAllProjectCritere:()=>{
         return new Promise((resolve, reject) => {
-            db.query("SELECT project.nom as Project_name,project.repos as Project_repos,project.delai as Project_delai,project.total_point,project.total_participant,critere.difficulte,critere.deadline,critere.impact,critere.implication,critere.point_git,project.nom as Project_name,project.repos as Project_repos,project.delai as Project_delai FROM critere LEFT JOIN project ON  critere.id=project.id_critere", function(err, resultat){
+            db.query("SELECT project.id,project.nom as Project_name,project.repos as Project_repos,project.delai as Project_delai,project.total_point,project.total_participant,critere.difficulte,critere.deadline,critere.impact,critere.implication,critere.point_git,project.nom as Project_name,project.repos as Project_repos,project.delai as Project_delai FROM critere LEFT JOIN project ON  critere.id=project.id_critere", function(err, resultat){
                 if(err){
                     reject(new Error("Errer resource while fetching project"));
                 }else{
@@ -161,7 +161,7 @@ module.exports = {
     },
     deleteProject:(id)=>{
         return new Promise((resolve, reject) => {
-            db.query("DELETE  FROM project WHERE id = $1", [id] , function(err, resultat){
+            db.query("DELETE  FROM project CASCADE WHERE id = $1", [id] , function(err, resultat){
                 if(err){
                     reject(new Error("Errer resource while dropping project"));
                 }else{

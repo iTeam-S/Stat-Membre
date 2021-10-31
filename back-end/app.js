@@ -25,23 +25,21 @@ app.use(bodyParser.json());
 app.use('/public/images', express.static(path.join(__dirname, 'public/images')));
 
 const MembersRoutes = require('./routes/member');
-app.use('/api/member',MembersRoutes );
+app.use('/api/v1/member',MembersRoutes );
 
 const CriteresRoutes = require('./routes/critere');
-app.use('/api/critere',CriteresRoutes );
+app.use('/api/v1/critere',CriteresRoutes );
 
 const ProjectsRoutes = require('./routes/project');
-app.use('/api/project', ProjectsRoutes);
+app.use('/api/v1/project', ProjectsRoutes);
 
 
 const userRoutes = require('./routes/authroutes');
-app.use('/api/auth', userRoutes);
+app.use('/api/v1/auth', userRoutes);
 
-const CRoutes=require('./routes/userroutes');
-app.use('/',CRoutes);
 
 const rolesRoutes=require('./routes/role');
-app.use('/api/role',rolesRoutes)
+app.use('/api/v1/role',rolesRoutes)
 
 
 module.exports = app;

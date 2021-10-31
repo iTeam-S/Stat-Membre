@@ -13,6 +13,7 @@ import Auth from "layouts/Auth.js";
 import AddMember from "layouts/Addmember"
 import AddProject from "layouts/Addproject"
 import Validate from "layouts/Validateproject"
+import CheckProject from "layouts/Checkmproject";
 
 
 
@@ -21,10 +22,13 @@ import Validate from "layouts/Validateproject"
 import Landing from "views/Landing.js";
 import Profile from "views/Profile.js";
 import Index from "views/Index.js";
+import { ProjectContextProvider } from "context/ProjectContext";
+import { MemberContextProvider } from "context/MemberContext";
 
 
-const memberUrl = "http://localhost:8000/api/member/getAll";
-const projectUrl = "http://localhost:8000/api/project/ProjectCritere";
+
+const memberUrl = "http://localhost:8000/api/v1/member/getAll";
+const projectUrl = "http://localhost:8000/api/v1/project/ProjectCritere";
 
 
 const App = () => {
@@ -51,6 +55,8 @@ const App = () => {
 
 
   return (
+      <ProjectContextProvider>
+      <MemberContextProvider>
       <BrowserRouter>
         <Switch>
           {/* add routes with layouts */}
@@ -63,8 +69,11 @@ const App = () => {
           <Route path="/project">
               <AddProject/>
           </Route>
-          <Route path="/validate">
+          <Route path="/validate"> 
               <Validate/>
+          </Route>
+          <Route path="/check">
+              <CheckProject/>
           </Route>
           <Route path="/auth">
               <Auth />
@@ -83,6 +92,8 @@ const App = () => {
           <Redirect from="*" to="/" />
         </Switch>
       </BrowserRouter>
+      </MemberContextProvider>
+      </ProjectContextProvider>
     );
 };
 

@@ -19,6 +19,20 @@ module.exports = {
     },
   },
   theme: {
+    backgroundColor: theme => ({
+       ...theme('colors'),
+       'primary': '#3490dc',
+       'secondary': '#4aff6e',
+       'danger': '#e3342f',
+    }),
+    extend: {
+      animation: {
+          bounce200: 'bounce 1s infinite 200ms',
+          bounce400: 'bounce 1s infinite 400ms',
+      },
+    },
+  },
+  theme: {
     colors: {
       ...colors,
     },

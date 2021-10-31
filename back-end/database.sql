@@ -46,8 +46,8 @@ CREATE TABLE user_role(
     id_role INTEGER NOT NULL,
     id_users INTEGER NOT NULL,
     PRIMARY KEY (id_role,id_users),
-    FOREIGN KEY (id_role) REFERENCES role(id) ON UPDATE CASCADE,
-    FOREIGN KEY (id_users) REFERENCES users(id) ON UPDATE CASCADE
+    FOREIGN KEY (id_role) REFERENCES role(id) ON DELETE CASCADE,
+    FOREIGN KEY (id_users) REFERENCES users(id) ON DELETE CASCADE
 
 );
 
@@ -55,6 +55,33 @@ CREATE TABLE project_member(
     id_member INTEGER NOT NULL,
     id_project INTEGER NOT NULL,
     PRIMARY KEY (id_member,id_project),
-    FOREIGN KEY (id_project) REFERENCES project(id) ON UPDATE CASCADE,
-    FOREIGN KEY (id_member) REFERENCES members(id) ON UPDATE CASCADE
+    FOREIGN KEY (id_project) REFERENCES project(id) ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY (id_member) REFERENCES members(id) ON DELETE CASCADE ON UPDATE CASCADE
 );
+
+
+{
+    "nom":"RAMAMIHARIVELO",
+    "prenom":"Marihasina",
+    "user_github":"hasina821",
+    "fonction":"devellopeur_junior",
+    "pdc":"image",
+    "mail":"rmnarry.mr@gmail.com",
+    "admin":"false"
+
+
+}
+{
+    "nom":"buildeo",
+    "repos":"github",
+    "delai":"4",
+    "id_critere":"1"
+}
+
+{
+    "difficulte":"5",
+    "deadline":"5",
+    "impact":"5",
+    "implication":"5",
+    "point_git":"5"
+}
