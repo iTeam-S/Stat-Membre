@@ -1,30 +1,34 @@
-import {useEffect,useState,useRef} from "react";
+import { MemberContext } from "context/MemberContext";
+import { ProjectAxios } from "apis/Stat";
+import {useEffect,useState,useRef,useContext} from "react";
 import React from "react";
-import Axios from "axios";
+import Axios from "axios";;
 
-const addurl="http://localhost:8000/api/v1/project/addMember"
+
+
+
 
 export default function AddMember() {
-    const [data,setData]=useState({
-        membername:"",
-        projectname:""
-    })
-    function submit(e){
+    const {addMember} =useContext(MemberContext)
+    const [membername,setMembername]=useState("")
+    const [projectname,setProjectname]=useState("")
+
+    const handleSubmit=async(e)=>{
         e.preventDefault();
-        Axios.post(addurl,{
-            membername:data.membername,
-            projectname:data.projectname
-        })
-        .then(res=>{
-            console.log(res.data);
-        })
+        try {
+            const response=await ProjectAxios.post("/addMember",{
+                membername,
+                projectname
+            })
+            addMember(response.data)
+            console.log(response.data);
+        } catch (error) {
+            console.log(error);
+            
+        };
+        
+        
     }
-    function handle(e){
-        const newData={...data};
-        newData[e.target.id]=e.target.value
-        setData(newData);
-    }
-    
     return ( 
         <>
             <div className = "container mx-auto px-4 h-full" >
@@ -37,10 +41,10 @@ export default function AddMember() {
                                 </div> 
                             </div> 
                             <div className = "flex-auto px-4 lg:px-10 py-10 pt-0" >
-                                <form onSubmit={(e)=>submit(e)}>
+                                <form action="">
                                     <div className = "relative w-full mb-3" >
                                         <label className = "block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlFor = "membername" >Nom</label> 
-                                        <input type = "text" onChange={(e)=>handle(e)} value={data.membername} className = "border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150" placeholder = "Nom du membre(en majuscule)" id="membername" />
+                                        <input type = "text"  value={membername} onChange={e =>setMembername(e.target.value)} className = "border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150" placeholder = "Nom du membre(en majuscule)" id="membername" />
                                     </div>
                                     <div className = "relative w-full mb-3" >
                                         <label className = "block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlFor = "prenom" >Prenom</label> 
@@ -67,11 +71,11 @@ export default function AddMember() {
                                      </div>
                                     <div className = "relative w-full mb-3" >
                                         <label className = "block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlFor = "projectname" >Nom_du_projet</label> 
-                                        <input type = "text" id="projectname" onChange={(e)=>handle(e)} value={data.projectname} className = "border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"  placeholder = "Nom du projet" />
+                                        <input type = "text" id="projectname"  value={projectname} onChange={e =>setProjectname(e.target.value)} className = "border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"  placeholder = "Nom du projet" />
                                     </div>
                                     
                                     <div className = "text-center mt-6" >
-                                        <button className = "bg-blueGray-800 text-white active:bg-blueGray-600 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full ease-linear transition-all duration-150" >Valider</button> 
+                                        <button type="submit" onClick={handleSubmit}  className = "bg-blueGray-800 text-white active:bg-blueGray-600 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full ease-linear transition-all duration-150" >Valider</button> 
                                     </div> 
                                 </form> 
                             </div> 

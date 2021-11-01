@@ -2,11 +2,13 @@ import React,{useState,useRef,useEffect, useContext} from "react";
 import axios from "axios"
 import {ProjectAxios} from "../../apis/Stat"
 import { ProjectContext } from "context/ProjectContext";
+import { useHistory } from "react-router";
 
 
 
 
 export default function CardProjets(props) {
+  let history=useHistory()
   const [isDataloading,setDataloading]=useState(false)
   const [showModal, setShowModal] = useState(false);
   const [modify,setModify]=useState(false);
@@ -18,18 +20,13 @@ export default function CardProjets(props) {
    useEffect( ()=>{
      const fetchData=async()=>{
       try {
-        const response=await ProjectAxios.get("/ProjectCritere");
+        const response=await ProjectAxios.get("/getAll");
         setProjects(response.data); 
        } catch (error) {
-         console.log(error); 
-         
+         console.log(error);  
        }
-
-     }
-     
+     } 
      fetchData();
-     console.log(projects);
-
    },[])
    const deleteHandle=async (id)=>{
      try {
@@ -37,16 +34,17 @@ export default function CardProjets(props) {
        console.log(response);
        setProjects(projects.filter(project=>{
          return project.id !==id
-       }))
-
-       
+       })) 
+       console.log(projects);
      } catch (error) {
-       
+      console.log(error) 
      }
-
-   }
-
-  
+     
+   };
+   const handleUpdate = (id)=>{
+    history.push(`/project/${id}/update`)
+    
+  }
   return (
     <>
       <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded">
@@ -96,10 +94,10 @@ export default function CardProjets(props) {
               </tr>
             </thead>
             <tbody>
-            {projects.map((project,index)=>( 
+            {projects.map((project)=>( 
               <tr  key={project.id} >
                 <th className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left">
-                {project.project_name}
+                {project.nom}
                 </th>
                 <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
                 {project.total_participant}
@@ -113,13 +111,13 @@ export default function CardProjets(props) {
                 </td>
                 <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
                 <span className="flex items-stretch">
-                  <button className="bg-teal-500 text-white active:bg-pink-600 font-bold uppercase text-sm px-2 py-1 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 " type="button" onClick={() => setModify(true)}
+                  <button onClick={()=>handleUpdate(project.id)} className="bg-teal-500 text-white active:bg-pink-600 font-bold uppercase text-sm px-2 py-1 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 " 
                   >
                     <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-8 bg-teal-500" fill="none" viewBox="0 0 24 24" stroke="white">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
                     </svg>
                   </button>
-                  <button className="bg-emerald-500 text-white active:bg-pink-600 font-bold uppercase text-sm px-2 py-1 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 " type="button" onClick={() => setValide(true)}
+                  <button  className="bg-emerald-500 text-white active:bg-pink-600 font-bold uppercase text-sm px-2 py-1 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 "
                   >
                     <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />

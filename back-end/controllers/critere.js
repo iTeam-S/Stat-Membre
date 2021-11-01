@@ -32,7 +32,7 @@ module.exports = {
         try {
             let id = parseInt(req.params.id)
             let critere = await mdlsCritere.getOneCritere(id);
-            res.send(critere.rows);
+            res.send(critere.rows[0]);
             
         } catch (error) {
             res.status(500).send(error);
@@ -45,7 +45,9 @@ module.exports = {
             let id = parseInt(req.params.id);
             let {difficulte,deadline,impact,implication,point_git}=req.body;
             let updatedCritere=await mdlsCritere.updateCritere(difficulte,deadline,impact,implication,point_git,id);
-            res.send(updatedCritere.rows)
+            res.send({
+                message:"updated successfuly"
+            })
             
         } catch (error) {
             res.status(500).send(error)

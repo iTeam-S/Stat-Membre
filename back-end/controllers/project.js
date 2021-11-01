@@ -28,7 +28,7 @@ module.exports = {
     
     listAll: async (req, res) => {
         try {
-            let listProject = await mdlsMember.getListProject();
+            let listProject = await mdlsProject.getListProject();
             res.send(listProject.rows);
             
         } catch (error) {
@@ -37,7 +37,6 @@ module.exports = {
         }
         
     },
-
     listAllWithCritere: async (req, res) => {
         try {
             let listPc = await mdlsProject.getAllProjectCritere();
@@ -119,6 +118,7 @@ module.exports = {
 
         }
     },
+
     listOneWithParticipant: async (req, res) => {
         try {
             let id = parseInt(req.params.id);

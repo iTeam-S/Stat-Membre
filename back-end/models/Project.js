@@ -53,11 +53,11 @@ module.exports = {
     },
     getListProject: () => {
         return new Promise((resolve, reject) => {
-            db.query("SELECT * FROM project", (err, resultat)=>{
+            db.query("SELECT * FROM project", function(err, resultat){
                 if(err){
-                    reject(new Error("Errer resource while fetching membre"));
+                    reject(new Error("Errer resource while fetching project"));
                 }else{
-                  resolve(resultat);
+                  resolve(resultat)
                 }
             })
         })  
@@ -156,6 +156,18 @@ module.exports = {
                 }
             })
             
+        })
+
+    },
+    valideProject:(val,nom)=>{
+        return new Promise((resolve,reject)=>{
+            db.query("INSERT INTO project(valide) values($1) WHERE project.nom=$2",[val,nom],function(err,resultat){
+                if(err){
+                    reject(new Error("Error while insert data")) 
+                }else{
+                    resolve(resultat)
+                }
+            })
         })
 
     },

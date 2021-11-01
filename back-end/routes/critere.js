@@ -15,7 +15,7 @@ router.get('/getAll',CritereCtrl.listAll);
 router.get('/:id',CritereCtrl.getOne);
 
 //Mettre à jour un critere
-router.put('/:id',CritereCtrl.update);
+router.put('/update/:id',CritereCtrl.update);
 
 //Supprimer un critere
 router.delete('/:id',CritereCtrl.del)

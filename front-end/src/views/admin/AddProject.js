@@ -42,7 +42,6 @@ export default function AddProject() {
             addProject(project.data);
         } catch (error) {
             console.log(error);
-            
         }
         
     }

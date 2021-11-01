@@ -1,19 +1,13 @@
-import React from "react";
-import { Switch, Route, Redirect } from "react-router-dom";
-
-// components
+import React from "react"
 
 import Navbar from "components/Navbars/AuthNavbar.js";
 import FooterSmall from "components/Footers/FooterSmall.js";
 
-// views
 
+import Update_project from "../views/admin/UpdateProject"
 
-import Add_Member from "views/admin/AddMember"
-
-
-export default function AddMember() {
-  return (
+const UpdateProjectPage=()=>{
+    return(
     <>
       <Navbar transparent />
       <main>
@@ -25,10 +19,11 @@ export default function AddMember() {
                 "url(" + require("assets/img/register_bg_2.png").default + ")",
             }}
           ></div>
-            <Add_Member />
+            <Update_project />
           <FooterSmall absolute />
         </section>
       </main>
     </>
-  );
+    )
 }
+export default UpdateProjectPage

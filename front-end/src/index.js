@@ -14,6 +14,8 @@ import AddMember from "layouts/Addmember"
 import AddProject from "layouts/Addproject"
 import Validate from "layouts/Validateproject"
 import CheckProject from "layouts/Checkmproject";
+import UpdateProject from "layouts/Updateproject";
+import UpdateMember from "layouts/Addmember"
 
 
 
@@ -65,11 +67,17 @@ const App = () => {
                         <Route path="/admin">
                             <Admin membre={member} projet={project}/>
                         </Route>
-                        <Route path="/member">
+                        <Route path="/member/admin/addmember">
                             <AddMember/>
                         </Route>
-                        <Route path="/project">
+                        <Route path="/project/admin/addproject">
                             <AddProject/>
+                        </Route>
+                        <Route path="/project/:id/update">
+                            <UpdateProject/>
+                        </Route>
+                        <Route path="/member/admin/:id/update">
+                            <UpdateMember/>
                         </Route>
                         <Route path="/validate"> 
                             <Validate/>
