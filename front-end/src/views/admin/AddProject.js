@@ -54,8 +54,7 @@ export default function AddProject() {
                             <div className = "rounded-t mb-0 px-6 py-6" >
                                 <div className = "text-center mb-3" >
                                     <h6 className = "text-blueGray-500 text-sm font-bold" >Ajouter un Projet</h6> 
-                                </div> 
-                                
+                                </div>    
                             </div> 
                             <div className = "flex-auto px-4 lg:px-10 py-10 pt-0" >
                                 <form action="">

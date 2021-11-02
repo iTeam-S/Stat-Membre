@@ -8,15 +8,16 @@ const MemberCtrl = require('../controllers/member');
 //Creer un membre
 router.post('/create', MemberCtrl.create);
 
+//afficher tous les projets aux quelles le membre participent
+
+router.post('/allproject',MemberCtrl.getAllMemberProject);
+
 //Afficher tous les membres
 router.get('/getAll',MemberCtrl.listAll);
 
 //Afficher un membre
 router.get('/getOne/:id',MemberCtrl.getOne);
 
-//afficher tous les projets aux quelles le membre participent
-
-router.get('/allproject',MemberCtrl.getAllMemberProject)
 
 //all projet and member
 

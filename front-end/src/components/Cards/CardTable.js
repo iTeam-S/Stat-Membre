@@ -211,7 +211,3 @@ export default function CardTable({ color }) {
         </>
     );
 }
-
-CardTable.defaultProps = {
-    color: "dark",
-};

@@ -75,7 +75,8 @@ export default function UpdateProject() {
                     <div className = "relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-blueGray-200 border-0" >
                         <div className = "rounded-t mb-0 px-6 py-6" >
                             <div className = "text-center mb-3" >
-                                <h6 className = "text-blueGray-500 text-sm font-bold" >Update un Projet</h6> 
+                                <h6 className = "text-blueGray-500 text-sm font-bold" >Update Projet</h6>
+                                <h1 className="text-teal-500 text-sm font-bold">{nom}</h1>
                             </div> 
                             
                         </div> 

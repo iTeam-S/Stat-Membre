@@ -33,6 +33,11 @@ router.get('/onewithpart/:id',ProjectCtrl.listOneWithParticipant);
 //afficher un projet sans critere ni participant
 router.get('/:id',ProjectCtrl.getOne);
 
+//get all valided
+router.get("/valided/all",ProjectCtrl.listAllvalided)
+
+//validate project
+router.put('/valide/:id',ProjectCtrl.valideProject)
 
 
 //Mettre à jour un projet

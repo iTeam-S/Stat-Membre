@@ -13,7 +13,7 @@ export default function CardProjets(props) {
   const [showModal, setShowModal] = useState(false);
   const [modify,setModify]=useState(false);
   const [post,setPost]=useState(null);
-  const [valide,setValide]=useState();
+  const [valide,setValide]=useState(false);
   const Avancement=valide ? "100%":"En cours";
 
   const {projects,setProjects}=useContext(ProjectContext)
@@ -31,7 +31,6 @@ export default function CardProjets(props) {
    const deleteHandle=async (id)=>{
      try {
        const response=await ProjectAxios.delete(`/delete/${id}`);
-       console.log(response);
        setProjects(projects.filter(project=>{
          return project.id !==id
        })) 
@@ -43,6 +42,19 @@ export default function CardProjets(props) {
    };
    const handleUpdate = (id)=>{
     history.push(`/project/${id}/update`)
+    
+  };
+  const handleValide =async (id)=>{
+    try {
+      const validateProject=await ProjectAxios.put(`/valide/${id}`,{
+        valide:"true"
+      });
+      
+      
+    } catch (error) {
+      console.log(error);
+      
+    }
     
   }
   return (
@@ -107,7 +119,7 @@ export default function CardProjets(props) {
                 </td>
                 <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
                   <i className="fas fa-arrow-up text-emerald-500 mr-4"></i>
-                  {Avancement}
+                  {project.valide ? "100%":"En cours"}
                 </td>
                 <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
                 <span className="flex items-stretch">
@@ -117,7 +129,7 @@ export default function CardProjets(props) {
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
                     </svg>
                   </button>
-                  <button  className="bg-emerald-500 text-white active:bg-pink-600 font-bold uppercase text-sm px-2 py-1 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 "
+                  <button onClick={()=>handleValide(project.id)} className="bg-emerald-500 text-white active:bg-pink-600 font-bold uppercase text-sm px-2 py-1 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 "
                   >
                     <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />

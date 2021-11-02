@@ -166,6 +166,35 @@ module.exports = {
         }
 
     },
+    valideProject:async(req,res)=>{
+        try {
+            let id=parseInt(req.params.id)
+            let {valide}=req.body;
+            let validProject=await mdlsProject.valideProject(id,valide);
+            res.status(200).send({
+                message:"Project valided successfully"
+            })
+            
+        } catch (error) {
+            res.status(500).send({
+                message:"validation error"
+            })
+            
+        }
+
+    },
+    listAllvalided:async(req,res)=>{
+        try {
+            let validedProject=await mdlsProject.listAllvalidedProject();
+            res.status(200).send(validedProject.rows)
+        } catch (error) {
+            res.status(500).send({
+                message:"Error while founding valided project"
+            })
+            
+        }
+
+    },
     update: async (req, res) => {
         try {
             let id = parseInt(req.params.id);

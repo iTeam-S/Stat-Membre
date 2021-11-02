@@ -112,6 +112,17 @@ module.exports = {
             })
         }) 
     },
+    listAllvalidedProject:()=>{
+        return new Promise((resolve,reject)=>{
+            db.query("SELECT * FROM project WHERE project.valide='true'",function(err,resultat){
+                if(err){
+                    reject(new Error("Error while fetching project"))
+                }else{
+                    resolve(resultat)
+                }
+            })
+        })
+    },
     getOneProjectCritere:(id)=>{
         return new Promise((resolve, reject) => {
             db.query("SELECT critere.difficulte,critere.deadline,critere.impact,critere.implication,critere.point_git,project.nom as Project_name,project.repos as Project_repos,project.delai as Project_delai FROM critere LEFT JOIN project ON  critere.id=project.id_critere WHERE project.id=$1",[id], function(err, resultat){
@@ -159,9 +170,9 @@ module.exports = {
         })
 
     },
-    valideProject:(val,nom)=>{
+    valideProject:(id,valide)=>{
         return new Promise((resolve,reject)=>{
-            db.query("INSERT INTO project(valide) values($1) WHERE project.nom=$2",[val,nom],function(err,resultat){
+            db.query("UPDATE project SET valide=$1  WHERE project.id=$2",[valide,id],function(err,resultat){
                 if(err){
                     reject(new Error("Error while insert data")) 
                 }else{

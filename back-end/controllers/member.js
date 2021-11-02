@@ -49,7 +49,6 @@ module.exports = {
     getAllMemberProject:async(req,res)=>{
         try {
             let nom_member=req.body.membername;
-
             let membre=await mdlsProject.checkMember(nom_member)
             let projects=await mdlsMember.getAllMemberProject(membre.rows[0].id);
             res.status(200).json(projects.rows)
