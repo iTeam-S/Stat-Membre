@@ -9,10 +9,10 @@ import FooterSmall from "components/Footers/FooterSmall.js";
 // views
 
 
+import Member_Project from "views/admin/MemberProject"
 
-import CheckMemberProject from "views/admin/CheckMemberProject"
 
-export default function CheckProject() {
+export default function MemberProject() {
   return (
     <>
       <Navbar transparent />
@@ -20,8 +20,13 @@ export default function CheckProject() {
         <section className="relative w-full h-full py-40 min-h-screen">
           <div
             className="absolute top-0 w-full h-full bg-blueGray-800 bg-no-repeat bg-full"
+            style={{
+              backgroundImage:
+                "url(" + require("assets/img/register_bg_2.png").default + ")",
+            }}
           ></div>
-          <CheckMemberProject/>
+            <Member_Project />
+          <FooterSmall absolute />
         </section>
       </main>
     </>

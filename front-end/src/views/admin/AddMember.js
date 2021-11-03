@@ -1,5 +1,6 @@
 import { MemberContext } from "context/MemberContext";
 import { ProjectAxios } from "apis/Stat";
+import {useHistory} from "react-router"
 import {useEffect,useState,useRef,useContext} from "react";
 import React from "react";
 import Axios from "axios";;
@@ -9,6 +10,7 @@ import Axios from "axios";;
 
 
 export default function AddMember() {
+    let history=useHistory()
     const {addMember} =useContext(MemberContext)
     const [membername,setMembername]=useState("")
     const [projectname,setProjectname]=useState("")
@@ -19,7 +21,8 @@ export default function AddMember() {
             const response=await ProjectAxios.post("/addMember",{
                 membername,
                 projectname
-            })
+            });
+            const red=await history.push("/admin/dashboard")
             addMember(response.data)
         } catch (error) {
             console.log(error);

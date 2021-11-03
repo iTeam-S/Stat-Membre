@@ -5,9 +5,11 @@ import { CritereAxios } from "apis/Stat";
 import { ProjectAxios } from "apis/Stat";
 import { CritereContext } from "context/CritereContext";
 import { ProjectContext } from "context/ProjectContext";
+import {useHistory} from "react-router"
 
 
 export default function AddProject() {
+    let history=useHistory()
     const {addCritere}=useContext(CritereContext)
     const {addProject}=useContext(ProjectContext)
     {/* Difficulte */}
@@ -37,7 +39,7 @@ export default function AddProject() {
                 repos,
                 delai
             });
-            console.log(project.data);
+            const red=await history.push(`/admin/dashboard`);
             addCritere(critere.data);
             addProject(project.data);
         } catch (error) {

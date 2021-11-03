@@ -9,8 +9,7 @@ const MemberCtrl = require('../controllers/member');
 router.post('/create', MemberCtrl.create);
 
 //afficher tous les projets aux quelles le membre participent
-
-router.post('/allproject',MemberCtrl.getAllMemberProject);
+router.get('/:membername/allproject',MemberCtrl.getAllMemberProject);
 
 //Afficher tous les membres
 router.get('/getAll',MemberCtrl.listAll);

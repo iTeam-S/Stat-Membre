@@ -127,15 +127,14 @@ export default function Sidebar() {
                             </li>
                             <li className = "items-center" >
                                 <Link className = "text-blueGray-700 hover:text-blueGray-500 text-xs uppercase py-3 font-bold block"
-                                to = "/check/admin/checkmemberproject" >
+                                to = "/check/checkmemberproject" >
                                 <i className = "fas fa-clipboard-list text-blueGray-400 mr-2 text-sm" > </i>{" "}
                                     Check member's project
                                 </Link> 
-                                
                             </li>
                             <li className = "items-center" >
                                 <Link className = "text-blueGray-700 hover:text-blueGray-500 text-xs uppercase py-3 font-bold block"
-                                to = "/del/delmember" >
+                                to = "/delete/checkprojectmember">
                                 <i className = "fas fa-archive text-blueGray-400 mr-2 text-sm" > </i>{" "}
                                     Remove project's member
                                 </Link> 

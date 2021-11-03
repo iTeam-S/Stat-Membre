@@ -10,9 +10,9 @@ import FooterSmall from "components/Footers/FooterSmall.js";
 
 
 
-import CheckMemberProject from "views/admin/CheckMemberProject"
+import CheckProjectMember from "../views/admin/CheckProjectMember"
 
-export default function CheckProject() {
+export default function ProjectMember() {
   return (
     <>
       <Navbar transparent />
@@ -21,7 +21,7 @@ export default function CheckProject() {
           <div
             className="absolute top-0 w-full h-full bg-blueGray-800 bg-no-repeat bg-full"
           ></div>
-          <CheckMemberProject/>
+          <CheckProjectMember/>
         </section>
       </main>
     </>

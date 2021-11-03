@@ -15,7 +15,10 @@ import AddProject from "layouts/Addproject"
 import Validate from "layouts/Validateproject"
 import CheckProject from "layouts/Checkmproject";
 import UpdateProject from "layouts/Updateproject";
-import UpdateMember from "layouts/Addmember"
+import UpdateMember from "layouts/Addmember";
+import MemberProject from "layouts/MemberProject";
+import CheckProjectMember from "layouts/CheckProjectMember"
+import ProjectMember from "layouts/ProjectMember"
 
 
 
@@ -82,8 +85,17 @@ const App = () => {
                         <Route path="/validate"> 
                             <Validate/>
                         </Route>
-                        <Route path="/check">
+                        <Route path="/check/checkmemberproject">
                             <CheckProject/>
+                        </Route>
+                        <Route path="/member/:membername/allproject">
+                            <MemberProject/>
+                        </Route>
+                        <Route path="/delete/checkprojectmember">
+                            <CheckProjectMember/>
+                        </Route>
+                        <Route path="/project/:projectname/delete">
+                            <ProjectMember/>
                         </Route>
                         <Route path="/auth">
                             <Auth />

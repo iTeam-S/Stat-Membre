@@ -1,6 +1,22 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { useParams } from "react-router";
 import TableDropdown from "../../components/Dropdowns/TableDropdown";
+import {ProjectAxios} from "../../apis/Stat"
+import {MemberAxios} from "../../apis/Stat"
 export default function MemberProject() {
+    const membername=useParams()
+    const [membersprojects,setMembersProjects]=useState([]);
+
+    useEffect(()=>{
+        const fetchdata=async()=>{
+            const MemberProject=await MemberAxios.get(`/${membername}/allproject`);
+            setMembersProjects(MemberProject.data);
+            
+        }
+        fetchdata();
+        
+    },[])
+    console.log(membersprojects);
     return ( 
         <>
             <div className="container mx-auto">
@@ -10,7 +26,7 @@ export default function MemberProject() {
                             <div className = "relative w-full px-4 max-w-full flex-grow flex-1" >
                                 <h3 className = 
                                     "font-semibold text-lg " 
-                                    >All ... projects </h3> 
+                                    >Projets au quelles le membre participe</h3> 
                             </div> 
                         </div> 
                     </div> 
@@ -27,15 +43,15 @@ export default function MemberProject() {
                                 </tr> 
                             </thead> 
                             <tbody >
-                                <tr>
+                                {membersprojects.map((mproject)=>(
+                                <tr key={mproject.user_id}>
                                     <th className = "border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left flex items-center" >
-        
                                         <img src = { require("../../assets/img/projetic.png").default } className = "h-12 w-12 bg-white rounded-full border" alt = "..." ></img>{" "} 
                                         <span className = 
-                                                "ml-2 font-bold text-lightBlue-300" >Argon Design System </span> 
+                                                "ml-2 font-bold text-lightBlue-300" >{mproject.nom_project} </span> 
                                     </th> 
                                     <td className = "border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4" >
-                                        <i className = "fas fa-circle text-orange-500 mr-2" > 395 </i> 
+                                        <i className = "fas fa-circle text-orange-500 mr-2" > {mproject.total_point} </i> 
                                     </td>  
                                     <td className = "border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4" >
                                         <div className = "flex items-center" >
@@ -53,6 +69,7 @@ export default function MemberProject() {
                                         <TableDropdown/>
                                     </td> 
                                 </tr> 
+                                ))}
                             </tbody> 
                         </table> 
                     </div> 
