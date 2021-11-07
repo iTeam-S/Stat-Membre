@@ -1,23 +1,26 @@
-import React,{useState,useContext,useEffect} from "react";
-import TableDropdown from "../../components/Dropdowns/TableDropdown";
+import React,{useState} from "react";
 import {ProjectAxios} from "../../apis/Stat";
-import {MemberAxios} from "../../apis/Stat";
-import ProjectContext from "../../context/ProjectContext"
-import MemberContext from "../../context/MemberContext"
 import {useHistory} from "react-router"
 export default function CheckMemberProject() {
     let history=useHistory()
+    const [membername,setMembername]=useState("");
     const [projectname,setProjectname]=useState("");
+    
 
-    const handleSubmit=async (e)=>{
+   
+    const DeleteHandle=async(e)=>{
         e.preventDefault()
         try {
-            setProjectname(projectname);
-            const Check=await history.push(`/project/${projectname}/delete`);
+            const response=await ProjectAxios.post('/remove',{
+                membername,
+                projectname
+            });
+            const Check=await history.push("/admin/dashboard");
+            
         } catch (error) {
             console.log(error);
-            
         }
+        
     };
     return ( 
             <>
@@ -40,13 +43,13 @@ export default function CheckMemberProject() {
                                         </div>
     
                                         <div className = "relative w-full mb-3" >
-                                            <label className = "block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlFor = "repos_sur_github" >Lien sur github </label> 
-                                            <input type = "text" id="repos_sur_github" className = "border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150" placeholder = "github"/>
-                                        </div> 
+                                            <label className = "block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlFor = "membername" >Nom du membre </label> 
+                                            <input type = "text" id="membername" value={membername} onChange={e =>setMembername(e.target.value)} className = "border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150" placeholder = "github"/>
+                                        </div>
                         
     
                                         <div className = "text-center mt-6" >
-                                            <button onClick={handleSubmit} className = "bg-blueGray-800 text-white active:bg-blueGray-600 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full ease-linear transition-all duration-150" type = "button" >Voir tous les participants </button> 
+                                            <button onClick={DeleteHandle} className = "bg-blueGray-800 text-white active:bg-blueGray-600 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full ease-linear transition-all duration-150" type = "button" >Remove member </button> 
                                         </div> 
                                     </form> 
                                 </div> 

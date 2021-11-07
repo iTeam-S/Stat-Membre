@@ -46,21 +46,10 @@ module.exports = {
         }
   
     },
-    getAllMemberProject:async(req,res)=>{
+    listAllMemberProject:async(req,res)=>{
         try {
             let nom_member=req.params.membername;
             let projects=await mdlsMember.getAllMemberProject(nom_member);
-            res.status(200).json(projects.rows)
-            
-        } catch (error) {
-            res.status(500).send(error)
-            
-        }
-
-    },
-    getAllMemberP:async(req,res)=>{
-        try {
-            let projects=await mdlsMember.getAllMemberProject();
             res.status(200).json(projects.rows)
             
         } catch (error) {

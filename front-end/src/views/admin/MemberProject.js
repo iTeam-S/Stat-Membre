@@ -1,22 +1,19 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import TableDropdown from "../../components/Dropdowns/TableDropdown";
-import {ProjectAxios} from "../../apis/Stat"
-import {MemberAxios} from "../../apis/Stat"
+import {MemberAxios} from "../../apis/Stat";
 export default function MemberProject() {
     const membername=useParams()
     const [membersprojects,setMembersProjects]=useState([]);
-
+    console.log(membername);
     useEffect(()=>{
         const fetchdata=async()=>{
-            const MemberProject=await MemberAxios.get(`/${membername}/allproject`);
+            const MemberProject=await MemberAxios.get(`/${membername.membername}/allproject`);
             setMembersProjects(MemberProject.data);
-            
         }
         fetchdata();
         
-    },[])
-    console.log(membersprojects);
+    },[]);
     return ( 
         <>
             <div className="container mx-auto">

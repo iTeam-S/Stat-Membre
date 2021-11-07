@@ -10,7 +10,7 @@ import FooterSmall from "components/Footers/FooterSmall.js";
 
 
 
-import CheckProjectMember from "../views/admin/CheckProjectMember"
+import CheckProjectMember from "../views/admin/DeleteProjectMember"
 
 export default function ProjectMember() {
   return (

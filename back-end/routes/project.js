@@ -11,6 +11,10 @@ router.post('/create', ProjectCtrl.create)
 //Ajouter un membre à un projet
 router.post('/addMember',ProjectCtrl.add);
 
+//Enlever une membre dans un projet
+
+router.post('/remove',ProjectCtrl.deleteProjectMember)
+
 //afficher tous les projet sans critere ni participant
 router.get('/getAll',ProjectCtrl.listAll);
 
@@ -28,7 +32,7 @@ router.get('/onewithcrit/:id',ProjectCtrl.listOneWithCritere);
 router.get('/ProjectMember',ProjectCtrl.listAllWithMember);
 
 //afficher un projet avec les participants
-router.get('/onewithpart/:id',ProjectCtrl.listOneWithParticipant);
+router.get('/:nom/part',ProjectCtrl.listOneWithParticipant);
 
 //afficher un projet sans critere ni participant
 router.get('/:id',ProjectCtrl.getOne);

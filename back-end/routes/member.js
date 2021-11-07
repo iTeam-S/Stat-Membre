@@ -9,7 +9,7 @@ const MemberCtrl = require('../controllers/member');
 router.post('/create', MemberCtrl.create);
 
 //afficher tous les projets aux quelles le membre participent
-router.get('/:membername/allproject',MemberCtrl.getAllMemberProject);
+router.get('/:membername/allproject',MemberCtrl.listAllMemberProject);
 
 //Afficher tous les membres
 router.get('/getAll',MemberCtrl.listAll);
@@ -17,10 +17,6 @@ router.get('/getAll',MemberCtrl.listAll);
 //Afficher un membre
 router.get('/getOne/:id',MemberCtrl.getOne);
 
-
-//all projet and member
-
-router.get('/allproject',MemberCtrl.getAllMemberP)
 
 //get topfive with their point
 

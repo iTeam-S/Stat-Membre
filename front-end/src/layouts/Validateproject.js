@@ -11,7 +11,7 @@ import FooterSmall from "components/Footers/FooterSmall.js";
 import Validate from "views/admin/ValidateProject";
 
 
-export default function Validate() {
+export default function Auth() {
   return (
     <>
       <Navbar transparent />

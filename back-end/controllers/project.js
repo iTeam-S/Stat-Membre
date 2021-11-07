@@ -121,8 +121,9 @@ module.exports = {
 
     listOneWithParticipant: async (req, res) => {
         try {
-            let id = parseInt(req.params.id);
-            let listp = await mdlsProject.getOneProjectWithPart(id);
+            let nom = req.params.nom;
+            console.log(nom);
+            let listp = await mdlsProject.getOneProjectWithPart(nom);
             res.status(200).send(listp.rows);
 
         } catch (error) {
@@ -206,6 +207,52 @@ module.exports = {
             res.status(500).send(error);
 
         }
+
+    },
+    deleteProjectMember:async(req,res)=>{
+        try {
+            let nom_member=req.body.membername;
+            let nom_project=req.body.projectname;
+            let membre = await mdlsProject.checkMember(nom_member);
+            let project = await mdlsProject.checkProject(nom_project);
+            let project_part=await mdlsProject.getProjectTotalParticipants(nom_project);
+
+            if(project_part.rows[0].total_participant ==null){
+                project_part.rows[0].total_participant =0
+            }
+
+
+            let pointAct=await mdlsMember.getPoint(membre.rows[0].id);
+            if(pointAct.rows[0].point_experience == null){
+                pointAct.rows[0].point_experience=0;
+            };
+
+            let pact=pointAct.rows[0].point_experience;
+                     
+            let umber=await mdlsProject.deleteProjectMember(membre.rows[0].id, project.rows[0].id);
+
+            let new_participant=project_part.rows[0].total_participant-1;
+
+            let Pp = await mdlsProject.getOneProjectCritere(project.rows[0].id);
+            let i = Pp.rows[0]
+
+            let scoef = (i.difficulte * 25) + (i.deadline * 10) + (i.impact * 30) + (i.implication * 15) + (i.point_git * 20)
+
+            let new_point=pact-scoef;
+
+            await mdlsProject.setParticipant(new_participant,nom_project);
+            await mdlsMember.setPoint(new_point,membre.rows[0].id);
+            
+
+            res.status(200).send({
+                message: "Member deleted on a project successfully"
+            })
+           
+        } catch (error) {
+            res.status(500).send(error);
+
+        }
+        
 
     },
 

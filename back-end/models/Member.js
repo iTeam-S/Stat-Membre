@@ -37,7 +37,7 @@ module.exports = {
     },
     getAllMemberProject:(membername)=>{
         return new Promise((resolve,reject)=>{
-            db.query("SELECT project.nom as Nom_project,project.repos as Repos_project,project.delai as Delai_project, members.prenom as prenom_participant,members.pdc as pdc_participant FROM project LEFT JOIN project_member ON project.id=project_member.id_project LEFT JOIN members ON members.id=project_member.id_member WHERE members.id=$1 WHERE members.nom=$1",[membername],(err,result)=>{
+            db.query("SELECT project.nom as Nom_project,project.repos as Repos_project,project.delai as Delai_project FROM project LEFT JOIN project_member ON project.id=project_member.id_project LEFT JOIN members ON members.id=project_member.id_member  WHERE members.nom=$1",[membername],(err,result)=>{
                 if(err){
                     reject(new Error("Error while fetching member'project"))
                 }else{
@@ -47,18 +47,7 @@ module.exports = {
         })
 
     },
-    getAllMemberProject:()=>{
-        return new Promise((resolve,reject)=>{
-            db.query("SELECT project.nom as Nom_project,project.repos as Repos_project,project.delai as Delai_project,project.total_point,members.id as user_id, members.prenom as prenom_participant,members.pdc as pdc_participant FROM project LEFT JOIN project_member ON project.id=project_member.id_project LEFT JOIN members ON members.id=project_member.id_member",(err,result)=>{
-                if(err){
-                    reject(new Error("Error while fetching member'project"))
-                }else{
-                    resolve(result)
-                }
-            })
-        })
-
-    },
+    
     getTopFive:()=>{
         return new Promise((resolve,reject)=>{
             db.query("SELECT  members.prenom,members.fonction,members.pdc,members.point_experience FROM members ORDER BY point_experience DESC LIMIT 5",(err,resultat)=>{

@@ -34,7 +34,6 @@ export default function CardProjets(props) {
        setProjects(projects.filter(project=>{
          return project.id !==id
        })) 
-       console.log(projects);
      } catch (error) {
       console.log(error) 
      }

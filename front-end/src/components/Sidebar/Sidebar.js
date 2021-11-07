@@ -134,7 +134,7 @@ export default function Sidebar() {
                             </li>
                             <li className = "items-center" >
                                 <Link className = "text-blueGray-700 hover:text-blueGray-500 text-xs uppercase py-3 font-bold block"
-                                to = "/delete/checkprojectmember">
+                                to = "/delete/projectmember">
                                 <i className = "fas fa-archive text-blueGray-400 mr-2 text-sm" > </i>{" "}
                                     Remove project's member
                                 </Link> 
