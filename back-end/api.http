@@ -1,8 +1,12 @@
-POST  http://localhost:8000/api/member/create
+POST http://localhost:8000/api/v1/project/remove
 Content-Type: application/json
 
 
 {
-      
+    
+   "membername":"RAMAMIHARIVELO",
+   "projectname":"portfolio"
+
+    
 }
 

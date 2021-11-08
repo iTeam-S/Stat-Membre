@@ -52,25 +52,8 @@ export default function AddMember() {
                                         <label className = "block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlFor = "prenom" >Prenom</label> 
                                         <input type = "text" className = "border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150" placeholder = "Prenom du membre" id="prenom" />
                                     </div>
-                                    <div className = "relative w-full mb-3" >
-                                        <label className = "block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlFor = "github" >User_github</label> 
-                                        <input type = "text" className = "border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150" placeholder = "Github du membre" id="github"/>
-                                    </div>
-                                    <div className = "relative w-full mb-3" >
-                                        <label className = "block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlFor = "fonction" >fonction</label> 
-                                        <input type = "text" className = "border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150" placeholder = "Fonction du membre" id="fonction"/>
-                                    </div>
-                                    <div className = "relative w-full mb-3" >
-                                        <label className = "block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlFor = "pdc" >Pdc</label> 
-                                        <input type = "text" className = "border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150" placeholder = "Pdc du membre(relier avec github)" id="pdc" />
-                                    </div>
-                                    <div className = "relative w-full mb-3" >
-                                        <label className = "block uppercase text-blueGray-600 text-xs font-bold mb-2" >ADMIN </label> 
-                                        <select className = "border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150">
-                                            <option value="1">True</option>
-                                            <option value="2">False</option>
-                                        </select>
-                                     </div>
+    
+    
                                     <div className = "relative w-full mb-3" >
                                         <label className = "block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlFor = "projectname" >Nom_du_projet</label> 
                                         <input type = "text" id="projectname"  value={projectname} onChange={e =>setProjectname(e.target.value)} className = "border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"  placeholder = "Nom du projet" />

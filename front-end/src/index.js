@@ -12,7 +12,6 @@ import Admin from "layouts/Admin.js";
 import Auth from "layouts/Auth.js";
 import AddMember from "layouts/Addmember"
 import AddProject from "layouts/Addproject"
-import Validate from "layouts/Validateproject"
 import CheckProject from "layouts/Checkmproject";
 import UpdateProject from "layouts/Updateproject";
 import UpdateMember from "layouts/Addmember";
@@ -67,34 +66,31 @@ const App = () => {
                 <BrowserRouter>
                     <Switch>
                         {/* add routes with layouts */}
-                        <Route path="/admin">
+                        <Route exact path="/admin/dashboard">
                             <Admin membre={member} projet={project}/>
                         </Route>
-                        <Route path="/member/admin/addmember">
+                        <Route exact path="/admin/member/addmember">
                             <AddMember/>
                         </Route>
-                        <Route path="/project/admin/addproject">
+                        <Route exact path="/admin/project/addproject">
                             <AddProject/>
                         </Route>
-                        <Route path="/project/:id/update">
+                        <Route exact path="/admin/project/:id/update">
                             <UpdateProject/>
                         </Route>
-                        <Route path="/member/admin/:id/update">
+                        <Route exact path="/admin/member/:id/update">
                             <UpdateMember/>
                         </Route>
-                        <Route path="/validate"> 
-                            <Validate/>
-                        </Route>
-                        <Route path="/check/checkmemberproject">
+                        <Route exact path="/admin/check/checkmemberproject">
                             <CheckProject/>
                         </Route>
-                        <Route path="/member/:membername/allproject">
+                        <Route exact path="/admin/member/:membername/allproject">
                             <MemberProject/>
                         </Route>
-                        <Route path="/delete/projectmember">
+                        <Route exact path="/admin/delete/projectmember">
                             <DeleteProjectMember/>
                         </Route>
-                        <Route path="/project/:projectname">
+                        <Route exact path="/admin//project/:projectname">
                             <ProjectMember/>
                         </Route>
                         <Route path="/auth">

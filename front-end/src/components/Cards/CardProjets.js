@@ -40,7 +40,7 @@ export default function CardProjets(props) {
      
    };
    const handleUpdate = (id)=>{
-    history.push(`/project/${id}/update`)
+    history.push(`/admin/project/${id}/update`)
     
   };
   const handleValide =async (id)=>{
