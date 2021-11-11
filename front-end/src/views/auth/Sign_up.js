@@ -1,10 +1,27 @@
-import React,{useState,useEffect} from "react";
-import {AuthAxios} from "../../apis/Stat"
+import React,{useState,useEffect,useContext} from "react";
+import {AuthAxios} from "../../apis/Stat";
+import {UserContext} from "../../context/UsersContext"
 export default function Sign_up() {
+
     const [prenom,setPrenom]=useState("");
     const [email,setEmail]=useState("");
     const [password,setPassword]=useState("");
-    
+    const [loginstatus,setLoginstatus]=useState(false);
+    const [message,setMessage]=useState("");
+
+    const handleSignup=async (e)=>{
+        e.preventDefault();
+        try {
+            const response=await AuthAxios.post('/signup',{
+                prenom,
+                email,
+                password
+            });
+            setMessage(response.data.message);
+        } catch (error) {
+            console.log(error);   
+        }  
+    }
     return ( 
         <>
             <div className = "container mx-auto px-4 h-full">
@@ -22,16 +39,16 @@ export default function Sign_up() {
                                 <form>
                                 <div className = "relative w-full mb-3" >
                                         <label className = "block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlFor = "prenom" >Prenom </label> 
-                                        <input type = "text" className = "border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"placeholder = "votre prenom" />
+                                        <input type = "text" id="prenom" onChange={e=> setPrenom(e.target.value)} className = "border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"placeholder = "votre prenom" />
                                     </div>
                                     <div className = "relative w-full mb-3" >
                                         <label className = "block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlFor = "email" >Email </label> 
-                                        <input type = "email" className = "border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"placeholder = "Email" />
+                                        <input type = "email" id="email" onChange={e=>setEmail(e.target.value)} className = "border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"placeholder = "Email" />
                                     </div>
 
                                     <div className = "relative w-full mb-3" >
                                         <label className = "block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlFor = "password" >Password </label> 
-                                        <input type = "password" className = "border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150" placeholder = "Password" />
+                                        <input type = "password" id="password" onChange={e=>setPassword(e.target.value)} className = "border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150" placeholder = "Password" />
                                     </div> 
                                     <div>
                                         <label className = "inline-flex items-center cursor-pointer" >
@@ -39,7 +56,7 @@ export default function Sign_up() {
                                     </div>
 
                                     <div className = "text-center mt-6" >
-                                        <button className = "bg-blueGray-800 text-white active:bg-blueGray-600 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full ease-linear transition-all duration-150" type = "button" >Sign Up </button> 
+                                        <button onClick={handleSignup} className = "bg-blueGray-800 text-white active:bg-blueGray-600 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full ease-linear transition-all duration-150" type = "button" >Sign Up </button> 
                                     </div> 
                                 </form> 
                             </div> 

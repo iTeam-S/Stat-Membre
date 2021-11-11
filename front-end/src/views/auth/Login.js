@@ -1,7 +1,26 @@
-import React from "react";
-
+import React,{useState} from "react";
+import {AuthAxios} from "../../apis/Stat";
 export default function Login() {
-    
+    const [email,setEmail]=useState("");
+    const [password,setPassword]=useState("");
+    const [errmessage,setErrmessage]=useState("");
+
+    const handleConnect=async(e)=>{
+        e.preventDefault();
+        try {
+            const response=await AuthAxios.post('/signin',{
+                email,
+                password
+            });
+            console.log(response);
+            localStorage.setItem('token',response.data.token)
+            
+        } catch (error) {
+            console.log(error);
+            
+        }
+
+    }
     return ( 
         <>
             <div className = "container mx-auto px-4 h-full">
@@ -18,13 +37,13 @@ export default function Login() {
                             <div className = "flex-auto px-4 lg:px-10 py-10 pt-0" >
                                 <form>
                                     <div className = "relative w-full mb-3" >
-                                        <label className = "block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlFor = "grid-password" >Email </label> 
-                                        <input type = "email" className = "border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"placeholder = "Email" />
+                                        <label className = "block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlFor = "mail" >Email </label> 
+                                        <input type = "email" id="mail" value={email} onChange={e=>setEmail(e.target.value)} className = "border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"placeholder = "Email" />
                                     </div>
 
                                     <div className = "relative w-full mb-3" >
-                                        <label className = "block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlFor = "grid-password" >Password </label> 
-                                        <input type = "password" className = "border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150" placeholder = "Password" />
+                                        <label className = "block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlFor = "pass" >Password </label> 
+                                        <input type = "password" id="pass" value={password} onChange={e=>setPassword(e.target.value)} className = "border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150" placeholder = "Password" />
                                     </div> 
                                     <div>
                                         <label className = "inline-flex items-center cursor-pointer" >
@@ -32,7 +51,7 @@ export default function Login() {
                                     </div>
 
                                     <div className = "text-center mt-6" >
-                                        <button className = "bg-blueGray-800 text-white active:bg-blueGray-600 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full ease-linear transition-all duration-150" type = "button" >Sign In </button> 
+                                        <button onClick={handleConnect} className = "bg-blueGray-800 text-white active:bg-blueGray-600 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full ease-linear transition-all duration-150" type = "button" >Sign In </button> 
                                     </div> 
                                 </form> 
                             </div> 
