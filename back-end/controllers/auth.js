@@ -37,7 +37,6 @@ module.exports = {
         try {
             let email = req.body.email;
             let useR = await mdlsRole.getUserWithRoles(email);
-            console.log(useR);
             if (!useR.rows[0]) {
                 return res.status(404).send({
                     message: "User Not found."
@@ -64,8 +63,8 @@ module.exports = {
                 id: useR.rows[0].id,
                 username: useR.rows[0].prenom,
                 email: useR.rows[0].email,
-                roles: useR.rows[0].role,
-                accessToken: token
+                role: useR.rows[0].role,
+                token: token
             });
 
         } catch (error) {

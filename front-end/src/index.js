@@ -9,15 +9,16 @@ import "assets/styles/tailwind.css";
 // layouts
 
 import Admin from "layouts/Admin.js";
-import Auth from "layouts/Auth.js";
-import AddMember from "layouts/Addmember"
-import AddProject from "layouts/Addproject"
+import Login from "./views/auth/Login";
+import SignUp from "./views/auth/Sign_up";
+import AddMember from "layouts/Addmember";
+import AddProject from "layouts/Addproject";
 import CheckProject from "layouts/Checkmproject";
 import UpdateProject from "layouts/Updateproject";
 import UpdateMember from "layouts/Addmember";
 import MemberProject from "layouts/MemberProject";
-import DeleteProjectMember from "layouts/DeleteProjectMember"
-import ProjectMember from "layouts/ProjectMember"
+import DeleteProjectMember from "layouts/DeleteProjectMember";
+import ProjectMember from "layouts/ProjectMember";
 
 
 
@@ -35,8 +36,18 @@ import { CritereContextProvider } from "context/CritereContext";
 const memberUrl = "http://localhost:8000/api/v1/member/getAll";
 const projectUrl = "http://localhost:8000/api/v1/project/ProjectCritere";
 
+function setToken(userToken){
+    localStorage.setItem('token', JSON.stringify(userToken));
+
+}
+
+function getToken(){
+
+}
 
 const App = () => {
+    const [token,setToken]=useState("");
+    const [role,setRole]=useState("");
   //get member
   const [member, setMember] = useState([]);
     useEffect(() => {
@@ -55,9 +66,56 @@ const App = () => {
               setProject(projet);
         });
     }, []);
+    if(!token && !role){
+        return(<ProjectContextProvider>
+            <CritereContextProvider>
+                <MemberContextProvider>
+                    <BrowserRouter>
+                        <Switch>
+                            <Route exact path="/auth/login">
+                                <Login />
+                            </Route>
+                            <Route exact path="/auth/signup">
+                                <SignUp />
+                            </Route>
+                            <Route path="/" exact>
+                                <Index data={project}/>
+                            </Route>
+                            {/* add redirect for first page */}
+                            <Redirect from="*" to="/" />
+                        </Switch>
+                    </BrowserRouter>
+                </MemberContextProvider>
+            </CritereContextProvider>
+          </ProjectContextProvider>)
+    }
+    if(token && role=='user'){
+        return(<ProjectContextProvider>
+            <CritereContextProvider>
+                <MemberContextProvider>
+                    <BrowserRouter>
+                        <Switch>
+                            <Route exact path="/admin/project/addproject">
+                                <AddProject/>
+                            </Route>
+                            <Route exact path="/auth/login">
+                                <Login />
+                            </Route>
+                            <Route exact path="/auth/signup">
+                                <SignUp />
+                            </Route>
+                            <Route path="/" exact>
+                                <Index data={project}/>
+                            </Route>
+                            {/* add redirect for first page */}
+                            <Redirect from="*" to="/" />
+                        </Switch>
+                    </BrowserRouter>
+                </MemberContextProvider>
+            </CritereContextProvider>
+          </ProjectContextProvider>)
 
-
-
+    }
 
   return (
       <ProjectContextProvider>
@@ -90,11 +148,14 @@ const App = () => {
                         <Route exact path="/admin/delete/projectmember">
                             <DeleteProjectMember/>
                         </Route>
-                        <Route exact path="/admin//project/:projectname">
+                        <Route exact path="/admin/project/:projectname">
                             <ProjectMember/>
                         </Route>
-                        <Route path="/auth">
-                            <Auth />
+                        <Route path="/auth/login">
+                            <Login />
+                        </Route>
+                        <Route exact path="/auth/signup">
+                            <SignUp />
                         </Route>
                         {/* add routes without layouts */}
                         <Route path="/landing" exact>

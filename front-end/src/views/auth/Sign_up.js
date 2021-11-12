@@ -1,30 +1,74 @@
-import React,{useState,useEffect,useContext} from "react";
+import React,{useState} from "react";
+import { Switch, Route, Redirect } from "react-router-dom";
 import {AuthAxios} from "../../apis/Stat";
-import {UserContext} from "../../context/UsersContext"
-export default function Sign_up() {
+import PropTypes from "prop-types";
+import Form from "react-validation/build/form";
+import Input from "react-validation/build/input";
+import CheckButton from "react-validation/build/button";
+import {useHistory} from "react-router";
+import { isEmail } from "validator";
+import AuthService from "../../service/authservice";
 
-    const [prenom,setPrenom]=useState("");
-    const [email,setEmail]=useState("");
-    const [password,setPassword]=useState("");
-    const [loginstatus,setLoginstatus]=useState(false);
-    const [message,setMessage]=useState("");
+// components
 
-    const handleSignup=async (e)=>{
-        e.preventDefault();
-        try {
-            const response=await AuthAxios.post('/signup',{
-                prenom,
-                email,
-                password
-            });
+import Navbar from "../../components/Navbars/AuthNavbar.js";
+import FooterSmall from "../../components/Footers/FooterSmall.js";
+
+
+
+export default function SignUp() {
+    const history=useHistory()
+     const [prenom,setPrenom]=useState("");
+     const [email,setEmail]=useState("");
+     const [password,setPassword]=useState("");
+     const [loading,setLoading]=useState(false);
+     const [message,setMessage]=useState("");
+     const [successfull,setSuccessfull]=useState(false);
+    
+     const handleSignup=()=>
+      {
+      try{
+          const response= AuthService.register(prenom,email,password).then(
+          () => {
+            history.push("/");
+            window.location.reload();
+              
             setMessage(response.data.message);
-        } catch (error) {
-            console.log(error);   
-        }  
-    }
-    return ( 
-        <>
-            <div className = "container mx-auto px-4 h-full">
+            setSuccessfull(true);
+          },
+          error => {
+            const resMessage =
+              (error.response &&
+                error.response.data &&
+                error.response.data.message) ||
+              error.message ||
+              error.toString();
+  
+            this.setState({
+              successfull:false,
+              message: resMessage
+            });
+          }
+        );
+  } catch (error) {
+      setLoading(false);
+      
+  }
+}
+  return (
+    <>
+      <Navbar transparent />
+      <main>
+        <section className="relative w-full h-full py-40 min-h-screen">
+          <div
+            className="absolute top-0 w-full h-full bg-blueGray-800 bg-no-repeat bg-full"
+            style={{
+              backgroundImage:
+                "url(" + require("assets/img/register_bg_2.png").default + ")",
+            }}
+          ></div>
+          {!successfull && (
+          <div className = "container mx-auto px-4 h-full">
                 <div className = "flex content-center items-center justify-center h-full">
                     <div className = "w-full lg:w-4/12 px-4">
                         <div className = "relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-blueGray-200 border-0">
@@ -64,6 +108,10 @@ export default function Sign_up() {
                     </div> 
                 </div> 
             </div> 
-        </>
-    );
+          )}
+          <FooterSmall absolute />
+        </section>
+      </main>
+    </>
+  );
 }
