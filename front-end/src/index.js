@@ -19,6 +19,7 @@ import UpdateMember from "layouts/Addmember";
 import MemberProject from "layouts/MemberProject";
 import DeleteProjectMember from "layouts/DeleteProjectMember";
 import ProjectMember from "layouts/ProjectMember";
+import AuthService from "./service/authservice"
 
 
 
@@ -33,21 +34,13 @@ import { CritereContextProvider } from "context/CritereContext";
 
 
 
+
 const memberUrl = "http://localhost:8000/api/v1/member/getAll";
 const projectUrl = "http://localhost:8000/api/v1/project/ProjectCritere";
 
-function setToken(userToken){
-    localStorage.setItem('token', JSON.stringify(userToken));
-
-}
-
-function getToken(){
-
-}
 
 const App = () => {
-    const [token,setToken]=useState("");
-    const [role,setRole]=useState("");
+    const User=AuthService.getCurrentUser();
   //get member
   const [member, setMember] = useState([]);
     useEffect(() => {
@@ -66,12 +59,15 @@ const App = () => {
               setProject(projet);
         });
     }, []);
-    if(!token && !role){
+    if(User ==null){
         return(<ProjectContextProvider>
             <CritereContextProvider>
                 <MemberContextProvider>
                     <BrowserRouter>
                         <Switch>
+                            <Route exact path="/admin/dashboard">
+                                <Admin membre={member} projet={project}/>
+                            </Route>
                             <Route exact path="/auth/login">
                                 <Login />
                             </Route>
@@ -89,7 +85,7 @@ const App = () => {
             </CritereContextProvider>
           </ProjectContextProvider>)
     }
-    if(token && role=='user'){
+    if(User.role=="user"){
         return(<ProjectContextProvider>
             <CritereContextProvider>
                 <MemberContextProvider>

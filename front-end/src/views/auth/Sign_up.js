@@ -25,36 +25,29 @@ export default function SignUp() {
      const [message,setMessage]=useState("");
      const [successfull,setSuccessfull]=useState(false);
     
-     const handleSignup=()=>
+     const handleSignup=async (e)=>
       {
+        e.preventDefault();
       try{
-          const response= AuthService.register(prenom,email,password).then(
-          () => {
-            history.push("/");
-            window.location.reload();
-              
-            setMessage(response.data.message);
-            setSuccessfull(true);
-          },
-          error => {
-            const resMessage =
-              (error.response &&
-                error.response.data &&
-                error.response.data.message) ||
-              error.message ||
-              error.toString();
-  
-            this.setState({
-              successfull:false,
-              message: resMessage
-            });
-          }
-        );
-  } catch (error) {
-      setLoading(false);
+          const response= await AuthService.register(prenom,email,password);
+
+          setSuccessfull(true);
+          const red=await history.push("/");
+          const  rel=await window.location.reload();
+          
+          
+      } catch (error) {
+          const resMessage =
+            (error.response &&
+              error.response.data &&
+              error.response.data.message) ||
+            error.message ||
+            error.toString();
+            setSuccessfull(false);
+            setMessage(resMessage);  
+        }
       
   }
-}
   return (
     <>
       <Navbar transparent />
@@ -108,6 +101,24 @@ export default function SignUp() {
                     </div> 
                 </div> 
             </div> 
+          )}
+          {message && !successfull &&(
+          <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
+            <strong class="font-bold">Errer!</strong>
+                <span class="block sm:inline">{message}</span>
+                <span class="absolute top-0 bottom-0 right-0 px-4 py-3">
+              <svg class="fill-current h-6 w-6 text-red-500" role="button" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><title>Close</title><path d="M14.348 14.849a1.2 1.2 0 0 1-1.697 0L10 11.819l-2.651 3.029a1.2 1.2 0 1 1-1.697-1.697l2.758-3.15-2.759-3.152a1.2 1.2 0 1 1 1.697-1.697L10 8.183l2.651-3.031a1.2 1.2 0 1 1 1.697 1.697l-2.758 3.152 2.758 3.15a1.2 1.2 0 0 1 0 1.698z"/></svg>
+            </span>
+          </div>
+          )};
+          {message && successfull &&(
+              <div class="bg-teal-100 border-t-4 border-teal-500 rounded-b text-teal-900 px-4 py-3 shadow-md" role="alert">
+                <div class="flex">
+                  <div>
+                    <p class="text-sm">{message}</p>
+                  </div>
+                </div>
+              </div>
           )}
           <FooterSmall absolute />
         </section>
