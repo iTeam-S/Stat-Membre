@@ -10,7 +10,6 @@ import "assets/styles/tailwind.css";
 
 import Admin from "layouts/Admin.js";
 import Login from "./views/auth/Login";
-import SignUp from "./views/auth/Sign_up";
 import AddMember from "layouts/Addmember";
 import AddProject from "layouts/Addproject";
 import CheckProject from "layouts/Checkmproject";
@@ -65,14 +64,8 @@ const App = () => {
                 <MemberContextProvider>
                     <BrowserRouter>
                         <Switch>
-                            <Route exact path="/admin/dashboard">
-                                <Admin membre={member} projet={project}/>
-                            </Route>
                             <Route exact path="/auth/login">
                                 <Login />
-                            </Route>
-                            <Route exact path="/auth/signup">
-                                <SignUp />
                             </Route>
                             <Route path="/" exact>
                                 <Index data={project}/>
@@ -91,14 +84,14 @@ const App = () => {
                 <MemberContextProvider>
                     <BrowserRouter>
                         <Switch>
+                            <Route exact path="/admin/dashboard">
+                                <Admin membre={member} projet={project}/>
+                            </Route>
                             <Route exact path="/admin/project/addproject">
                                 <AddProject/>
                             </Route>
                             <Route exact path="/auth/login">
                                 <Login />
-                            </Route>
-                            <Route exact path="/auth/signup">
-                                <SignUp />
                             </Route>
                             <Route path="/" exact>
                                 <Index data={project}/>
@@ -149,9 +142,6 @@ const App = () => {
                         </Route>
                         <Route path="/auth/login">
                             <Login />
-                        </Route>
-                        <Route exact path="/auth/signup">
-                            <SignUp />
                         </Route>
                         {/* add routes without layouts */}
                         <Route path="/landing" exact>

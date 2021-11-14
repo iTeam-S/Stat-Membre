@@ -1,11 +1,14 @@
 /*eslint-disable*/
 import React from "react";
 import { Link } from "react-router-dom";
+import AuthService from "../../service/authservice"
 // components
 
 import IndexDropdown from "components/Dropdowns/IndexDropdown.js";
+import UserDropdown from "components/Dropdowns/UserDropdown.js"
 
 export default function Navbar(props) {
+    const User=AuthService.getCurrentUser();
     const [navbarOpen, setNavbarOpen] = React.useState(false);
     return ( 
         <>
@@ -31,14 +34,14 @@ export default function Navbar(props) {
 
                         <ul className = "flex flex-col lg:flex-row list-none lg:ml-auto">
                             <li className="flex items-center lg:text-blueGray-700  px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold">
+                            {User==null &&(
                                 <Link to="/auth/login">
                                     SE CONNECTER
                                 </Link>
+                            )}
                             </li>
                             <li className="flex items-center lg:text-blueGray-700  px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold">
-                                <Link to="/auth/signup">
-                                    SIGN UP
-                                </Link>
+                                <UserDropdown/>
                             </li>
                             <li className = "flex items-center">
                                  <IndexDropdown/>
