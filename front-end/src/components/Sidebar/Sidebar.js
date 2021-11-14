@@ -56,7 +56,7 @@ export default function Sidebar() {
                         <ul className = "md:flex-col md:min-w-full flex flex-col list-none" >
                             <li className = "items-center" >
                                 <Link className = {
-                                    "text-xs uppercase py-3 font-bold block " +
+                                    "text-xs  py-3 font-bold block " +
                                     (window.location.href.indexOf("/admin/settings") !== -1 ?
                                         "text-lightBlue-500 hover:text-lightBlue-600" :
                                         "text-blueGray-700 hover:text-blueGray-500")
@@ -73,7 +73,7 @@ export default function Sidebar() {
 
                             <li className = "items-center" >
                                 <Link className = {
-                                    "text-xs uppercase py-3 font-bold block " +
+                                    "text-xs  py-3 font-bold block " +
                                     (window.location.href.indexOf("/admin/maps") !== -1 ?
                                         "text-lightBlue-500 hover:text-lightBlue-600" :
                                         "text-blueGray-700 hover:text-blueGray-500")
@@ -97,14 +97,14 @@ export default function Sidebar() {
 
                         <ul className = "md:flex-col md:min-w-full flex flex-col list-none md:mb-4" >
                             <li className = "items-center" >
-                                <Link className = "text-blueGray-700 hover:text-blueGray-500 text-xs uppercase py-3 font-bold block"
+                                <Link className = "text-blueGray-700 hover:text-blueGray-500 text-xs  py-3 font-bold block"
                                 to = "/admin/project/addproject" >
                                 <i className = "fas fa-database text-blueGray-400 mr-2 text-sm" > </i>{" "}
                                     Ajouter un projet
                                 </Link> 
                             </li>
                             <li className = "items-center" >
-                                <Link className = "text-blueGray-700 hover:text-blueGray-500 text-xs uppercase py-3 font-bold block"
+                                <Link className = "text-blueGray-700 hover:text-blueGray-500 text-xs  py-3 font-bold block"
                                 to = "/admin/tables" >
                                 <i className = "fas fa-table text-blueGray-400 mr-2 text-sm" > </i>{" "}
                                     Tous les projets
@@ -119,21 +119,21 @@ export default function Sidebar() {
 
                         <ul className = "md:flex-col md:min-w-full flex flex-col list-none md:mb-4" >
                             <li className = "items-center" >
-                                <Link className = "text-blueGray-700 hover:text-blueGray-500 text-xs uppercase py-3 font-bold block"
+                                <Link className = "text-blueGray-700 hover:text-blueGray-500 text-xs  py-3 font-bold block"
                                 to = "/admin/member/addmember">
                                 <i className = "fas fa-users text-blueGray-400 mr-2 text-sm" > </i>{" "}
                                     Add member on project
                                 </Link> 
                             </li>
                             <li className = "items-center" >
-                                <Link className = "text-blueGray-700 hover:text-blueGray-500 text-xs uppercase py-3 font-bold block"
+                                <Link className = "text-blueGray-700 hover:text-blueGray-500 text-xs  py-3 font-bold block"
                                 to = "/admin/check/checkmemberproject" >
                                 <i className = "fas fa-clipboard-list text-blueGray-400 mr-2 text-sm" > </i>{" "}
                                     Check member's project
                                 </Link> 
                             </li>
                             <li className = "items-center" >
-                                <Link className = "text-blueGray-700 hover:text-blueGray-500 text-xs uppercase py-3 font-bold block"
+                                <Link className = "text-blueGray-700 hover:text-blueGray-500 text-xs  py-3 font-bold block"
                                 to = "/admin/delete/projectmember">
                                 <i className = "fas fa-archive text-blueGray-400 mr-2 text-sm" > </i>{" "}
                                     Remove project's member

@@ -1,1 +1,1 @@
-cd back-end && npm run dev
+cd back-end && npm start
