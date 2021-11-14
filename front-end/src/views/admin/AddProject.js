@@ -39,7 +39,7 @@ export default function AddProject() {
                 repos,
                 delai
             });
-            const red=await history.push(`/admin/dashboard`);
+            const red=await history.push(`/`);
             addCritere(critere.data);
             addProject(project.data);
         } catch (error) {

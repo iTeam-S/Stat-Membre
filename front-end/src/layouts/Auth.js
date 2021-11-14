@@ -9,6 +9,7 @@ import FooterSmall from "components/Footers/FooterSmall.js";
 // views
 
 import Login from "views/auth/Login.js";
+import Signup from "views/auth/Sign_up.js"
 
 
 
@@ -26,8 +27,8 @@ export default function Auth() {
             }}
           ></div>
           <Switch>
-            <Route path="/auth/login" exact component={Login} />
-            <Redirect from="/auth" to="/auth/login" />
+            <Route exact path="/auth/login" exact component={Login} />
+            <Route exact path="/auth/signup" exact component={Signup} />
           </Switch>
           <FooterSmall absolute />
         </section>

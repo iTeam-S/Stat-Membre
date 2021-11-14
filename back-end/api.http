@@ -1,11 +1,11 @@
-POST http://localhost:8000/api/v1/project/remove
+POST http://localhost:8000/api/v1/auth/signin
 Content-Type: application/json
 
 
 {
     
-   "membername":"RAMAMIHARIVELO",
-   "projectname":"portfolio"
+   "email":"rivo.p18aps1b@gmail.com",
+   "password":"rivo"
 
     
 }

@@ -9,15 +9,16 @@ import "assets/styles/tailwind.css";
 // layouts
 
 import Admin from "layouts/Admin.js";
-import Auth from "layouts/Auth.js";
-import AddMember from "layouts/Addmember"
-import AddProject from "layouts/Addproject"
+import Login from "./views/auth/Login";
+import AddMember from "layouts/Addmember";
+import AddProject from "layouts/Addproject";
 import CheckProject from "layouts/Checkmproject";
 import UpdateProject from "layouts/Updateproject";
 import UpdateMember from "layouts/Addmember";
 import MemberProject from "layouts/MemberProject";
-import DeleteProjectMember from "layouts/DeleteProjectMember"
-import ProjectMember from "layouts/ProjectMember"
+import DeleteProjectMember from "layouts/DeleteProjectMember";
+import ProjectMember from "layouts/ProjectMember";
+import AuthService from "./service/authservice"
 
 
 
@@ -32,11 +33,13 @@ import { CritereContextProvider } from "context/CritereContext";
 
 
 
+
 const memberUrl = "http://localhost:8000/api/v1/member/getAll";
 const projectUrl = "http://localhost:8000/api/v1/project/ProjectCritere";
 
 
 const App = () => {
+    const User=AuthService.getCurrentUser();
   //get member
   const [member, setMember] = useState([]);
     useEffect(() => {
@@ -55,9 +58,53 @@ const App = () => {
               setProject(projet);
         });
     }, []);
+    if(User ==null){
+        return(<ProjectContextProvider>
+            <CritereContextProvider>
+                <MemberContextProvider>
+                    <BrowserRouter>
+                        <Switch>
+                            <Route exact path="/auth/login">
+                                <Login />
+                            </Route>
+                            <Route path="/" exact>
+                                <Index data={project}/>
+                            </Route>
+                            {/* add redirect for first page */}
+                            <Redirect from="*" to="/" />
+                        </Switch>
+                    </BrowserRouter>
+                </MemberContextProvider>
+            </CritereContextProvider>
+          </ProjectContextProvider>)
+    }
+    if(User.role=="user"){
+        return(<ProjectContextProvider>
+            <CritereContextProvider>
+                <MemberContextProvider>
+                    <BrowserRouter>
+                        <Switch>
+                            <Route exact path="/admin/dashboard">
+                                <Admin membre={member} projet={project}/>
+                            </Route>
+                            <Route exact path="/admin/project/addproject">
+                                <AddProject/>
+                            </Route>
+                            <Route exact path="/auth/login">
+                                <Login />
+                            </Route>
+                            <Route path="/" exact>
+                                <Index data={project}/>
+                            </Route>
+                            {/* add redirect for first page */}
+                            <Redirect from="*" to="/" />
+                        </Switch>
+                    </BrowserRouter>
+                </MemberContextProvider>
+            </CritereContextProvider>
+          </ProjectContextProvider>)
 
-
-
+    }
 
   return (
       <ProjectContextProvider>
@@ -90,11 +137,11 @@ const App = () => {
                         <Route exact path="/admin/delete/projectmember">
                             <DeleteProjectMember/>
                         </Route>
-                        <Route exact path="/admin//project/:projectname">
+                        <Route exact path="/admin/project/:projectname">
                             <ProjectMember/>
                         </Route>
-                        <Route path="/auth">
-                            <Auth />
+                        <Route path="/auth/login">
+                            <Login />
                         </Route>
                         {/* add routes without layouts */}
                         <Route path="/landing" exact>

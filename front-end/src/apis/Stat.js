@@ -17,5 +17,6 @@ const AuthAxios=Axios.create({
 export{
     ProjectAxios,
     MemberAxios,
-    CritereAxios 
+    CritereAxios,
+    AuthAxios
 }

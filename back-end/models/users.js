@@ -1,9 +1,9 @@
 const db = require('../service/connect');
 
 module.exports={
-    create:(prenom,mail,password)=>{
+    create:(prenom,mail,password,role)=>{
         return new Promise((resolve,reject)=>{
-            db.query("INSERT INTO users(prenom,email,password) values($1,$2,$3)",[prenom,mail,password],function(err,resultat){
+            db.query("INSERT INTO users(prenom,email,password,role) values($1,$2,$3,$4)",[prenom,mail,password,role],function(err,resultat){
                 if(err){
                     reject(new Error("Errer resource while creating user"));
                 }else{

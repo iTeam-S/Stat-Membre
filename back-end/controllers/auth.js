@@ -8,10 +8,10 @@ const config=require('../config/authconfig')
 module.exports = {
     signUp: async (req, res) => {
         try {
-            let nom = req.body.prenom; mail = req.body.email, hashPassword = bcrypt.hashSync(req.body.password, 8);
-
+            let prenom = req.body.prenom; mail = req.body.email, hashPassword = bcrypt.hashSync(req.body.password, 8);
+            let role='user';
             let userBm=await mdlsUser.checkUserByMail(mail)
-            let userBn=await mdlsUser.checkUserByName(nom)
+            let userBn=await mdlsUser.checkUserByName(prenom)
            
             if(userBm.rows[0] || userBn.rows[0]){
                 res.send({
@@ -23,7 +23,7 @@ module.exports = {
                     message:"This account is already exist,please use other mail and username"
                 })
             }else{
-                let useR =await mdlsUser.create(nom,mail,hashPassword);
+                let useR =await mdlsUser.create(prenom,mail,hashPassword,role);
                 res.status(200).send({
                     message:"Created a new account successfully"
                 })
@@ -35,12 +35,8 @@ module.exports = {
     },
     signin: async (req,res) => {
         try {
-            let prenom = req.body.prenom;
-            let useR = await mdlsRole.getUserWithRoles(prenom);
-
-            console.log(useR.rows[0]);
-
-
+            let email = req.body.email;
+            let useR = await mdlsRole.getUserWithRoles(email);
             if (!useR.rows[0]) {
                 return res.status(404).send({
                     message: "User Not found."
@@ -48,7 +44,7 @@ module.exports = {
             }
             var passwordIsValid = bcrypt.compareSync(
                 req.body.password,
-                useR.rows[0].user_password
+                useR.rows[0].password
 
             );
 
@@ -64,11 +60,11 @@ module.exports = {
 
 
             res.status(200).send({
-                id: useR.id,
-                username: useR.rows[0].username,
-                email: useR.rows[0].user_mail,
-                roles: useR.rows[0].user_role,
-                accessToken: token
+                id: useR.rows[0].id,
+                username: useR.rows[0].prenom,
+                email: useR.rows[0].email,
+                role: useR.rows[0].role,
+                token: token
             });
 
         } catch (error) {

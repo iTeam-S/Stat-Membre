@@ -4,14 +4,15 @@ const mdlsUser=require("../models/users");
 module.exports={
     create:async(req,res)=>{
         try {
-            let {nom,mail,password}=req.body;
-            let user=await mdlsUser.create(nom,mail,password);
+            let {prenom,mail,password}=req.body;
+            let role="user";
+            let user=await mdlsUser.create(prenom,mail,password,id_role);
             res.status(200).send({
                 message:'user is created successffully'
             })
             
         } catch (error) {
-            res.send(error)
+            res.status(500).send(error)
             
         }
     },

@@ -33,7 +33,7 @@ const IndexDropdown = () => {
         ref={popoverDropdownRef}
         className={
           (dropdownPopoverShow ? "block " : "hidden ") +
-          "bg-white text-base z-50 float-left py-2 list-none text-left rounded shadow-lg min-w-48"
+          "bg-blueGray-200 text-base z-50 float-left py-2 list-none text-left rounded shadow-lg min-w-48"
         }
       >
         <span
@@ -77,7 +77,7 @@ const IndexDropdown = () => {
           Deployé
         </Link>
         <Link
-          to="/auth/register"
+          to="/admin/project/addproject"
           className="text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700"
         >
           Ajouter un projet

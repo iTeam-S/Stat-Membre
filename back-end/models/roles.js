@@ -35,9 +35,9 @@ module.exports={
             })
         })
     },
-    getUserWithRoles:(prenom)=>{
+    getUserWithRoles:(email)=>{
         return new Promise((resolve,reject)=>{
-            db.query("SELECT users.prenom as username,users.email as user_mail,users.password as user_password,role.name as user_role FROM users LEFT JOIN user_role ON users.id=user_role.id_users LEFT JOIN role ON role.id=user_role.id_role WHERE users.prenom=$1",[prenom],(err,resultat)=>{
+            db.query("SELECT * from users WHERE email=$1",[email],(err,resultat)=>{
                 if(err){
                     reject(new Error("Error while fetching user"));
                 }else{
