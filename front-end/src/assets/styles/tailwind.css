@@ -1704,6 +1704,21 @@ background-color: rgba(55, 48, 163, var(--tw-bg-opacity));}
 .ml-1 {
   margin-left: 0.25rem;
 }
+.mt-1\/2 {
+  margin-top: 5%;
+}
+.mt-1\/4 {
+  margin-top: 10%;
+}
+.mt-1\/6 {
+  margin-top: 15%;
+}
+.mt-1\/8 {
+  margin-top: 20%;
+}
+.mt-1\/10 {
+  margin-top: 25%;
+}
 
 .mt-2 {
   margin-top: 0.5rem;
@@ -2091,6 +2106,9 @@ padding-right: 24rem;}
 
 .pt-0 {
   padding-top: 0px;
+}
+.pt-2 {
+  padding-top: 2em;
 }
 
 .pb-0 {
