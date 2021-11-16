@@ -5,9 +5,13 @@ import { Link } from "react-router-dom";
 import IndexNavbar from "components/Navbars/IndexNavbar.js";
 import Footer from "components/Footers/Footer.js";
 import CardStats from "components/Cards/CardStats.js";
+<<<<<<< HEAD
 import CardLineChart from "components/Cards/CardLineChart.js";
 import CardProduction from "components/Cards/CardProduction.js";
 
+=======
+import CardProjets from "components/Cards/CardProjets";
+>>>>>>> 90b87318f16a2f9b3bed194fe06daa793c2a5615
 
 export default function Index({ data }) {
     return ( 
@@ -307,7 +311,200 @@ export default function Index({ data }) {
             </section>
 
 
+<<<<<<< HEAD
             
+=======
+            <section>
+                <div className="w-full md:w-7/12 px-4 md:px-4 mt-12">
+                    <div className="text-blueGray-500 p-3 w-16 h-16 mb-6 shadow-lg rounded-full bg-white" style={{ marginLeft: '620px' }}>
+                        <i className="fas fa-drafting-compass text-xl"></i>
+                    </div>
+                    <h3 className="text-3xl mb-2 font-semibold text-center">
+                        Statistique de la communeauté
+                    </h3>
+                    <div className = "flex flex-wrap" style={{ margin: '0px 290px'}}>
+                        <div className=" relative flex flex-row">
+                            <div className="px-4 py-5">
+                                <CardStats
+                                statSubtitle="PARTICIPATION"
+                                statTitle="25"
+                                statArrow="up"
+                                statPercent="43.48"
+                                statPercentColor="text-emerald-500"
+                                statDescripiron="Since last month"
+                                statIconName="far fa-chart-bar"
+                                statIconColor="bg-teal-500"
+                                />
+                            </div>
+                        </div>
+                        <div className=" relative flex flex-col">
+                            <div className="px-4 py-5">
+                                <CardStats
+                                statSubtitle="COMMIT"
+                                statTitTle="2,356"
+                                statArrow="down"
+                                statPercent="3.48"
+                                statPercentColor="text-red-500"
+                                statDescripiron="Since last week"
+                                statIconName="fas fa-chart-pie"
+                                statIconColor="bg-red-500"
+                                />
+                            </div>
+                        </div>
+                        <div className=" relative flex flex-col">
+                            <div className="px-4 py-5">
+                                <CardStats
+                                statSubtitle="PRODUCTION"
+                                statTitle="50"
+                                statArrow="down"
+                                statPercent="1.10"
+                                statPercentColor="text-emerald-500"
+                                statDescripiron="Since last yer"
+                                statIconName="fas fa-users"
+                                statIconColor="bg-orange-500"
+                                />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div className="flex flex-wrap items-center pt-2 mb-24"></div>
+                        
+                <div className="block relative z-1  pb-48">
+                    <div className = "container mx-auto" >
+                        <div className = "justify-center flex flex-wrap" >
+                            <div className = "w-full lg:w-12/12 px-4  -mt-24" >
+                                <div className = "flex flex-wrap" >
+                                    <div className = "w-full lg:w-4/12 px-4" style={{ margin: '15px 0px'}}>
+                                        <div class="max-w-sm rounded overflow-hidden shadow-lg">
+                                            <img class="w-full" src="http://via.placeholder.com/150x100.png" alt="Mountain" />
+                                            <div class="px-6 py-4">
+                                                <div class="font-bold text-xl mb-2">Mountain</div>
+                                                <p class="text-gray-700 text-base">
+                                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus quia, nulla! Maiores et perferendis eaque, exercitationem praesentium nihil.
+                                                </p>
+                                            </div>
+                                            <div class="px-6 pt-4 pb-2">
+                                                <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#photography</span>
+                                                <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#travel</span>
+                                                <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#winter</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div className = "w-full lg:w-4/12 px-4" style={{ margin: '15px 0px'}}>
+                                        <div class="max-w-sm rounded overflow-hidden shadow-lg">
+                                            <img class="w-full" src="http://via.placeholder.com/150x100.png" alt="Mountain" />
+                                            <div class="px-6 py-4">
+                                                <div class="font-bold text-xl mb-2">Mountain</div>
+                                                <p class="text-gray-700 text-base">
+                                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus quia, nulla! Maiores et perferendis eaque, exercitationem praesentium nihil.
+                                                </p>
+                                            </div>
+                                            <div class="px-6 pt-4 pb-2">
+                                                <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#photography</span>
+                                                <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#travel</span>
+                                                <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#winter</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div className = "w-full lg:w-4/12 px-4" style={{ margin: '15px 0px'}}>
+                                        <div class="max-w-sm rounded overflow-hidden shadow-lg">
+                                            <img class="w-full" src="http://via.placeholder.com/150x100.png" alt="Mountain" />
+                                            <div class="px-6 py-4">
+                                                <div class="font-bold text-xl mb-2">Mountain</div>
+                                                <p class="text-gray-700 text-base">
+                                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus quia, nulla! Maiores et perferendis eaque, exercitationem praesentium nihil.
+                                                </p>
+                                            </div>
+                                            <div class="px-6 pt-4 pb-2">
+                                                <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#photography</span>
+                                                <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#travel</span>
+                                                <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#winter</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div className = "w-full lg:w-4/12 px-4" style={{ margin: '15px 0px'}}>
+                                        <div class="max-w-sm rounded overflow-hidden shadow-lg">
+                                            <img class="w-full" src="http://via.placeholder.com/150x100.png" alt="Mountain" />
+                                            <div class="px-6 py-4">
+                                                <div class="font-bold text-xl mb-2">Mountain</div>
+                                                <p class="text-gray-700 text-base">
+                                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus quia, nulla! Maiores et perferendis eaque, exercitationem praesentium nihil.
+                                                </p>
+                                            </div>
+                                            <div class="px-6 pt-4 pb-2">
+                                                <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#photography</span>
+                                                <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#travel</span>
+                                                <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#winter</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div className = "w-full lg:w-4/12 px-4" style={{ margin: '15px 0px'}}>
+                                        <div class="max-w-sm rounded overflow-hidden shadow-lg">
+                                            <img class="w-full" src="http://via.placeholder.com/150x100.png" alt="Mountain" />
+                                            <div class="px-6 py-4">
+                                                <div class="font-bold text-xl mb-2">Mountain</div>
+                                                <p class="text-gray-700 text-base">
+                                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus quia, nulla! Maiores et perferendis eaque, exercitationem praesentium nihil.
+                                                </p>
+                                            </div>
+                                            <div class="px-6 pt-4 pb-2">
+                                                <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#photography</span>
+                                                <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#travel</span>
+                                                <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#winter</span>
+                                            </div>
+                                        </div>
+                                    </div> 
+                                </div> 
+                            </div> 
+                        </div> 
+                    </div> 
+                </div>
+            </section>
+
+
+            <div className="flex flex-wrap items-center pt-2 pb-64"></div>
+
+            <section className = "block relative z-1  pb-48" style = {{ backgroundColor: '#008080' }}>
+                <div className = "container mx-auto" >
+                    <div className = "justify-center flex flex-wrap" >
+                        <div className = "w-full lg:w-12/12 px-4  -mt-24" >
+                            <div className = "flex flex-wrap" >
+                                <div className = "w-full lg:w-4/12 px-4" >
+                                    <h5 className = "text-xl font-semibold pb-4 text-center" >Login Iteam-$</h5> 
+                                    <a href="https://iteam-s.mg/web/login" target="_blank" rel="noreferrer" >
+                                        <div className = "hover:-mt-4 relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded-lg ease-linear transition-all duration-150" >
+                                            <img alt = "..." className = "align-middle border-none max-w-full h-auto rounded-lg" style={{height: '270px'}} src = { require("assets/img/login.png").default }/> 
+                                        </div> 
+                                    </a>
+                                </div>
+
+                                <div className = "w-full lg:w-4/12 px-4" >
+                                    <h5 className = "text-xl font-semibold pb-4 text-center" >All project </h5> 
+                                     <a href="https://iteam-s.mg/projets" target="_blank" rel="noreferrer" >
+                                        <div className = "hover:-mt-4 relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded-lg ease-linear transition-all duration-150" >
+                                            <img alt = "..." className = "align-middle border-none max-w-full h-auto rounded-lg" style={{height: '270px'}} src = { require("assets/img/projet.png").default }/> 
+                                        </div> 
+                                    </a>
+                                </div>
+
+                                <div className = "w-full lg:w-4/12 px-4" >
+                                    <h5 className = "text-xl font-semibold pb-4 text-center" >Equipe Iteam-$ </h5> 
+                                    <Link to = "/landing" >
+                                        <div className = "hover:-mt-4 relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded-lg ease-linear transition-all duration-150" >
+                                            <img alt = "..." className = "align-middle border-none max-w-full h-auto rounded-lg" style={{height: '270px'}} src = { require("assets/img/equipe.png").default }/> 
+                                        </div> 
+                                    </Link> 
+                                </div> 
+                            </div> 
+                        </div> 
+                    </div> 
+                </div> 
+            </section>
+
+>>>>>>> 90b87318f16a2f9b3bed194fe06daa793c2a5615
             
             <Footer/>
         </>
