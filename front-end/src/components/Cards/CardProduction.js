@@ -113,7 +113,7 @@ export default function CardBarChart() {
                 Production
               </h6>
               <h2 className="text-blueGray-700 text-xl font-semibold">
-                Total Projects
+                Projets Deployés
               </h2>
             </div>
           </div>

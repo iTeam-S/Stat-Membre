@@ -62,8 +62,8 @@ export default function CardProjets(props) {
         <div className="rounded-t mb-0 px-4 py-3 border-0">
           <div className="flex flex-wrap items-center">
             <div className="relative w-full px-4 max-w-full flex-grow flex-1">
-              <h3 className="font-semibold text-base text-blueGray-700">
-                Les projets
+              <h3 className="font-semibold text-base text-center text-blueGray-700">
+                NOS PROJETS
               </h3>
             </div>
           </div>
@@ -120,7 +120,7 @@ export default function CardProjets(props) {
                   <i className="fas fa-arrow-up text-emerald-500 mr-4"></i>
                   {project.valide ? "100%":"En cours"}
                 </td>
-                <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                <td className="border-t-0 px-2 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap">
                 <span className="flex items-stretch">
                   <button onClick={()=>handleUpdate(project.id)} className="bg-teal-500 text-white active:bg-pink-600 font-bold uppercase text-sm px-2 py-1 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 " 
                   >

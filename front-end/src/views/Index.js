@@ -4,10 +4,12 @@ import { Link } from "react-router-dom";
 
 import IndexNavbar from "components/Navbars/IndexNavbar.js";
 import Footer from "components/Footers/Footer.js";
+import CardStats from "components/Cards/CardStats.js";
+import CardLineChart from "components/Cards/CardLineChart.js";
+import CardProduction from "components/Cards/CardProduction.js";
+
 
 export default function Index({ data }) {
-
-
     return ( 
         <>
             <IndexNavbar fixed/>
@@ -26,10 +28,190 @@ export default function Index({ data }) {
                         </div> 
                     </div> 
                 </div>
-
                 <img className = "absolute top-0 b-auto right-0 pt-16 sm:w-6/12 -mt-48 sm:mt-0 w-10/12 max-h-860px" src = { require("assets/img/pattern_react.png").default } alt = "..." />
             </section>
-
+            <section >
+                    <h3 className="text-3xl mb-2 font-semibold text-center text-emerald-500">
+                        Statistique de la communeauté
+                    </h3>
+                <div className="rounded-lg w-full container mx-auto px-4 h-full md:w-12 px-4 md:px-4 mt-12 bg-blueGray-700">
+                    
+                    <div className = "flex flex-no-wrap">
+                        <div className=" relative flex flex-row">
+                            <div className="px-4 py-5">
+                                <CardStats
+                                statSubtitle="PARTICIPATION"
+                                statTitle="25"
+                                statArrow="up"
+                                statPercent="43.48"
+                                statPercentColor="text-emerald-500"
+                                statDescripiron="Since last month"
+                                statIconName="far fa-chart-bar"
+                                statIconColor="bg-teal-500"
+                                />
+                            </div>
+                        </div>
+                        <div className=" relative flex flex-col">
+                            <div className="px-4 py-5">
+                                <CardStats
+                                statSubtitle="COMMIT"
+                                statTitTle="2,356"
+                                statArrow="down"
+                                statPercent="3.48"
+                                statPercentColor="text-red-500"
+                                statDescripiron="Since last week"
+                                statIconName="fas fa-chart-pie"
+                                statIconColor="bg-red-500"
+                                />
+                            </div>
+                        </div>
+                        <div className=" relative flex flex-col">
+                            <div className="px-4 py-5">
+                                <CardStats
+                                statSubtitle="PRODUCTION"
+                                statTitle="50"
+                                statArrow="down"
+                                statPercent="1.10"
+                                statPercentColor="text-emerald-500"
+                                statDescripiron="Since last yer"
+                                statIconName="fas fa-users"
+                                statIconColor="bg-orange-500"
+                                />
+                            </div>
+                        </div>
+                    </div>  
+                </div>
+                <div className="px-4 py-4 rounded-lg ml-5 flex flex-no-wrap bg-blueGray-700 container mx-auto px-4 h-full border-blueGray-50">
+                        <div className="w-full pr-4 pt-4">
+                            < CardLineChart/>
+                        </div>
+                        <div className="w-full pr-2 pt-4">
+                            <CardProduction />
+                        </div>
+                </div>
+            </section>
+            <section className="mt-12">
+                    <h3 className="text-3xl mb-2 font-semibold text-center text-emerald-500">
+                        TOP 5 
+                    </h3>
+                    <div className="px-4 py-4 rounded-lg ml-5 flex flex-no-wrap bg-blueGray-700 container mx-auto px-4 h-full border-blueGray-50">
+                        <div className="relative flex flex-col min-w-0 break-words bg-white rounded mb-6 xl:mb-0 shadow-lg">
+                                <div className="flex-auto p-4">
+                                <div className="flex flex-wrap">
+                                    <div className="relative w-full pr-4 max-w-full flex-grow flex-1">
+                                    <span className = "h-12 w-12 text-sm text-white bg-blueGray-200 inline-flex items-center justify-center rounded-full" >
+                                        <img alt = "..." className = "w-full rounded-full align-middle border-none shadow-lg" src = { require("assets/img/team-1-800x800.jpg").default }/> 
+                                    </span>
+                                    <span className="font-semibold text-xl text-blueGray-700">
+                                        Le premier
+                                    </span>
+                                    </div>
+                                    <div className="relative w-auto pl-4 flex-initial">
+                                    <div>
+                                    </div>
+                                    </div>
+                                </div>
+                                <p className="text-sm text-blueGray-400 mt-4">
+                                    <span>
+                                    </span>
+                                    <span className="whitespace-nowrap"></span>
+                                </p>
+                                </div>
+                        </div>
+                        <div className="relative flex flex-col min-w-0 break-words bg-white rounded mb-6 xl:mb-0 shadow-lg">
+                                <div className="flex-auto p-4">
+                                <div className="flex flex-wrap">
+                                    <div className="relative w-full pr-4 max-w-full flex-grow flex-1">
+                                    <span className = "h-12 w-12 text-sm text-white bg-blueGray-200 inline-flex items-center justify-center rounded-full" >
+                                        <img alt = "..." className = "w-full rounded-full align-middle border-none shadow-lg" src = { require("assets/img/team-1-800x800.jpg").default }/> 
+                                    </span>
+                                    <span className="font-semibold text-xl text-blueGray-700">
+                                        Le Deuxieme
+                                    </span>
+                                    </div>
+                                    <div className="relative w-auto pl-4 flex-initial">
+                                    <div>
+                                    </div>
+                                    </div>
+                                </div>
+                                <p className="text-sm text-blueGray-400 mt-4">
+                                    <span>
+                                    </span>
+                                    <span className="whitespace-nowrap"></span>
+                                </p>
+                                </div>
+                        </div>
+                        <div className="relative flex flex-col min-w-0 break-words bg-white rounded mb-6 xl:mb-0 shadow-lg">
+                                <div className="flex-auto p-4">
+                                <div className="flex flex-wrap">
+                                    <div className="relative w-full pr-4 max-w-full flex-grow flex-1">
+                                    <span className = "h-12 w-12 text-sm text-white bg-blueGray-200 inline-flex items-center justify-center rounded-full" >
+                                        <img alt = "..." className = "w-full rounded-full align-middle border-none shadow-lg" src = { require("assets/img/team-1-800x800.jpg").default }/> 
+                                    </span>
+                                    <span className="font-semibold text-xl text-blueGray-700">
+                                        Le Troisieme
+                                    </span>
+                                    </div>
+                                    <div className="relative w-auto pl-4 flex-initial">
+                                    <div>
+                                    </div>
+                                    </div>
+                                </div>
+                                <p className="text-sm text-blueGray-400 mt-4">
+                                    <span>
+                                    </span>
+                                    <span className="whitespace-nowrap"></span>
+                                </p>
+                                </div>
+                        </div>
+                        <div className="relative flex flex-col min-w-0 break-words bg-white rounded mb-6 xl:mb-0 shadow-lg">
+                                <div className="flex-auto p-4">
+                                <div className="flex flex-wrap">
+                                    <div className="relative w-full pr-4 max-w-full flex-grow flex-1">
+                                    <span className = "h-12 w-12 text-sm text-white bg-blueGray-200 inline-flex items-center justify-center rounded-full" >
+                                        <img alt = "..." className = "w-full rounded-full align-middle border-none shadow-lg" src = { require("assets/img/team-1-800x800.jpg").default }/> 
+                                    </span>
+                                    <span className="font-semibold text-xl text-blueGray-700">
+                                        Le Quatrieme
+                                    </span>
+                                    </div>
+                                    <div className="relative w-auto pl-4 flex-initial">
+                                    <div>
+                                    </div>
+                                    </div>
+                                </div>
+                                <p className="text-sm text-blueGray-400 mt-4">
+                                    <span>
+                                    </span>
+                                    <span className="whitespace-nowrap"></span>
+                                </p>
+                                </div>
+                        </div>
+                        <div className="relative flex flex-col min-w-0 break-words bg-white rounded mb-6 xl:mb-0 shadow-lg">
+                                <div className="flex-auto p-4">
+                                <div className="flex flex-wrap">
+                                    <div className="relative w-full pr-4 max-w-full flex-grow flex-1">
+                                    <span className = "h-12 w-12 text-sm text-white bg-blueGray-200 inline-flex items-center justify-center rounded-full" >
+                                        <img alt = "..." className = "w-full rounded-full align-middle border-none shadow-lg" src = { require("assets/img/team-1-800x800.jpg").default }/> 
+                                    </span>
+                                    <span className="font-semibold text-xl text-blueGray-700">
+                                        Le cinqueme
+                                    </span>
+                                    </div>
+                                    <div className="relative w-auto pl-4 flex-initial">
+                                    <div>
+                                    </div>
+                                    </div>
+                                </div>
+                                <p className="text-sm text-blueGray-400 mt-4">
+                                    <span>
+                                    </span>
+                                    <span className="whitespace-nowrap"></span>
+                                </p>
+                                </div>
+                        </div>
+                    </div>
+            </section>
             <section className = "mt-48 md:mt-40 pb-40 relative bg-blueGray-100" >
                 <div className = "-mt-20 top-0 bottom-auto left-0 right-0 w-full absolute h-20"
                     style = {
@@ -125,123 +307,7 @@ export default function Index({ data }) {
             </section>
 
 
-            <section>
-                <div className="w-full md:w-4/12 px-12 md:px-4 ml-auto mr-auto mt-32">
-                    <div className="text-blueGray-500 p-3 w-16 h-16 mb-6 shadow-lg rounded-full bg-white" style={{ marginLeft: '177px' }}>
-                        <i className="fas fa-drafting-compass text-xl"></i>
-                    </div>
-                    <h3 className="text-3xl mb-2 font-semibold text-center">
-                        Nos quelques projets
-                    </h3>
-                    <p className="text-lg font-light mt-4 mb-4 text-blueGray-600">
-                        Voici la liste de nos projets en cours et terminés.                        
-                    </p>
-                    <div className="block pb-6">
-                        { data.map((projet) => (
-                            <span className="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-blueGray-500 bg-white uppercase last:mr-0 mr-2 mt-2">
-                                {projet.nom}
-                            </span>
-                        ))}
-                    </div>
-                    <a
-                        href="https://github.com/orgs/iTeam-S/repositories"
-                        target="_blank"
-                        className="font-bold text-blueGray-700 hover:text-blueGray-500 transition-all duration-150" style = {{ textAlign: 'text-center'}}
-                    >
-                        View all {" "}
-                        <i className="fa fa-angle-double-right ml-1 leading-relaxed"></i>
-                    </a>
-                </div>
-            </section>
-
-
-            <div className="flex flex-wrap items-center pt-2 pb-64">
-                <div className="w-full md:w-5/12 px-4 mr-auto ml-auto mt-32">
-                    <div className="justify-center flex flex-wrap relative" style = {{ flexDirection: 'column' }}>
-                       {data.filter((projet) => parseInt(projet.delai) <= 30)
-                            .map((projet) => (
-                                <a
-                                    href= { projet.repos }
-                                    target="_blank"
-                                >
-                                    <div className=" shadow-lg rounded-lg text-center p-8 mt-3"  style = {{ backgroundColor: '#008080' }}>
-                                      <img
-                                        alt="..."
-                                        className="shadow-md rounded-full max-w-full w-16 mx-auto p-2 bg-white"
-                                        src="https://raw.githubusercontent.com/creativetimofficial/public-assets/master/logos/vue.jpg"
-                                      />
-                                      <p className="text-lg text-white mt-4 font-semibold">
-                                        { projet.nom }
-                                      </p>
-                                    </div>
-                                </a>
-                            ))
-                        }
-                    </div>
-                </div>
-
-                <div className="w-full md:w-5/12 px-4 mr-auto ml-auto mt-32">
-                    <div className="justify-center flex flex-wrap relative" style = {{ flexDirection: 'column' }}>
-                       {data.filter((projet) => parseInt(projet.delai) > 30)
-                            .map((projet) => (
-                                <a
-                                    href= { projet.repos }
-                                    target="_blank"
-                                >
-                                    <div className="shadow-lg rounded-lg text-center p-8 mt-3" style = {{ backgroundColor: '#18b7b7' }}>
-                                      <img
-                                        alt="..."
-                                        className="shadow-md rounded-full max-w-full w-16 mx-auto p-2 bg-white"
-                                        src="https://raw.githubusercontent.com/creativetimofficial/public-assets/master/logos/react.jpg"
-                                      />
-                                      <p className="text-lg text-white mt-4 font-semibold">
-                                        { projet.nom }
-                                      </p>
-                                    </div>
-                                </a>
-                            ))
-                        }
-                    </div>
-                </div>
-            </div>
-
-            <section className = "block relative z-1  pb-48" style = {{ backgroundColor: '#008080' }}>
-                <div className = "container mx-auto" >
-                    <div className = "justify-center flex flex-wrap" >
-                        <div className = "w-full lg:w-12/12 px-4  -mt-24" >
-                            <div className = "flex flex-wrap" >
-                                <div className = "w-full lg:w-4/12 px-4" >
-                                    <h5 className = "text-xl font-semibold pb-4 text-center" >Login Iteam-$</h5> 
-                                   <a href="https://iteam-s.mg/web/login" target="_blank" rel="noreferrer" >
-                                        <div className = "hover:-mt-4 relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded-lg ease-linear transition-all duration-150" >
-                                            <img alt = "..." className = "align-middle border-none max-w-full h-auto rounded-lg" style={{height: '270px'}} src = { require("assets/img/login.png").default }/> 
-                                        </div> 
-                                    </a>
-                                </div>
-
-                                <div className = "w-full lg:w-4/12 px-4" >
-                                    <h5 className = "text-xl font-semibold pb-4 text-center" >All project </h5> 
-                                     <a href="https://iteam-s.mg/projets" target="_blank" rel="noreferrer" >
-                                        <div className = "hover:-mt-4 relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded-lg ease-linear transition-all duration-150" >
-                                            <img alt = "..." className = "align-middle border-none max-w-full h-auto rounded-lg" style={{height: '270px'}} src = { require("assets/img/projet.png").default }/> 
-                                        </div> 
-                                    </a>
-                                </div>
-
-                                <div className = "w-full lg:w-4/12 px-4" >
-                                    <h5 className = "text-xl font-semibold pb-4 text-center" >Equipe Iteam-$ </h5> 
-                                    <Link to = "/landing" >
-                                        <div className = "hover:-mt-4 relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded-lg ease-linear transition-all duration-150" >
-                                            <img alt = "..." className = "align-middle border-none max-w-full h-auto rounded-lg" style={{height: '270px'}} src = { require("assets/img/equipe.png").default }/> 
-                                        </div> 
-                                    </Link> 
-                                </div> 
-                            </div> 
-                        </div> 
-                    </div> 
-                </div> 
-            </section>
-
+            
             
             <Footer/>
         </>

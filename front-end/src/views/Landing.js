@@ -47,10 +47,10 @@ export default function Landing({data}) {
 
 
                 <section>
-                        <div className="flex flex-row flex-wrap pt-4" style={ {margin: '60px 0px 30px 50px'} }>
+                        <div className="flex flex-row flex-wrap pt-4" style={ {margin: '60px 10px'} }>
                             {data.map((membre) => (
                                 <Link to={`/profile/${membre.id}`}>
-                                    <div className="mt-8" style = { {margin: '0px 50px', padding: '9px'} }>
+                                    <div className="mt-8" style = { {margin: '0px 80px', padding: '20px'} }>
                                         <img alt = "..." src = {membre.pdc} className = "shadow-lg rounded-full mx-auto max-w-120-px" />
                                         <div className = "pt-3 text-center" >
                                             <h5 className = "text-xl font-bold" > {membre.prenom}</h5>
