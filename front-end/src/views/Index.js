@@ -175,13 +175,18 @@ export default function Index({ data }) {
                             </div>  
                         </div>
 
-                        <div className="flex flex-wrap items-center pt-32">
-                            <div className="w-full md:w-6/12 px-4 mr-auto ml-auto mt-32">
-                                <div className="justify-center flex flex-wrap relative">
-                                    
-                                </div>
+                        <div className="rounded-lg flex md:flex-no-wrap border-blueGray-50" style={{ margin: '0px 50px'}}>
+                            <div className="w-full pr-4 pt-4">
+                                < CardLineChart/>
+                            </div>
+                            <div className="w-full pt-4">
+                                <CardProduction />
                             </div>
                         </div>
+
+                        <h3 className="text-center text-3xl font-semibold text-blueGray-600 mt-10">
+                            Classement des membres dans iTeam-$
+                        </h3>
                 </div>
             </section>
 
