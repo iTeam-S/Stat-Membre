@@ -1,11 +1,11 @@
 import React from "react";
-import {MemberAxios} from "../apis/Stat";
+import {MemberAxios,ProjectAxios} from "../apis/Stat";
 
 
 class MemberService{
      addMember(membername,projectname){
           try {
-          return MemberAxios.post("/addMember",{
+          return ProjectAxios.post("/addMember",{
                membername,
                projectname
           }) 
