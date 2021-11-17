@@ -47,7 +47,7 @@ export default function Footer() {
                                     <ul className = "list-unstyled">
                                         <li> 
                                             <a className = "text-blueGray-600 hover:text-blueGray-800 font-semibold block pb-2 text-sm"
-                                                href = "https://iteam-s.mg/qui-sommes-nous" target="_blank" rel="noreferrer" > About Us </a>
+                                                href = "https://iteam-s.mg/view/membre.html" target="_blank" rel="noreferrer" > About Us </a>
                                         </li>
 
                                         <li> 
@@ -62,7 +62,7 @@ export default function Footer() {
 
                                         <li> 
                                             <a className = "text-blueGray-600 hover:text-blueGray-800 font-semibold block pb-2 text-sm"
-                                                href = "https://iteam-s.mg/projets" target="_blank" rel="noreferrer" > Projets </a> 
+                                                href = "https://iteam-s.mg/view/projet.html" target="_blank" rel="noreferrer" > Projets </a> 
                                         </li>
                                     </ul>  
                                 </div>  
@@ -71,7 +71,7 @@ export default function Footer() {
                                     <ul className = "list-unstyled" >
                                         <li> 
                                             <a className = "text-blueGray-600 hover:text-blueGray-800 font-semibold block pb-2 text-sm"
-                                                href = "https://iteam-s.mg/contactus" target="_blank" rel="noreferrer" > Contact Us 
+                                                href = "https://iteam-s.mg/index.html#contact" target="_blank" rel="noreferrer" > Contact Us 
                                             </a> 
                                         </li>
                                     </ul>  

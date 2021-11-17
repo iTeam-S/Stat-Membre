@@ -19,7 +19,7 @@ export default function Index({ data }) {
                         <div className = "pt-32 sm:pt-0" >
                             <h2 className = "font-semibold text-4xl text-blueGray-600" >Bienvenue sur Iteam - $ stats </h2> 
                             <p className = "mt-4 text-lg leading-relaxed text-blueGray-500" >Sur cette site web, vous pouvez trouvez les statistiques des membres dans 
-                                <a href = "https://Iteam-$.mg" className = "text-blueGray-600" target = "_blank" >{" "}Iteam - $ </a>.
+                                <a href = "https://iteam-s.mg" className = "text-blueGray-600" target = "_blank" >{" "}Iteam - $ </a>.
                             </p> 
                             <div className = "mt-12" >
                                 <a href = "https://iteam-s.mg/" target = "_blank" className = "get-started text-white font-bold px-6 py-4 rounded outline-none focus:outline-none mr-1 mb-1 bg-lightBlue-500 active:bg-lightBlue-600 uppercase text-sm shadow hover:shadow-lg ease-linear transition-all duration-150" style = {{ backgroundColor: '#008080' }}>Get started </a> 
@@ -216,7 +216,7 @@ export default function Index({ data }) {
                                     </h5>
                                         
                                         <div className="hover:-mt-4 relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded-lg ease-linear transition-all duration-150">
-                                        <a href = "https://Iteam-$.mg" className = "text-blueGray-600" target = "_blank" >
+                                        <a href = "https://iteam-s.mg/view/projet.html" className = "text-blueGray-600" target = "_blank" >
                                             <img
                                             alt="..."
                                             className="align-middle border-none max-w-full h-auto rounded-lg"
@@ -228,7 +228,7 @@ export default function Index({ data }) {
 
                                 <div className="w-full lg:w-4/12 px-4">
                                 <h5 className="text-xl font-semibold pb-4 text-center">
-                                    Landing Page
+                                    Membres
                                 </h5>
                                 <Link to="/landing">
                                     <div className="hover:-mt-4 relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded-lg ease-linear transition-all duration-150">
