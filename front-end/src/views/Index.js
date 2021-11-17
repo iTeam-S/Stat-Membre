@@ -124,26 +124,64 @@ export default function Index({ data }) {
                     </div> 
                 </div> 
 
-                <div className="container mx-auto overflow-hidden pb-20">
-                    <div className="flex flex-wrap items-center">
-                        <div className="w-full md:w-4/12 px-12 md:px-4 ml-auto mr-auto mt-48">
-                            
+                <div className="container overflow-hidden pb-20 mt-32">
+                        <h3 className="text-center text-3xl font-semibold text-blueGray-600">
+                            Statistique de la communauté
+                        </h3>
+                        <div className="rounded-lg w-full container px-4 h-full md:w-12  md:px-4 mt-4">
+                            <div className = "flex flex-wrap justify-center">
+                                <div className=" relative flex flex-row">
+                                    <div className="px-4 py-5">
+                                        <CardStats
+                                            statSubtitle="PARTICIPATION"
+                                            statTitle="25"
+                                            statArrow="up"
+                                            statPercent="43.48"
+                                            statPercentColor="text-emerald-500"
+                                            statDescripiron="Since last month"
+                                            statIconName="far fa-chart-bar"
+                                            statIconColor="bg-teal-500"
+                                        />
+                                    </div>
+                                </div>
+                                <div className=" relative flex flex-col">
+                                    <div className="px-4 py-5">
+                                        <CardStats
+                                            statSubtitle="COMMIT"
+                                            statTitTle="2,356"
+                                            statArrow="down"
+                                            statPercent="3.48"
+                                            statPercentColor="text-red-500"
+                                            statDescripiron="Since last week"
+                                            statIconName="fas fa-chart-pie"
+                                            statIconColor="bg-red-500"
+                                        />
+                                    </div>
+                                </div>
+                                <div className=" relative flex flex-col">
+                                    <div className="px-4 py-5">
+                                        <CardStats
+                                            statSubtitle="PRODUCTION"
+                                            statTitle="50"
+                                            statArrow="down"
+                                            statPercent="1.10"
+                                            statPercentColor="text-emerald-500"
+                                            statDescripiron="Since last yer"
+                                            statIconName="fas fa-users"
+                                            statIconColor="bg-orange-500"
+                                        />
+                                    </div>
+                                </div>
+                            </div>  
                         </div>
 
-                        <div className="w-full md:w-5/12 px-4 mr-auto ml-auto mt-32">
-                            <div className="relative flex flex-col min-w-0 w-full mb-6 mt-48 md:mt-0">
-                                
+                        <div className="flex flex-wrap items-center pt-32">
+                            <div className="w-full md:w-6/12 px-4 mr-auto ml-auto mt-32">
+                                <div className="justify-center flex flex-wrap relative">
+                                    
+                                </div>
                             </div>
                         </div>
-                    </div>
-
-                    <div className="flex flex-wrap items-center pt-32">
-                        <div className="w-full md:w-6/12 px-4 mr-auto ml-auto mt-32">
-                            <div className="justify-center flex flex-wrap relative">
-                                
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </section>
 

@@ -59,7 +59,7 @@ const App = () => {
               setProject(projet);
         });
     }, []);
-    if(User ==null){
+    {/*if(User == null){
         return(
         <ProjectContextProvider>
             <CritereContextProvider>
@@ -77,8 +77,8 @@ const App = () => {
                             </Route>
                             <Route path="/profile/:id" exact>
                                 <Profile data={member}/>
-                            </Route>
-                            {/* add redirect for first page */}
+                            </Route>*
+
                             <Redirect from="*" to="/" />
                         </Switch>
                     </BrowserRouter>
@@ -110,7 +110,7 @@ const App = () => {
                             <Route path="/" exact>
                                 <Index data={project}/>
                             </Route>
-                            {/* add redirect for first page */}
+
                             <Redirect from="*" to="/" />
                         </Switch>
                     </BrowserRouter>
@@ -118,7 +118,7 @@ const App = () => {
             </CritereContextProvider>
           </ProjectContextProvider>)
 
-    }
+    }*/}
 
   return (
       <ProjectContextProvider>
