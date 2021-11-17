@@ -60,7 +60,8 @@ const App = () => {
         });
     }, []);
     if(User ==null){
-        return(<ProjectContextProvider>
+        return(
+        <ProjectContextProvider>
             <CritereContextProvider>
                 <MemberContextProvider>
                     <BrowserRouter>
@@ -70,6 +71,12 @@ const App = () => {
                             </Route>
                             <Route path="/" exact>
                                 <Index data={project}/>
+                            </Route>
+                            <Route path="/landing" exact>
+                            <Landing data={member}/>
+                            </Route>
+                            <Route path="/profile/:id" exact>
+                                <Profile data={member}/>
                             </Route>
                             {/* add redirect for first page */}
                             <Redirect from="*" to="/" />
@@ -93,6 +100,12 @@ const App = () => {
                             </Route>
                             <Route exact path="/auth/login">
                                 <Login />
+                            </Route>
+                            <Route path="/landing" exact>
+                                <Landing data={member}/>
+                            </Route>
+                            <Route path="/profile/:id" exact>
+                                <Profile data={member}/>
                             </Route>
                             <Route path="/" exact>
                                 <Index data={project}/>
