@@ -31,7 +31,6 @@ import Index from "views/Index.js";
 import { ProjectContextProvider } from "context/ProjectContext";
 import { MemberContextProvider } from "context/MemberContext";
 import { CritereContextProvider } from "context/CritereContext";
-import Project from "views/projets";
 
 
 
@@ -67,9 +66,6 @@ const App = () => {
                 <MemberContextProvider>
                     <BrowserRouter>
                         <Switch>
-                            <Route exact path="/views/public/projets">
-                                <Project />
-                            </Route>
                             <Route exact path="/auth/login">
                                 <Login />
                             </Route>
@@ -96,9 +92,6 @@ const App = () => {
                 <MemberContextProvider>
                     <BrowserRouter>
                         <Switch>
-                            <Route exact path="/views/public/projets">
-                                <Project />
-                            </Route>
                             <Route exact path="/admin/dashboard">
                                 <Admin membre={member} projet={project}/>
                             </Route>
@@ -161,9 +154,6 @@ const App = () => {
                         <Route exact path="/admin/project/:projectname">
                             <ProjectMember/>
                         </Route>
-                        <Route exact path="/views/public/projets">
-                                <Project />
-                            </Route>
                         <Route path="/auth/login">
                             <Login />
                         </Route>
