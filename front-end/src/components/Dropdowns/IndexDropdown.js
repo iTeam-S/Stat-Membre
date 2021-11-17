@@ -65,17 +65,12 @@ const IndexDropdown = () => {
           Project page
         </span>
         <Link
-          to="/admin/tables"
+          to="/views/public/projets"
           className="text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700"
         >
-          En cours
+          Tous les projets
         </Link>
-        <Link
-          to="/auth/register"
-          className="text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700"
-        >
-          Deployé
-        </Link>
+        
         <Link
           to="/admin/project/addproject"
           className="text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700"

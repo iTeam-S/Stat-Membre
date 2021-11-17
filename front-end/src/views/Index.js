@@ -1,12 +1,12 @@
 /*eslint-disable*/
 import React from "react";
-import { Link } from "react-router-dom";
-
+import {useEffect,useState} from "react";
 import IndexNavbar from "components/Navbars/IndexNavbar.js";
 import Footer from "components/Footers/Footer.js";
 import CardStats from "components/Cards/CardStats.js";
 import CardLineChart from "components/Cards/CardLineChart.js";
 import CardProduction from "components/Cards/CardProduction.js";
+import ProjectService from "../service/projectservice"
 
 
 export default function Index({ data }) {
@@ -95,7 +95,33 @@ export default function Index({ data }) {
                         TOP 5 
                     </h3>
                     <div className="px-4 py-4  rounded-lg ml-5 flex flex-no-wrap bg-blueGray-700 container mx-auto px-4 h-full border-blueGray-50">
-                        <div className="relative flex flex-col min-w-0 break-words bg-white rounded mt-1/2  shadow-lg">
+                        <div className="relative flex flex-col min-w-0 break-words bg-green-400 rounded mt-1/2  shadow-lg">
+                                <div className=" w-full">
+                                        <div className="relative w-10/12 pr-4 max-w-full flex-grow flex-1">
+                                            <span className = "h-12 w-12 text-sm text-white bg-blueGray-200 inline-flex items-center justify-center rounded-full" >
+                                                <img alt = "..." className = "w-full rounded-full align-middle border-none shadow-lg" src = { require("assets/img/team-1-800x800.jpg").default }/> 
+                                            </span>
+                                            <span className="font-semibold text-xl text-blueGray-700">
+                                                RAMAMIHARIVELO Marihasina
+                                            </span>
+                                        </div> 
+                                        <div class="w-full"> 
+                                            <table className="w-full bg-transparent border-collapse">
+                                                <thead>
+                                                    <tr>
+                                                        <th className="px-6 bg-teal-500 text-white align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">Total commit</th>
+                                                        <th className="px-6 bg-teal-500 bg-orange-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">895</th>
+                                                    </tr>
+                                                    <tr>
+                                                        <th className="px-6 bg-teal-500 text-white align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">Total_point</th>
+                                                        <th className="px-6 bg-teal-500 bg-orange-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">500</th>
+                                                    </tr>
+                                                </thead>
+                                            </table>
+                                        </div> 
+                                </div>
+                        </div>
+                        <div className="relative flex flex-col min-w-0 break-words bg-green-300 rounded mt-1/4 xl:mb-0 shadow-lg">
                                 <div className=" w-full">
                                         <div className="relative w-10/12 pr-4 max-w-full flex-grow flex-1">
                                             <span className = "h-12 w-12 text-sm text-white bg-blueGray-200 inline-flex items-center justify-center rounded-full" >
@@ -105,22 +131,23 @@ export default function Index({ data }) {
                                                 RAMAMIHARIVELO Marihasina
                                             </span>
                                         </div>   
-                                        <div className="relative w-auto pl-4 flex-initial">
-                                            <h1>Total commit:</h1>
-                                        </div>
-                                        <div className="relative w-auto pl-4 flex-initial">
-                                            <h1>Point_experience:</h1>
-                                        </div>
-                                        <div>
-                                            <p className="text-sm text-blueGray-400 mt-4">
-                                                <span>
-                                                </span>
-                                                <span className="whitespace-nowrap"></span>
-                                            </p>
-                                        </div>
+                                        <div class="w-full"> 
+                                            <table className="w-full bg-transparent border-collapse">
+                                                <thead>
+                                                    <tr>
+                                                        <th className="px-6 bg-teal-500 text-white align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">Total commit</th>
+                                                        <th className="px-6 bg-teal-500 bg-orange-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">895</th>
+                                                    </tr>
+                                                    <tr>
+                                                        <th className="px-6 bg-teal-500 text-white align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">Total_point</th>
+                                                        <th className="px-6  bg-orange-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">500</th>
+                                                    </tr>
+                                                </thead>
+                                            </table>
+                                        </div> 
                                 </div>
                         </div>
-                        <div className="relative flex flex-col min-w-0 break-words bg-green-700 rounded mt-1/4 xl:mb-0 shadow-lg">
+                        <div className="relative flex flex-col min-w-0 break-words bg-green-200 rounded mt-1/6 xl:mb-0 shadow-lg">
                                 <div className=" w-full">
                                         <div className="relative w-10/12 pr-4 max-w-full flex-grow flex-1">
                                             <span className = "h-12 w-12 text-sm text-white bg-blueGray-200 inline-flex items-center justify-center rounded-full" >
@@ -130,47 +157,23 @@ export default function Index({ data }) {
                                                 RAMAMIHARIVELO Marihasina
                                             </span>
                                         </div>   
-                                        <div className="relative w-auto pl-4 flex-initial">
-                                            <h1>Total commit:</h1>
-                                        </div>
-                                        <div className="relative w-auto pl-4 flex-initial">
-                                            <h1>Point_experience:</h1>
-                                        </div>
-                                        <div>
-                                            <p className="text-sm text-blueGray-400 mt-4">
-                                                <span>
-                                                </span>
-                                                <span className="whitespace-nowrap"></span>
-                                            </p>
-                                        </div>
+                                        <div class="w-full"> 
+                                            <table className="w-full bg-transparent border-collapse">
+                                                <thead>
+                                                    <tr>
+                                                        <th className="px-6 bg-teal-500 text-white align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">Total commit</th>
+                                                        <th className="px-6 bg-orange-500  align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">895</th>
+                                                    </tr>
+                                                    <tr>
+                                                        <th className="px-6 bg-teal-500 text-white align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">Total_point</th>
+                                                        <th className="px-6 bg-orange-500  align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">500</th>
+                                                    </tr>
+                                                </thead>
+                                            </table>
+                                        </div> 
                                 </div>
                         </div>
-                        <div className="relative flex flex-col min-w-0 break-words bg-white rounded mt-1/6 xl:mb-0 shadow-lg">
-                                <div className=" w-full">
-                                        <div className="relative w-10/12 pr-4 max-w-full flex-grow flex-1">
-                                            <span className = "h-12 w-12 text-sm text-white bg-blueGray-200 inline-flex items-center justify-center rounded-full" >
-                                                <img alt = "..." className = "w-full rounded-full align-middle border-none shadow-lg" src = { require("assets/img/team-1-800x800.jpg").default }/> 
-                                            </span>
-                                            <span className="font-semibold text-xl text-blueGray-700">
-                                                RAMAMIHARIVELO Marihasina
-                                            </span>
-                                        </div>   
-                                        <div className="relative w-auto pl-4 flex-initial">
-                                            <h1>Total commit:</h1>
-                                        </div>
-                                        <div className="relative w-auto pl-4 flex-initial">
-                                            <h1>Point_experience:</h1>
-                                        </div>
-                                        <div>
-                                            <p className="text-sm text-blueGray-400 mt-4">
-                                                <span>
-                                                </span>
-                                                <span className="whitespace-nowrap"></span>
-                                            </p>
-                                        </div>
-                                </div>
-                        </div>
-                        <div className="relative flex flex-col min-w-0 break-words bg-green-700 rounded mt-1/8 xl:mb-0 shadow-lg">
+                        <div className="relative flex flex-col min-w-0 break-words bg-white rounded mt-1/8 xl:mb-0 shadow-lg">
                                 <div className=" w-full">
                                         <div className="relative w-10/12 pr-4 max-w-full flex-grow flex-1">
                                             <span className = "h-auto w-12 text-sm text-white bg-blueGray-200 inline-flex items-center justify-center rounded-full" >
@@ -180,19 +183,20 @@ export default function Index({ data }) {
                                                 RAMAMIHARIVELO Marihasina
                                             </span>
                                         </div>   
-                                        <div className="relative w-auto pl-4 flex-initial">
-                                            <h1>Total commit:</h1>
-                                        </div>
-                                        <div className="relative w-auto pl-4 flex-initial">
-                                            <h1>Point_experience:</h1>
-                                        </div>
-                                        <div>
-                                            <p className="text-sm text-blueGray-400 mt-4">
-                                                <span>
-                                                </span>
-                                                <span className="whitespace-nowrap"></span>
-                                            </p>
-                                        </div>
+                                        <div class="w-full"> 
+                                            <table className="w-full bg-transparent border-collapse">
+                                                <thead>
+                                                    <tr>
+                                                        <th className="px-6 bg-teal-500 text-white align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">Total commit</th>
+                                                        <th className="px-6 bg-orange-500  align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">895</th>
+                                                    </tr>
+                                                    <tr>
+                                                        <th className="px-6 bg-teal-500 text-white align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">Total_point</th>
+                                                        <th className="px-6 bg-orange-500  align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">500</th>
+                                                    </tr>
+                                                </thead>
+                                            </table>
+                                        </div> 
                                 </div>
                         </div>
                         <div className="relative flex flex-col min-w-0 break-words bg-white rounded mt-1/10 xl:mb-0 shadow-lg">
@@ -205,19 +209,20 @@ export default function Index({ data }) {
                                                 RAMAMIHARIVELO Marihasina
                                             </span>
                                         </div>   
-                                        <div className="relative w-auto pl-4 flex-initial">
-                                            <h1>Total commit:</h1>
-                                        </div>
-                                        <div className="relative w-auto pl-4 flex-initial">
-                                            <h1>Point_experience:</h1>
-                                        </div>
-                                        <div>
-                                            <p className="text-sm text-blueGray-400 mt-4">
-                                                <span>
-                                                </span>
-                                                <span className="whitespace-nowrap"></span>
-                                            </p>
-                                        </div>
+                                        <div class="w-full"> 
+                                            <table className="w-full bg-transparent border-collapse">
+                                                <thead>
+                                                    <tr>
+                                                        <th className="px-6 bg-teal-500 text-white align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">Total commit</th>
+                                                        <th className="px-6 bg-orange-500  align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">895</th>
+                                                    </tr>
+                                                    <tr>
+                                                        <th className="px-6 bg-teal-500 text-white align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">Total_point</th>
+                                                        <th className="px-6  bg-orange-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">500</th>
+                                                    </tr>
+                                                </thead>
+                                            </table>
+                                        </div> 
                                 </div>
                         </div>
                         

@@ -20,7 +20,8 @@ CREATE TABLE project(
     delai INTEGER NOT NULL,
     id_critere INTEGER NOT NULL,
     total_point INTEGER,
-    total_participant INTEGER
+    total_participant INTEGER,
+    valide BOOLEAN NOT NULL
     
 );
 CREATE TABLE critere(
@@ -40,7 +41,8 @@ CREATE TABLE users(
    id SERIAL PRIMARY KEY,
    prenom varchar(255) NOT NULL,
     email varchar(255) NOT NULL,
-    password varchar(255) NOT NULL
+    password varchar(255) NOT NULL,
+    role varchar(255) NOT NULL
 );
 CREATE TABLE user_role(
     id_role INTEGER NOT NULL,
@@ -58,4 +60,6 @@ CREATE TABLE project_member(
     FOREIGN KEY (id_project) REFERENCES project(id) ON DELETE CASCADE ON UPDATE CASCADE,
     FOREIGN KEY (id_member) REFERENCES members(id) ON DELETE CASCADE ON UPDATE CASCADE
 );
+
+
 
