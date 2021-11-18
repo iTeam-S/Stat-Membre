@@ -1,13 +1,16 @@
 import { MemberContext } from "context/MemberContext";
 import { ProjectAxios } from "apis/Stat";
 import {useHistory} from "react-router"
-import {useState,useContext} from "react";
+import {useEffect,useState,useRef,useContext} from "react";
 import React from "react";
-import projectservice from "service/projectservice";
+import Axios from "axios";
+import MemberService from "../../service/memberservice"
 
 
 export default function AddMember() {
     let history=useHistory();
+    const [message,setMessage]=useState("");
+    const [successfull,setSuccessfull]=useState(false);
     const {addMember} =useContext(MemberContext)
     const [membername,setMembername]=useState("")
     const [projectname,setProjectname]=useState("")
@@ -15,7 +18,7 @@ export default function AddMember() {
     const handleSubmit=async(e)=>{
         e.preventDefault();
         try {
-            const response=await projectservice.addMember(membername,projectname);
+            const response=await MemberService.addMember(membername,projectname);
             const red=await history.push("/admin/dashboard");
             addMember(response.data);
             

@@ -7,13 +7,18 @@ export default function CardLineChart() {
       type: "line",
       data: {
         labels: [
-          "January",
-          "February",
-          "March",
-          "April",
-          "May",
-          "June",
-          "July",
+          "Janv",
+          "Fev",
+          "Mars",
+          "Avr",
+          "Mai",
+          "Juin",
+          "Juil",
+          "Août",
+          "Sept",
+          "Oct",
+          "Nov",
+          "Dec"
         ],
         datasets: [
           {
@@ -108,14 +113,14 @@ export default function CardLineChart() {
   }, []);
   return (
     <>
-      <div className="relative flex flex-col min-w-0 break-words w-full  shadow-lg rounded bg-emerald-500">
+      <div className="relative flex flex-col min-w-0 break-words w-full  shadow-lg rounded bg-emerald-500" style={{ backgroundColor: '#18b7b7'}}>
         <div className="rounded-t mb-0 px-4 py-3 bg-transparent">
           <div className="flex flex-wrap items-center">
             <div className="relative w-full max-w-full flex-grow flex-1">
               <h6 className="uppercase text-blueGray-100 mb-1 text-xs font-semibold">
                 Overview
               </h6>
-              <h2 className="text-white text-xl font-semibold">Projets en cours</h2>
+              <h2 className="text-white text-xl text-center font-semibold">Projets en cours</h2>
             </div>
           </div>
         </div>
