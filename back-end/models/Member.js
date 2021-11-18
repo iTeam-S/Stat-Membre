@@ -50,7 +50,7 @@ module.exports = {
     
     getTopFive:()=>{
         return new Promise((resolve,reject)=>{
-            db.query("SELECT  members.prenom,members.fonction,members.pdc,members.point_experience FROM members ORDER BY point_experience DESC LIMIT 5",(err,resultat)=>{
+            db.query("SELECT  members.id,members.nom ,members.prenom,members.fonction,members.pdc,members.point_experience FROM members WHERE members.point_experience!=0 ORDER BY members.point_experience DESC    LIMIT 5",(err,resultat)=>{
                 if(err){
                     reject(new Error("Error while fetching member"))
                 }else{

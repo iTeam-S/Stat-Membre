@@ -20,6 +20,7 @@ router.get('/getAll',ProjectCtrl.listAll);
 
 
 
+
 //afficher tous les projets avec leur critere
 router.get('/ProjectCritere',ProjectCtrl.listAllWithCritere);
 
