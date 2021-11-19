@@ -34,7 +34,7 @@ export default function Project(){
                         <div key={project.id} className = "flex  flex-wrap" >
                             <div className = "w-full lg:w-12/12 px-4  -mt-24" >
                                 <div className = "flex flex-wrap" >
-                                    <div className = "w-full " style={{ margin: '20px 0px'}}>
+                                    <div className = "w-full ">
                                         <div class="w-full max-w-sm rounded overflow-hidden shadow-lg">
                                             <img class="w-full" src="http://via.placeholder.com/150x100.png" alt="Mountain" />
                                             <div class="px-6 py-4">
@@ -61,8 +61,7 @@ export default function Project(){
                                         </div>
                                     </div>
                                 </div> 
-                            </div>
-                            
+                            </div> 
                         </div> 
                     ))}
                     </div>

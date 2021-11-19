@@ -14,7 +14,7 @@ module.exports = {
     },
     getListMember: () => {
         return new Promise((resolve, reject) => {
-            db.query("SELECT * FROM members", function(err, resultat){
+            db.query("SELECT * FROM members WHERE members.point_experience!=0 ORDER BY members.point_experience DESC ", function(err, resultat){
                 if(err){
                     reject(new Error("Errer resource while fetching membre"));
                 }else{

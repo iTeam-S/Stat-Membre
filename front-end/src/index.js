@@ -19,7 +19,8 @@ import UpdateMember from "layouts/Addmember";
 import MemberProject from "layouts/MemberProject";
 import DeleteProjectMember from "layouts/DeleteProjectMember";
 import ProjectMember from "layouts/ProjectMember";
-import AuthService from "./service/authservice"
+import AuthService from "./service/authservice";
+import MemberList from "./views/Members"
 
 
 
@@ -31,6 +32,7 @@ import Index from "views/Index.js";
 import { ProjectContextProvider } from "context/ProjectContext";
 import { MemberContextProvider } from "context/MemberContext";
 import { CritereContextProvider } from "context/CritereContext";
+import Project from "views/projets";
 
 
 
@@ -59,26 +61,25 @@ const App = () => {
               setProject(projet);
         });
     }, []);
-    {/*if(User == null){
-        return(
-        <ProjectContextProvider>
+    if(User ==null){
+        return(<ProjectContextProvider>
             <CritereContextProvider>
                 <MemberContextProvider>
                     <BrowserRouter>
                         <Switch>
+                            <Route exact path="/views/public/memberlist">
+                                <MemberList />
+                            </Route>
+                            <Route exact path="/views/public/projets">
+                                <Project />
+                            </Route>
                             <Route exact path="/auth/login">
                                 <Login />
                             </Route>
                             <Route path="/" exact>
                                 <Index data={project}/>
                             </Route>
-                            <Route path="/landing" exact>
-                            <Landing data={member}/>
-                            </Route>
-                            <Route path="/profile/:id" exact>
-                                <Profile data={member}/>
-                            </Route>*
-
+                            {/* add redirect for first page */}
                             <Redirect from="*" to="/" />
                         </Switch>
                     </BrowserRouter>
@@ -92,6 +93,12 @@ const App = () => {
                 <MemberContextProvider>
                     <BrowserRouter>
                         <Switch>
+                            <Route exact path="/views/public/memberlist">
+                                <MemberList />
+                            </Route>
+                            <Route exact path="/views/public/projets">
+                                <Project />
+                            </Route>
                             <Route exact path="/admin/dashboard">
                                 <Admin membre={member} projet={project}/>
                             </Route>
@@ -101,16 +108,10 @@ const App = () => {
                             <Route exact path="/auth/login">
                                 <Login />
                             </Route>
-                            <Route path="/landing" exact>
-                                <Landing data={member}/>
-                            </Route>
-                            <Route path="/profile/:id" exact>
-                                <Profile data={member}/>
-                            </Route>
                             <Route path="/" exact>
                                 <Index data={project}/>
                             </Route>
-
+                            {/* add redirect for first page */}
                             <Redirect from="*" to="/" />
                         </Switch>
                     </BrowserRouter>
@@ -118,7 +119,7 @@ const App = () => {
             </CritereContextProvider>
           </ProjectContextProvider>)
 
-    }*/}
+    }
 
   return (
       <ProjectContextProvider>
@@ -127,6 +128,9 @@ const App = () => {
                 <BrowserRouter>
                     <Switch>
                         {/* add routes with layouts */}
+                        <Route exact path="/views/public/memberlist">
+                                <MemberList />
+                        </Route>
                         <Route exact path="/admin/dashboard">
                             <Admin membre={member} projet={project}/>
                         </Route>
@@ -154,6 +158,9 @@ const App = () => {
                         <Route exact path="/admin/project/:projectname">
                             <ProjectMember/>
                         </Route>
+                        <Route exact path="/views/public/projets">
+                                <Project />
+                            </Route>
                         <Route path="/auth/login">
                             <Login />
                         </Route>

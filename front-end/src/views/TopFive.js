@@ -1,5 +1,6 @@
 import React,{useState,useEffect,useRef} from "react";
 import MemberService from "../service/memberservice";
+import { Link } from "react-router-dom";
 
 
 
@@ -24,10 +25,14 @@ export default function Topfive(){
      return(
           <div>
             <section className="mt-12">
-                    <h3 className="text-3xl mb-2 font-semibold text-center text-blueGray-600">
+                    <h3 className="text-3xl font-semibold text-center text-blueGray-600">
                         TOP 5 
                     </h3>
-                    <div className="px-4 py-4  rounded-lg ml-5 flex flex-no-wrap bg-blueGray-700 container mx-auto px-4 h-full border-blueGray-50">
+                    <div className="text-center mt-5 text-pulse-500 font-semibold">
+                        <Link to="/views/public/memberlist">Tout voir</Link><span><a href="view/projet.html">
+                        <i class="fa fa-chevron-right"></i></a></span>
+                        </div>
+                    <div className="px-4 py-4  rounded-lg ml-5 mt-5 flex flex-no-wrap bg-blueGray-700 container mx-auto px-4 h-full border-blueGray-50">
                         {first &&(
                         <div className="relative flex flex-col min-w-0 break-words bg-green-400 rounded mt-1/2  shadow-lg">
                                 <div className=" w-full">
@@ -62,7 +67,7 @@ export default function Topfive(){
                                 <div className=" w-full">
                                         <div className="relative w-10/12 pr-4 max-w-full flex-grow flex-1">
                                             <span className = "h-12 w-12 text-sm text-white bg-blueGray-200 inline-flex items-center justify-center rounded-full" >
-                                                <img alt = "..." className = "w-full rounded-full align-middle border-none shadow-lg" src = {second.pdc?second.pdc: require("assets/img/team-1-800x800.jpg").default }/> 
+                                                <img alt = "..." className = "w-full rounded-full align-middle border-none shadow-lg" src = {second.pdc?second.pdc: require("assets/img/team-1-800x800.jpg").default }/>
                                             </span>
                                             <span className="font-semibold text-xl text-blueGray-700">
                                                 {second.nom} {second.prenom}
