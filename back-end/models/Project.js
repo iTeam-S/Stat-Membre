@@ -1,9 +1,9 @@
 const db = require('../service/connect');
 
 module.exports = {
-    create:(nom,repos,delai,id_critere,total_point)=>{
+    create:(nom,repos,delai,id_critere,total_point,valide,creation_date)=>{
         return new Promise((resolve, reject) => {
-        db.query("INSERT INTO project(nom,repos,delai,id_critere,total_point) values($1,$2,$3,$4,$5)",[nom,repos,delai,id_critere,total_point],function(err,resultat){
+        db.query("INSERT INTO project(nom,repos,delai,id_critere,total_point,valide,creation_date) values($1,$2,$3,$4,$5,$6,$7)",[nom,repos,delai,id_critere,total_point,valide,creation_date],function(err,resultat){
             if(err){
                 reject(new Error("Errer resource while creating project"));
             }else{
@@ -61,6 +61,30 @@ module.exports = {
                 }
             })
         })  
+    },
+    listAllnodeploye:()=>{
+        return new Promise((resolve,reject)=>{
+            db.query("SELECT * FROM project WHERE project.valide ='false' ORDER BY creation_date DESC",(err,result)=>{
+                if(err){
+                    reject (new Error("Errer resource while fetching no_deployed project"))
+                }else{
+                    resolve(result)
+                }
+            })
+        })
+        
+    },
+    listAlldeploye:()=>{
+        return new Promise((resolve,reject)=>{
+            db.query("SELECT * FROM project WHERE project.valide ='true'",(err,result)=>{
+                if(err){
+                    reject (new Error("Errer resource while fetching no_deployed project"))
+                }else{
+                    resolve(result)
+                }
+            })
+        })
+        
     },
     getProjectMember:()=>{
         return new Promise((resolve,reject)=>{
@@ -170,9 +194,9 @@ module.exports = {
         })
 
     },
-    valideProject:(id,valide)=>{
+    valideProject:(valide,date_validation,id)=>{
         return new Promise((resolve,reject)=>{
-            db.query("UPDATE project SET valide=$1  WHERE project.id=$2",[valide,id],function(err,resultat){
+            db.query("UPDATE project SET valide=$1,validation_date=$2 WHERE project.id=$3",[valide,date_validation,id],function(err,resultat){
                 if(err){
                     reject(new Error("Error while insert data")) 
                 }else{

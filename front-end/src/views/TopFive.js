@@ -30,7 +30,7 @@ export default function Topfive(){
                     </h3>
                     <div className="text-center mt-5 text-pulse-500 font-semibold">
                         <Link to="/views/public/memberlist">Tout voir</Link><span><a href="view/projet.html">
-                        <i class="fa fa-chevron-right"></i></a></span>
+                        <i className="fa fa-chevron-right"></i></a></span>
                         </div>
                     <div className="px-4 py-4  rounded-lg ml-5 mt-5 flex flex-no-wrap bg-blueGray-700 container mx-auto px-4 h-full border-blueGray-50">
                         {first &&(
@@ -44,7 +44,7 @@ export default function Topfive(){
                                                 {first.nom} {first.prenom}
                                             </span>
                                         </div> 
-                                        <div class="w-full"> 
+                                        <div className="w-full"> 
                                             <table className="w-full bg-transparent border-collapse">
                                                 <thead>
                                                     <tr>
@@ -73,7 +73,7 @@ export default function Topfive(){
                                                 {second.nom} {second.prenom}
                                             </span>
                                         </div>   
-                                        <div class="w-full"> 
+                                        <div className="w-full"> 
                                             <table className="w-full bg-transparent border-collapse">
                                                 <thead>
                                                     <tr>
@@ -101,7 +101,7 @@ export default function Topfive(){
                                                 {third.nom} {third.prenom}
                                             </span>
                                         </div>   
-                                        <div class="w-full"> 
+                                        <div className="w-full"> 
                                             <table className="w-full bg-transparent border-collapse">
                                                 <thead>
                                                     <tr>
@@ -129,7 +129,7 @@ export default function Topfive(){
                                                 {forth.nom} {forth.prenom}
                                             </span>
                                         </div>   
-                                        <div class="w-full"> 
+                                        <div className="w-full"> 
                                             <table className="w-full bg-transparent border-collapse">
                                                 <thead>
                                                     <tr>
@@ -139,6 +139,7 @@ export default function Topfive(){
                                                     <tr>
                                                         <th className="px-6 bg-teal-500 text-white align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">Total_point</th>
                                                         <th className="px-6 bg-orange-500  align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">{forth.point_experience}</th>
+                                                        
                                                     </tr>
                                                 </thead>
                                             </table>
@@ -157,16 +158,18 @@ export default function Topfive(){
                                                 {fifth.nom} {fifth.prenom}
                                             </span>
                                         </div>   
-                                        <div class="w-full"> 
+                                        <div className="w-full"> 
                                             <table className="w-full bg-transparent border-collapse">
                                                 <thead>
                                                     <tr>
                                                         <th className="px-6 bg-teal-500 text-white align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">Rang</th>
                                                         <th className="px-6 bg-orange-500  align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">5</th>
+                                                        
                                                     </tr>
                                                     <tr>
                                                         <th className="px-6 bg-teal-500 text-white align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">Total_point</th>
                                                         <th className="px-6  bg-orange-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">{fifth.point_experience}</th>
+                                                        
                                                     </tr>
                                                 </thead>
                                             </table>

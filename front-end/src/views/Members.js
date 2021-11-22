@@ -17,6 +17,7 @@ export default function MemberList(){
         });
         
     },[])
+    console.log((members.indexOf(memberzero))+1);
      return(
           <div>
                 <Navbar transparent />

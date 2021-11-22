@@ -21,7 +21,9 @@ CREATE TABLE project(
     id_critere INTEGER NOT NULL,
     total_point INTEGER,
     total_participant INTEGER,
-    valide BOOLEAN NOT NULL
+    valide BOOLEAN NOT NULL,
+    creation_date DATE NOT NULL,
+    validation_date DATE 
     
 );
 CREATE TABLE critere(

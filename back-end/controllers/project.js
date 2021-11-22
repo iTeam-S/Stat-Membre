@@ -2,20 +2,33 @@ const mdlsProject = require('../models/Project');
 const mdlsMember=require('../models/Member')
 const mdlsCritere=require("../models/Critere")
 const fs = require('fs');
+const moment=require('moment');
+const { format } = require('path');
 
 module.exports = {
     create: async (req, res) => {
         try {
+            /*body*/
+            let { nom, repos, delai} = req.body;
+            let valide="false";
+
+             /* date de creation et date de validation*/
+             let current=new Date();
+             let date_creation=`${current.getFullYear()}-${current.getMonth()+1}-${current.getDate()}`;
+
+            /*calcul de point pour le projet*/
             let dern_cri=await mdlsCritere.getListCritere();
             let dern_id=dern_cri.rows[0].id;
     
-            let { nom, repos, delai} = req.body;
 
             let Pp = await mdlsCritere.getOneCritere(dern_id);
-            let i = Pp.rows[0]
+            let i = Pp.rows[0];
 
             let scoef = (i.difficulte * 25) + (i.deadline * 10) + (i.impact * 30) + (i.implication * 15) + (i.point_git * 20)
-            let project=await mdlsProject.create(nom, repos, delai, dern_id,scoef);
+
+            /*create project*/
+
+            let project=await mdlsProject.create(nom, repos, delai, dern_id,scoef,valide,date_creation);
 
             res.status(200).send({
                 message: "Project created successfully"
@@ -36,6 +49,27 @@ module.exports = {
             
         }
         
+    },
+    listAllnodeploye: async(req,res)=>{
+        try {
+            let listnodproject=await mdlsProject.listAllnodeploye();
+            res.status(200).send(listnodproject.rows)
+            
+        } catch (error) {
+            res.status(500).send(error);
+            
+        }
+    },
+    listAlldeploye:async(req,res)=>{
+        try {
+            let listdeployeproject=await mdlsProject.listAlldeploye();
+            res.status(200).send(listdeployeproject.rows);
+            
+        } catch (error) {
+            res.status(500).send(error);
+            
+        }
+
     },
     listAllWithCritere: async (req, res) => {
         try {
@@ -170,8 +204,11 @@ module.exports = {
     valideProject:async(req,res)=>{
         try {
             let id=parseInt(req.params.id)
+            let current=new Date();
+            let date_validation=`${current.getFullYear()}-${current.getMonth()+1}-${current.getDate()}`;
             let {valide}=req.body;
-            let validProject=await mdlsProject.valideProject(id,valide);
+            console.log(date_validation);
+            let validProject=await mdlsProject.valideProject(valide,date_validation,id);
             res.status(200).send({
                 message:"Project valided successfully"
             })

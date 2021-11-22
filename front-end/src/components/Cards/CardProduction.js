@@ -28,15 +28,7 @@ export default function CardBarChart() {
             data: [12, 3, 6, 10, 15, 20, 13,4,8,9,8,3],
             fill: false,
             barThickness: 13,
-          },
-          {
-            label: new Date().getFullYear() - 1,
-            fill: false,
-            backgroundColor: "#00bfa5",
-            borderColor: "#00bfa5",
-            data: [1, 2, 6, 15, 15, 20, 5,4,8,9,8,3],
-            barThickness: 13,
-          },
+          }
         ],
       },
       options: {
@@ -81,9 +73,6 @@ export default function CardBarChart() {
           ],
           yAxes: [
             {
-              ticks:{
-                fontColor: "white",
-              },
               display: true,
               scaleLabel: {
                 display: false,
@@ -108,15 +97,15 @@ export default function CardBarChart() {
   }, []);
   return (
     <>
-      <div className=" bg-blueGray-700 relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded">
+      <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded">
         <div className="rounded-t mb-0 px-4 py-3 bg-transparent">
           <div className="flex flex-wrap items-center">
             <div className="relative w-full max-w-full flex-grow flex-1">
-              <h6 className="uppercase text-white mb-1 text-xs font-semibold">
+              <h6 className="uppercase text-blueGray-400 mb-1 text-xs font-semibold">
                 Production
               </h6>
-              <h2 className="text-white text-center text-xl font-semibold">
-                Projets Deployés
+              <h2 className="text-blueGray-700 text-xl font-semibold">
+                Nombre de Projets validés
               </h2>
             </div>
           </div>

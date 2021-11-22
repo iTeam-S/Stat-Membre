@@ -18,8 +18,11 @@ router.post('/remove',ProjectCtrl.deleteProjectMember)
 //afficher tous les projet sans critere ni participant
 router.get('/getAll',ProjectCtrl.listAll);
 
+//afficher all no-deployed project
+router.get('/getAllnodeployed',ProjectCtrl.listAllnodeploye);
 
-
+//afficher all deployed project
+router.get('/listAlldeployed',ProjectCtrl.listAlldeploye);
 
 //afficher tous les projets avec leur critere
 router.get('/ProjectCritere',ProjectCtrl.listAllWithCritere);
