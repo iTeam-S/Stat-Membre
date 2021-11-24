@@ -1,31 +1,52 @@
-import React from "react";
 import Chart from "chart.js";
+import React,{useEffect,useState} from "react";
+import ProjectService from "../../service/projectservice";
+import moment from "moment";
 
 export default function CardBarChart() {
-  React.useEffect(() => {
+  
+  React.useEffect(async() => {
+    const projectv=[,,,,,,,,,,3,,];
+    const cdate=new Date();
+    try {
+      await ProjectService.getAllvalide().then((response)=>{
+          if(moment(`${response.data[0].validation_date}`).isBefore(`${cdate}`) || moment(`${response.data[0].validation_date}`).isSame(`${cdate}`)){
+            let moisActuelle=cdate.getMonth();
+            let moisAncien=moment(response.data[0].validation_date).month();
+            if(moisActuelle != moisAncien){
+              projectv.splice(moisActuelle,1,response.data.length);
+            }
+          } 
+    })
+
+      
+    } catch (error) {
+      console.log(error);
+      
+    }
     let config = {
       type: "bar",
       data: {
         labels: [
-          "Janvier",
-          "Fevrier",
-          "Mars",
-          "Avril",
-          "Mai",
-          "Juin",
-          "Juillet",
-          "Août",
-          "Septembre",
-          "Octobre",
-          "Novemnre",
-          "Decembre"
+          "January",
+          "February",
+          "March",
+          "April",
+          "May",
+          "June",
+          "July",
+          "August",
+          "September",
+          "October",
+          "November",
+          "December"
         ],
         datasets: [
           {
             label: new Date().getFullYear(),
             backgroundColor: "#21212",
             borderColor: "#21212",
-            data: [12, 3, 6, 10, 15, 20, 13,4,8,9,8,3],
+            data: projectv,
             fill: false,
             barThickness: 13,
           }
@@ -36,7 +57,7 @@ export default function CardBarChart() {
         responsive: true,
         title: {
           display: false,
-          text: "Orders Chart",
+          text: "Production Chart",
         },
         tooltips: {
           mode: "index",

@@ -15,7 +15,7 @@ export default function HeaderStats() {
             <div className="flex flex-wrap">
               <div className="w-full lg:w-6/12 xl:w-3/12 px-4">
                 <CardStats
-                  statSubtitle="PARTICIPATIONS"
+                  statSubtitle="PARTICIPATION DES MEMBRES"
                   statTitle="25"
                   statArrow="up"
                   statPercent="43.48"

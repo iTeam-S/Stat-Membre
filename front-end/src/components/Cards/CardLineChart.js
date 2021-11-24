@@ -4,9 +4,36 @@ import ProjectService from "../../service/projectservice";
 import moment from "moment";
 
 export default function CardLineChart() {
-  const [line1,setLine1]=useState(12);
-  const [proj,setProj]=useState([]);
   const [NomMois,setNomMois]=useState([
+          
+    ]
+  )
+  useEffect(async() => {
+    const project=[,,,,,,,,,,5,,];
+    const cdate=new Date();
+    try {
+      await ProjectService.getAllencours().then((response)=>{
+          if(moment(`${response.data[0].creation_date}`).isBefore(`${cdate}`) || moment(`${response.data[0].creation_date}`).isSame(`${cdate}`)){
+            let moisActuelle=cdate.getMonth();
+            let moisAncien=moment(response.data[0].creation_date).month();
+            if(moisActuelle != moisAncien){
+              project.splice(moisActuelle,1,response.data.length);
+            }
+            
+          }
+          
+    })
+
+      
+    } catch (error) {
+      console.log(error);
+      
+    }
+    
+    const config = {
+      type: "line",
+      data: {
+        labels:[
           "January",
           "February",
           "March",
@@ -19,38 +46,8 @@ export default function CardLineChart() {
           "October",
           "November",
           "December"
-    ]
 
-  )
-
-  useEffect(async() => {
-    const project=[4,5,6,4,2,8,8,2,4,6];
-    const mois=[NomMois[0],NomMois[1],NomMois[2],NomMois[3],NomMois[4],NomMois[5],NomMois[6],NomMois[7],NomMois[8],NomMois[9]];
-    const cdate=new Date();
-    try {
-      await ProjectService.getAllencours().then((response)=>{
-        console.log(response.data[0].creation_date)
-          if(moment(`${response.data[0].creation_date}`).isBefore(`${cdate}`) || moment(`${response.data[0].creation_date}`).isSame(`${cdate}`)){
-            let moisActuelle=cdate.getMonth();
-            let moisAncien=moment(proj.creation_date).month();
-            if(moisActuelle != moisAncien){
-              project.push(response.data.length)
-              mois.push(NomMois[moisActuelle])
-            }
-            
-          }
-    })
-
-      
-    } catch (error) {
-      console.log(error);
-      
-    }
-    
-    const config = {
-      type: "line",
-      data: {
-        labels: mois,
+        ],
         datasets: [
           {
             label: new Date().getFullYear(),
