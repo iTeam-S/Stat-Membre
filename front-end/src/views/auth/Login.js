@@ -1,10 +1,4 @@
 import React,{useState} from "react";
-import { Switch, Route, Redirect } from "react-router-dom";
-import {AuthAxios} from "../../apis/Stat";
-import PropTypes from "prop-types";
-import Form from "react-validation/build/form";
-import Input from "react-validation/build/input";
-import CheckButton from "react-validation/build/button";
 import {useHistory} from "react-router";
 import { isEmail } from "validator";
 import AuthService from "../../service/authservice"
@@ -19,7 +13,7 @@ export default function Login() {
     let history=useHistory()
     const [email,setEmail]=useState("");
     const [password,setPassword]=useState("");
-    const [loadind,setLoading]=useState(false);
+    const [loading,setLoading]=useState(false);
     const [message,setMessage]=useState("");
   
     const handleSignin=()=>{
@@ -77,9 +71,6 @@ export default function Login() {
                 "url(" + require("assets/img/register_bg_2.png").default + ")",
             }}
           ></div>
-
-              
-            
                <div className = "container mx-auto px-4 h-full">
                 <div className = "flex content-center items-center justify-center h-full">
                     <div className = "w-full lg:w-4/12 px-4">
@@ -110,7 +101,7 @@ export default function Login() {
                                     <div className = "text-center mt-6" >
                                         <button onClick={handleSignin} className = "bg-blueGray-800 text-white active:bg-blueGray-600 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full ease-linear transition-all duration-150" type = "button" >Sign In </button> 
                                     </div> 
-                                    {!message =="" && (
+                                    {!message ==="" && (
                                     <div class="bg-red-500 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
                                       <strong class="font-bold">Errer!</strong>
                                           <span class="block sm:inline bg-red-500 text-white">{message}</span>

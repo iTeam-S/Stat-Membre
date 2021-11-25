@@ -60,7 +60,7 @@ module.exports = {
             
         }
     },
-    listAlldeploye:async(req,res)=>{
+    listAlldeployed:async(req,res)=>{
         try {
             let listdeployeproject=await mdlsProject.listAlldeploye();
             res.status(200).send(listdeployeproject.rows);

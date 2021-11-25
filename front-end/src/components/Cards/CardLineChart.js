@@ -1,40 +1,62 @@
-import React from "react";
+import React,{useEffect,useState} from "react";
 import Chart from "chart.js";
+import ProjectService from "../../service/projectservice";
+import moment from "moment";
 
 export default function CardLineChart() {
-  React.useEffect(() => {
-    var config = {
+  const [NomMois,setNomMois]=useState([
+          
+    ]
+  )
+  useEffect(async() => {
+    const project=[,,,,,,,,,,5,,];
+    const cdate=new Date();
+    try {
+      await ProjectService.getAllencours().then((response)=>{
+          if(moment(`${response.data[0].creation_date}`).isBefore(`${cdate}`) || moment(`${response.data[0].creation_date}`).isSame(`${cdate}`)){
+            let moisActuelle=cdate.getMonth();
+            let moisAncien=moment(response.data[0].creation_date).month();
+            if(moisActuelle != moisAncien){
+              project.splice(moisActuelle,1,response.data.length);
+            }
+            
+          }
+          
+    })
+
+      
+    } catch (error) {
+      console.log(error);
+      
+    }
+    
+    const config = {
       type: "line",
       data: {
-        labels: [
-          "Janv",
-          "Fev",
-          "Mars",
-          "Avr",
-          "Mai",
-          "Juin",
-          "Juil",
-          "Août",
-          "Sept",
-          "Oct",
-          "Nov",
-          "Dec"
+        labels:[
+          "January",
+          "February",
+          "March",
+          "April",
+          "May",
+          "June",
+          "July",
+          "August",
+          "September",
+          "October",
+          "November",
+          "December"
+
         ],
         datasets: [
           {
             label: new Date().getFullYear(),
             backgroundColor: "#4c51bf",
             borderColor: "#4c51bf",
-            data: [65, 78, 66, 44, 56, 67, 75],
+            data: project,
+
             fill: false,
-          },
-          {
-            label: new Date().getFullYear() - 1,
-            fill: false,
-            backgroundColor: "#fff",
-            borderColor: "#fff",
-            data: [40, 68, 86, 74, 56, 60, 87],
-          },
+          }
         ],
       },
       options: {
@@ -42,7 +64,7 @@ export default function CardLineChart() {
         responsive: true,
         title: {
           display: false,
-          text: "Sales Charts",
+          text: "Projects Charts",
           fontColor: "white",
         },
         legend: {
@@ -69,7 +91,7 @@ export default function CardLineChart() {
               display: true,
               scaleLabel: {
                 display: false,
-                labelString: "Month",
+                labelString: "Day",
                 fontColor: "white",
               },
               gridLines: {
@@ -111,16 +133,17 @@ export default function CardLineChart() {
     var ctx = document.getElementById("line-chart").getContext("2d");
     window.myLine = new Chart(ctx, config);
   }, []);
+  
   return (
     <>
-      <div className="relative flex flex-col min-w-0 break-words w-full  shadow-lg rounded bg-emerald-500" style={{ backgroundColor: '#18b7b7'}}>
+      <div className="relative flex flex-col min-w-0 break-words w-full  shadow-lg rounded bg-emerald-500">
         <div className="rounded-t mb-0 px-4 py-3 bg-transparent">
           <div className="flex flex-wrap items-center">
             <div className="relative w-full max-w-full flex-grow flex-1">
               <h6 className="uppercase text-blueGray-100 mb-1 text-xs font-semibold">
                 Overview
               </h6>
-              <h2 className="text-white text-xl text-center font-semibold">Projets en cours</h2>
+              <h2 className="text-white text-xl font-semibold">Projets en cours</h2>
             </div>
           </div>
         </div>

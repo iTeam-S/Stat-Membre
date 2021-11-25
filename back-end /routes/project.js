@@ -22,7 +22,7 @@ router.get('/getAll',ProjectCtrl.listAll);
 router.get('/getAllnodeployed',ProjectCtrl.listAllnodeploye);
 
 //afficher all deployed project
-router.get('/listAlldeployed',ProjectCtrl.listAlldeploye);
+router.get('/listAlldeployed',ProjectCtrl.listAlldeployed);
 
 //afficher tous les projets avec leur critere
 router.get('/ProjectCritere',ProjectCtrl.listAllWithCritere);

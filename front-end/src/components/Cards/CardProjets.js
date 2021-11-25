@@ -30,7 +30,7 @@ export default function CardProjets(props) {
    },[])
    const deleteHandle=async (id)=>{
      try {
-       const response=await ProjectAxios.delete(`/delete/${id}`);
+       await ProjectAxios.delete(`/delete/${id}`);
        setProjects(projects.filter(project=>{
          return project.id !==id
        })) 
@@ -44,6 +44,8 @@ export default function CardProjets(props) {
     
   };
   const handleValide =async (id)=>{
+    let current=new Date()
+    let datvalid=`${current.getFullYear()}-${current.getMonth()+1}-${current.getDate()}}`;
     try {
       const validateProject=await ProjectAxios.put(`/valide/${id}`,{
         valide:"true"
