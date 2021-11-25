@@ -7,6 +7,7 @@ import Footer from "components/Footers/Footer";
 import CardStats from "components/Cards/CardStats";
 import CardLineChart from "components/Cards/CardLineChart";
 import CardProduction from "components/Cards/CardProduction";
+import CardListMembre from "components/Cards/CardListMembre";
 
 
 export default function Index({ data }) {
@@ -183,11 +184,9 @@ export default function Index({ data }) {
                                 <CardProduction />
                             </div>
                         </div>
-
-                        <h3 className="text-center text-3xl font-semibold text-blueGray-600 mt-10">
-                            Classement des membres dans iTeam-$
-                        </h3>
                 </div>
+
+                <CardListMembre />
             </section>
 
             <section className="block relative z-1" style={{ height: '280px', backgroundColor: '#008080'}}>
