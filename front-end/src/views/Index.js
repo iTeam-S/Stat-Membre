@@ -1,22 +1,16 @@
 /*eslint-disable*/
 import React from "react";
-import IndexNavbar from "components/Navbars/IndexNavbar.js";
-import Footer from "components/Footers/Footer.js";
-import CardStats from "components/Cards/CardStats.js";
-import CardLineChart from "components/Cards/CardLineChart.js";
-import CardProduction from "components/Cards/CardProduction.js";
 import {useEffect,useState} from "react";
-import Topfive from "./TopFive"
+import Topfive from "./TopFive";
+import { Link } from "react-router-dom";
 
-<<<<<<< HEAD
 import IndexNavbar from "components/Navbars/IndexNavbar";
 import Footer from "components/Footers/Footer";
 import CardStats from "components/Cards/CardStats";
 import CardLineChart from "components/Cards/CardLineChart";
 import CardProduction from "components/Cards/CardProduction";
 import CardListMembre from "components/Cards/CardListMembre";
-=======
->>>>>>> 7229052d043ba4a342f6d66e70e9625417f394ac
+
 
 export default function Index() {
    
@@ -38,69 +32,9 @@ export default function Index() {
                         </div> 
                     </div> 
                 </div>
-               {/* <img className = "absolute top-0 b-auto right-0 pt-16 sm:w-6/12 -mt-48 sm:mt-0 w-10/12 max-h-860px" src = { require("assets/img/pattern_react.png").default } alt = "..." />*/}
+                <img className = "absolute top-0 b-auto right-0 pt-16 sm:w-6/12 -mt-48 sm:mt-0 w-10/12 max-h-860px" src = { require("assets/img/pattern_react.png").default } alt = "..." />
             </section>
-            <section >
-                    <h3 className="text-3xl mb-2 font-semibold text-center text-blueGray-600">
-                        Statistique de la communeauté
-                    </h3>
-                <div className="rounded-lg w-full container mx-auto px-4 h-full md:w-12 px-4 md:px-4 mt-12 bg-blueGray-700">
-                    
-                    <div className = "flex flex-no-wrap">
-                        <div className=" relative flex flex-row">
-                            <div className="px-4 py-5">
-                                <CardStats
-                                statSubtitle="PARTICIPATION"
-                                statTitle="25"
-                                statArrow="up"
-                                statPercent="43.48"
-                                statPercentColor="text-emerald-500"
-                                statDescripiron="Since last month"
-                                statIconName="far fa-chart-bar"
-                                statIconColor="bg-teal-500"
-                                />
-                            </div>
-                        </div>
-                        <div className=" relative flex flex-col">
-                            <div className="px-4 py-5">
-                                <CardStats
-                                statSubtitle="COMMIT"
-                                statTitTle="2,356"
-                                statArrow="up"
-                                statPercent="3.48"
-                                statPercentColor="text-emerald-500"
-                                statDescripiron="Since yesterday"
-                                statIconName="fas fa-chart-pie"
-                                statIconColor="bg-red-500"
-                                />
-                            </div>
-                        </div>
-                        <div className=" relative flex flex-col">
-                            <div className="px-4 py-5">
-                                <CardStats
-                                statSubtitle="PRODUCTION"
-                                statTitle="50"
-                                statArrow="down"
-                                statPercent="1.10"
-                                statPercentColor="text-emerald-500"
-                                statDescripiron="Since last yer"
-                                statIconName="fas fa-users"
-                                statIconColor="bg-orange-500"
-                                />
-                            </div>
-                        </div>
-                    </div>  
-                </div>
-                <div className="px-4 py-4 rounded-lg ml-5 flex flex-no-wrap bg-blueGray-700 container mx-auto px-4 h-full border-blueGray-50">
-                        <div className="w-full pr-4 pt-4">
-                            < CardLineChart/>
-                        </div>
-                        <div className="w-full pr-2 pt-4">
-                            <CardProduction />
-                        </div>
-                </div>
-            <Topfive />
-            </section>
+
             <section className = "mt-48 md:mt-40 pb-40 relative bg-blueGray-100" >
                 <div className = "-mt-20 top-0 bottom-auto left-0 right-0 w-full absolute h-20"
                     style = {
@@ -193,7 +127,8 @@ export default function Index() {
                         </div> 
                     </div> 
                 </div> 
-<<<<<<< HEAD
+
+
 
                 <div className="container overflow-hidden pb-20 mt-32">
                         <h3 className="text-center text-3xl font-semibold text-blueGray-600">
@@ -255,8 +190,11 @@ export default function Index() {
                             </div>
                         </div>
                 </div>
-
-                <CardListMembre />
+                <div style={{ margin: '0px 36px' }}>
+                    <CardListMembre />
+                </div>
+                
+                <Topfive />
             </section>
 
             <section className="block relative z-1" style={{ height: '280px', backgroundColor: '#008080'}}>
@@ -305,7 +243,7 @@ export default function Index() {
                                         alt="..."
                                         className="align-middle border-none max-w-full h-auto rounded-lg"
                                         src={require("assets/img/equipe.png").default}
-                                        style={{ height: '210px'}}
+                                        style={{ height: '217px'}}
                                     />
                                     </div>
                                 </Link>
@@ -314,8 +252,6 @@ export default function Index() {
                         </div>
                     </div>
                 </div>
-=======
->>>>>>> 7229052d043ba4a342f6d66e70e9625417f394ac
             </section>
             <Footer/>
         </>
