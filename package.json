@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "react-validation": "^3.0.7",
+    "validator": "^13.7.0"
+  }
+}
