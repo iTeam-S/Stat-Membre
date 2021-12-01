@@ -35,6 +35,18 @@ module.exports = {
             })
         })
     },
+    getmemberonproject:()=>{
+        return new Promise((resolve, reject) => {
+            db.query("SELECT * FROM members WHERE nombre_projet!=0", function(err, resultat){
+                if(err){
+                    reject(new Error("Errer resource while fetching membre on project"));
+                }else{
+                  resolve(resultat)
+                }
+            })
+        }) 
+
+    },
     getAllMemberProject:(membername)=>{
         return new Promise((resolve,reject)=>{
             db.query("SELECT project.nom as Nom_project,project.repos as Repos_project,project.delai as Delai_project FROM project LEFT JOIN project_member ON project.id=project_member.id_project LEFT JOIN members ON members.id=project_member.id_member  WHERE members.nom=$1",[membername],(err,result)=>{
@@ -84,6 +96,19 @@ module.exports = {
         })
 
     },
+    setTotproject:(totproj,id)=>{
+        return new Promise((resolve,reject)=>{
+            db.query("UPDATE members SET nombre_projet =$1 WHERE members.id=$2",[totproj,id],(err,resultat)=>{
+                if(err){
+                    reject(new Error("Error while updating member_point"))
+                }else{
+                    resolve(resultat)
+                }
+            })
+        })
+
+    },
+
     updateMember:(nom,prenom,user_github,fonction,pdc,mail,admin,id)=>{
         return new Promise((resolve,reject)=>{
             db.query("UPDATE members SET nom =$1,prenom=$2,user_github=$3,fonction=$4,pdc=$5,mail=$6,admin=$7 WHERE id=$8",[nom,prenom,user_github,fonction,pdc,mail,admin,id],function(err,resultat){

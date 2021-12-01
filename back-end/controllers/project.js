@@ -12,7 +12,11 @@ module.exports = {
             let { nom, repos, delai} = req.body;
             let valide="false";
 
-             /* date de creation et date de validation*/
+            /*verifier si le projet existe déjà*/
+
+            let thisproject=await mdlsProject.checkProject(nom);
+            if(thisproject.rows[0]===undefined){
+                /* date de creation et date de validation*/
              let current=new Date();
              let date_creation=`${current.getFullYear()}-${current.getMonth()+1}-${current.getDate()}`;
 
@@ -33,6 +37,12 @@ module.exports = {
             res.status(200).send({
                 message: "Project created successfully"
             })
+                
+        }else{
+            res.status(500).send({
+                message:"Ce projet existe déjà,inserer un autre projet"
+            })
+        }
 
         } catch (error) {
             res.status(500).send(error)
@@ -60,7 +70,7 @@ module.exports = {
             
         }
     },
-    listAlldeploye:async(req,res)=>{
+    listAlldeployed:async(req,res)=>{
         try {
             let listdeployeproject=await mdlsProject.listAlldeploye();
             res.status(200).send(listdeployeproject.rows);
@@ -113,6 +123,10 @@ module.exports = {
             if(pointAct.rows[0].point_experience == null){
                 pointAct.rows[0].point_experience=0;
             };
+            let TotProject= membre.rows[0].nombre_projet;
+            if(TotProject==null){
+                TotProject=0
+            }
 
             let pact=pointAct.rows[0].point_experience;
                      
@@ -126,9 +140,11 @@ module.exports = {
             let scoef = (i.difficulte * 25) + (i.deadline * 10) + (i.impact * 30) + (i.implication * 15) + (i.point_git * 20)
 
             let new_point=pact+scoef;
+            let new_tot_proj=TotProject+1;
 
             await mdlsProject.setParticipant(new_participant,nom_project);
             await mdlsMember.setPoint(new_point,membre.rows[0].id);
+            await mdlsMember.setTotproject(new_tot_proj,membre.rows[0].id)
             
 
             res.status(200).send({

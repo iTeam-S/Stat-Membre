@@ -1,12 +1,14 @@
-POST http://localhost:8000/api/v1/auth/signin
+POST   http://localhost:8000/api/v1/member/create
 Content-Type: application/json
 
-
 {
-    
-   "email":"rivo.p18aps1b@gmail.com",
-   "password":"rivo"
+     "nom":"FIDIMAHEFA" ,
+    "prenom":"Miharintsoa",
+     "user_github":"mihary821",
+     "fonction":"devellopeur" ,
+     "pdc":"lien",
+     "mail":"gmail" ,
+     "admin":"false"
 
-    
 }
 

@@ -15,7 +15,7 @@ module.exports = {
             
         } catch (error) {
             res.status(500).send({
-                message :"errer lors de creation"
+                message :"errer lors de creation du membre"
             })
             
         }
@@ -32,7 +32,17 @@ module.exports = {
         }
         
     },
+    listallonproject:async(req,res)=>{
+        try {
+            let listM=await mdlsMember.getmemberonproject();
+            res.send(listM.rows);
+            
+        } catch (error) {
+            res.status(500).send(error);
+            
+        }
 
+    },
     getOne: async(req, res) => {
         let id = parseInt(req.params.id)
         console.log(id);

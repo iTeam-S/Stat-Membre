@@ -9,7 +9,8 @@ CREATE TABLE members(
     pdc varchar(255) NOT NULL,
     mail varchar(255) NOT NULL,
     admin boolean NOT NULL,
-    point_experience INTEGER
+    point_experience INTEGER,
+    nombre_projet INTEGER 
 );
 
 
