@@ -1,14 +1,8 @@
 import React,{useState,useContext,useEffect} from "react";
-import TableDropdown from "../../components/Dropdowns/TableDropdown";
-import {ProjectAxios} from "../../apis/Stat";
-import {MemberAxios} from "../../apis/Stat";
-import ProjectContext from "../../context/ProjectContext"
-import MemberContext from "../../context/MemberContext"
 import {useHistory} from "react-router"
 export default function CheckMemberProject() {
     let history=useHistory()
     const [membername,setMembername]=useState("");
-    const [user_id,setUser_id]=useState("")
 
     const handleSubmit=async (e)=>{
         e.preventDefault()

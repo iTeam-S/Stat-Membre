@@ -9,12 +9,6 @@ import { useHistory } from "react-router";
 
 export default function CardProjets(props) {
   let history=useHistory()
-  const [isDataloading,setDataloading]=useState(false)
-  const [showModal, setShowModal] = useState(false);
-  const [modify,setModify]=useState(false);
-  const [post,setPost]=useState(null);
-  const [valide,setValide]=useState(false);
-  const Avancement=valide ? "100%":"En cours";
 
   const {projects,setProjects}=useContext(ProjectContext)
    useEffect( ()=>{

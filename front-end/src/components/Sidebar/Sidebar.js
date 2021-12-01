@@ -61,7 +61,7 @@ export default function Sidebar() {
                                         "text-lightBlue-500 hover:text-lightBlue-600" :
                                         "text-blueGray-700 hover:text-blueGray-500")
                                 }
-                                to = "/admin/settings" >
+                                to = "/admin/settings">
                                 <i className = {
                                     "fas fa-tools mr-2 text-sm " +
                                     (window.location.href.indexOf("/admin/settings") !== -1 ?

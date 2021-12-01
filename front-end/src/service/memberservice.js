@@ -14,6 +14,11 @@ class MemberService{
                return response;
           })
      }
+     listmemberonproject(){
+          return MemberAxios.get('/allonproject').then(response=>{
+               return response;
+          })
+     }
 
 }
 

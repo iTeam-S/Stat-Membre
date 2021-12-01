@@ -1,15 +1,16 @@
 /*eslint-disable*/
-import React from "react";
+import React,{useState} from "react";
 import { Link } from "react-router-dom";
 import AuthService from "../../service/authservice"
+
 // components
 
 import IndexDropdown from "components/Dropdowns/IndexDropdown.js";
 import UserDropdown from "components/Dropdowns/UserDropdown.js"
 
-export default function Navbar(props) {
+export default function Navbar() {
     const User=AuthService.getCurrentUser();
-    const [navbarOpen, setNavbarOpen] = React.useState(false);
+    const [navbarOpen, setNavbarOpen] = useState(false);
     return ( 
         <>
             <nav className = "top-0 fixed z-50 w-full flex flex-wrap items-center justify-between px-2 py-3 navbar-expand-lg bg-white shadow" >

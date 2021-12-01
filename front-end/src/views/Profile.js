@@ -7,7 +7,7 @@ import Footer from "components/Footers/Footer.js";
 
 
 export default function Profile({data}) {
-    const { id } = useParams();
+    const { prenom } = useParams();
 
     return ( 
         <>
@@ -34,13 +34,10 @@ export default function Profile({data}) {
                         </svg> 
                     </div> 
                 </section> 
-                
-
-
                <section className = "relative py-16 bg-blueGray-200" >
                     {
                         data
-                        .filter((membre) => membre.id === parseInt(id))
+                        .filter((membre) => membre.prenom ===prenom)
                         .map((membre) => (
                             <div className="container mx-auto px-4">
                                 <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-xl rounded-lg -mt-64">
@@ -104,9 +101,7 @@ export default function Profile({data}) {
                                       <div className="flex flex-wrap justify-center">
                                         <div className="w-full lg:w-9/12 px-4">
                                           <p className="mb-4 text-lg leading-relaxed text-blueGray-700">
-                                            Une communauté fondé récemment par des jeunes. 
-                                            Des jeunes dans le domaine de l'informatique,  digitale, management et  communication qui se sont 
-                                            regroupés pour mettre en œuvre une communauté jeune et dynamique.. 
+                                            {membre.presentation} 
                                           </p>
                                         </div>
                                       </div>

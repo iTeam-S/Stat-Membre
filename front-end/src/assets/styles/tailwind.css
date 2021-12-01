@@ -1168,7 +1168,10 @@ background-color: rgba(52, 211, 153, var(--tw-bg-opacity));}
   background-color: rgba(4, 120, 87, var(--tw-bg-opacity));
 
 }
-
+.bg-gray-200	{--tw-bg-opacity: 1;
+background-color: rgba(229, 231, 235, var(--tw-bg-opacity));}
+.bg-gray-100	{--tw-bg-opacity: 1;
+background-color: rgba(243, 244, 246, var(--tw-bg-opacity));}
 
 .bg-teal-500 {
   --tw-bg-opacity: 1;
@@ -2721,7 +2724,6 @@ padding-right: 24rem;}
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   transition-duration: 150ms;
 }
-
 .ease-linear {
   transition-timing-function: linear;
 }

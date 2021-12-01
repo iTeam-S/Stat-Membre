@@ -1,9 +1,15 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { createPopper } from "@popperjs/core";
+import {ScrollingProvider,useScrollSection,Section, useScrollSections} from "react-scroll-section";
+
 
 const IndexDropdown = () => {
-  // dropdown props
+
+  const Statsection=useScrollSection('stat');
+  const Top5section=useScrollSection('top5');
+
+
   const [dropdownPopoverShow, setDropdownPopoverShow] = React.useState(false);
   const btnDropdownRef = React.createRef();
   const popoverDropdownRef = React.createRef();
@@ -43,18 +49,22 @@ const IndexDropdown = () => {
         >
           Stats page
         </span>
-        <Link
-          to="/admin/dashboard"
-          className="text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700"
-        >
-          Statistique
-        </Link>
-        <Link
-          to="/admin/dashboard"
-          className="text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700"
-        >
-          Top-5
-        </Link>
+        <ul>
+          <li
+            onClick={Statsection.onClick}
+            selected={Statsection.selected}
+            className="cursor-pointer text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700"
+          >
+            Statistique
+          </li>
+          <li
+            onClick={Top5section.onClick}
+            selected={Top5section.selected}
+            className="cursor-pointer text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700"
+          >
+            Top-5
+          </li>
+        </ul>
         
         <div className="h-0 mx-4 my-2 border border-solid border-blueGray-100" />
         <span

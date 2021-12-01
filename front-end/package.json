@@ -19,9 +19,9 @@
     "react-router": "5.2.0",
     "react-router-dom": "5.2.0",
     "react-scripts": "4.0.3",
+    "react-scroll-section": "^3.1.0",
     "reactjs-alert": "^1.2.7",
-    "typescript": "4.2.3",
-    "validator": "^13.7.0"
+    "typescript": "4.2.3"
   },
   "scripts": {
     "start": "craco start",

@@ -35,16 +35,18 @@ export default function MemberList(){
                     <div className = "py-4 rounded-lg flex flex-wrap  container mx-auto px-48 h-full border-blueGray-50" >
                         <div className = "flex  flex-wrap " >
                             <div className = "w-full" >
-                                <div className = "flex flex-wrap" >
+                                <div className = "flex flex-row" >
                                 {members.map((member=>(
                                     <div key={member.id} className = "w-3/5 ml-1/40 mt-1/2 h-1/2" >
                                         <div className="w-full max-w-sm rounded overflow-hidden shadow-lg">
                                         <img alt = "..." className = "w-full  align-middle border-none shadow-lg" src = {member.pdc?member.pdc:("https://h5ckfun.info/wp-content/uploads/2015/07/MyAvatar.png") }/>
                                             <div className="px-5 py-4">
-                                                <p className="text-center font-bold text-xl mb-2 text-teal-500">{member.nom} {member.prenom}</p>
+                                                <p className="text-center font-bold text-xl mb-2 text-teal-500">{member.nom}</p>
+                                                <p className="text-center font-bold text-xl mb-2 text-teal-500">{member.prenom}</p>
                                             </div>
                                             <div className="w-full">
-                                            <table className="w-full bg-transparent border-collapse">
+                                            <table className="w-full bg-transparent
+                                            border-collapse">
                                                 <thead>
                                                     <tr>
                                                         <th className="px-6 bg-teal-500 text-white align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">Rang</th>
@@ -53,6 +55,10 @@ export default function MemberList(){
                                                     <tr>
                                                         <th className="px-6 bg-teal-500 text-white align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">Total_point</th>
                                                         <th className="px-6  bg-orange-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">{member.point_experience}</th>
+                                                    </tr>
+                                                    <tr>
+                                                        <th className="px-6 bg-teal-500 text-white align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">Total_project</th>
+                                                        <th className="px-6  bg-orange-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">{member.nombre_projet}</th>
                                                     </tr>
                                                 </thead>
                                             </table>

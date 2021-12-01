@@ -8,7 +8,7 @@ import "assets/styles/tailwind.css";
 
 
 // layouts
-
+import Settings from "./components/Cards/CardSettings"
 import Admin from "layouts/Admin.js";
 import Login from "./views/auth/Login";
 import AddMember from "layouts/Addmember";
@@ -134,6 +134,9 @@ const App = () => {
                         <Route exact path="/admin/dashboard">
                             <Admin membre={member} projet={project}/>
                         </Route>
+                        <Route exact path="/settings/:prenom">
+                            <Settings data={member}/>
+                        </Route>
                         <Route exact path="/admin/member/addmember">
                             <AddMember/>
                         </Route>
@@ -168,7 +171,7 @@ const App = () => {
                         <Route path="/landing" exact>
                             <Landing data={member}/>
                         </Route>
-                        <Route path="/profile/:id" exact>
+                        <Route path="/profile/:prenom" exact>
                             <Profile data={member}/>
                         </Route>
                         <Route path="/" exact>

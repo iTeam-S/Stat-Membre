@@ -1,9 +1,11 @@
 import React from "react";
+import { useParams } from "react-router";
+
 
 // components
 
-export default function CardSettings({ membre, projet }) {
-    console.log(membre);
+export default function Settings({data}) {
+    const {prenom}=useParams();
     return ( 
         <>
             <div className = "relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-blueGray-100 border-0" >
@@ -14,15 +16,19 @@ export default function CardSettings({ membre, projet }) {
                     </div> 
                 </div> 
                 <div className = "flex-auto px-4 lg:px-10 py-10 pt-0" >
+                {
+                         data
+                         .filter((membre) => membre.prenom ===prenom)
+                         .map((membre) => (
                     <form >
                         <h6 className = "text-blueGray-400 text-sm mt-3 mb-6 font-bold uppercase" >User Information 
-                        </h6> 
+                        </h6>
                         <div className = "flex flex-wrap" >
                             <div className = "w-full lg:w-6/12 px-4" >
                                 <div className = "relative w-full mb-3" >
                                     <label className = "block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlFor = "grid-password" >
                                         prénom usuelle </label> 
-                                    <input type = "text" className = "border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150" defaultValue = "lucky.jesse" />
+                                    <input type = "text" className = "border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150" defaultValue = {membre.prenom} />
                                 </div> 
                             </div> 
                             <div className = "w-full lg:w-6/12 px-4" >
@@ -30,7 +36,7 @@ export default function CardSettings({ membre, projet }) {
                                     <label className = "block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlFor = "grid-password" >
                                         Email </label> 
                                     <input type = "email" className = "border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                                            defaultValue = "jesse@example.com" />
+                                            defaultValue = {membre.mail} />
                                 </div> 
                             </div> 
                             <div className = "w-full lg:w-6/12 px-4" >
@@ -38,14 +44,14 @@ export default function CardSettings({ membre, projet }) {
                                         <label className = "block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlFor = "grid-password" >
                                             Nom </label> 
                                         <input type = "text" className = "border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                                            defaultValue = "Rakoto" />
+                                            defaultValue = {membre.nom} />
                                 </div> 
                             </div> 
                             <div className = "w-full lg:w-6/12 px-4" >
                                 <div className = "relative w-full mb-3" >
                                     <label className = "block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlFor = "grid-password" > Prénom </label> 
                                     <input type = "text" className = "border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                                        defaultValue = "Jesse" />
+                                        defaultValue = {membre.prenom} />
                                 </div> 
                             </div> 
                         </div>
@@ -57,7 +63,7 @@ export default function CardSettings({ membre, projet }) {
                             <div className = "w-full lg:w-12/12 px-4" >
                                 <div className = "relative w-full mb-3" >
                                     <label className = "block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlFor = "grid-password" >Adresse </label> 
-                                    <input type = "text" className = "border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150" defaultValue = "14 A 12 Anosy" />
+                                    <input type = "text" className = "border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150" defaultValue = "Antananarivo" />
                                 </div> 
                             </div> 
                             <div className = "w-full lg:w-4/12 px-4" >
@@ -77,7 +83,7 @@ export default function CardSettings({ membre, projet }) {
                                 <div className = "relative w-full mb-3" >
                                     <label className = "block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlFor = "grid-password" > Telephone </label> 
                                     <input type = "text" className = "border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                                        defaultValue = "033 02 456 89" />
+                                        defaultValue = {membre.tel} />
                                 </div> 
                             </div> 
                         </div>
@@ -95,6 +101,7 @@ export default function CardSettings({ membre, projet }) {
                             </div> 
                         </div> 
                     </form> 
+                    ))}
                 </div> 
             </div> 
         </>

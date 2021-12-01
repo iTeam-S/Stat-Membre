@@ -1,10 +1,16 @@
 import React,{useEffect,useState} from "react";
 import { createPopper } from "@popperjs/core";
-import AuthService from "../../service/authservice"
+import AuthService from "../../service/authservice";
+import {Link} from "react-router-dom";
 
 
 const UserDropdown = () => {
     const User=AuthService.getCurrentUser();
+    const [user_prenom,setPrenom]=useState("");
+    if(!(User ==null)){
+        setPrenom(User.username)
+    }
+    
     // dropdown props
     const [dropdownPopoverShow, setDropdownPopoverShow] =useState(false);
     const btnDropdownRef = React.createRef();
@@ -42,29 +48,22 @@ const UserDropdown = () => {
             <div ref = { popoverDropdownRef } className = {
                 (dropdownPopoverShow ? "block " : "hidden ") +
                 "bg-blueGray-200 text-base z-50 float-left py-2 list-none text-left rounded shadow-lg min-w-48"} >
-                    <a href = "#pablo" className = {
+                    <Link className = 
                         "text-sm pt-2 pb-0 px-4 font-bold block w-full whitespace-nowrap bg-transparent text-blueGray-400"
-                        }
-                        onClick = {
-                            (e) => e.preventDefault() } >Mon Profil 
-                    </a> 
-                    <a href = "#pablo" className = {"text-sm pt-2 pb-0 px-4 font-bold block w-full whitespace-nowrap bg-transparent text-blueGray-400"}
-                        onClick = {
-                            (e) => e.preventDefault() } >Parametre 
-                    </a> 
-                    <a href = "#pablo" className = {
-                        "text-sm pt-2 pb-0 px-4 font-bold block w-full whitespace-nowrap bg-transparent text-blueGray-400"
-                        }
-                        onClick = {
-                            (e) => e.preventDefault() } >View Profil 
-                    </a> 
+                        to={`/profile/${user_prenom}`}
+                        >Mon Profil 
+                    </Link> 
+                    <Link  className ="text-sm pt-2 pb-0 px-4 font-bold block w-full whitespace-nowrap bg-transparent text-blueGray-400"
+                        to={`/settings/${user_prenom}`}
+                        >Parametre 
+                    </Link> 
                     <div className = "h-0 my-2 border border-solid border-blueGray-100" />
                     <a href = "/" className = {
                             "text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700"
                                 }
                                 onClick = {logOut} >Deconnexion 
                     </a> 
-            </div> 
+            </div>
         </>
     );
 };
