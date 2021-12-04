@@ -6,10 +6,7 @@ import {Link} from "react-router-dom";
 
 const UserDropdown = () => {
     const User=AuthService.getCurrentUser();
-    const [user_prenom,setPrenom]=useState("");
-    if(!(User ==null)){
-        setPrenom(User.username)
-    }
+    const user_prenom=(!(User===null)) ? User.username:null;
     
     // dropdown props
     const [dropdownPopoverShow, setDropdownPopoverShow] =useState(false);
