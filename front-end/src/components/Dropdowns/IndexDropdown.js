@@ -1,14 +1,11 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect } from "react";
+import { Link} from "react-router-dom";
+import {Link as Lscroll} from "react-scroll";
 import { createPopper } from "@popperjs/core";
-import {ScrollingProvider,useScrollSection,Section, useScrollSections} from "react-scroll-section";
+
 
 
 const IndexDropdown = () => {
-
-  const Statsection=useScrollSection('stat');
-  const Top5section=useScrollSection('top5');
-
 
   const [dropdownPopoverShow, setDropdownPopoverShow] = React.useState(false);
   const btnDropdownRef = React.createRef();
@@ -22,6 +19,20 @@ const IndexDropdown = () => {
   const closeDropdownPopover = () => {
     setDropdownPopoverShow(false);
   };
+  
+  useEffect(()=>{
+    const checkIfclicked=(e)=>{
+      console.log("je suis cliké");
+      if(dropdownPopoverShow && btnDropdownRef.current){
+        setDropdownPopoverShow(false)
+      }
+
+    }
+    window.addEventListener("click",checkIfclicked);
+    return ()=>{
+      window.removeEventListener("click",checkIfclicked);
+    }
+  },[dropdownPopoverShow])
   return (
     <>
       <a
@@ -51,18 +62,16 @@ const IndexDropdown = () => {
         </span>
         <ul>
           <li
-            onClick={Statsection.onClick}
-            selected={Statsection.selected}
             className="cursor-pointer text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700"
           >
-            Statistique
+            <Lscroll to="stat">
+              Statistique
+            </Lscroll>
           </li>
-          <li
-            onClick={Top5section.onClick}
-            selected={Top5section.selected}
-            className="cursor-pointer text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700"
-          >
-            Top-5
+          <li className="cursor-pointer text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700">
+            <Lscroll to="top5">
+              Top-5
+            </Lscroll>
           </li>
         </ul>
         

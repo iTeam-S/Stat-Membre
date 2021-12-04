@@ -6,7 +6,7 @@ import CardStats from "components/Cards/CardStats.js";
 import CardLineChart from "components/Cards/CardLineChart.js";
 import CardProduction from "components/Cards/CardProduction.js";
 import Topfive from "./TopFive";
-import {ScrollingProvider,useScrollSection,Section, useScrollSections} from "react-scroll-section";
+
 
 
 export default function Index() {
@@ -31,7 +31,6 @@ export default function Index() {
                 </div>
                {/* <img className = "absolute top-0 b-auto right-0 pt-16 sm:w-6/12 -mt-48 sm:mt-0 w-10/12 max-h-860px" src = { require("assets/img/pattern_react.png").default } alt = "..." />*/}
             </section>
-            <ScrollingProvider>
             <section id="stat" >
                     <h3 className="text-3xl mb-2 font-semibold text-center text-blueGray-600">
                         Statistique de la communeauté
@@ -92,7 +91,6 @@ export default function Index() {
                         </div>
                 </div>
             </section>
-            </ScrollingProvider>
             <section id="top5">
                 <Topfive />
             </section>
@@ -142,7 +140,6 @@ export default function Index() {
                                 </blockquote>
                             </div> 
                         </div>
-
                         <div className = "w-full md:w-6/12 px-4" >
                             <div className = "flex flex-wrap" >
                                 <div className = "w-full md:w-6/12 px-4" >
@@ -190,8 +187,7 @@ export default function Index() {
                     </div> 
                 </div> 
             </section>
-            <Footer/>
-        
+        <Footer/>
         </>
     );
 }

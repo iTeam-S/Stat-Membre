@@ -1,14 +1,15 @@
 /*eslint-disable*/
 import React,{useState} from "react";
-import { Link } from "react-router-dom";
+import {Link} from "react-router-dom"
 import AuthService from "../../service/authservice"
+
 
 // components
 
 import IndexDropdown from "components/Dropdowns/IndexDropdown.js";
 import UserDropdown from "components/Dropdowns/UserDropdown.js"
 
-export default function Navbar() {
+export default function Navbar(props) {
     const User=AuthService.getCurrentUser();
     const [navbarOpen, setNavbarOpen] = useState(false);
     return ( 
@@ -45,7 +46,7 @@ export default function Navbar() {
                                 <UserDropdown/>
                             </li>
                             <li className = "flex items-center">
-                                 <IndexDropdown/>
+                                 <IndexDropdown props={props}/>
                             </li> 
                             <li className = "flex items-center">
                                 <a className = "hover:text-blueGray-500 text-blueGray-700 px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold"

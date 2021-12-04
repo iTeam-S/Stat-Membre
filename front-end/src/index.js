@@ -20,7 +20,8 @@ import MemberProject from "layouts/MemberProject";
 import DeleteProjectMember from "layouts/DeleteProjectMember";
 import ProjectMember from "layouts/ProjectMember";
 import AuthService from "./service/authservice";
-import MemberList from "./views/Members"
+import MemberList from "./views/Members";
+import Top5 from "./views/TopFive"
 
 
 
@@ -176,6 +177,9 @@ const App = () => {
                         </Route>
                         <Route path="/" exact>
                             <Index data={project}/>
+                        </Route>
+                        <Route path="/top5" exact>
+                            <Top5/>
                         </Route>
                         {/* add redirect for first page */}
                         <Redirect from="*" to="/" />
