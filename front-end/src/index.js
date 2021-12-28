@@ -20,7 +20,6 @@ import MemberProject from "layouts/MemberProject";
 import DeleteProjectMember from "layouts/DeleteProjectMember";
 import ProjectMember from "layouts/ProjectMember";
 import AuthService from "./service/authservice";
-import MemberList from "./views/Members";
 import Top5 from "./views/TopFive"
 
 
@@ -62,65 +61,59 @@ const App = () => {
               setProject(projet);
         });
     }, []);
-    if(User ==null){
-        return(<ProjectContextProvider>
-            <CritereContextProvider>
-                <MemberContextProvider>
-                    <BrowserRouter>
-                        <Switch>
-                            <Route exact path="/views/public/memberlist">
-                                <MemberList />
-                            </Route>
-                            <Route exact path="/views/public/projets">
-                                <Project />
-                            </Route>
-                            <Route exact path="/auth/login">
-                                <Login />
-                            </Route>
-                            <Route path="/" exact>
-                                <Index data={project}/>
-                            </Route>
-                            {/* add redirect for first page */}
-                            <Redirect from="*" to="/" />
-                        </Switch>
-                    </BrowserRouter>
-                </MemberContextProvider>
-            </CritereContextProvider>
-          </ProjectContextProvider>)
-    }
-    if(User.role=="user"){
-        return(<ProjectContextProvider>
-            <CritereContextProvider>
-                <MemberContextProvider>
-                    <BrowserRouter>
-                        <Switch>
-                            <Route exact path="/views/public/memberlist">
-                                <MemberList />
-                            </Route>
-                            <Route exact path="/views/public/projets">
-                                <Project />
-                            </Route>
-                            <Route exact path="/admin/dashboard">
-                                <Admin membre={member} projet={project}/>
-                            </Route>
-                            <Route exact path="/admin/project/addproject">
-                                <AddProject/>
-                            </Route>
-                            <Route exact path="/auth/login">
-                                <Login />
-                            </Route>
-                            <Route path="/" exact>
-                                <Index data={project}/>
-                            </Route>
-                            {/* add redirect for first page */}
-                            <Redirect from="*" to="/" />
-                        </Switch>
-                    </BrowserRouter>
-                </MemberContextProvider>
-            </CritereContextProvider>
-          </ProjectContextProvider>)
+    // if(User ==null){
+    //     return(<ProjectContextProvider>
+    //         <CritereContextProvider>
+    //             <MemberContextProvider>
+    //                 <BrowserRouter>
+    //                     <Switch>
+    //                         <Route exact path="/views/public/projets">
+    //                             <Project />
+    //                         </Route>
+    //                         <Route exact path="/auth/login">
+    //                             <Login />
+    //                         </Route>
+    //                         <Route path="/" exact>
+    //                             <Index data={project}/>
+    //                         </Route>
+    //                         {/* add redirect for first page */}
+    //                         <Redirect from="*" to="/" />
+    //                     </Switch>
+    //                 </BrowserRouter>
+    //             </MemberContextProvider>
+    //         </CritereContextProvider>
+    //       </ProjectContextProvider>)
+    // }
+    // if(User.role=="user"){
+    //     return(<ProjectContextProvider>
+    //         <CritereContextProvider>
+    //             <MemberContextProvider>
+    //                 <BrowserRouter>
+    //                     <Switch>
+    //                         <Route exact path="/views/public/projets">
+    //                             <Project />
+    //                         </Route>
+    //                         <Route exact path="/admin/dashboard">
+    //                             <Admin membre={member} projet={project}/>
+    //                         </Route>
+    //                         <Route exact path="/admin/project/addproject">
+    //                             <AddProject/>
+    //                         </Route>
+    //                         <Route exact path="/auth/login">
+    //                             <Login />
+    //                         </Route>
+    //                         <Route path="/" exact>
+    //                             <Index data={project}/>
+    //                         </Route>
+    //                         {/* add redirect for first page */}
+    //                         <Redirect from="*" to="/" />
+    //                     </Switch>
+    //                 </BrowserRouter>
+    //             </MemberContextProvider>
+    //         </CritereContextProvider>
+    //       </ProjectContextProvider>)
 
-    }
+    // }
 
   return (
       <ProjectContextProvider>
@@ -129,9 +122,6 @@ const App = () => {
                 <BrowserRouter>
                     <Switch>
                         {/* add routes with layouts */}
-                        <Route exact path="/views/public/memberlist">
-                                <MemberList />
-                        </Route>
                         <Route exact path="/admin/dashboard">
                             <Admin membre={member} projet={project}/>
                         </Route>

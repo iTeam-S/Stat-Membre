@@ -1,7 +1,3 @@
-
-
-
-
 import React,{useState,useRef,useEffect, useContext} from "react";
 import axios from "axios"
 import {ProjectAxios} from "../../apis/Stat"
@@ -13,6 +9,12 @@ import { useHistory } from "react-router";
 
 export default function CardProjets(props) {
   let history=useHistory()
+  const [isDataloading,setDataloading]=useState(false)
+  const [showModal, setShowModal] = useState(false);
+  const [modify,setModify]=useState(false);
+  const [post,setPost]=useState(null);
+  const [valide,setValide]=useState(false);
+  const Avancement=valide ? "100%":"En cours";
 
   const {projects,setProjects}=useContext(ProjectContext)
    useEffect( ()=>{
@@ -26,15 +28,43 @@ export default function CardProjets(props) {
      } 
      fetchData();
    },[])
+   const deleteHandle=async (id)=>{
+     try {
+       const response=await ProjectAxios.delete(`/delete/${id}`);
+       setProjects(projects.filter(project=>{
+         return project.id !==id
+       })) 
+     } catch (error) {
+      console.log(error) 
+     }
+     
+   };
+   const handleUpdate = (id)=>{
+    history.push(`/admin/project/${id}/update`)
+    
+  };
+  const handleValide =async (id)=>{
+    try {
+      const validateProject=await ProjectAxios.put(`/valide/${id}`,{
+        valide:"true"
+      });
+      
+      
+    } catch (error) {
+      console.log(error);
+      
+    }
+    
+  }
   return (
     <>
       <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded">
         <div className="rounded-t mb-0 px-4 py-3 border-0">
           <div className="flex flex-wrap items-center">
             <div className="relative w-full px-4 max-w-full flex-grow flex-1">
-              <h3 className="font-semibold text-base text-center text-blueGray-700">
-                Nos projets
-              </h3>
+              <h4 className="font-semibold text-base text-center text-blueGray-700">
+                Voici le classement des membres dans Iteam-$
+              </h4>
             </div>
           </div>
           <div className=".border-current">
@@ -53,12 +83,12 @@ export default function CardProjets(props) {
           </div>
         </div>
         <div className="block w-full overflow-x-auto">
-          {/* Projects table */}
+          {/* membres table */}
           <table className="items-center w-full bg-transparent border-collapse">
             <thead>
               <tr>
                 <th className="px-6 bg-teal-500 text-white align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
-                  Nom du projet
+                  Prénom
                 </th>
                 <th className="px-6 bg-teal-500 text-white align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
                   Participants
@@ -67,7 +97,7 @@ export default function CardProjets(props) {
                   Total Points
                 </th>
                 <th className="px-6 bg-teal-500 text-white align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
-                  Avancement
+                  Rang
                 </th>
               </tr>
             </thead>

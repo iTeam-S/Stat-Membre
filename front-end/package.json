@@ -11,6 +11,7 @@
     "chart.js": "2.9.4",
     "gulp": "4.0.2",
     "gulp-append-prepend": "1.0.8",
+    "minimatch": "^3.0.4",
     "moment": "^2.29.1",
     "node-modules": "^1.0.1",
     "pg": "^8.7.1",
@@ -19,9 +20,11 @@
     "react-router": "5.2.0",
     "react-router-dom": "5.2.0",
     "react-scripts": "4.0.3",
+    "react-scroll": "^1.8.4",
     "react-scroll-section": "^3.1.0",
+    "react-validation": "^3.0.7",
     "reactjs-alert": "^1.2.7",
-    "typescript": "4.2.3"
+    "validator": "^13.7.0"
   },
   "scripts": {
     "start": "craco start",

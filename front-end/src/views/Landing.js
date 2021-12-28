@@ -1,13 +1,25 @@
-import React  from "react";
+import React,{useState,useEffect,useRef} from "react";
 import { Link } from "react-router-dom";
 
 // components
 
 import Navbar from "components/Navbars/AuthNavbar.js";
 import Footer from "components/Footers/Footer.js";
+import FooterSmall from "../components/Footers/FooterSmall.js";
+import MemberService from "../service/memberservice"
 
 
 export default function Landing({data}) {
+    const [members,setMembers]=useState([]);
+    const [memberzero,setMemberzero]=useState({});
+
+    useEffect(()=>{
+        MemberService.getListMember().then(response=>{
+            setMembers(response.data)
+            setMemberzero(response.data[0]);
+        });
+        
+    },[])
     return ( 
         <>
             <Navbar transparent/>
@@ -43,26 +55,42 @@ export default function Landing({data}) {
                     </div> 
                 </div>
                 <section>
-                    <div className="block relative ">
-                    <div className = "py-4 rounded-lg flex flex-wrap  container mx-auto px-0 h-full border-blueGray-50" >
-                        <div className = "flex  flex-wrap">
+                    <div className="block relative z-1  pb-48 mx-1/5 ">
+                    <div className = "py-4 rounded-lg flex flex-wrap  container mx-auto px-48 h-full border-blueGray-50" >
+                        <div className = "flex  flex-wrap " >
                             <div className = "w-full" >
-                                <div className = "flex flex-row" >
-                                            <div className="w-full container flex flex-wrap pt-2" style={ {margin: '10px 25px'} }>
-                                        {data.map((membre) => (
-                                            <Link to={`/profile/${membre.id}`}>
-                                                <div className="mt-8 bg-gray-100 transform motion-safe:hover:scale-110" style = { {margin: '0px 40px', padding: '20px'} }>
-                                                    <img alt = "..." src = {membre.pdc} className = "shadow-lg rounded-full mx-auto max-w-120-px" />
-                                                    <div className = "pt-3 text-center" >
-                                                        <h5 className = "text-xl font-bold" > {membre.prenom}</h5>
-                                                        <h6> {membre.prenom}</h6> 
-                                                        <p className = "mt-1 m-4 text-sm text-blueGray-400 uppercase font-semibold break-words" >{membre.fonction} </p> 
-                                                    </div> 
-                                                </div>
-                                            </Link>
-                                        ))}
-                                    </div>  
-                                </div>
+                                <div className = "w-full container flex flex-wrap pt-2" style={ {margin: '10px 15px'} } >
+                                {members.map((member=>(
+                                    <div key={member.id} className = "w-3/5 ml-1/40 mt-1/2 h-1/2" >
+                                        <div className="w-full max-w-sm rounded overflow-hidden shadow-lg">
+                                        <img alt = "..." className = "w-full  align-middle border-none shadow-lg" src = {member.pdc?member.pdc:("https://h5ckfun.info/wp-content/uploads/2015/07/MyAvatar.png") }/>
+                                            <div className="px-5 py-4">
+                                                <p className="text-center font-bold text-xl ">{member.nom}</p>
+                                                <p className="text-center font-bold text-xl ">{member.prenom}</p>
+                                            </div>
+                                            <div className="w-full">
+                                            <table className="w-full bg-transparent
+                                            border-collapse">
+                                                <thead>
+                                                    <tr>
+                                                        <th className="px-6 bg-teal-500  align-middle border border-solid border-blueGray-100 py-3 text-xs  border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">Rang</th>
+                                                        <th className="px-6 bg-orange-500 text-white  align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">{(members.indexOf(member))+1}</th>
+                                                    </tr>
+                                                    <tr>
+                                                        <th className="px-6 bg-teal-500  align-middle border border-solid border-blueGray-100 py-3 text-xs  border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">Total point</th>
+                                                        <th className="px-6  bg-orange-500 text-white align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">{member.point_experience}</th>
+                                                    </tr>
+                                                    <tr>
+                                                        <th className="px-6 bg-teal-500  align-middle border border-solid border-blueGray-100 py-3 text-xs  border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">Total projet</th>
+                                                        <th className="px-6  bg-orange-500 text-white align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">{member.nombre_projet}</th>
+                                                    </tr>
+                                                </thead>
+                                            </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    )))}
+                                </div> 
                             </div>
                         </div> 
                     </div>
