@@ -1,12 +1,15 @@
 import React,{useEffect,useState} from "react";
 import { createPopper } from "@popperjs/core";
-import AuthService from "../../service/authservice";
 import {Link} from "react-router-dom";
+
+
+import {AuthService} from "../../utils/service/authservice";
 
 
 const UserDropdown = () => {
     const User=AuthService.getCurrentUser();
     const user_prenom=(!(User===null)) ? User.username:null;
+    console.log(user_prenom);
     
     // dropdown props
     const [dropdownPopoverShow, setDropdownPopoverShow] =useState(false);

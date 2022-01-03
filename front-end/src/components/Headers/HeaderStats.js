@@ -1,6 +1,8 @@
 import React,{useState,useEffect} from "react";
-import ProjectService from "../../service/projectservice";
-import MemberService from "../../service/memberservice";
+
+
+import ProjectService from "../../utils/service/projectservice";
+import MemberService from "../../utils/service/memberservice";
 
 // components
 

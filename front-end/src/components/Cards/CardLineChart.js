@@ -1,27 +1,32 @@
 import React,{useEffect,useState} from "react";
 import Chart from "chart.js";
-import ProjectService from "../../service/projectservice";
 import moment from "moment";
 
+
+
+import ProjectService from "../../utils/service/projectservice";
+
 export default function CardLineChart() {
-  const [NomMois,setNomMois]=useState([
-          
-    ]
-  )
-  useEffect(async() => {
-    const project=[,,,,,,,,,,5,,];
+  useEffect(() => {
+    async function CardLineData(){
+    let project=[];
     const cdate=new Date();
     try {
       await ProjectService.getAllencours().then((response)=>{
-          if(moment(`${response.data[0].creation_date}`).isBefore(`${cdate}`) || moment(`${response.data[0].creation_date}`).isSame(`${cdate}`)){
-            let moisActuelle=cdate.getMonth();
-            let moisAncien=moment(response.data[0].creation_date).month();
-            if(moisActuelle != moisAncien){
-              project.splice(moisActuelle,1,response.data.length);
+          let i=0;
+          let totalproj=0;
+          while(i<response.data.length){
+            if(moment(`${response.data[i].creation_date}`).isBefore(`${cdate}`) || moment(`${response.data[i].creation_date}`).isSame(`${cdate}`)){
+              totalproj+=1;
             }
-            
+            i++;
           }
-          
+          project[cdate.getMonth()]=totalproj
+          let anneactuelle=cdate.getFullYear();
+          let anneAncien=moment(response.data[0].creation_date).year();
+          if(anneactuelle!==anneAncien){
+            project=[];
+          }  
     })
 
       
@@ -132,6 +137,8 @@ export default function CardLineChart() {
     };
     var ctx = document.getElementById("line-chart").getContext("2d");
     window.myLine = new Chart(ctx, config);
+  }
+  CardLineData();
   }, []);
   
   return (

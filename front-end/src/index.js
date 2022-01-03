@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import ReactDOM from "react-dom";
-import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
+import { BrowserRouter, Route, Switch,Redirect} from "react-router-dom";
+
 
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import "assets/styles/tailwind.css";
@@ -9,31 +10,35 @@ import "assets/styles/tailwind.css";
 
 // layouts
 import Settings from "./components/Cards/CardSettings"
-import Admin from "layouts/Admin.js";
-import Login from "./views/auth/Login";
-import AddMember from "layouts/Addmember";
-import AddProject from "layouts/Addproject";
-import CheckProject from "layouts/Checkmproject";
-import UpdateProject from "layouts/Updateproject";
-import UpdateMember from "layouts/Addmember";
-import MemberProject from "layouts/MemberProject";
-import DeleteProjectMember from "layouts/DeleteProjectMember";
-import ProjectMember from "layouts/ProjectMember";
-import AuthService from "./service/authservice";
-import MemberList from "./views/Members";
-import Top5 from "./views/TopFive"
+import Admin from "./pages/layouts/Admin.js";
+import Login from "./pages/auth/Login";
+import AddMember from "./pages/layouts/Addmember";
+import AddProject from "./pages/layouts/Addproject";
+import CheckProject from "./pages/layouts/Checkmproject";
+import UpdateProject from "./pages/layouts/Updateproject";
+import UpdateMember from "./pages/layouts/Addmember";
+import MemberProject from "./pages/layouts/MemberProject";
+import DeleteProjectMember from "./pages/layouts/DeleteProjectMember";
+import ProjectMember from "./pages/layouts/ProjectMember";
+import {AuthService} from "./utils/service/authservice";
+import MemberList from "./pages/Members/Members";
+import Topfive from "./pages/Topfive/TopFive";
+import AdminRoute from "./pages/private/AdminRoutes"
+import UserRoute from "./pages/private/UserRoutes";
+import {ProjectContextProvider} from "./utils/context/ProjectContext"
+import {MemberContextProvider} from "./utils/context/MemberContext"
+import {CritereContextProvider} from "./utils/context/CritereContext"
+
+
 
 
 
 // views without layouts
 
-import Landing from "views/Landing.js";
-import Profile from "views/Profile.js";
-import Index from "views/Index.js";
-import { ProjectContextProvider } from "context/ProjectContext";
-import { MemberContextProvider } from "context/MemberContext";
-import { CritereContextProvider } from "context/CritereContext";
-import Project from "views/projets";
+import Landing from "./pages/Landing/Landing";
+import Profile from "./pages/Profile/Profile";
+import Index from "./pages/Home/Index";
+import Project from "./pages/Projets/projets";
 
 
 
@@ -61,135 +66,80 @@ const App = () => {
               const projet = response.data;
               setProject(projet);
         });
-    }, []);
-    if(User ==null){
-        return(<ProjectContextProvider>
+    }, [])
+        return (
             <CritereContextProvider>
-                <MemberContextProvider>
-                    <BrowserRouter>
-                        <Switch>
-                            <Route exact path="/views/public/memberlist">
-                                <MemberList />
-                            </Route>
-                            <Route exact path="/views/public/projets">
-                                <Project />
-                            </Route>
-                            <Route exact path="/auth/login">
-                                <Login />
-                            </Route>
-                            <Route path="/" exact>
-                                <Index data={project}/>
-                            </Route>
-                            {/* add redirect for first page */}
-                            <Redirect from="*" to="/" />
-                        </Switch>
-                    </BrowserRouter>
-                </MemberContextProvider>
+                <ProjectContextProvider>
+                    <MemberContextProvider>
+                      <BrowserRouter>
+                          <Switch>
+                              {/* add routes with layouts */}
+                              <Route exact path="/views/public/memberlist">
+                                      <MemberList />
+                              </Route>
+                              <Route exact path="/views/public/projets">
+                                      <Project />
+                              </Route>
+                              <Route path="/views/public/top5" exact>
+                                  <Topfive/>
+                              </Route>
+                              <Route path="/auth/login">
+                                  <Login />
+                              </Route>
+                              <Route path="/" exact>
+                                  <Index data={project}/>
+                              </Route>
+                              <Route path="/landing" exact>
+                                  <Landing data={member}/>
+                              </Route>
+                              <Route path="/profile/:prenom" exact>
+                                  <Profile data={member}/>
+                              </Route>
+                            
+                            {/*User Routes */}
+                            
+                            
+                              <UserRoute exact path="/admin/project/addproject">
+                                  <AddProject/>
+                              </UserRoute>
+                              <UserRoute exact path="/settings/:prenom">
+                                  <Settings data={member}/>
+                              </UserRoute>
+                              
+
+                             {/*Admin routes */}
+
+                              <AdminRoute exact path="/admin/dashboard">
+                                  <Admin membre={member} projet={project}/>:
+                              </AdminRoute>
+                              <AdminRoute exact path="/admin/member/addmember">
+                                  <AddMember/>
+                              </AdminRoute>
+                              
+                              <AdminRoute exact path="/admin/project/:id/update">
+                                  <UpdateProject/>
+                              </AdminRoute>
+                              <AdminRoute exact path="/admin/member/:id/update">
+                                  <UpdateMember/>
+                              </AdminRoute>
+                              <AdminRoute exact path="/admin/check/checkmemberproject">
+                                  <CheckProject/>
+                              </AdminRoute>
+                              <AdminRoute exact path="/admin/member/:membername/allproject">
+                                  <MemberProject/>
+                              </AdminRoute>
+                              <AdminRoute exact path="/admin/delete/projectmember">
+                                  <DeleteProjectMember/>
+                              </AdminRoute>
+                              <AdminRoute exact path="/admin/project/:projectname">
+                                  <ProjectMember/>
+                              </AdminRoute>
+                          </Switch>
+                      </BrowserRouter>
+                    </MemberContextProvider>
+                </ProjectContextProvider>
             </CritereContextProvider>
-          </ProjectContextProvider>)
+          );
     }
-    if(User.role=="user"){
-        return(<ProjectContextProvider>
-            <CritereContextProvider>
-                <MemberContextProvider>
-                    <BrowserRouter>
-                        <Switch>
-                            <Route exact path="/views/public/memberlist">
-                                <MemberList />
-                            </Route>
-                            <Route exact path="/views/public/projets">
-                                <Project />
-                            </Route>
-                            <Route exact path="/admin/dashboard">
-                                <Admin membre={member} projet={project}/>
-                            </Route>
-                            <Route exact path="/admin/project/addproject">
-                                <AddProject/>
-                            </Route>
-                            <Route exact path="/auth/login">
-                                <Login />
-                            </Route>
-                            <Route path="/" exact>
-                                <Index data={project}/>
-                            </Route>
-                            {/* add redirect for first page */}
-                            <Redirect from="*" to="/" />
-                        </Switch>
-                    </BrowserRouter>
-                </MemberContextProvider>
-            </CritereContextProvider>
-          </ProjectContextProvider>)
-
-    }
-
-  return (
-      <ProjectContextProvider>
-        <CritereContextProvider>
-            <MemberContextProvider>
-                <BrowserRouter>
-                    <Switch>
-                        {/* add routes with layouts */}
-                        <Route exact path="/views/public/memberlist">
-                                <MemberList />
-                        </Route>
-                        <Route exact path="/admin/dashboard">
-                            <Admin membre={member} projet={project}/>
-                        </Route>
-                        <Route exact path="/settings/:prenom">
-                            <Settings data={member}/>
-                        </Route>
-                        <Route exact path="/admin/member/addmember">
-                            <AddMember/>
-                        </Route>
-                        <Route exact path="/admin/project/addproject">
-                            <AddProject/>
-                        </Route>
-                        <Route exact path="/admin/project/:id/update">
-                            <UpdateProject/>
-                        </Route>
-                        <Route exact path="/admin/member/:id/update">
-                            <UpdateMember/>
-                        </Route>
-                        <Route exact path="/admin/check/checkmemberproject">
-                            <CheckProject/>
-                        </Route>
-                        <Route exact path="/admin/member/:membername/allproject">
-                            <MemberProject/>
-                        </Route>
-                        <Route exact path="/admin/delete/projectmember">
-                            <DeleteProjectMember/>
-                        </Route>
-                        <Route exact path="/admin/project/:projectname">
-                            <ProjectMember/>
-                        </Route>
-                        <Route exact path="/views/public/projets">
-                                <Project />
-                            </Route>
-                        <Route path="/auth/login">
-                            <Login />
-                        </Route>
-                        {/* add routes without layouts */}
-                        <Route path="/landing" exact>
-                            <Landing data={member}/>
-                        </Route>
-                        <Route path="/profile/:prenom" exact>
-                            <Profile data={member}/>
-                        </Route>
-                        <Route path="/" exact>
-                            <Index data={project}/>
-                        </Route>
-                        <Route path="/top5" exact>
-                            <Top5/>
-                        </Route>
-                        {/* add redirect for first page */}
-                        <Redirect from="*" to="/" />
-                    </Switch>
-                </BrowserRouter>
-            </MemberContextProvider>
-        </CritereContextProvider>
-      </ProjectContextProvider>
-    );
-};
-
 const rootElement = document.getElementById("root");
 ReactDOM.render(<App/>, rootElement);

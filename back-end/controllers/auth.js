@@ -36,7 +36,15 @@ module.exports = {
     signin: async (req,res) => {
         try {
             let email = req.body.email;
+            if(!email){
+                return res.status(404).send(
+                    {
+                        message:"Please put your email"
+                    }
+                )
+            }
             let useR = await mdlsRole.getUserWithRoles(email);
+            
             if (!useR.rows[0]) {
                 return res.status(404).send({
                     message: "User Not found."

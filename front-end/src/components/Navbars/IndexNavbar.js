@@ -1,16 +1,19 @@
 /*eslint-disable*/
-import React,{useState} from "react";
+import React,{ useState} from "react";
 import {Link} from "react-router-dom"
-import AuthService from "../../service/authservice"
+
+
+
+
+import {AuthService} from "../../utils/service/authservice"
 
 
 // components
 
-import IndexDropdown from "components/Dropdowns/IndexDropdown.js";
-import UserDropdown from "components/Dropdowns/UserDropdown.js"
+import IndexDropdown from "../../components/Dropdowns/IndexDropdown.js";
+import UserDropdown from "../../components/Dropdowns/UserDropdown.js"
 
 export default function Navbar(props) {
-    const User=AuthService.getCurrentUser();
     const [navbarOpen, setNavbarOpen] = useState(false);
     return ( 
         <>
@@ -36,11 +39,11 @@ export default function Navbar(props) {
 
                         <ul className = "flex flex-col lg:flex-row list-none lg:ml-auto">
                             <li className="flex items-center lg:text-blueGray-700  px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold">
-                            {User==null &&(
-                                <Link to="/auth/login">
-                                    SE CONNECTER
-                                </Link>
-                            )}
+                            
+                            <Link to="/auth/login">
+                                SE CONNECTER
+                            </Link>
+                            
                             </li>
                             <li className="flex items-center lg:text-blueGray-700  px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold">
                                 <UserDropdown/>
@@ -65,7 +68,6 @@ export default function Navbar(props) {
                                 <span className = "lg:hidden inline-block ml-2" > Tweet </span> 
                                 </a> 
                             </li>
-
                             <li className = "flex items-center">
                                 <a className = "hover:text-blueGray-500 text-blueGray-700 px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold"
                                 href = "https://github.com/iTeam-S"

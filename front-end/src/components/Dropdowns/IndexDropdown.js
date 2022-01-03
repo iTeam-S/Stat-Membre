@@ -22,11 +22,9 @@ const IndexDropdown = () => {
   
   useEffect(()=>{
     const checkIfclicked=(e)=>{
-      console.log("je suis cliké");
       if(dropdownPopoverShow && btnDropdownRef.current){
         setDropdownPopoverShow(false)
       }
-
     }
     window.addEventListener("click",checkIfclicked);
     return ()=>{
@@ -64,12 +62,20 @@ const IndexDropdown = () => {
           <li
             className="cursor-pointer text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700"
           >
-            <Lscroll to="stat">
+            <Lscroll to="stat" 
+            onClick={(e) => {
+              e.preventDefault();
+              closeDropdownPopover();
+            }}>
               Statistique
             </Lscroll>
           </li>
           <li className="cursor-pointer text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700">
-            <Lscroll to="top5">
+            <Lscroll to="top5"
+            onClick={(e) => {
+              e.preventDefault();
+              closeDropdownPopover();
+            }}>
               Top-5
             </Lscroll>
           </li>

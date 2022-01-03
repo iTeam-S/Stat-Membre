@@ -76,7 +76,7 @@ module.exports = {
     },
     listAlldeploye:()=>{
         return new Promise((resolve,reject)=>{
-            db.query("SELECT * FROM project WHERE project.valide ='true' ORDER BY validation_date DESC",(err,result)=>{
+            db.query("SELECT * FROM project WHERE project.valide ='true'  ORDER BY validation_date DESC",(err,result)=>{
                 if(err){
                     reject (new Error("Errer resource while fetching no_deployed project"))
                 }else{

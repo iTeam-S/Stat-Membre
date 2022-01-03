@@ -1,8 +1,10 @@
-import React,{useState,useRef,useEffect, useContext} from "react";
-import axios from "axios"
-import {ProjectAxios} from "../../apis/Stat"
-import { ProjectContext } from "context/ProjectContext";
+import React,{useEffect, useContext} from "react";
 import { useHistory } from "react-router";
+
+
+
+import {ProjectAxios} from "../../utils/apis/Stat"
+import { ProjectContext } from "../../utils/context/ProjectContext";
 
 
 
@@ -44,8 +46,7 @@ export default function CardProjets(props) {
       const validateProject=await ProjectAxios.put(`/valide/${id}`,{
         valide:"true"
       });
-      
-      
+      window.location.reload();
     } catch (error) {
       console.log(error);
       
