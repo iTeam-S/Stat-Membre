@@ -1,22 +1,29 @@
 import Chart from "chart.js";
 import React,{useEffect,useState} from "react";
-import ProjectService from "../../service/projectservice";
 import moment from "moment";
 
+
+import ProjectService from "../../utils/service/projectservice";
+
+
 export default function CardBarChart() {
-  
-  React.useEffect(async() => {
-    const projectv=[,,,,,,,,,,3,,];
+  useEffect(() => {
+    async function CardData(){
+    const projectv=[];
     const cdate=new Date();
     try {
       await ProjectService.getAllvalide().then((response)=>{
-          if(moment(`${response.data[0].validation_date}`).isBefore(`${cdate}`) || moment(`${response.data[0].validation_date}`).isSame(`${cdate}`)){
-            let moisActuelle=cdate.getMonth();
-            let moisAncien=moment(response.data[0].validation_date).month();
-            if(moisActuelle != moisAncien){
-              projectv.splice(moisActuelle,1,response.data.length);
+          let i=0;
+          let totalproj=0;
+          while(i<response.data.length){
+            if(cdate.getMonth()===moment(response.data[i].validation_date).month()){
+              totalproj+=1;
             }
-          } 
+            i++;
+          }
+          projectv[cdate.getMonth()]=totalproj
+          
+          
     })
 
       
@@ -115,6 +122,8 @@ export default function CardBarChart() {
     };
     let ctx = document.getElementById("bar-chart").getContext("2d");
     window.myBar = new Chart(ctx, config);
+  }
+  CardData();
   }, []);
   return (
     <>

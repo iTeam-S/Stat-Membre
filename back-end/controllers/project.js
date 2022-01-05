@@ -172,7 +172,6 @@ module.exports = {
     listOneWithParticipant: async (req, res) => {
         try {
             let nom = req.params.nom;
-            console.log(nom);
             let listp = await mdlsProject.getOneProjectWithPart(nom);
             res.status(200).send(listp.rows);
 
@@ -223,7 +222,6 @@ module.exports = {
             let current=new Date();
             let date_validation=`${current.getFullYear()}-${current.getMonth()+1}-${current.getDate()}`;
             let {valide}=req.body;
-            console.log(date_validation);
             let validProject=await mdlsProject.valideProject(valide,date_validation,id);
             res.status(200).send({
                 message:"Project valided successfully"

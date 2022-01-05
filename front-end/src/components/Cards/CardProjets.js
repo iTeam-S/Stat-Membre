@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 
 
 
@@ -6,7 +7,15 @@ import React,{useState,useRef,useEffect, useContext} from "react";
 import axios from "axios"
 import {ProjectAxios} from "../../apis/Stat"
 import { ProjectContext } from "context/ProjectContext";
+=======
+import React,{useEffect, useContext} from "react";
+>>>>>>> 5fce297864ba7685741f95d1cada067052e2483e
 import { useHistory } from "react-router";
+
+
+
+import {ProjectAxios} from "../../utils/apis/Stat"
+import { ProjectContext } from "../../utils/context/ProjectContext";
 
 
 
@@ -26,6 +35,38 @@ export default function CardProjets(props) {
      } 
      fetchData();
    },[])
+<<<<<<< HEAD
+=======
+   const deleteHandle=async (id)=>{
+     try {
+       await ProjectAxios.delete(`/delete/${id}`);
+       setProjects(projects.filter(project=>{
+         return project.id !==id
+       })) 
+     } catch (error) {
+      console.log(error) 
+     }
+     
+   };
+   const handleUpdate = (id)=>{
+    history.push(`/admin/project/${id}/update`)
+    
+  };
+  const handleValide =async (id)=>{
+    let current=new Date()
+    let datvalid=`${current.getFullYear()}-${current.getMonth()+1}-${current.getDate()}}`;
+    try {
+      const validateProject=await ProjectAxios.put(`/valide/${id}`,{
+        valide:"true"
+      });
+      window.location.reload();
+    } catch (error) {
+      console.log(error);
+      
+    }
+    
+  }
+>>>>>>> 5fce297864ba7685741f95d1cada067052e2483e
   return (
     <>
       <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded">
