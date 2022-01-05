@@ -1,10 +1,5 @@
 /*eslint-disable*/
 import React from "react";
-<<<<<<< HEAD:front-end/src/views/Index.js
-import {useEffect,useState} from "react";
-import Topfive from "./TopFive";
-import { Link } from "react-router-dom";
-=======
 
 
 
@@ -13,19 +8,12 @@ import Footer from "../../components/Footers/Footer.js";
 import CardStats from "../../components/Cards/CardStats.js";
 import CardLineChart from "../../components/Cards/CardLineChart.js";
 import CardProduction from "../../components/Cards/CardProduction.js";
-
+import { Link } from "react-router-dom";
 
 
 import Topfive from "../Topfive/TopFive";
 
->>>>>>> 5fce297864ba7685741f95d1cada067052e2483e:front-end/src/pages/Home/Index.js
-
-import IndexNavbar from "components/Navbars/IndexNavbar";
-import Footer from "components/Footers/Footer";
-import CardStats from "components/Cards/CardStats";
-import CardLineChart from "components/Cards/CardLineChart";
-import CardProduction from "components/Cards/CardProduction";
-import CardProjets from "components/Cards/CardProjets";
+import CardProjets from "../../components/Cards/CardProjets";
 
 
 export default function Index() {
@@ -37,9 +25,9 @@ export default function Index() {
                 <div className = "container mx-auto items-center flex flex-wrap" >
                     <div className = "w-full md:w-8/12 lg:w-6/12 xl:w-6/12 px-4" >
                         <div className = "pt-32 sm:pt-0" >
-                            <h2 className = "font-semibold text-4xl text-blueGray-600" >Bienvenue sur Iteam - $ stats </h2> 
+                            <h2 className = "font-semibold text-4xl text-blueGray-600" >Bienvenue sur iTeam - $ stats </h2> 
                             <p className = "mt-4 text-lg leading-relaxed text-blueGray-500" >Sur cette site web, vous pouvez trouvez les statistiques des membres dans 
-                                <a href = "https://Iteam-$.mg" className = "text-blueGray-600" target = "_blank" >{" "}Iteam - $ </a>.
+                                <a href = "https://Iteam-$.mg" className = "text-blueGray-600" target = "_blank" >{" "}iTeam - $ </a>.
                             </p> 
                             <div className = "mt-12" >
                                 <a href = "https://iteam-s.mg/" target = "_blank" className = "get-started text-white font-bold px-6 py-4 rounded outline-none focus:outline-none mr-1 mb-1 bg-lightBlue-500 active:bg-lightBlue-600 uppercase text-sm shadow hover:shadow-lg ease-linear transition-all duration-150" style = {{ backgroundColor: '#008080' }}>Get started </a> 
@@ -156,7 +144,7 @@ export default function Index() {
                                     <div className="px-4 py-5">
                                         <CardStats
                                             statSubtitle="EFFECTIF"
-                                            statTitle="25"
+                                            statTitle="20"
                                             statArrow="up"
                                             statPercent="43.48"
                                             statPercentColor="text-emerald-500"
@@ -184,7 +172,7 @@ export default function Index() {
                                     <div className="px-4 py-5">
                                         <CardStats
                                             statSubtitle="PRODUCTION"
-                                            statTitle="50"
+                                            statTitle="18"
                                             statArrow="down"
                                             statPercent="1.10"
                                             statPercentColor="text-emerald-500"

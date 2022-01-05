@@ -1,15 +1,4 @@
-<<<<<<< HEAD
-
-
-
-
-import React,{useState,useRef,useEffect, useContext} from "react";
-import axios from "axios"
-import {ProjectAxios} from "../../apis/Stat"
-import { ProjectContext } from "context/ProjectContext";
-=======
 import React,{useEffect, useContext} from "react";
->>>>>>> 5fce297864ba7685741f95d1cada067052e2483e
 import { useHistory } from "react-router";
 
 
@@ -35,8 +24,6 @@ export default function CardProjets(props) {
      } 
      fetchData();
    },[])
-<<<<<<< HEAD
-=======
    const deleteHandle=async (id)=>{
      try {
        await ProjectAxios.delete(`/delete/${id}`);
@@ -66,7 +53,6 @@ export default function CardProjets(props) {
     }
     
   }
->>>>>>> 5fce297864ba7685741f95d1cada067052e2483e
   return (
     <>
       <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded">

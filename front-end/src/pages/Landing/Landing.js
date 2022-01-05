@@ -1,17 +1,10 @@
-import React,{useState,useEffect,useRef} from "react";
-import { Link } from "react-router-dom";
+import React,{useState,useEffect} from "react";
 
 // components
 
-<<<<<<< HEAD:front-end/src/views/Landing.js
-import Navbar from "components/Navbars/AuthNavbar.js";
-import Footer from "components/Footers/Footer.js";
-import FooterSmall from "../components/Footers/FooterSmall.js";
-import MemberService from "../service/memberservice"
-=======
 import Navbar from "../../components/Navbars/AuthNavbar.js";
 import Footer from "../../components/Footers/Footer.js";
->>>>>>> 5fce297864ba7685741f95d1cada067052e2483e:front-end/src/pages/Landing/Landing.js
+import MemberService from "../../utils/service/memberservice"
 
 
 export default function Landing({data}) {
@@ -42,7 +35,7 @@ export default function Landing({data}) {
                             <div className = "w-full lg:w-6/12 px-4 ml-auto mr-auto text-center" >
                                 <div className = "pr-12" >
                                     <h1 className = "text-white font-semibold text-5xl" >Les équipes dans Iteam - $. </h1> 
-                                    <p className = "mt-4 text-lg text-blueGray-200" >Vous pouvez voir ici tous les développeurs chez Iteam - $ avec leur compétences, projets en cours. </p> 
+                                    <p className = "mt-4 text-lg text-blueGray-200" >Vous pouvez voir ici tous les développeurs chez Iteam - $ avec leur point et rang. </p> 
                                 </div> 
                             </div> 
                         </div> 

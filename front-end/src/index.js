@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import ReactDOM from "react-dom";
-import { BrowserRouter, Route, Switch,Redirect} from "react-router-dom";
+import { BrowserRouter, Route, Switch} from "react-router-dom";
 
 
 import "@fortawesome/fontawesome-free/css/all.min.css";
