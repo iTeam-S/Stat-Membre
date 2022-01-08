@@ -35,18 +35,18 @@ export default function CardBarChart() {
       type: "bar",
       data: {
         labels: [
-          "January",
-          "February",
-          "March",
-          "April",
-          "May",
-          "June",
-          "July",
-          "August",
-          "September",
-          "October",
-          "November",
-          "December"
+          "Janvier",
+          "Fevrier",
+          "Mars",
+          "Avril",
+          "Mai",
+          "Juin",
+          "Jullet",
+          "Août",
+          "Septembre",
+          "Octobre",
+          "Novembre",
+          "Decembre"
         ],
         datasets: [
           {

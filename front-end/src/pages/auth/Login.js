@@ -1,7 +1,12 @@
 import React,{useState} from "react";
 import {useHistory} from "react-router";
-import { isEmail } from "validator";
 import {AuthService} from "../../utils/service/authservice"
+import Form from "react-validation/build/input";
+import Input from "react-validation/build/input";
+import CheckButton from "react-validation/build/button";
+
+import { isEmail } from "validator";
+
 
 // components
 
@@ -13,8 +18,7 @@ export default function Login() {
     let history=useHistory()
     const [email,setEmail]=useState("");
     const [password,setPassword]=useState("");
-    const [message,setMessage]=useState("");
-    const [successfull,setSuccessfull]=useState(true);
+    const [errer,setErrer]=useState(false);
   
     const handleSignin=()=>{
         try {
@@ -29,21 +33,14 @@ export default function Login() {
                 },
               );
         } catch (error) {
-          const resMessage=(
-            error.response &&
-            error.response.data &&
-            error.response.data.message) ||
-            error.message ||
-            error.toString();
-            setSuccessfull(false);
-            setMessage(resMessage);
+          setErrer(true)
         }
     }
 
     const required = value => {
         if (!value) {
           return (
-            <div className="bg-red-500 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
+            <div className="bg-red-500 italic border border-red-400 text-white px-4 py-3 rounded relative" role="alert">
               This field is required!
             </div>
           );
@@ -53,7 +50,7 @@ export default function Login() {
       const mail = value => {
         if (!isEmail(value)) {
           return (
-            <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
+            <div className="bg-red-500 italic border border-red-400 text-white px-4 py-3 rounded relative" role="alert">
               This is not a valid email.
             </div>
           );
@@ -83,34 +80,25 @@ export default function Login() {
                                 <hr className = "mt-6 border-b-1 border-blueGray-300" />
                             </div> 
                             <div className = "flex-auto px-4 lg:px-10 py-10 pt-0" >
-                                <form>
+                                <Form>
                                     <div className = "relative w-full mb-3" >
                                         <label className = "block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlFor = "mail" >Email </label> 
-                                        <input type = "email" id="mail" value={email} onChange={e=>setEmail(e.target.value)} className = "border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150" validations={[required, mail]} placeholder = "Email" />
+                                        <Input type = "email" id="mail" value={email} onChange={e=>setEmail(e.target.value)} className = "border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150" validations={[required, mail]} placeholder = "Email" />
                                     </div>
 
                                     <div className = "relative w-full mb-3" >
                                         <label className = "block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlFor = "pass" >Password </label> 
-                                        <input type = "password" id="pass" value={password} onChange={e=>setPassword(e.target.value)} className = "border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150" validations={[required, mail]} placeholder = "Password" />
+                                        <Input type = "password" id="pass" value={password} onChange={e=>setPassword(e.target.value)} className = "border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150" validations={[required]} placeholder = "Password" />
                                     </div> 
                                     <div>
                                         <label className = "inline-flex items-center cursor-pointer" >
-                                        <input id = "customCheckLogin" type = "checkbox" className = "form-checkbox border-0 rounded text-blueGray-700 ml-1 w-5 h-5 ease-linear transition-all duration-150" /><span className = "ml-2 text-sm font-semibold text-blueGray-600" >Remember me </span> </label> 
+                                        <Input id = "customCheckLogin" type = "checkbox" className = "form-checkbox border-0 rounded text-blueGray-700 ml-1 w-5 h-5 ease-linear transition-all duration-150" /><span className = "ml-2 text-sm font-semibold text-blueGray-600" >Remember me </span> </label> 
                                     </div>
 
                                     <div className = "text-center mt-6" >
-                                        <button onClick={handleSignin} className = "bg-blueGray-800 text-white active:bg-blueGray-600 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full ease-linear transition-all duration-150" type = "button" >Sign In </button> 
+                                        <CheckButton onClick={handleSignin} className = "bg-blueGray-800 text-white active:bg-blueGray-600 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full ease-linear transition-all duration-150" type = "button" >Sign In </CheckButton> 
                                     </div> 
-                                    {!message ==="" && (
-                                    <div class="bg-red-500 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
-                                      <strong class="font-bold">Errer!</strong>
-                                          <span class="block sm:inline bg-red-500 text-white">{message}</span>
-                                          <span class="absolute top-0 bottom-0 right-0 px-4 py-3">
-                                        <svg class="fill-current h-2 w-2 text-white" role="button" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><title>Close</title><path d="M14.348 14.849a1.2 1.2 0 0 1-1.697 0L10 11.819l-2.651 3.029a1.2 1.2 0 1 1-1.697-1.697l2.758-3.15-2.759-3.152a1.2 1.2 0 1 1 1.697-1.697L10 8.183l2.651-3.031a1.2 1.2 0 1 1 1.697 1.697l-2.758 3.152 2.758 3.15a1.2 1.2 0 0 1 0 1.698z"/></svg>
-                                      </span>
-                                    </div>
-                                    )}
-                                </form> 
+                                </Form> 
                             </div> 
                         </div> 
                         <div className = "flex flex-wrap mt-6 relative" >
@@ -124,24 +112,15 @@ export default function Login() {
                     </div> 
                 </div> 
             </div>
-            {message && !successfull &&(
-          <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
+            {errer &&(
+          <div class="bg-red-300 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
             <strong class="font-bold">Errer!</strong>
-                <span class="block sm:inline">{message}</span>
+                <span class="block sm:inline">Verifiez votre mail ou votre mot de passe</span>
                 <span class="absolute top-0 bottom-0 right-0 px-4 py-3">
-              <svg class="fill-current h-6 w-6 text-red-500" role="button" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><title>Close</title><path d="M14.348 14.849a1.2 1.2 0 0 1-1.697 0L10 11.819l-2.651 3.029a1.2 1.2 0 1 1-1.697-1.697l2.758-3.15-2.759-3.152a1.2 1.2 0 1 1 1.697-1.697L10 8.183l2.651-3.031a1.2 1.2 0 1 1 1.697 1.697l-2.758 3.152 2.758 3.15a1.2 1.2 0 0 1 0 1.698z"/></svg>
+              <svg onClick={()=>{setErrer(false)}}class="fill-current h-12 w-12 text-red-500" role="button" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><title>Close</title><path d="M14.348 14.849a1.2 1.2 0 0 1-1.697 0L10 11.819l-2.651 3.029a1.2 1.2 0 1 1-1.697-1.697l2.758-3.15-2.759-3.152a1.2 1.2 0 1 1 1.697-1.697L10 8.183l2.651-3.031a1.2 1.2 0 1 1 1.697 1.697l-2.758 3.152 2.758 3.15a1.2 1.2 0 0 1 0 1.698z"/></svg>
             </span>
           </div>
           )};
-          {message && successfull &&(
-              <div class="bg-teal-100 border-t-4 border-teal-500 rounded-b text-teal-900 px-4 py-3 shadow-md" role="alert">
-                <div class="flex">
-                  <div>
-                    <p class="text-sm">{message}</p>
-                  </div>
-                </div>
-              </div>
-          )}
           <FooterSmall absolute />
         </section>
       </main>

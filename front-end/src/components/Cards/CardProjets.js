@@ -24,50 +24,22 @@ export default function CardProjets(props) {
      } 
      fetchData();
    },[])
-   const deleteHandle=async (id)=>{
-     try {
-       await ProjectAxios.delete(`/delete/${id}`);
-       setProjects(projects.filter(project=>{
-         return project.id !==id
-       })) 
-     } catch (error) {
-      console.log(error) 
-     }
-     
-   };
-   const handleUpdate = (id)=>{
-    history.push(`/admin/project/${id}/update`)
-    
-  };
-  const handleValide =async (id)=>{
-    let current=new Date()
-    let datvalid=`${current.getFullYear()}-${current.getMonth()+1}-${current.getDate()}}`;
-    try {
-      const validateProject=await ProjectAxios.put(`/valide/${id}`,{
-        valide:"true"
-      });
-      window.location.reload();
-    } catch (error) {
-      console.log(error);
-      
-    }
-    
-  }
+   
   return (
     <>
-      <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded">
+      <h3 className="text-3xl font-semibold text-center text-blueGray-600">
+            Tous nos projets
+      </h3>
+      <div className="relative flex flex-col min-w-0 break-words bg-teal-700 w-full mt-6 mb-6 shadow-lg rounded">
         <div className="rounded-t mb-0 px-4 py-3 border-0">
           <div className="flex flex-wrap items-center">
             <div className="relative w-full px-4 max-w-full flex-grow flex-1">
-              <h3 className="font-semibold text-base text-center text-blueGray-700">
-                Nos projets
-              </h3>
             </div>
           </div>
           <div className=".border-current">
             <form className="md:flex hidden flex-row flex-wrap items-center lg:ml-auto mr-3">
               <div className="relative flex w-full flex-wrap items-stretch">
-                <span className="z-10 h-full leading-snug font-normal absolute text-center text-blueGray-300  bg-transparent rounded text-base items-center justify-center w-8 pl-3 py-3">
+                <span className="z-10 h-full leading-snug font-normal absolute text-center text-white  bg-transparent rounded text-base items-center justify-center w-8 pl-3 py-3">
                   <i className="fas fa-search"></i>
                 </span>
                 <input
@@ -101,16 +73,34 @@ export default function CardProjets(props) {
             <tbody>
             {projects.map((project)=>( 
               <tr  key={project.id} >
-                <th className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left">
+                <th className="text-white border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left">
                 {project.nom}
                 </th>
-                <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                {project.total_participant}
-                </td>
-                <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                <td className = "border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4" >
+                                    <div className="flex container">
+                                      <div className="relative z-0">
+                                      <img src = { require("assets/img/team-1-800x800.jpg").default } alt = "..."
+                                              className = "w-10 h-10 rounded-full  border-2 border-blueGray-50 shadow"/>
+                                      </div>
+                                      <div className="relative z-10">
+                                      <img src = { require("assets/img/team-1-800x800.jpg").default } alt = "..."
+                                              className = "w-10 h-10 rounded-full  border-2 border-blueGray-50 shadow"/>
+                                      </div>
+                                      <div className="relative z-10">
+                                      <img src = { require("assets/img/team-1-800x800.jpg").default } alt = "..."
+                                              className = "w-10 h-10 rounded-full  border-2 border-blueGray-50 shadow"/>
+                                      </div>
+                                      <div className="relative z-10">
+                                      <img src = { require("assets/img/team-1-800x800.jpg").default } alt = "..."
+                                              className = "w-10 h-10 rounded-full  border-2 border-blueGray-50 shadow"/>
+                                      </div>
+                                    </div>
+  
+                  </td> 
+                <td className="text-white border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
                 {project.total_point}
                 </td>
-                <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                <td className="text-white border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
                   <i className="fas fa-arrow-up text-emerald-500 mr-4"></i>
                   {project.valide ? "100%":"En cours"}
                 </td>

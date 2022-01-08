@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router";
+import moment from "moment";
 
 
 import TableDropdown from "../../components/Dropdowns/TableDropdown";
@@ -9,6 +10,24 @@ import {MemberAxios} from "../../utils/apis/Stat";
 export default function MemberProject() {
     const membername=useParams()
     const [membersprojects,setMembersProjects]=useState([]);
+    
+    const ChangeAvance=(del,datecree)=>{
+        const tavance=100/(del*30)
+        let ava=tavance
+        let cdate=new Date()
+        let bef=new Date(`${datecree}`)
+        let dat1=`${bef.getFullYear()}-${bef.getMonth()+1}-${bef.getDate()}`
+        let cur=`${cdate.getFullYear()}-${cdate.getMonth()+1}-${cdate.getDate()}`
+        if(moment(`${dat1}`).isBefore(`${cur}`)){
+            if(ava<96){
+                ava+=tavance
+            }else{
+                return 
+            }  
+        dat1=cur
+        }
+        return ava
+    }
     useEffect(()=>{
         async function fetchdata(){
             const MemberProject=await MemberAxios.get(`/${membername.membername}/allproject`);
@@ -17,6 +36,7 @@ export default function MemberProject() {
         fetchdata();
         
     },[]);
+    console.log(ChangeAvance(5,"2022-01-07T23:00:00.000Z"));
     return ( 
         <>
             <div className="container mx-auto">
@@ -48,25 +68,22 @@ export default function MemberProject() {
                                     <th className = "border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left flex items-center" >
                                         <img src = { require("../../assets/img/projetic.png").default } className = "h-12 w-12 bg-white rounded-full border" alt = "..." ></img>{" "} 
                                         <span className = 
-                                                "ml-2 font-bold text-lightBlue-300" >{mproject.nom_project} </span> 
+                                                "text-2xl ml-2 font-bold text-emerald-500 " >{mproject.nom_project} </span> 
                                     </th> 
-                                    <td className = "border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4" >
-                                        <i className = "fas fa-circle text-orange-500 mr-2" > {mproject.total_point} </i> 
+                                    <td className = "text-emerald-500  text-2xl  border-t-0 px-6 align-middle border-l-0 border-r-0  whitespace-nowrap p-4" >
+                                        {mproject.point}
                                     </td>  
                                     <td className = "border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4" >
                                         <div className = "flex items-center" >
-                                            <span className = "mr-2 text-lightBlue-300" > 60 % </span> 
+                                            <span className = "text-2xl mr-2 text-lightBlue-300" > {Math.round(ChangeAvance(mproject.delai,mproject.creation_date,mproject.nom_project))} %</span>
                                             <div className = "relative w-full" >
                                                 <div className = "overflow-hidden h-2 text-xs flex rounded bg-red-200" >
                                                     <div style = {
-                                                            { width: "60%" } }className = "shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-red-500" >
-                                                    </div> 
+                                                            { width: `${Math.round(ChangeAvance(mproject.delai,mproject.creation_date,mproject.nom_project))}%`} }className = "shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-teal-700" >
+                                                    </div>
                                                 </div> 
                                             </div> 
                                         </div> 
-                                    </td> 
-                                    <td className = "border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-right" >
-                                        <TableDropdown/>
                                     </td> 
                                 </tr> 
                                 ))}

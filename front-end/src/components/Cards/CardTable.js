@@ -62,6 +62,14 @@ export default function CardTable({ color }) {
                                     <div className = "flex" >
                                         <img src = { require("assets/img/team-1-800x800.jpg").default } alt = "..."
                                             className = "w-10 h-10 rounded-full border-2 border-blueGray-50 shadow"/>
+                                        <img src = { require("assets/img/team-1-800x800.jpg").default } alt = "..."
+                                            className = "w-10 h-10 rounded-full border-2 border-blueGray-50 shadow"/>
+                                        <img src = { require("assets/img/team-1-800x800.jpg").default } alt = "..."
+                                            className = "w-10 h-10 rounded-full border-2 border-blueGray-50 shadow"/>
+                                        <img src = { require("assets/img/team-1-800x800.jpg").default } alt = "..."
+                                            className = "w-10 h-10 rounded-full border-2 border-blueGray-50 shadow"/>
+                                        <img src = { require("assets/img/team-1-800x800.jpg").default } alt = "..."
+                                            className = "w-10 h-10 rounded-full border-2 border-blueGray-50 shadow"/>
                                     </div> 
                                 </td> 
                                 <td className = "border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4" >

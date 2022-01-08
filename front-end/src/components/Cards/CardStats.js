@@ -1,5 +1,6 @@
-import React from "react";
+import React,{useState,useEffect} from "react"; 
 import PropTypes from "prop-types";
+
 
 export default function CardStats({
   statSubtitle,
@@ -11,6 +12,9 @@ export default function CardStats({
   statIconName,
   statIconColor,
 }) {
+  
+
+
   return (
     <>
       <div className="relative flex flex-col min-w-0 break-words bg-white rounded mb-6 xl:mb-0 shadow-lg">

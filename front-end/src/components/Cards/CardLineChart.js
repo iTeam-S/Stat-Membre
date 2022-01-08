@@ -39,18 +39,18 @@ export default function CardLineChart() {
       type: "line",
       data: {
         labels:[
-          "January",
-          "February",
-          "March",
-          "April",
-          "May",
-          "June",
-          "July",
-          "August",
-          "September",
-          "October",
-          "November",
-          "December"
+          "Janvier",
+          "Fevrier",
+          "Mars",
+          "Avril",
+          "Mai",
+          "Juin",
+          "Jullet",
+          "Août",
+          "Septembre",
+          "Octobre",
+          "Novembre",
+          "Decembre"
 
         ],
         datasets: [
@@ -143,7 +143,7 @@ export default function CardLineChart() {
   
   return (
     <>
-      <div className="relative flex flex-col min-w-0 break-words w-full  shadow-lg rounded bg-emerald-500">
+      <div className="relative flex flex-col min-w-0 break-words w-full  shadow-lg rounded bg-teal-700">
         <div className="rounded-t mb-0 px-4 py-3 bg-transparent">
           <div className="flex flex-wrap items-center">
             <div className="relative w-full max-w-full flex-grow flex-1">
