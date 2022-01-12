@@ -18,6 +18,9 @@ import CardTable from "../../components/Cards/CardTable";
 
 
 export default function Index() {
+    window.onbeforeunload = function () {
+        window.scrollTo(0, 0);
+      }
    
     return ( 
         <>
@@ -133,7 +136,7 @@ export default function Index() {
                     </div> 
                 </div> 
 
-
+            <section name="stat">
             <div className="mx-1/20">
                 <div className="container overflow-hidden pb-20 mt-32">
                         <h3 className="text-center text-3xl font-semibold text-blueGray-600">
@@ -154,12 +157,17 @@ export default function Index() {
                         </div>
                 </div>
             </div>
-            <div  className="mx-1/4">
-                <CardProjets />
-            </div>
+            </section>
+            <section name="projet">
+                <div  className="mx-1/4">
+                    <CardProjets />
+                </div>
+            </section>
+            <section name="top5">
             <div>
                 <Topfive />
             </div>
+            </section>
             </section>
             <Footer/>
         </>

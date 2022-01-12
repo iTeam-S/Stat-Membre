@@ -105,6 +105,14 @@ export default function Sidebar() {
                             </li>
                             <li className = "items-center" >
                                 <Link className = "text-blueGray-700 hover:text-blueGray-500 text-xs  py-3 font-bold block"
+                                to = "/views/public/mproject" >
+                                <i className = "fas fa-user-friends text-blueGray-400 mr-2 text-sm" > </i>{" "}
+                                    Participants d'un projet
+                                </Link> 
+
+                            </li>
+                            <li className = "items-center" >
+                                <Link className = "text-blueGray-700 hover:text-blueGray-500 text-xs  py-3 font-bold block"
                                 to = "/views/public/projets" >
                                 <i className = "fas fa-table text-blueGray-400 mr-2 text-sm" > </i>{" "}
                                     Tous les projets
@@ -121,7 +129,7 @@ export default function Sidebar() {
                             <li className = "items-center" >
                                 <Link className = "text-blueGray-700 hover:text-blueGray-500 text-xs  py-3 font-bold block"
                                 to = "/admin/member/addmember">
-                                <i className = "fas fa-users text-blueGray-400 mr-2 text-sm" > </i>{" "}
+                                <i className = "fas fa-user-plus text-blueGray-400 mr-2 text-sm" > </i>{" "}
                                     Add member on project
                                 </Link> 
                             </li>

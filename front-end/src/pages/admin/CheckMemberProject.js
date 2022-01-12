@@ -8,7 +8,7 @@ export default function CheckMemberProject() {
         e.preventDefault()
         try {
             setMembername(membername);
-            await history.push(`/admin/member/${membername}/allproject`);  
+            await history.push(`/admin/member/${membername}/allproject`);
         } catch (error) {
             console.log(error);
             

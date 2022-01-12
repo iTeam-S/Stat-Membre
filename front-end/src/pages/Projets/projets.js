@@ -32,7 +32,8 @@ export default function Project(){
                      ></div>
                     <section>
                     <div className="block relative z-1  pb-48">
-                    <div className = "py-4 rounded-lg ml-5 flex flex-wrap  container mx-auto pl-48 h-full border-blueGray-50" >
+                    <div className = "bg-gray-400 py-4 rounded-lg ml-5 flex flex-wrap  container mx-auto px-1/100 h-full border-blueGray-50" >
+                    <h1 className=" mx-2/5 pt-8 italic font-semibold">Voici Nos projets</h1>
                     {projets.map((project)=>(
                         <div key={project.id} className = "flex  flex-wrap" >
                             <div className = "w-full lg:w-12/12 px-4  mt-12" >
@@ -41,7 +42,7 @@ export default function Project(){
                                         <div class="w-full rounded overflow-hidden shadow-lg">
                                             <img class="w-full" src={project.pdc ? project.pdc:require("assets/img/projet_fond.jpeg").default} alt="project" />
                                             <div class="px-6 py-4">
-                                                <div class="font-bold text-xl mb-2 text-teal-500">{project.nom}</div>
+                                                <div class="font-bold text-xl mb-2 text-white">{project.nom}</div>
                                             </div>
                                             <div className="w-full"> 
                                                 <table className="w-full bg-transparent border-collapse">

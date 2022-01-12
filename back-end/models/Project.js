@@ -113,7 +113,7 @@ module.exports = {
     },
     getOneProjectWithPart:(projectname)=>{
         return new Promise((resolve,reject)=>{
-            db.query("SELECT members.id,members.nom as nom_participant, members.prenom as prenom_participant,members.pdc as pdc_participant,members.fonction as fonction_participant,members.point_experience,project.nom as Nom_project,project.repos as Repos_project,project.delai as Delai_project FROM members LEFT JOIN project_member ON members.id=project_member.id_member LEFT JOIN project ON project.id=project_member.id_project WHERE project.nom=$1",[projectname],function(err,resultat){
+            db.query("SELECT members.id,members.nom as nom_participant, members.prenom as prenom_participant,members.pdc as pdc_participant,members.point_experience,members.nombre_projet,project.nom as Nom_project FROM members LEFT JOIN project_member ON members.id=project_member.id_member LEFT JOIN project ON project.id=project_member.id_project WHERE project.nom=$1",[projectname],function(err,resultat){
                 if(err){
                     reject(new Error("Errer resource while fetching project"));
                 }else{

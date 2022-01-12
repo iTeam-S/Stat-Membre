@@ -19,7 +19,7 @@ import UpdateProject from "./pages/layouts/Updateproject";
 import UpdateMember from "./pages/layouts/Addmember";
 import MemberProject from "./pages/layouts/MemberProject";
 import DeleteProjectMember from "./pages/layouts/DeleteProjectMember";
-import ProjectMember from "./pages/layouts/ProjectMember";
+import ProjectMember from "./pages/admin/ProjectMember";
 import {AuthService} from "./utils/service/authservice";
 import MemberList from "./pages/Members/Members";
 import Topfive from "./pages/Topfive/TopFive";
@@ -89,6 +89,9 @@ const App = () => {
                               <Route path="/" exact>
                                   <Index data={project}/>
                               </Route>
+                              <Route exact path="/public/project/:nom/mproject">
+                                  <ProjectMember/>
+                              </Route>
                               <Route path="/landing" exact>
                                   <Landing data={member}/>
                               </Route>
@@ -131,9 +134,7 @@ const App = () => {
                               <AdminRoute exact path="/admin/delete/projectmember">
                                   <DeleteProjectMember/>
                               </AdminRoute>
-                              <AdminRoute exact path="/admin/project/:projectname">
-                                  <ProjectMember/>
-                              </AdminRoute>
+                              
                           </Switch>
                       </BrowserRouter>
                     </MemberContextProvider>

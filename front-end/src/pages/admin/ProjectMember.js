@@ -1,8 +1,8 @@
 import React,{useState,useEffect} from "react";
 import {useParams} from "react-router"
-
-
-
+import ProjectService from "../../utils/service/projectservice"
+import Navbar from "../../components/Navbars/AuthNavbar";
+import FooterSmall from "../../components/Footers/FooterSmall.js";
 
 
 import {ProjectAxios} from "../../utils/apis/Stat";
@@ -10,44 +10,66 @@ import {ProjectAxios} from "../../utils/apis/Stat";
 
 export default function ProjectMember(){
     const nom=useParams()
+    console.log(nom);
     const [pmembers,setPmembers]=useState([]);
     useEffect(()=>{
             async function fetchdata(){
-            const response=await ProjectAxios.get(`/${nom.projectname}/part`);
+            const response=await ProjectService.GetProjectMember(nom.nom);
             setPmembers(response.data)
-            
         }
         fetchdata();
         
     },[]);
-    return ( 
-        <>
-            <div className="container mx-auto">
-                <div className = "relative flex flex-col ml-8 break-words   shadow-lg rounded bg-lightBlue-900 text-white">
-                    <div className = "rounded-t mb-0 px-4 py-3 border-0" >
-                        <div className = "flex flex-wrap items-center" >
-                            <div className = "relative w-full px-4 max-w-full flex-grow flex-1" >
-                                <h3 className = "font-semibold text-lg text-center ">Tous les participants de ce projet
-                                </h3> 
-                                <div className="my-20">
-                                    {pmembers.map((member)=>(
-                                    <div key={member.id} className="mt-8 bg-white w-24 pl-12 rounded-lg sahdow-lg p-12 flex flex-col justify-center items-center">
-                                        <div className="mb-8 mx-16 flex items-center">
-                                            <img className="object-center object-cover rounded-full h-12 w-12" src="https://images.unsplash.com/flagged/photo-1570612861542-284f4c12e75f?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1170&q=80" alt="pdp"/>
-                                        </div>
-                                        <div className="text-center mb-8">
-                                            <h3 className="italic text-xl text-black font-bold mb-2">{member.nom_participant + " "}{member.prenom_participant}</h3>
-                                            <h3 className="text-xl text-black font-bold mb-2">Point actuel: {member.point_experience}</h3>
-                                            <button className="bg-red-500 text-white font-bold py-2 px-4 rounded"> Enlever</button>
-                                        </div>
-                                    </div>
-                                ))}
-                                </div>
-                            </div>
-                        </div> 
-                    </div> 
-                </div>
-            </div>
-        </>
-    );
+    return(
+        <div>
+              <Navbar transparent />
+             <main>
+             <section className="relative w-full h-full py-40 min-h-screen">
+                  <div
+                  className="absolute top-0 w-full h-full bg-blueGray-800 bg-no-repeat bg-ful"
+                  style={{
+                  backgroundImage:
+                       "url(" + require("assets/img/register_bg_2.png").default + ")",
+                  }}
+                  ></div>
+                  <section>
+                  <div className="rounded-lg bg-white mx-1/5 container block relative   pb-48">
+                              <h1 className="mx-2/5 pt-8 italic font-semibold text-orange-500">Les participants du projet {nom.nom}</h1>
+                              <div className = "flex flex-wrap" >
+                              {pmembers.map((member=>(
+                                  <div key={member.id} className = "w-3/5 ml-1/40 mr-1/40 mt-1/2 h-1/2" >
+                                      <div className=" 
+                                      transition ease-in-out delay-150 bg-teal-700  hover:-translate-y-1 hover:scale-110 hover:bg-red-500 duration-150
+                                      w-full  max-w-sm rounded overflow-hidden shadow-lg">
+                                      <img alt = "..." className = "w-full  align-middle border-none shadow-lg" src = {member.pdc_participant?member.pdc_participant:("https://h5ckfun.info/wp-content/uploads/2015/07/MyAvatar.png") }/>
+                                          <div className="px-5 py-4">
+                                              <p className="text-center font-bold text-xl mb-2 text-teal-500">{member.nom_participant}</p>
+                                              <p className="text-center font-bold text-xl mb-2 text-teal-500">{member.prenom_participant}</p>
+                                          </div>
+                                          <div className="w-full">
+                                          <table className="w-full bg-transparent
+                                          border-collapse">
+                                              <thead>
+                                                  <tr>
+                                                      <th className="px-6 bg-zinc-300 align-middle border border-solid border-blueGray-600 text-blueGray-600  py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">Total_point</th>
+                                                      <th className="px-6  bg-orange-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">{member.point_experience}</th>
+                                                  </tr>
+                                                  <tr>
+                                                      <th className="px-6 bg-zinc-300 border-blueGray-600 text-blueGray-600   align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">Total_project</th>
+                                                      <th className="px-6  bg-orange-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">{member.nombre_projet}</th>
+                                                  </tr>
+                                              </thead>
+                                          </table>
+                                          </div>
+                                      </div>
+                                  </div>
+                                  )))}
+                              </div> 
+              </div>
+          </section>      
+             <FooterSmall absolute />
+        </section>
+      </main>
+   </div>
+   )
 }

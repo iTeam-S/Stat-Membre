@@ -1,5 +1,9 @@
 import React,{useState} from "react";
 import {useHistory} from "react-router"
+import {useForm} from "react-hook-form"
+import * as Yup from "yup"
+import { yupResolver } from '@hookform/resolvers/yup';
+import ProjectService from "../../utils/service/projectservice"
 
 
 import {ProjectAxios} from "../../utils/apis/Stat";
@@ -7,19 +11,27 @@ import {ProjectAxios} from "../../utils/apis/Stat";
 
 export default function CheckMemberProject() {
     let history=useHistory()
-    const [membername,setMembername]=useState("");
-    const [projectname,setProjectname]=useState("");
+    const [errer,setErrer]=useState(false)
+  const validationSchema = Yup.object().shape({
+    membername: Yup.string()
+      .required('Nom du membre obligatoire'),
+   projectname: Yup.string()
+      .required('Nom du projet obligatoire')
+  });
+  const {
+    register,
+    handleSubmit,
+    formState: { errors }
+  } = useForm({
+    resolver: yupResolver(validationSchema)
+  });
     
 
    
-    const DeleteHandle=async(e)=>{
-        e.preventDefault()
+    const DeleteHandle=async(data)=>{
         try {
-            await ProjectAxios.post('/remove',{
-                membername,
-                projectname
-            });
-            await history.push("/admin/dashboard");
+            await ProjectService.DeleteMember(data.membername,data.projectname) 
+            history.push("/admin/dashboard");
             
         } catch (error) {
             console.log(error);
@@ -40,20 +52,24 @@ export default function CheckMemberProject() {
                                     <hr className = "mt-6 border-b-1 border-blueGray-300" />
                                 </div> 
                                 <div className = "flex-auto px-4 lg:px-10 py-10 pt-0" >
-                                    <form>
+                                    <form onSubmit={handleSubmit(DeleteHandle)}>
                                         <div className = "relative w-full mb-3" >
                                             <label className = "block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlFor = "projectname" >Nom du projet</label> 
-                                            <input type = "text" id="projectname" value={projectname} onChange={(e)=>setProjectname(e.target.value)} className = "border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"placeholder = "nom du projet" />
+                                            <input type = "text" id="projectname" name="projectname"  {...register('projectname')}className = "border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"placeholder = "nom du projet" />
+                                            <p className="text-red-500 italic">{errors.projectname?.message}</p>
+
                                         </div>
     
                                         <div className = "relative w-full mb-3" >
                                             <label className = "block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlFor = "membername" >Nom du membre </label> 
-                                            <input type = "text" id="membername" value={membername} onChange={e =>setMembername(e.target.value)} className = "border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150" placeholder = "github"/>
+                                            <input type = "text" id="membername" name="membername" {...register('membername')} className = "border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150" placeholder = "github"/>
+                                            <p className="text-red-500 italic">{errors.membername?.message}</p>
+
                                         </div>
                         
     
                                         <div className = "text-center mt-6" >
-                                            <button onClick={DeleteHandle} className = "bg-blueGray-800 text-white active:bg-blueGray-600 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full ease-linear transition-all duration-150" type = "button" >Remove member </button> 
+                                            <input  type="submit" className = "bg-blueGray-800 text-white active:bg-blueGray-600 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full ease-linear transition-all duration-150" value="Remove Member"/> 
                                         </div> 
                                     </form> 
                                 </div> 

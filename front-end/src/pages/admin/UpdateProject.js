@@ -1,4 +1,5 @@
 import {useEffect,useState} from "react"
+import ProjectService from "../../utils/service/projectservice"
 
 
 import { useParams } from "react-router";
@@ -44,18 +45,8 @@ export default function UpdateProject() {
     const handleSubmit=async (e)=>{
         e.preventDefault();
         try {
-            await CritereAxios.put(`/update/${id}`,{
-                difficulte,
-                deadline,
-                impact,
-                implication,
-                point_git
-            });
-            await ProjectAxios.put(`/update/${id}`,{
-                nom,
-                repos,
-                delai
-            })
+            await ProjectService.UpdateCritere(difficulte,deadline,impact,implication,point_git,id)
+            await ProjectService.UpdateProject(nom,repos,delai,id);
             
         } catch (error) {
             console.log(error);

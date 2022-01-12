@@ -1,7 +1,7 @@
 {
   "name": "backend",
   "version": "1.0.0",
-  "description": "",
+  "description": "Ce repo contient le code de l'API pour le projet stat-Membre------------------------",
   "main": "server.js",
   "scripts": {
     "start": "nodemon server.js"

@@ -32,9 +32,9 @@ export default function Topfive(){
                         Top 5 de la communauté
                     </h3>
                     <div className="text-center mt-5 text-pulse-500 font-semibold">
-                        <Link to="/landing">Tout voir</Link><span><a href="view/projet.html">
+                        <Link to="/views/public/memberlist">Tout voir</Link><span><a href="view/projet.html">
                         <i className="fa fa-chevron-right"></i></a></span>
-                        </div>
+                    </div>
                     <div className="mx-1/5 w-9/12 rounded-lg mt-5 flex flex-no-wrap bg-white container h-full border-blueGray-50">
                         {first &&(
                         <div className="relative flex flex-col w-1/5 break-words bg-teal-700 rounded mt-1/2  shadow-lg">
