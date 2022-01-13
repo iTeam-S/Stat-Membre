@@ -32,7 +32,7 @@ module.exports = {
 
             /*create project*/
 
-            let project=await mdlsProject.create(nom, repos, delai, dern_id,scoef,valide,date_creation);
+            await mdlsProject.create(nom, repos, delai, dern_id,scoef,valide,date_creation);
 
             res.status(200).send({
                 message: "Project created successfully"
@@ -45,7 +45,7 @@ module.exports = {
         }
 
         } catch (error) {
-            res.status(500).send("Il y 'a une erre sur les données")
+            res.status(500).send("Il y 'a une errer sur les données")
         }
     },
     
@@ -111,6 +111,10 @@ module.exports = {
             let nom_project=req.body.projectname;
 
             let membre = await mdlsProject.checkMember(nom_member);
+            let isExist=await mdlsProject.CheckIfMemberIsOnProject(nom_member,nom_project)
+            if(isExist.rowCount===0){
+            
+
             let project = await mdlsProject.checkProject(nom_project);
             let project_part=await mdlsProject.getProjectTotalParticipants(nom_project);
 
@@ -119,40 +123,37 @@ module.exports = {
             }
 
 
-            let pointAct=await mdlsMember.getPoint(membre.rows[0].id);
-            if(pointAct.rows[0].point_experience == null){
-                pointAct.rows[0].point_experience=0;
-            };
+            
             let TotProject= membre.rows[0].nombre_projet;
             if(TotProject==null){
                 TotProject=0
             }
 
-            let pact=pointAct.rows[0].point_experience;
+            
                      
             let umber=await mdlsProject.addMemberToProject(membre.rows[0].id, project.rows[0].id);
 
             let new_participant=project_part.rows[0].total_participant+1;
 
-            let Pp = await mdlsProject.getOneProjectCritere(project.rows[0].id);
-            let i = Pp.rows[0]
-
-            let scoef = (i.difficulte * 25) + (i.deadline * 10) + (i.impact * 30) + (i.implication * 15) + (i.point_git * 20)
-
-            let new_point=pact+scoef;
+            
             let new_tot_proj=TotProject+1;
 
             await mdlsProject.setParticipant(new_participant,nom_project);
-            await mdlsMember.setPoint(new_point,membre.rows[0].id);
             await mdlsMember.setTotproject(new_tot_proj,membre.rows[0].id)
             
-
             res.status(200).send({
                 message: "Member added on a project successfully"
             })
+        }else{
+            res.status(500).send({
+                message:`Ce membre est déjà dans le projet`
+            });
+        }
            
         } catch (error) {
-            res.status(500).send(error);
+            res.status(500).send({
+                message:"Nom du membre ou nom du projet introuvable"
+            });
 
         }
 
@@ -222,10 +223,42 @@ module.exports = {
             let current=new Date();
             let date_validation=`${current.getFullYear()}-${current.getMonth()+1}-${current.getDate()}`;
             let {valide}=req.body;
-            let validProject=await mdlsProject.valideProject(valide,date_validation,id);
-            res.status(200).send({
-                message:"Project valided successfully"
-            })
+            let isValide=await mdlsProject.CheckProjectIfnotValidedYet(id)
+            if(isValide.rows[0].valide===false){
+            
+                let project_p=await mdlsProject.GetPoint(id)
+                let poit_projet=project_p.rows[0].total_point;
+
+            
+
+
+                let listPart=await mdlsProject.getOneProjectWithPartById(id)
+                let tabpart=listPart.rows
+                
+                for (let index = 0; index < tabpart.length; index++) {
+                    let pointAct=await mdlsMember.getPoint(tabpart[index].id);
+                    
+                    if(pointAct.rows[0].point_experience == null){
+                        pointAct.rows[0].point_experience=0;
+                    };
+                    
+
+                    let newPoint=pointAct.rows[0].point_experience+poit_projet
+                    console.log(tabpart[index].id);
+                    await mdlsMember.setPoint(newPoint,tabpart[index].id)
+                    
+                    
+                }
+                await mdlsProject.valideProject(valide,date_validation,id);
+                res.status(200).send({
+                    message:"Project valided successfully"
+                })
+                
+            }else{
+                res.status(500).send({
+                    message:"Ce projet est déjà validé"
+                })
+            }
             
         } catch (error) {
             res.status(500).send({
@@ -273,26 +306,19 @@ module.exports = {
             }
 
 
-            let pointAct=await mdlsMember.getPoint(membre.rows[0].id);
-            if(pointAct.rows[0].point_experience == null){
-                pointAct.rows[0].point_experience=0;
-            };
-
-            let pact=pointAct.rows[0].point_experience;
                      
             let umber=await mdlsProject.deleteProjectMember(membre.rows[0].id, project.rows[0].id);
+            let new_participant=0
+            if(project_part.rows[0].total_participant>0){
+                new_participant=project_part.rows[0].total_participant-1;
+            }else{
+                new_participant=0
+            }
+            
 
-            let new_participant=project_part.rows[0].total_participant-1;
-
-            let Pp = await mdlsProject.getOneProjectCritere(project.rows[0].id);
-            let i = Pp.rows[0]
-
-            let scoef = (i.difficulte * 25) + (i.deadline * 10) + (i.impact * 30) + (i.implication * 15) + (i.point_git * 20)
-
-            let new_point=pact-scoef;
+            
 
             await mdlsProject.setParticipant(new_participant,nom_project);
-            await mdlsMember.setPoint(new_point,membre.rows[0].id);
             
 
             res.status(200).send({

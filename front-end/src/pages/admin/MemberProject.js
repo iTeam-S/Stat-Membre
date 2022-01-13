@@ -46,7 +46,7 @@ export default function MemberProject() {
                             <div className = "relative w-full px-4 max-w-full flex-grow flex-1" >
                                 <h3 className = 
                                     "font-semibold text-lg " 
-                                    >Projets au quelles le membre participe</h3> 
+                                    >Projets aux quelles le membre participe</h3> 
                             </div> 
                         </div> 
                     </div> 

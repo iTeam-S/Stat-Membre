@@ -8,7 +8,8 @@ module.exports = {
     create:async(req,res)=>{
         try {
             let {nom,prenom,user_github,fonction,pdc,mail,admin}=req.body;
-            await mdlsMember.create(nom,prenom,user_github,fonction,pdc,mail,admin);
+            let point_experience=0
+            await mdlsMember.create(nom,prenom,user_github,fonction,pdc,mail,admin,point_experience);
             res.status(200).send({
                 message:"add member successfully"
             });

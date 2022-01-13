@@ -14,11 +14,11 @@ import Admin from "./pages/layouts/Admin.js";
 import Login from "./pages/auth/Login";
 import AddMember from "./pages/layouts/Addmember";
 import AddProject from "./pages/layouts/Addproject";
-import CheckProject from "./pages/layouts/Checkmproject";
+import CheckProject from "./pages/admin/CheckMemberProject";
 import UpdateProject from "./pages/layouts/Updateproject";
 import UpdateMember from "./pages/layouts/Addmember";
 import MemberProject from "./pages/layouts/MemberProject";
-import DeleteProjectMember from "./pages/layouts/DeleteProjectMember";
+import DeleteProjectMember from "./pages/admin/DeleteProjectMember";
 import ProjectMember from "./pages/admin/ProjectMember";
 import {AuthService} from "./utils/service/authservice";
 import MemberList from "./pages/Members/Members";
@@ -126,13 +126,13 @@ const App = () => {
                                   <UpdateMember/>
                               </AdminRoute>
                               <AdminRoute exact path="/admin/check/checkmemberproject">
-                                  <CheckProject/>
+                                  <CheckProject membre={member}/>
                               </AdminRoute>
                               <AdminRoute exact path="/admin/member/:membername/allproject">
                                   <MemberProject/>
                               </AdminRoute>
                               <AdminRoute exact path="/admin/delete/projectmember">
-                                  <DeleteProjectMember/>
+                                  <DeleteProjectMember membre={member} projet={project}/>
                               </AdminRoute>
                               
                           </Switch>

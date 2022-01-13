@@ -38,6 +38,17 @@ module.exports = {
         })
 
     },
+    CheckIfMemberIsOnProject:(membername,projectname)=>{
+        return new Promise((resolve,reject)=>{
+            db.query("SELECT members.nom, members.prenom FROM members LEFT JOIN project_member ON members.id=project_member.id_member LEFT JOIN project ON project.id=project_member.id_project WHERE members.nom=$1 AND project.nom=$2",[membername,projectname],function(err,result){
+                if(err){
+                    reject(new Error("Errer lors du verification"))
+                }else{
+                    resolve(result)
+                }
+            })
+        })
+    },
     addMemberToProject:(id_m,id_p)=>{
         return new Promise((resolve,reject)=>{
             db.query("INSERT INTO project_member(id_member,id_project) values($1,$2)",[id_m,id_p],function(err,resultat){
@@ -114,6 +125,20 @@ module.exports = {
     getOneProjectWithPart:(projectname)=>{
         return new Promise((resolve,reject)=>{
             db.query("SELECT members.id,members.nom as nom_participant, members.prenom as prenom_participant,members.pdc as pdc_participant,members.point_experience,members.nombre_projet,project.nom as Nom_project FROM members LEFT JOIN project_member ON members.id=project_member.id_member LEFT JOIN project ON project.id=project_member.id_project WHERE project.nom=$1",[projectname],function(err,resultat){
+                if(err){
+                    reject(new Error("Errer resource while fetching project"));
+                }else{
+                  resolve(resultat)
+                }
+
+            });
+
+        })
+
+    },
+    getOneProjectWithPartById:(id)=>{
+        return new Promise((resolve,reject)=>{
+            db.query("SELECT members.id,members.nom as nom_participant, members.prenom as prenom_participant,members.pdc as pdc_participant,members.point_experience,members.nombre_projet,project.nom as Nom_project FROM members LEFT JOIN project_member ON members.id=project_member.id_member LEFT JOIN project ON project.id=project_member.id_project WHERE project.id=$1",[id],function(err,resultat){
                 if(err){
                     reject(new Error("Errer resource while fetching project"));
                 }else{
@@ -217,6 +242,28 @@ module.exports = {
             })
         })
     },
+    GetPoint:(id)=>{
+        return new Promise((resolve,reject)=>{
+            db.query("select total_point from project WHERE id=$1",[id],function(err,result){
+                if(err){
+                    reject(new Error("Error while getting point"))
+                }else{
+                    resolve(result)
+                }
+            })
+        })
+    },
+    CheckProjectIfnotValidedYet:(id)=>{
+       return new Promise((resolve,reject)=>{
+           db.query("SELECT valide FROM project WHERE id=$1",[id],function(err,resultat){
+               if(err){
+                   reject(new Error("Errer lors du verification du projet"))
+               }else{
+                   resolve(resultat)
+               }
+           })
+       })                                                                                                                     
+    },
     deleteProjectMember:(member_id,project_id)=>{
         return new Promise((resolve,reject)=>{
             db.query("DELETE FROM project_member WHERE id_member=$1 AND id_project=$2",[member_id,project_id],(err,resultat)=>{
@@ -227,6 +274,6 @@ module.exports = {
                 }
             })
         })
-    }
+    },
 
 }

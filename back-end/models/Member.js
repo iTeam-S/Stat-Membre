@@ -1,9 +1,9 @@
 const db = require('../service/connect');
 
 module.exports = {
-    create:(nom,prenom,user_github,fonction,pdc,mail,admin)=>{
+    create:(nom,prenom,user_github,fonction,pdc,mail,admin,point_experience)=>{
         return new Promise((resolve, reject) => {
-        db.query("INSERT INTO members(nom,prenom,user_github,fonction,pdc,mail,admin) values($1,$2,$3,$4,$5,$6,$7)",[nom,prenom,user_github,fonction,pdc,mail,admin],function(err,resultat){
+        db.query("INSERT INTO members(nom,prenom,user_github,fonction,pdc,mail,admin,point_experience) values($1,$2,$3,$4,$5,$6,$7,$8)",[nom,prenom,user_github,fonction,pdc,mail,admin,point_experience],function(err,resultat){
             if(err){
                   reject(new Error("Errer resource while fetching membre"));
               }else{
@@ -14,7 +14,7 @@ module.exports = {
     },
     getListMember: () => {
         return new Promise((resolve, reject) => {
-            db.query("SELECT * FROM members WHERE members.point_experience!=0 ORDER BY members.point_experience DESC ", function(err, resultat){
+            db.query("SELECT * FROM members", function(err, resultat){
                 if(err){
                     reject(new Error("Errer resource while fetching membre"));
                 }else{
@@ -86,7 +86,7 @@ module.exports = {
     },
     setPoint:(point,id)=>{
         return new Promise((resolve,reject)=>{
-            db.query("UPDATE members SET point_experience=$1 WHERE members.id=$2",[point,id],(err,resultat)=>{
+            db.query("UPDATE members SET point_experience=$1  WHERE members.id=$2",[point,id],(err,resultat)=>{
                 if(err){
                     reject(new Error("Error while updating member_point"))
                 }else{
@@ -121,7 +121,6 @@ module.exports = {
         })
 
     },
-    
 
     deleteMember:(id)=> {
         return new Promise((resolve, reject) => {
