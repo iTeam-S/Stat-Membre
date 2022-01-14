@@ -1686,6 +1686,7 @@ background-color: rgba(55, 48, 163, var(--tw-bg-opacity));}
 .my-4 {
   margin-top: 1rem;
   margin-bottom: 1rem;
+  
 }
 
 .mx-4 {
@@ -1743,9 +1744,12 @@ background-color: rgba(55, 48, 163, var(--tw-bg-opacity));}
   
 }
 .mx-1\/20{
-  margin-left: 20%;
-  margin-right: 20%;
   
+  
+}
+.mx-1\/50{
+  margin-left: 2%;
+  margin-right: 2%;
 }
 
 
@@ -1767,6 +1771,7 @@ background-color: rgba(55, 48, 163, var(--tw-bg-opacity));}
 
 .mr-1 {
   margin-right: 0.25rem;
+
 }
 
 .mb-1 {
@@ -2022,6 +2027,7 @@ background-color: rgba(55, 48, 163, var(--tw-bg-opacity));}
   outline: 2px solid transparent;
   outline-offset: 2px;
 }
+.duration-300	{transition-duration: 300ms};
 
 .focus\:outline-none:focus {
   outline: 2px solid transparent;
@@ -2780,6 +2786,12 @@ padding-right: 24rem;}
 .duration-150 {
   transition-duration: 150ms;
 }
+.duration-100 {
+  transition-duration: 100ms;
+}
+.duration-60 {
+  transition-duration: 60ms;
+}
 
 @-webkit-keyframes spin {
   to {
@@ -2822,7 +2834,20 @@ padding-right: 24rem;}
     opacity: .5;
   }
 }
+.animate-bounce{
 
+animation: bounce 1s infinite;
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(-25%);
+    animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
+  }
+  50% {
+    transform: translateY(0);
+    animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
+  }
+}
+}
 @-webkit-keyframes bounce {
   0%, 100% {
     -webkit-transform: translateY(-25%);
@@ -3245,6 +3270,7 @@ padding-right: 24rem;}
 
 @media (min-width: 1536px) {
 }
+
 .bg-teal-300	{background-color: rgb(94 234 212)};
 .bg-teal-100	{background-color: rgb(204 251 241)};	
 .bg-teal-200	{background-color: rgb(153 246 228)};

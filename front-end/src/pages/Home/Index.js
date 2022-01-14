@@ -120,22 +120,12 @@ export default function Index() {
                                             <h6 className = "text-xl mb-1 font-semibold" > Automatisation et scripting</h6> 
                                             <p className = "mb-4 text-blueGray-500" >Nous réalisons divers scripts pour vos tâches répétitives  pouvant être automatisés.</p> 
                                         </div> 
-                                    </div> 
-                                    <div className = "relative flex flex-col min-w-0" >
-                                        <div className = "px-4 py-5 flex-auto" >
-                                            <div className = "text-blueGray-500 p-3 text-center inline-flex items-center justify-center w-12 h-12 mb-5 shadow-lg rounded-full bg-white" >
-                                                <i className = "fas fa-file-alt" > </i> 
-                                            </div> 
-                                            <h6 className = "text-xl mb-1 font-semibold" >Others </h6> 
-                                            <p className = "mb-4 text-blueGray-500" >Other projet </p> 
-                                        </div> 
-                                    </div> 
+                                    </div>  
                                 </div>              
                             </div> 
                         </div> 
                     </div> 
                 </div> 
-
             <section name="stat">
             <div className="mx-1/20">
                 <div className="container overflow-hidden pb-20 mt-32">

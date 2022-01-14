@@ -132,16 +132,10 @@ const IndexDropdown = () => {
           Membres
         </span>
         <Link
-          to="/landing"
+          to="/views/public/memberlist"
           className="text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700"
         >
-          Equipes
-        </Link>
-        <Link
-          to="/admin/Settings"
-          className="text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700"
-        >
-          Settings
+          Tous les Membres
         </Link>
       </div>
     </>

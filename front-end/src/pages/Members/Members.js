@@ -19,34 +19,34 @@ export default function MemberList(){
         });
         
     },[])
-     return(
-          <div>
-                <Navbar transparent />
-               <main>
-               <section className="relative w-full h-full py-40 min-h-screen">
-                    <div
-                    className="absolute top-0 w-full h-full bg-blueGray-800 bg-no-repeat bg-ful"
-                    style={{
-                    backgroundImage:
-                         "url(" + require("assets/img/register_bg_2.png").default + ")",
-                    }}
-                    ></div>
-                    <section>
-                    <div className="rounded-lg bg-white mx-1/5 container block relative   pb-48">
-                                <h1 className="mx-2/5 pt-8 italic font-semibold">Voici les membres d-iTEAMS</h1>
-                                <div className = "flex flex-wrap" >
-                                {members.map((member=>(
-                                    <div key={member.id} className = "w-3/5 ml-1/40 mr-1/40 mt-1/2 h-1/2" >
-                                        <div className=" 
-                                        transition ease-in-out delay-150 bg-teal-700  hover:-translate-y-1 hover:scale-110 hover:bg-red-500 duration-150
-                                        w-full  max-w-sm rounded overflow-hidden shadow-lg">
-                                        <img alt = "..." className = "w-full  align-middle border-none shadow-lg" src = {member.pdc?member.pdc:("https://h5ckfun.info/wp-content/uploads/2015/07/MyAvatar.png") }/>
-                                            <div className="px-5 py-4">
+    return(
+        <>
+          <Navbar transparent />
+          <main>
+            <section className="relative w-full h-full py-40 min-h-screen">
+              <div
+                className="absolute top-0 w-full h-full bg-blueGray-800 bg-no-repeat bg-full"
+                style={{
+                  backgroundImage:
+                    "url(" + require("assets/img/register_bg_2.png").default + ")",
+                }}
+              ></div>
+             <section>
+             <div className="block relative z-1  pb-48">
+             <div className = "bg-white py-4 rounded-lg ml-5 flex flex-wrap  container mx-auto px-1/100 h-full border-blueGray-50" >
+                    <h1 className="animate-bounce cursor-pointer rounded-full mx-2/5 text-base mb-8 italic font-semibold bg-teal-700 text-white fas fa-angle-double-down text-center"> Voici les membres d'iTeams</h1>
+             <div className = "mx-1/50  w-full flex flex-wrap" >
+             {members.map((member)=>(
+                     <div key={member.id}  className = "hover:-mt-4  relative flex flex-col min-w-0 break-words mb-6 shadow-lg rounded-lg ease-linear transition-all duration-100 px-3 w-1/4 h-1/2" >
+                            <div className="w-full">
+                                 <div class="w-full rounded overflow-hidden shadow-lg">
+                                     <img class="w-full" src={member.pdc ? member.pdc:require("assets/img/projet_fond.jpeg").default} alt="project" />
+                                     <div className="px-5 py-4">
                                                 <p className="text-center font-bold text-xl mb-2 text-teal-500">{member.nom}</p>
                                                 <p className="text-center font-bold text-xl mb-2 text-teal-500">{member.prenom}</p>
                                             </div>
-                                            <div className="w-full">
-                                            <table className="w-full bg-transparent
+                                     <div className="w-full"> 
+                                     <table className="w-full bg-transparent
                                             border-collapse">
                                                 <thead>
                                                     <tr>
@@ -63,16 +63,18 @@ export default function MemberList(){
                                                     </tr>
                                                 </thead>
                                             </table>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    )))}
-                                </div> 
-                </div>
-            </section>      
-               <FooterSmall absolute />
-          </section>
-        </main>
-     </div>
-     )
+                                     </div>
+                                 </div>
+                                 </div>
+                             </div> 
+             ))}
+             </div> 
+             </div>
+         </div>
+     </section>      
+   <FooterSmall absolute />
+   </section>
+</main>
+</>
+);
 }
