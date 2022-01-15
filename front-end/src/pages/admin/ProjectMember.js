@@ -5,14 +5,14 @@ import Navbar from "../../components/Navbars/AuthNavbar";
 import FooterSmall from "../../components/Footers/FooterSmall.js";
 
 
-import {ProjectAxios} from "../../utils/apis/Stat";
-
 
 export default function ProjectMember(){
     const nom=useParams()
     console.log(nom);
     const [pmembers,setPmembers]=useState([]);
+    
     useEffect(()=>{
+
             async function fetchdata(){
             const response=await ProjectService.GetProjectMember(nom.nom);
             setPmembers(response.data)
@@ -41,10 +41,10 @@ export default function ProjectMember(){
                      <div key={member.id}  className = "hover:-mt-4  relative flex flex-col min-w-0 break-words mb-6 shadow-lg rounded-lg ease-linear transition-all duration-100 px-3 w-1/4 h-1/2" >
                             <div className="w-full">
                                  <div class="w-full rounded overflow-hidden shadow-lg">
-                                     <img class="w-full" src={member.pdc ? member.pdc:require("assets/img/projet_fond.jpeg").default} alt="project" />
+                                     <img class="w-full" src={member.pdc_participant ? member.pdc_participant:require("assets/img/projet_fond.jpeg").default} alt="project" />
                                      <div className="px-5 py-4">
-                                                <p className="text-center font-bold text-xl mb-2 text-teal-500">{member.nom}</p>
-                                                <p className="text-center font-bold text-xl mb-2 text-teal-500">{member.prenom}</p>
+                                                <p className="text-center font-bold text-xl mb-2 text-teal-500">{member.nom_participant}</p>
+                                                <p className="text-center font-bold text-xl mb-2 text-teal-500">{member.prenom_participant}</p>
                                             </div>
                                      <div className="w-full"> 
                                      <table className="w-full bg-transparent

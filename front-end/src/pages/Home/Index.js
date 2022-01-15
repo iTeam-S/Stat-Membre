@@ -127,7 +127,7 @@ export default function Index() {
                     </div> 
                 </div> 
             <section name="stat">
-            <div className="mx-1/20">
+            <div className="mx-1/5">
                 <div className="container overflow-hidden pb-20 mt-32">
                         <h3 className="text-center text-3xl font-semibold text-blueGray-600">
                             Statistique de la communauté
@@ -137,11 +137,11 @@ export default function Index() {
                                 <Simplestat/>
                             </div>
                         </div>
-                        <div className="rounded-lg flex md:flex-no-wrap border-blueGray-50" style={{ margin: '0px 80px'}}>
-                            <div className="w-full pr-4 pt-4">
-                                < CardLineChart/>
+                        <div className="flex flex-wrap">
+                            <div className="w-full xl:w-8/12 mb-12 xl:mb-0 px-4">
+                                <CardLineChart/>
                             </div>
-                            <div className="w-full pt-4">
+                            <div className="w-full xl:w-4/12 px-4">
                                 <CardProduction />
                             </div>
                         </div>

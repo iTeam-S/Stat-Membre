@@ -9,7 +9,6 @@ import {AuthService} from "../../utils/service/authservice";
 const UserDropdown = () => {
     const User=AuthService.getCurrentUser();
     const user_prenom=(!(User===null)) ? User.username:null;
-    console.log(user_prenom);
     
     // dropdown props
     const [dropdownPopoverShow, setDropdownPopoverShow] =useState(false);

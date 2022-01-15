@@ -5,36 +5,47 @@ import { Link } from "react-router-dom";
 
 
 
-import {ProjectAxios} from "../../utils/apis/Stat"
 import { ProjectContext } from "../../utils/context/ProjectContext";
 
-export default function CardProjets(props) {
+export default function CardProjets() {
   let history=useHistory()
-  const [participant,setParticipant]=useState([])
   const {projects,setProjects}=useContext(ProjectContext)
-  const GetParticipant=(nom)=>{
-    ProjectService.GetProjectMember(nom).then(response=>{
-      return response;
-    });
-    
 
-  }
    useEffect(()=>{
      const fetchData=async()=>{
       try {
+        const bla=[]
         const response=await ProjectService.GetAll();
-        setProjects(response.data);
+        for (let index = 0; index < response.data.length; index++) {
+          let proj={}
+          let part=[]
+          proj['id']=response.data[index].id
+          proj['nom_projet']=response.data[index].nom
+          proj['total_point']=response.data[index].total_point
+          await ProjectService.GetProjectMember(response.data[index].nom).then(res=>{
+            for (let i = 0; i < res.data.length; i++) {
+              part.push(res.data[i]);
+              
+            }
+          })
+          proj['participant']=part
+          proj['valide']=response.data[index].valide
+          bla.push(proj)
+        }
+        setProjects(bla);
        } catch (error) {
-         console.log(error);  
+         console.log(error);
        }
      } 
      fetchData();
-   },[])
 
+   },[])
+   console.log(projects);
    const CheckProjectMember=(nom)=>{
     history.push(`/public/project/${nom}/mproject`)
    }
-   console.log(GetParticipant("portfolio"));
+
+
   return (
     <>
       <h3 className="text-3xl font-semibold text-center text-blueGray-600">
@@ -88,15 +99,20 @@ export default function CardProjets(props) {
             {projects.map((project)=>(
               <tr  key={project.id} >
                 <th className="text-white border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left">
-                {project.nom}
+                {project.nom_projet}
                 </th>
-                <td onClick={()=>CheckProjectMember(project.nom)} className = "cursor-pointer  border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4" >   
+                <td onClick={()=>CheckProjectMember(project.nom_projet)} className = "cursor-pointer  border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4" >
+
                           <div className="flex container">
-                            <div className="relative z-0">
-                              <img src = { require("assets/img/team-1-800x800.jpg").default } alt = "..."
-                                              className = "w-10 h-10 rounded-full  border-2 border-blueGray-50 shadow"/>
+                            {project.participant.map((part)=>(
+                            <div key={project.participant.id} className="relative z-0">
+                              <img src={part.pdc_participant ? part.pdc_participant:require("assets/img/team-1-800x800.jpg").default} alt="..."
+                                className = "w-10 h-10 rounded-full  border-2 border-blueGray-50 shadow"/><title>VALIDER</title>
                             </div>
+                            
+                            ))}
                           </div>
+                          
   
                   </td> 
                 <td className="text-white border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">

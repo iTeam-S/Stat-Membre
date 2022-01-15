@@ -1403,6 +1403,8 @@ background-color: rgba(55, 48, 163, var(--tw-bg-opacity));}
 .border-l-0 {
   border-left-width: 0px;
 }
+.from-teal-500	{--tw-gradient-from: #14b8a6;
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgb(20 184 166 / 0))};
 
 .border-t {
   border-top-width: 1px;
@@ -2622,6 +2624,10 @@ padding-right: 24rem;}
   --tw-text-opacity: 1;
   color: rgba(2, 132, 199, var(--tw-text-opacity));
 }
+.hover\:bg-lightBlue-600:hover {
+  --tw-text-opacity: 1;
+  background-color: rgba(2, 132, 199, var(--tw-text-opacity));
+}
 
 .hover\:text-blueGray-300:hover {
   --tw-text-opacity: 1;
@@ -2642,6 +2648,7 @@ padding-right: 24rem;}
   --tw-text-opacity: 1;
   color: rgba(30, 41, 59, var(--tw-text-opacity));
 }
+
 
 .uppercase {
   text-transform: uppercase;
@@ -3270,6 +3277,7 @@ animation: bounce 1s infinite;
 
 @media (min-width: 1536px) {
 }
+
 
 .bg-teal-300	{background-color: rgb(94 234 212)};
 .bg-teal-100	{background-color: rgb(204 251 241)};	

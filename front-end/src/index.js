@@ -39,6 +39,7 @@ import Landing from "./pages/Landing/Landing";
 import Profile from "./pages/Profile/Profile";
 import Index from "./pages/Home/Index";
 import Project from "./pages/Projets/projets";
+import Errorpage from "pages/error/Error";
 
 
 
@@ -98,6 +99,7 @@ const App = () => {
                               <Route path="/profile/:prenom" exact>
                                   <Profile data={member}/>
                               </Route>
+                              
                             
                             {/*User Routes */}
                             
@@ -134,7 +136,9 @@ const App = () => {
                               <AdminRoute exact path="/admin/delete/projectmember">
                                   <DeleteProjectMember membre={member} projet={project}/>
                               </AdminRoute>
-                              
+                              <Route>
+                                    <Errorpage/>
+                              </Route>
                           </Switch>
                       </BrowserRouter>
                     </MemberContextProvider>
