@@ -46,7 +46,7 @@ export default function Simplestat(){
                     statPercent={freqmemberact}
                     statPercentColor="text-emerald-500"
                     statDescripiron="Membres en projets"
-                    statIconName="far fa-chart-bar"
+                    statIconName="fas fa-users"
                     statIconColor="bg-teal-500"
                     />
                </div>
@@ -70,7 +70,7 @@ export default function Simplestat(){
                     statPercent="18"
                     statPercentColor="text-emerald-500"
                     statDescripiron="Depuis l'année dernier"
-                    statIconName="fas fa-users"
+                    statIconName="far fa-chart-bar"
                     statIconColor="bg-orange-500"
                     />
                </div>

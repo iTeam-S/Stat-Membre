@@ -9,6 +9,7 @@ import Simplestat from "../../components/Cards/Statsimple";
 import CardLineChart from "../../components/Cards/CardLineChart.js";
 import CardProduction from "../../components/Cards/CardProduction.js";
 import { Link } from "react-router-dom";
+import {MemberContext} from "../../utils/context/MemberContext"
 
 
 import Topfive from "../Topfive/TopFive";
@@ -21,7 +22,6 @@ export default function Index() {
     window.onbeforeunload = function () {
         window.scrollTo(0, 0);
       }
-   
     return ( 
         <>
             <IndexNavbar fixed/>

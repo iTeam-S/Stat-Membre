@@ -33,7 +33,7 @@ export default function AddMember() {
     const handleAddmember=async(data)=>{
         try {
             const response=await projectservice.addMember(data.membername.toUpperCase(),data.projectname);
-            const red=history.push("/admin/dashboard");
+            history.push("/admin/dashboard");
             addMember(response.data);
             
         } catch (error) {

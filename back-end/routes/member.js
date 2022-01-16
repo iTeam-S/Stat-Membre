@@ -26,6 +26,8 @@ router.get('/getOne/:id',MemberCtrl.getOne);
 
 router.get('/point/gettopfive',MemberCtrl.getTopFive)
 
+router.get('/getpdc/:prenom',MemberCtrl.getPdc)
+
 //Mettre à jour un membre
 router.put('/:id',MemberCtrl.update);
 

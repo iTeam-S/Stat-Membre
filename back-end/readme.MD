@@ -1,4 +1,4 @@
-Ce repo contient le code de l'API pour le projet stat-Membre------------------------
+Ce repos contient le code de l'API pour le projet stat-Membre------------------------
 
 il va de paire donc avec [le front-end](https://github.com/iTeam-S/Stat-Membre/tree/master/front-end).
 
@@ -6,8 +6,22 @@ il va de paire donc avec [le front-end](https://github.com/iTeam-S/Stat-Membre/t
 
 ## Lancer l'API en local
 
-1. Il faut d'abord installez les `nodes_modules`
-2. Faites tourner l'API ensuite avec `npm start`
+1. Il faut d'abord installez les `nodes_modules(npm init) pour tous les autres dependences`
+2.configurez votre connection à la base de donne `dans le dossier service/connect(il est preferable de laisser votre option de configuration dans le .env)`
+3.Tester votre connection
+4.Creer tous les tables `vous pouvez les voir dans database.sql`
+5.Completez les tables `à l'aide des body du chaque requete(à voir dans le readme) et les routes correspondant dans le dossiers routes(pour la table members et users seulement car il y a déjà l'interface avec le front-end)`
+3. Faites tourner l'API ensuite avec `npm start`
+
+
+## Partie front-end
+
+1.installation `node-modules`
+2.Config tailwind `pas tres compliqué`
+3.npm initt `pour l'installation des autres dependances`
+4.puis lancer avec `npm start`
+
+
 
 ## consommer l'API
 
@@ -16,7 +30,7 @@ il va de paire donc avec [le front-end](https://github.com/iTeam-S/Stat-Membre/t
 ## PROJECT:
 
 -La route pour poster un projet
-`POST api/project/create`
+`POST api/v1/project/create`
 
 **\* request body **\*\*\*\*\*:
 {
@@ -27,7 +41,7 @@ il va de paire donc avec [le front-end](https://github.com/iTeam-S/Stat-Membre/t
 }
 
 -La route pour ajouter un membre à un projet
-`POST api/project/addMember`
+`POST api/v1/project/addMember`
 
 **\* request body **\*\*\*\*\*:
 {
@@ -36,34 +50,34 @@ il va de paire donc avec [le front-end](https://github.com/iTeam-S/Stat-Membre/t
 }
 
 -La route pour afficher tous les projets avec leur critere
-`GET api/project/ProjectCritere`
+`GET api/v1/project/ProjectCritere`
 
 -La route pour afficher un projet avec son critere
 
-`GET api/project/onewithcrit/:id`
+`GET api/v1/project/onewithcrit/:id`
 
 -La route pour afficher tous les projets avec les membres qui y participent
-`GET api/project/ProjectMember`
+`GET api/v1/project/ProjectMember`
 
 -La route pour afficher un projet avec les participants
-`GET api/project/onewithpart/:id`
+`GET api/v1/project/onewithpart/:id`
 
 -La route pour afficher un projet sans critere ni participant
-`GET api/project/:id`
+`GET api/v1/project/:id`
 
 -La route pour afficher tous les projet sans critere ni participant
-`GET api/project/All`
+`GET api/v1/project/All`
 
 -La route pour Mettre à jour un projet
-`PUT api/project/:id`
+`PUT api/v1/project/:id`
 
 -La route pour supprimer un projet
-`DELETE api/project/:id`
+`DELETE api/v1/project/:id`
 
 ## Membres:
 
 -La route pour creer un membre
-`POST api/member/create`
+`POST api/v1/member/create`
 **\* request body **\*\*\*\*\*:
 {
 "nom":"nom du membre",
@@ -77,33 +91,33 @@ il va de paire donc avec [le front-end](https://github.com/iTeam-S/Stat-Membre/t
 }
 
 -La route pour afficher tous les membres
-`GET api/member/getAll`
+`GET api/v1/member/getAll`
 
 -La route pour Afficher un membre
-`GET api/member/getOne/:id`
+`GET api/v1/member/getOne/:id`
 
 -La route pour afficher tous les projets aux quelles le membre participent
 
-`GET api/member/allproject/:id`
+`GET api/v1/member/allproject/:id`
 
 -La route pour fetcher tous les projet and member
 
-`GET api/member/allproject`
+`GET api/v1/member/allproject`
 
 -La route pour fetcher les topfive avec leur point
 
-`GET api/member/point/gettopfive`
+`GET api/v1/member/point/gettopfive`
 
 -La route pour Mettre à jour un membre
-`PUT api/member/:id`
+`PUT api/v1/member/:id`
 
 -La route pour pour Supprimer un membre
-`DELETE api/member/:id`
+`DELETE api/v1/member/:id`
 
 ## CRITERE:
 
 -La route pour creer un critere
-`POST api/critere/create`
+`POST api/v1/critere/create`
 
 **\* request body **\*\*\*\*\*:
 {
@@ -116,21 +130,21 @@ il va de paire donc avec [le front-end](https://github.com/iTeam-S/Stat-Membre/t
 }
 
 -La route pour Afficher tous les criteres
-`GET api/critere/All`
+`GET api/v1/critere/All`
 
 -La route pour Affcher un critere
-`GET api/critere/:id`
+`GET api/v1/critere/:id`
 
 -La route pour Mettre à jour un critere
-`PUT api/critere/:id`
+`PUT api/v1/critere/:id`
 
 -La route pour supprimer un critere
-`DELETE api/critere/:id`
+`DELETE api/v1/critere/:id`
 
 ## AUTHENTIFICATION:
 
 -La route pour creer un nouveau compte
-`POST api/auth/signup`
+`POST api/v1/auth/signup`
 
 **\* request body **\*\*\*\*\*:
 {
@@ -141,7 +155,7 @@ il va de paire donc avec [le front-end](https://github.com/iTeam-S/Stat-Membre/t
 }
 
 -La route pour s'authentifier
-`POST api/auth/signin`
+`POST api/v1/auth/signin`
 
 **\* request body **\*\*\*\*\*:
 {

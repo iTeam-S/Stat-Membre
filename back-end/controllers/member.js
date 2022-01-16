@@ -44,6 +44,15 @@ module.exports = {
         }
 
     },
+    getPdc:async(req,res)=>{
+        try {
+            let prenom=req.params.prenom
+            let pdc=await mdlsMember.getByprenom(prenom)
+            res.status(200).send(pdc.rows[0].pdc)
+        } catch (error) {
+            res.status(500).send(error)
+        }
+    },
     getOne: async(req, res) => {
         let id = parseInt(req.params.id)
         console.log(id);

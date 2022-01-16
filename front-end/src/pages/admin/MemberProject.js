@@ -11,23 +11,7 @@ export default function MemberProject() {
     const membername=useParams()
     const [membersprojects,setMembersProjects]=useState([]);
     
-    const ChangeAvance=(del,datecree)=>{
-        const tavance=100/(del*30)
-        let ava=tavance
-        let cdate=new Date()
-        let bef=new Date(`${datecree}`)
-        let dat1=`${bef.getFullYear()}-${bef.getMonth()+1}-${bef.getDate()}`
-        let cur=`${cdate.getFullYear()}-${cdate.getMonth()+1}-${cdate.getDate()}`
-        if(moment(`${dat1}`).isBefore(`${cur}`)){
-            if(ava<96){
-                ava+=tavance
-            }else{
-                return 
-            }  
-        dat1=cur
-        }
-        return ava
-    }
+    
     useEffect(()=>{
         async function fetchdata(){
             const MemberProject=await MemberAxios.get(`/${membername.membername}/allproject`);
@@ -36,7 +20,6 @@ export default function MemberProject() {
         fetchdata();
         
     },[]);
-    console.log(ChangeAvance(5,"2022-01-07T23:00:00.000Z"));
     return ( 
         <>
             <div className="container mx-auto">
@@ -75,14 +58,7 @@ export default function MemberProject() {
                                     </td>  
                                     <td className = "border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4" >
                                         <div className = "flex items-center" >
-                                            <span className = "text-2xl mr-2 text-lightBlue-300" > {Math.round(ChangeAvance(mproject.delai,mproject.creation_date,mproject.nom_project))} %</span>
-                                            <div className = "relative w-full" >
-                                                <div className = "overflow-hidden h-2 text-xs flex rounded bg-red-200" >
-                                                    <div style = {
-                                                            { width: `${Math.round(ChangeAvance(mproject.delai,mproject.creation_date,mproject.nom_project))}%`} }className = "shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-teal-700" >
-                                                    </div>
-                                                </div> 
-                                            </div> 
+                                            <span className = "text-2xl mr-2 text-lightBlue-300" >{mproject.valide?"100%":"En cours"}</span> 
                                         </div> 
                                     </td> 
                                 </tr> 

@@ -1,3 +1,4 @@
+
 CREATE DATABASE iteams;
 
 CREATE TABLE members(
@@ -35,10 +36,7 @@ CREATE TABLE critere(
     implication INTEGER NOT NULL,
     point_git INTEGER NOT NULL
 );
-CREATE TABLE role(
-   id SERIAL PRIMARY KEY,
-    name varchar(255) NOT NULL
-);
+
 
 CREATE TABLE users(
    id SERIAL PRIMARY KEY,
@@ -47,14 +45,7 @@ CREATE TABLE users(
     password varchar(255) NOT NULL,
     role varchar(255) NOT NULL
 );
-CREATE TABLE user_role(
-    id_role INTEGER NOT NULL,
-    id_users INTEGER NOT NULL,
-    PRIMARY KEY (id_role,id_users),
-    FOREIGN KEY (id_role) REFERENCES role(id) ON DELETE CASCADE,
-    FOREIGN KEY (id_users) REFERENCES users(id) ON DELETE CASCADE
 
-);
 
 CREATE TABLE project_member(
     id_member INTEGER NOT NULL,
