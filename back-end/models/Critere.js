@@ -3,7 +3,7 @@ const db = require('../service/connect');
 module.exports = {
     create:(difficulte,deadline,impact,implication,point_git)=>{
         return new Promise((resolve, reject) => {
-        db.query("INSERT INTO critere(difficulte,deadline,impact,implication,point_git) values($1,$2,$3,$4,$5)",[difficulte,deadline,impact,implication,point_git],function(err,resultat){
+        db.query("INSERT INTO critere(difficulte,deadline,impact,implication,point_git) values(?,?,?,?,?)",[difficulte,deadline,impact,implication,point_git],function(err,resultat){
             if(err){
                 reject(new Error("Errer resource while creating critere"));
             }else{
@@ -11,19 +11,6 @@ module.exports = {
             }
         })
     })
-    },
-    checkCritere:(req,res)=>{
-        try {
-            return new Promise((resolve,reject)=>{
-
-            })
-            
-        } catch (error) {
-            res.status(500).send(error)
-            
-        }
-        
-
     },
     getListCritere: () => {
         return new Promise((resolve, reject) => {
@@ -39,7 +26,7 @@ module.exports = {
 
     getOneCritere: (id) => {
         return new Promise((resolve, reject) => {
-            db.query("SELECT * FROM critere WHERE id = $1", [id] , function(err, resultat){
+            db.query("SELECT * FROM critere WHERE id = ?", [id] , function(err, resultat){
                 if(err){
                     reject(new Error("Errer resource while fetching critere "));
                 }else{
@@ -50,7 +37,7 @@ module.exports = {
     },
     updateCritere:(difficulte,deadline,impact,implication,point_git,id)=>{
         return new Promise((resolve,reject)=>{
-            db.query("UPDATE critere SET difficulte=$1,deadline=$2,impact=$3,implication=$4,point_git=$5 WHERE id=$6",[difficulte,deadline,impact,implication,point_git,id],function(err,resultat){
+            db.query("UPDATE critere SET difficulte=?,deadline=?,impact=?,implication=?,point_git=? WHERE id=?",[difficulte,deadline,impact,implication,point_git,id],function(err,resultat){
                 if(err){
                     reject(new Error("Errer resource while updating critere "));
                 }else{
@@ -63,7 +50,7 @@ module.exports = {
     },
     deleteCritere:(id)=>{
         return new Promise((resolve, reject) => {
-            db.query("DELETE  FROM critere WHERE id = $1", [id] , function(err, resultat){
+            db.query("DELETE  FROM critere WHERE id = ?", [id] , function(err, resultat){
                 if(err){
                     reject(new Error("Errer resource while dropping critere "));
                 }else{

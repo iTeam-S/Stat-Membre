@@ -3,7 +3,7 @@ const db = require('../service/connect');
 module.exports = {
     create:(nom,repos,delai,id_critere,total_point,valide,creation_date)=>{
         return new Promise((resolve, reject) => {
-        db.query("INSERT INTO project(nom,repos,delai,id_critere,total_point,valide,creation_date) values($1,$2,$3,$4,$5,$6,$7)",[nom,repos,delai,id_critere,total_point,valide,creation_date],function(err,resultat){
+        db.query("INSERT INTO project(nom,repos,delai,id_critere,total_point,valide,creation_date) values(?,?,?,?,?,?,?)",[nom,repos,delai,id_critere,total_point,valide,creation_date],function(err,resultat){
             if(err){
                 reject(new Error("Errer resource while creating project"));
             }else{
@@ -14,7 +14,7 @@ module.exports = {
     },
     checkProject:(nom_project)=>{
         return new Promise((resolve,reject)=>{ 
-             db.query("SELECT * FROM project where nom=$1",[nom_project],function(err,project){
+             db.query("SELECT * FROM project where nom=?",[nom_project],function(err,project){
                 if(err){
                     reject(new Error("Errer resource while fetching project"));
                 }else{
@@ -27,7 +27,7 @@ module.exports = {
     },
     checkMember:(nom_member)=>{
         return new Promise((resolve,reject)=>{
-            db.query("SELECT * FROM members where nom=$1",[nom_member],function(err,member){
+            db.query("SELECT * FROM members where nom=?",[nom_member],function(err,member){
                 if(err){
                     reject(new Error("Errer resource while fetching project"));
                 }else{
@@ -40,7 +40,7 @@ module.exports = {
     },
     CheckIfMemberIsOnProject:(membername,projectname)=>{
         return new Promise((resolve,reject)=>{
-            db.query("SELECT members.nom, members.prenom FROM members LEFT JOIN project_member ON members.id=project_member.id_member LEFT JOIN project ON project.id=project_member.id_project WHERE members.nom=$1 AND project.nom=$2",[membername,projectname],function(err,result){
+            db.query("SELECT members.nom, members.prenom FROM members LEFT JOIN project_member ON members.id=project_member.id_member LEFT JOIN project ON project.id=project_member.id_project WHERE members.nom=? AND project.nom=?",[membername,projectname],function(err,result){
                 if(err){
                     reject(new Error("Errer lors du verification"))
                 }else{
@@ -51,7 +51,7 @@ module.exports = {
     },
     addMemberToProject:(id_m,id_p)=>{
         return new Promise((resolve,reject)=>{
-            db.query("INSERT INTO project_member(id_member,id_project) values($1,$2)",[id_m,id_p],function(err,resultat){
+            db.query("INSERT INTO project_member(id_member,id_project) values(?,?)",[id_m,id_p],function(err,resultat){
                 if(err){
                     reject(new Error("Errer while adding member to project"));
                 }else{
@@ -113,7 +113,7 @@ module.exports = {
     },
     getProjectTotalParticipants:(nom_project)=>{
         return new Promise((resolve,reject)=>{
-            db.query("SELECT project.total_participant FROM project WHERE project.nom=$1",[nom_project],(err,resultat)=>{
+            db.query("SELECT project.total_participant FROM project WHERE project.nom=?",[nom_project],(err,resultat)=>{
                 if(err){
                     reject(new Error("Errer while fetching project"))
                 }else{
@@ -124,7 +124,7 @@ module.exports = {
     },
     getOneProjectWithPart:(projectname)=>{
         return new Promise((resolve,reject)=>{
-            db.query("SELECT members.id,members.nom as nom_participant, members.prenom as prenom_participant,members.pdc as pdc_participant,members.point_experience,members.nombre_projet,project.nom as Nom_project FROM members LEFT JOIN project_member ON members.id=project_member.id_member LEFT JOIN project ON project.id=project_member.id_project WHERE project.nom=$1",[projectname],function(err,resultat){
+            db.query("SELECT members.id,members.nom as nom_participant, members.prenom as prenom_participant,members.pdc as pdc_participant,members.point_experience,members.nombre_projet,project.nom as Nom_project FROM members LEFT JOIN project_member ON members.id=project_member.id_member LEFT JOIN project ON project.id=project_member.id_project WHERE project.nom=?",[projectname],function(err,resultat){
                 if(err){
                     reject(new Error("Errer resource while fetching project"));
                 }else{
@@ -138,7 +138,7 @@ module.exports = {
     },
     getOneProjectWithPartById:(id)=>{
         return new Promise((resolve,reject)=>{
-            db.query("SELECT members.id,members.nom as nom_participant, members.prenom as prenom_participant,members.pdc as pdc_participant,members.point_experience,members.nombre_projet,project.nom as Nom_project FROM members LEFT JOIN project_member ON members.id=project_member.id_member LEFT JOIN project ON project.id=project_member.id_project WHERE project.id=$1",[id],function(err,resultat){
+            db.query("SELECT members.id,members.nom as nom_participant, members.prenom as prenom_participant,members.pdc as pdc_participant,members.point_experience,members.nombre_projet,project.nom as Nom_project FROM members LEFT JOIN project_member ON members.id=project_member.id_member LEFT JOIN project ON project.id=project_member.id_project WHERE project.id=?",[id],function(err,resultat){
                 if(err){
                     reject(new Error("Errer resource while fetching project"));
                 }else{
@@ -174,7 +174,7 @@ module.exports = {
     },
     getOneProjectCritere:(id)=>{
         return new Promise((resolve, reject) => {
-            db.query("SELECT critere.difficulte,critere.deadline,critere.impact,critere.implication,critere.point_git,project.nom as Project_name,project.repos as Project_repos,project.delai as Project_delai FROM critere LEFT JOIN project ON  critere.id=project.id_critere WHERE project.id=$1",[id], function(err, resultat){
+            db.query("SELECT critere.difficulte,critere.deadline,critere.impact,critere.implication,critere.point_git,project.nom as Project_name,project.repos as Project_repos,project.delai as Project_delai FROM critere LEFT JOIN project ON  critere.id=project.id_critere WHERE project.id=?",[id], function(err, resultat){
                 if(err){
                     reject(new Error("Errer resource while fetching project"));
                 }else{
@@ -185,7 +185,7 @@ module.exports = {
     },
     getOneProject: (id) => {
         return new Promise((resolve, reject) => {
-            db.query("SELECT * FROM project WHERE id = $1", [id] , function(err, resultat){
+            db.query("SELECT * FROM project WHERE id = ?", [id] , function(err, resultat){
                 if(err){
                     reject(new Error("Errer resource while fetching project"));
                 }else{
@@ -196,7 +196,7 @@ module.exports = {
     },
     setParticipant:(nbpart,nom_project)=>{
         return new Promise((resolve,reject)=>{
-            db.query("UPDATE project SET total_participant=$1 WHERE project.nom=$2",[nbpart,nom_project],(err,resultat)=>{
+            db.query("UPDATE project SET total_participant=? WHERE project.nom=?",[nbpart,nom_project],(err,resultat)=>{
                 if(err){
                     reject(new Error("Error while fetching participant"));
                 }else{
@@ -208,7 +208,7 @@ module.exports = {
     },
     updateProject:(nom,repos,delai,id)=>{
         return new Promise((resolve,reject)=>{
-            db.query("UPDATE project SET nom =$1,repos=$2,delai=$3 WHERE id=$4",[nom,repos,delai,id],function(err,resultat){
+            db.query("UPDATE project SET nom =?,repos=?,delai=? WHERE id=?",[nom,repos,delai,id],function(err,resultat){
                 if(err){
                     reject(new Error("Errer resource while updating project"));
                 }else{
@@ -221,7 +221,7 @@ module.exports = {
     },
     valideProject:(valide,date_validation,id)=>{
         return new Promise((resolve,reject)=>{
-            db.query("UPDATE project SET valide=$1,validation_date=$2 WHERE project.id=$3",[valide,date_validation,id],function(err,resultat){
+            db.query("UPDATE project SET valide=?,validation_date=? WHERE project.id=?",[valide,date_validation,id],function(err,resultat){
                 if(err){
                     reject(new Error("Error while insert data")) 
                 }else{
@@ -233,7 +233,7 @@ module.exports = {
     },
     deleteProject:(id)=>{
         return new Promise((resolve, reject) => {
-            db.query("DELETE  FROM project CASCADE WHERE id = $1", [id] , function(err, resultat){
+            db.query("DELETE  FROM project CASCADE WHERE id = ?", [id] , function(err, resultat){
                 if(err){
                     reject(new Error("Errer resource while dropping project"));
                 }else{
@@ -244,7 +244,7 @@ module.exports = {
     },
     GetPoint:(id)=>{
         return new Promise((resolve,reject)=>{
-            db.query("select total_point from project WHERE id=$1",[id],function(err,result){
+            db.query("select total_point from project WHERE id=?",[id],function(err,result){
                 if(err){
                     reject(new Error("Error while getting point"))
                 }else{
@@ -255,7 +255,7 @@ module.exports = {
     },
     CheckProjectIfnotValidedYet:(id)=>{
        return new Promise((resolve,reject)=>{
-           db.query("SELECT valide FROM project WHERE id=$1",[id],function(err,resultat){
+           db.query("SELECT valide FROM project WHERE id=?",[id],function(err,resultat){
                if(err){
                    reject(new Error("Errer lors du verification du projet"))
                }else{
@@ -266,7 +266,7 @@ module.exports = {
     },
     deleteProjectMember:(member_id,project_id)=>{
         return new Promise((resolve,reject)=>{
-            db.query("DELETE FROM project_member WHERE id_member=$1 AND id_project=$2",[member_id,project_id],(err,resultat)=>{
+            db.query("DELETE FROM project_member WHERE id_member=? AND id_project=?",[member_id,project_id],(err,resultat)=>{
                 if(err){
                     reject(new Error("Errer lors du verification du membres du projets"))
                 }else{
