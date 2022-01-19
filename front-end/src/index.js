@@ -28,6 +28,7 @@ import UserRoute from "./pages/private/UserRoutes";
 import {ProjectContextProvider} from "./utils/context/ProjectContext"
 import {MemberContextProvider} from "./utils/context/MemberContext"
 import {CritereContextProvider} from "./utils/context/CritereContext"
+import ValideProjet from "./pages/admin/ValideProject"
 
 
 
@@ -113,7 +114,9 @@ const App = () => {
                               
 
                              {/*Admin routes */}
-
+                            <AdminRoute exact path="/admin/valide/projet">
+                                <ValideProjet/>
+                            </AdminRoute>
                               <AdminRoute exact path="/admin/dashboard">
                                   <Admin membre={member} projet={project}/>:
                               </AdminRoute>

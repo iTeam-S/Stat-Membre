@@ -1,7 +1,7 @@
 
 CREATE DATABASE iteams;
 
-CREATE TABLE members(
+CREATE TABLE membre(
     id int NOT NULL AUTO_INCREMENT,
     nom varchar(255) NOT NULL,
     prenom varchar(255) NOT NULL,
@@ -14,21 +14,33 @@ CREATE TABLE members(
     nombre_projet INTEGER,
     id_critere INTEGER NOT NULL,
     PRIMARY KEY(id)
-)ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+)ENGINE=INNODB DEFAULT CHARSET=utf8mb3;
 
+CREATE TABLE critere_membre(
+    membre int NOT NULL,
+    critere int NOT NULL,
+    PRIMARY KEY (membre,critere),
+    FOREIGN KEY (membre) REFERENCES critere(id) ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY (critere) REFERENCES membre(id) ON DELETE CASCADE ON UPDATE CASCADE,
+    INDEX(membre),
+    INDEX(critere)
 
-CREATE TABLE project(
+)ENGINE=INNODB DEFAULT CHARSET=utf8mb3;
+
+CREATE TABLE projet(
     id int NOT NULL AUTO_INCREMENT,
     nom varchar(255) NOT NULL,
     repos varchar(255) NOT NULL,
     delai INTEGER NOT NULL,
     total_participant INTEGER,
     valide BOOLEAN NOT NULL,
-    creation_date DATE NOT NULL,
-    validation_date DATE,
+    creation_date timestamp NOT NULL,
+    validation_date timestamp NULL DEFAULT NULL,
     PRIMARY KEY(id)
-    
-)ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+
+)ENGINE=INNODB DEFAULT CHARSET=utf8mb3;
+
+
 CREATE TABLE critere(
     id int NOT NULL AUTO_INCREMENT,
     difficulte INTEGER NOT NULL,
@@ -38,7 +50,7 @@ CREATE TABLE critere(
     point_git INTEGER NOT NULL,
     PRIMARY KEY(id)
     
-)ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+)ENGINE=INNODB DEFAULT CHARSET=utf8mb3;
 
 
 CREATE TABLE users(
@@ -48,17 +60,20 @@ CREATE TABLE users(
     password varchar(255) NOT NULL,
     role varchar(255) NOT NULL,
      PRIMARY KEY(id)
-)ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+)ENGINE=INNODB DEFAULT CHARSET=utf8mb3;
 
 
-CREATE TABLE project_member(
-    id int NOT NULL AUTO_INCREMENT,
-    id_member int NOT NULL,
-    id_project int NOT NULL,
-    PRIMARY KEY (id),
-    CONSTRAINT FOREIGN KEY (id_project) REFERENCES project(id) ON DELETE CASCADE ON UPDATE CASCADE,
-    CONSTRAINT FOREIGN KEY (id_member) REFERENCES members(id) ON DELETE CASCADE ON UPDATE CASCADE
-)ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+CREATE TABLE membre_projet(
+    membre int NOT NULL,
+    projet int NOT NULL,
+    PRIMARY KEY (membre,projet),
+    FOREIGN KEY (membre) REFERENCES projet(id) ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY (projet) REFERENCES membre(id) ON DELETE CASCADE ON UPDATE CASCADE,
+    INDEX(membre),
+    INDEX(projet)
+)ENGINE=INNODB DEFAULT CHARSET=utf8mb3;
+
+
 
 
 

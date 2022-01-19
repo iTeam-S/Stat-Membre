@@ -37,7 +37,7 @@ il va de paire donc avec [le front-end](https://github.com/iTeam-S/Stat-Membre/t
 "nom":"project's name",
 "repos":"project's repos",
 "delai":"project's delai",
-"id_critere":"critere.id assigned to the project"
+
 }
 
 -La route pour ajouter un membre à un projet
@@ -87,7 +87,6 @@ il va de paire donc avec [le front-end](https://github.com/iTeam-S/Stat-Membre/t
 "pdc":"photo de profil du membre",
 "mail":"l'addresse mail du membre",
 "admin":"false if the membre is not a admin",
-"point_experience":"always null"
 }
 
 -La route pour afficher tous les membres

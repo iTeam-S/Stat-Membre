@@ -15,9 +15,7 @@ module.exports = {
             });
             
         } catch (error) {
-            res.status(500).send({
-                message :"errer lors de creation du membre"
-            })
+            res.status(500).send(error.message)
             
         }
         
@@ -25,7 +23,7 @@ module.exports = {
     listAll: async (req, res) => {
         try {
             let listMember = await mdlsMember.getListMember();
-            res.send(listMember.rows);
+            res.send(listMember);
             
         } catch (error) {
             res.status(500).send(error)
@@ -36,7 +34,7 @@ module.exports = {
     listallonproject:async(req,res)=>{
         try {
             let listM=await mdlsMember.getmemberonproject();
-            res.send(listM.rows);
+            res.send(listM);
             
         } catch (error) {
             res.status(500).send(error);
@@ -44,21 +42,52 @@ module.exports = {
         }
 
     },
+    NoterMembre:async(req,res)=>{
+
+
+        try {
+            let id_membre=req.body.id_membre
+
+            //Ajouter le critere à un membre
+            let dern_cri=await mdlsCritere.getListCritere(),dern_id=dern_cri[0].id;
+            let Pp = await mdlsCritere.getOneCritere(dern_id),i = Pp[0];
+
+            //calcul du critere avec le coefficient
+            let scoef = (i.difficulte * 25) + (i.deadline * 10) + (i.impact * 30) + (i.implication * 15) + (i.point_git * 20)
+
+            //Incrementer le point du membre
+            let Pa=await mdlsMember.getPoint(id_membre),pointact=(Pa[0].point_experience);
+            let new_point=scoef+pointact
+
+            //ajouter le point au membre.point_experience
+            await mdlsMember.setPoint(new_point,id_membre)
+
+
+            res.status(200).send({
+                message:"Ce membre est noté sur ce projet"
+            })
+        } catch (error) {
+            res.status(500).send({
+                message:"Il y a une errer lors de notation du membre"
+            })
+            
+        }
+
+    },
     getPdc:async(req,res)=>{
         try {
-            let prenom=req.params.prenom
-            let pdc=await mdlsMember.getByprenom(prenom)
-            res.status(200).send(pdc.rows[0].pdc)
+            let id = parseInt(req.params.id)
+            let pdc=await mdlsMember.getByprenom(id)
+            res.status(200).send(pdc[0].pdc)
         } catch (error) {
             res.status(500).send(error)
         }
     },
     getOne: async(req, res) => {
         let id = parseInt(req.params.id)
-        console.log(id);
         try {
             let member = await mdlsMember.getOneMember(id);
-            res.send(member.rows);
+            res.send(member);
             
         } catch (error) {
             res.status(500).send(error)
@@ -68,12 +97,12 @@ module.exports = {
     },
     listAllMemberProject:async(req,res)=>{
         try {
-            let nom_member=req.params.membername;
-            let projects=await mdlsMember.getAllMemberProject(nom_member);
-            res.status(200).json(projects.rows)
+            let id = parseInt(req.params.id)
+            let projects=await mdlsMember.getAllMemberProject(id);
+            res.status(200).json(projects)
             
         } catch (error) {
-            res.status(500).send(error)
+            res.status(500).send(error.message)
             
         }
 
@@ -81,7 +110,7 @@ module.exports = {
     getTopFive:async(req,res)=>{
         try {
             let topfive=await mdlsMember.getTopFive();
-            res.status(200).json(topfive.rows)     
+            res.status(200).json(topfive)     
         } catch (error) {
             res.status(500).send(error)
             
@@ -93,7 +122,7 @@ module.exports = {
             let id = parseInt(req.params.id);
             let {nom,prenom,user_github,fonction,pdc,mail,admin}=req.body;
             let updatedMember=await mdlsMember.updateMember(nom,prenom,user_github,fonction,pdc,mail,admin,id);
-            res.send(updatedMember.rows)
+            res.send(updatedMember)
             
         } catch (error) {
             res.status(500).send(error)         

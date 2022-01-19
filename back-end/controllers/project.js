@@ -10,29 +10,17 @@ module.exports = {
         try {
             /*body*/
             let { nom, repos, delai} = req.body;
-            let valide="false";
+            let valide=false;
 
             /*verifier si le projet existe déjà*/
 
             let thisproject=await mdlsProject.checkProject(nom);
-            if(thisproject.rows[0]===undefined){
-                /* date de creation et date de validation*/
-             let current=new Date();
-             let date_creation=`${current.getFullYear()}-${current.getMonth()+1}-${current.getDate()}`;
-
-            /*calcul de point pour le projet*/
-            let dern_cri=await mdlsCritere.getListCritere();
-            let dern_id=dern_cri.rows[0].id;
-    
-
-            let Pp = await mdlsCritere.getOneCritere(dern_id);
-            let i = Pp.rows[0];
-
-            let scoef = (i.difficulte * 25) + (i.deadline * 10) + (i.impact * 30) + (i.implication * 15) + (i.point_git * 20)
-
+            console.log(thisproject[0]);
+            if(thisproject[0]===undefined){
+            
             /*create project*/
-
-            await mdlsProject.create(nom, repos, delai, dern_id,scoef,valide,date_creation);
+            console.log(nom,repos,delai,valide);
+            await mdlsProject.create(nom,repos,delai,valide);
 
             res.status(200).send({
                 message: "Project created successfully"
@@ -45,14 +33,14 @@ module.exports = {
         }
 
         } catch (error) {
-            res.status(500).send("Il y 'a une errer sur les données")
+            res.status(500).send(error.message)
         }
     },
     
     listAll: async (req, res) => {
         try {
             let listProject = await mdlsProject.getListProject();
-            res.send(listProject.rows);
+            res.send(listProject);
             
         } catch (error) {
             res.status(500).send(error)
@@ -63,7 +51,7 @@ module.exports = {
     listAllnodeploye: async(req,res)=>{
         try {
             let listnodproject=await mdlsProject.listAllnodeploye();
-            res.status(200).send(listnodproject.rows)
+            res.status(200).send(listnodproject)
             
         } catch (error) {
             res.status(500).send(error);
@@ -73,7 +61,7 @@ module.exports = {
     listAlldeployed:async(req,res)=>{
         try {
             let listdeployeproject=await mdlsProject.listAlldeploye();
-            res.status(200).send(listdeployeproject.rows);
+            res.status(200).send(listdeployeproject);
             
         } catch (error) {
             res.status(500).send(error);
@@ -84,7 +72,7 @@ module.exports = {
     listAllWithCritere: async (req, res) => {
         try {
             let listPc = await mdlsProject.getAllProjectCritere();
-            res.send(listPc.rows)
+            res.send(listPc)
 
         } catch (error) {
             res.status(500).send(error)
@@ -95,7 +83,7 @@ module.exports = {
         try {
             let id = parseInt(req.params.id)
             let listc = await mdlsProject.getOneProjectCritere(id);
-            res.send(listc.rows)
+            res.send(listc)
 
 
         } catch (error) {
@@ -107,39 +95,44 @@ module.exports = {
     add: async (req, res) => {
         
         try {
-            let nom_member=req.body.membername;
-            let nom_project=req.body.projectname;
+            let id_membre=req.body.id_membre;
+            let id_project=req.body.id_project;
 
-            let membre = await mdlsProject.checkMember(nom_member);
-            let isExist=await mdlsProject.CheckIfMemberIsOnProject(nom_member,nom_project)
-            if(isExist.rowCount===0){
+            let membre = await mdlsProject.checkMember(id_membre);
+
+
             
+            let isExist=await mdlsProject.CheckIfMemberIsOnProject(id_membre,id_project)
 
-            let project = await mdlsProject.checkProject(nom_project);
-            let project_part=await mdlsProject.getProjectTotalParticipants(nom_project);
 
-            if(project_part.rows[0].total_participant ==null){
-                project_part.rows[0].total_participant =0
+            if(isExist.length===0){
+            
+            let project = await mdlsProject.checkProject(id_project);
+            let project_part=await mdlsProject.getProjectTotalParticipants(id_project);
+
+           
+
+            if(project_part[0].total_participant ===null){
+                project_part[0].total_participant =0
             }
-
-
             
-            let TotProject= membre.rows[0].nombre_projet;
-            if(TotProject==null){
+
+            let TotProject= membre[0].nombre_projet;
+            if(TotProject===null){
                 TotProject=0
             }
+                 
+            let umber=await mdlsProject.addMemberToProject(membre[0].id, project[0].id);
+            console.log(membre[0].id, project[0].id); 
+           
 
-            
-                     
-            let umber=await mdlsProject.addMemberToProject(membre.rows[0].id, project.rows[0].id);
+            let new_participant=project_part[0].total_participant+1;
 
-            let new_participant=project_part.rows[0].total_participant+1;
 
-            
             let new_tot_proj=TotProject+1;
 
-            await mdlsProject.setParticipant(new_participant,nom_project);
-            await mdlsMember.setTotproject(new_tot_proj,membre.rows[0].id)
+            await mdlsProject.setParticipant(new_participant,id_project);
+            await mdlsMember.setTotproject(new_tot_proj,membre[0].id)
             
             res.status(200).send({
                 message: "Member added on a project successfully"
@@ -151,9 +144,7 @@ module.exports = {
         }
            
         } catch (error) {
-            res.status(500).send({
-                message:"Nom du membre ou nom du projet introuvable"
-            });
+            res.status(500).send(error.message);
 
         }
 
@@ -172,44 +163,21 @@ module.exports = {
 
     listOneWithParticipant: async (req, res) => {
         try {
-            let nom = req.params.nom;
-            let listp = await mdlsProject.getOneProjectWithPart(nom);
-            res.status(200).send(listp.rows);
+            let id = req.params.id;
+            let listp = await mdlsProject.getOneProjectWithPart(id);
+            res.status(200).send(listp);
 
         } catch (error) {
-            res.status(500).send(error)
+            res.status(500).send(error.message)
         }
 
     },
 
-    calculPoint: async (req, res) => {
-        try {
-            let id = parseInt(req.params.id)
-            let data = await mdlsProject.getOneProjectCritere(id);
-            res.status(200).send(data.rows[0].deadline);
-
-        } catch (error) {
-            res.status(500).send(error);
-
-        }
-
-    },
-    calculNbParticipant: async (req, res) => {
-        try {
-            let prod = this.listAllWithMember;
-            res.send(prod);
-
-        } catch (error) {
-            res.status(500).send(error)
-
-        }
-
-    },
     getOne: async (req, res) => {
         try {
             let id = parseInt(req.params.id)
             let project = await mdlsProject.getOneProject(id);
-            res.send(project.rows[0]);
+            res.send(project);
 
         } catch (error) {
             res.status(500).send(error)
@@ -224,31 +192,9 @@ module.exports = {
             let date_validation=`${current.getFullYear()}-${current.getMonth()+1}-${current.getDate()}`;
             let {valide}=req.body;
             let isValide=await mdlsProject.CheckProjectIfnotValidedYet(id)
-            if(isValide.rows[0].valide===false){
             
-                let project_p=await mdlsProject.GetPoint(id)
-                let poit_projet=project_p.rows[0].total_point;
-
-            
-
-
-                let listPart=await mdlsProject.getOneProjectWithPartById(id)
-                let tabpart=listPart.rows
-                
-                for (let index = 0; index < tabpart.length; index++) {
-                    let pointAct=await mdlsMember.getPoint(tabpart[index].id);
-                    
-                    if(pointAct.rows[0].point_experience == null){
-                        pointAct.rows[0].point_experience=0;
-                    };
-                    
-
-                    let newPoint=pointAct.rows[0].point_experience+poit_projet
-                    console.log(tabpart[index].id);
-                    await mdlsMember.setPoint(newPoint,tabpart[index].id)
-                    
-                    
-                }
+            if(isValide[0].valide===0){
+                console.log(isValide[0].valide);                
                 await mdlsProject.valideProject(valide,date_validation,id);
                 res.status(200).send({
                     message:"Project valided successfully"
@@ -261,9 +207,9 @@ module.exports = {
             }
             
         } catch (error) {
-            res.status(500).send({
-                message:"validation error"
-            })
+            res.status(500).send(
+                error.message
+            )
             
         }
 
@@ -271,11 +217,10 @@ module.exports = {
     listAllvalided:async(req,res)=>{
         try {
             let validedProject=await mdlsProject.listAllvalidedProject();
-            res.status(200).send(validedProject.rows)
+            console.log(validedProject);
+            res.status(200).send(validedProject)
         } catch (error) {
-            res.status(500).send({
-                message:"Error while founding valided project"
-            })
+            res.status(500).send(error.message)
             
         }
 
@@ -285,7 +230,7 @@ module.exports = {
             let id = parseInt(req.params.id);
             let { nom, repos, delai } = req.body;
             let updatedProject = await mdlsProject.updateProject(nom, repos, delai, id);
-            res.send(updatedProject.rows[0])
+            res.send(updatedProject)
 
         } catch (error) {
             res.status(500).send(error);
@@ -295,22 +240,21 @@ module.exports = {
     },
     deleteProjectMember:async(req,res)=>{
         try {
-            let nom_member=req.body.membername;
-            let nom_project=req.body.projectname;
-            let membre = await mdlsProject.checkMember(nom_member);
-            let project = await mdlsProject.checkProject(nom_project);
-            let project_part=await mdlsProject.getProjectTotalParticipants(nom_project);
+            let id_membre=req.body.id_membre;
+            let id_projet=req.body.id_projet;
+            let membre = await mdlsProject.checkMember(id_membre);
+            let project = await mdlsProject.checkProject(id_projet);
+            let project_part=await mdlsProject.getProjectTotalParticipants(id_projet);
 
-            if(project_part.rows[0].total_participant ==null){
-                project_part.rows[0].total_participant =0
+            if(project_part[0].total_participant ===null){
+                project_part[0].total_participant =0
             }
 
-
-                     
-            let umber=await mdlsProject.deleteProjectMember(membre.rows[0].id, project.rows[0].id);
+   
+            let umber=await mdlsProject.deleteProjectMember(membre[0].id, project[0].id);
             let new_participant=0
-            if(project_part.rows[0].total_participant>0){
-                new_participant=project_part.rows[0].total_participant-1;
+            if(project_part[0].total_participant>0){
+                new_participant=project_part[0].total_participant-1;
             }else{
                 new_participant=0
             }
@@ -318,7 +262,7 @@ module.exports = {
 
             
 
-            await mdlsProject.setParticipant(new_participant,nom_project);
+            await mdlsProject.setParticipant(new_participant,id_projet);
             
 
             res.status(200).send({
@@ -342,7 +286,7 @@ module.exports = {
             })
 
         } catch (error) {
-            res.status(500).send(error)
+            res.status(500).send(error.message)
 
         }
 
