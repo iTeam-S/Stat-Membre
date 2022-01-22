@@ -2,7 +2,10 @@ import React,{useState,useEffect} from "react";
 
 
 
+import { useContext} from "react";
 import ProjectService from "../../utils/service/projectservice";
+import {ProjectContext} from "../../utils/context/ProjectContext"
+
 
 
 import Navbar from "../../components/Navbars/AuthNavbar";
@@ -11,12 +14,10 @@ import FooterSmall from "../../components/Footers/FooterSmall.js";
 
 export default function Project(){
      const [projets,setProjets]=useState([]);
-
     useEffect(()=>{
         ProjectService.GetAll().then(response=>{
             setProjets(response.data)
-        });
-        
+        });  
     },[])
      return(
                <>

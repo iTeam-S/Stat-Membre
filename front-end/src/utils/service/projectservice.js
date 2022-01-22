@@ -32,8 +32,8 @@ class ProjectService {
                }) 
 
      }
-     GetProjectMember(nom){
-          return ProjectAxios.get(`/${nom}/part`).then(response=>{
+     GetProjectMember(id){
+          return ProjectAxios.get(`/${id}/part`).then(response=>{
                return response
           })
      }
@@ -44,12 +44,20 @@ class ProjectService {
                     delai,
                }) 
      }
+     addMember(id_membre,id_projet){
+               return ProjectAxios.post("/addMember",{
+                    id_membre,
+                    id_projet,
+               },console.log(id_membre,id_projet))
+          
+     }
 
-     DeleteMember(membername,projectname){
+     DeleteMember(id_membre,id_projet){
                return ProjectAxios.post('/remove',{
-                    membername,
-                    projectname
+                    id_membre,
+                    id_projet,
                })
+
 
      }
      GetAll(){
@@ -75,13 +83,7 @@ class ProjectService {
           })
      }
 
-     addMember(membername,projectname){
-          
-          return ProjectAxios.post("/addMember",{
-               membername,
-               projectname
-          }) 
-     }
+     
 }
 
 export default new ProjectService()

@@ -2,18 +2,24 @@ import React,{useEffect, useContext,useState} from "react";
 import { useHistory } from "react-router";
 import ProjectService from "../../utils/service/projectservice"
 import { Link } from "react-router-dom";
+import MemberService from "../../utils/service/memberservice"
 
 
 
 import { ProjectContext } from "../../utils/context/ProjectContext";
+import { MemberContext } from "../../utils/context/MemberContext";
 
 export default function CardProjets() {
   let history=useHistory()
   const {projects,setProjects}=useContext(ProjectContext)
+  const {members,setMembers}=useContext(MemberContext)
 
    useEffect(()=>{
      const fetchData=async()=>{
       try {
+        MemberService.getListMember().then(response=>{
+          setMembers(response)
+        });
         const bla=[]
         const response=await ProjectService.GetAll();
         for (let index = 0; index < response.data.length; index++) {
@@ -40,7 +46,6 @@ export default function CardProjets() {
      fetchData();
 
    },[setProjects])
-   console.log(projects)
 
    const CheckProjectMember=(nom)=>{
     history.push(`/public/project/${nom}/mproject`)

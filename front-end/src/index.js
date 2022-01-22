@@ -12,11 +12,10 @@ import "assets/styles/tailwind.css";
 import Settings from "./components/Cards/CardSettings"
 import Admin from "./pages/layouts/Admin.js";
 import Login from "./pages/auth/Login";
-import AddMember from "./pages/layouts/Addmember";
+import AddMember from "./pages/admin/AddMember";
 import AddProject from "./pages/layouts/Addproject";
 import CheckProject from "./pages/admin/CheckMemberProject";
 import UpdateProject from "./pages/layouts/Updateproject";
-import UpdateMember from "./pages/layouts/Addmember";
 import MemberProject from "./pages/layouts/MemberProject";
 import DeleteProjectMember from "./pages/admin/DeleteProjectMember";
 import ProjectMember from "./pages/admin/ProjectMember";
@@ -28,7 +27,7 @@ import UserRoute from "./pages/private/UserRoutes";
 import {ProjectContextProvider} from "./utils/context/ProjectContext"
 import {MemberContextProvider} from "./utils/context/MemberContext"
 import {CritereContextProvider} from "./utils/context/CritereContext"
-import ValideProjet from "./pages/admin/ValideProject"
+import ValideProjet from "./pages/admin/ValideProjet"
 
 
 
@@ -46,17 +45,18 @@ import Errorpage from "pages/error/Error";
 
 
 const memberUrl = "http://localhost:8000/api/v1/member/getAll";
-const projectUrl = "http://localhost:8000/api/v1/project/ProjectCritere";
+const projectUrl = "http://localhost:8000/api/v1/project/getAll";
 
 
 const App = () => {
     const User=AuthService.getCurrentUser();
   //get member
+
   const [member, setMember] = useState([]);
     useEffect(() => {
         axios.get(memberUrl)
              .then((response) => {
-                const users = response.data;
+                const users =response;
                 setMember(users);
         });
     }, []);
@@ -65,7 +65,7 @@ const App = () => {
     useEffect(() => {
       axios.get(projectUrl)
           .then((response) => {
-              const projet = response.data;
+              const projet = response;
               setProject(projet);
         });
     }, [])
@@ -126,9 +126,6 @@ const App = () => {
                               
                               <AdminRoute exact path="/admin/project/:id/update">
                                   <UpdateProject/>
-                              </AdminRoute>
-                              <AdminRoute exact path="/admin/member/:id/update">
-                                  <UpdateMember/>
                               </AdminRoute>
                               <AdminRoute exact path="/admin/check/checkmemberproject">
                                   <CheckProject membre={member}/>

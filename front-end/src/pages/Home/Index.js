@@ -1,5 +1,5 @@
 /*eslint-disable*/
-import React from "react";
+import React, { useEffect } from "react";
 
 
 
@@ -16,12 +16,14 @@ import Topfive from "../Topfive/TopFive";
 
 import CardProjets from "../../components/Cards/CardProjets";
 import CardTable from "../../components/Cards/CardTable";
+import { useState } from "react";
 
 
 export default function Index() {
     window.onbeforeunload = function () {
         window.scrollTo(0, 0);
       }
+
     return ( 
         <>
             <IndexNavbar fixed/>

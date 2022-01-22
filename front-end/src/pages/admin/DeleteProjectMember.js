@@ -3,26 +3,19 @@ import {useHistory} from "react-router"
 import {useForm} from "react-hook-form"
 import * as Yup from "yup"
 import { yupResolver } from '@hookform/resolvers/yup';
-import ProjectService from "../../utils/service/projectservice"
 import Navbar from "../../components/Navbars/AuthNavbar";
+import { useEffect } from "react";
+import ProjectService from "../../utils/service/projectservice"
 
 
 
-export default function CheckMemberProject({membre,projet}) {
-    const nom_membre=[]
-    const nom_projet=[]
-    for (let index = 0; index < membre.length; index++) {
-        nom_membre.push(membre[index].nom);  
-    }
-    for (let index = 0; index < projet.length; index++) {
-        nom_projet.push(projet[index].project_name);
-        
-    }
+export default function CheckMemberProject() {
+    
     let history=useHistory()
   const validationSchema = Yup.object().shape({
-    membername: Yup.string()
+    id_membre: Yup.number()
       .required('Nom du membre obligatoire'),
-   projectname: Yup.string()
+   id_projet: Yup.number()
       .required('Nom du projet obligatoire')
   });
   const {
@@ -35,21 +28,50 @@ export default function CheckMemberProject({membre,projet}) {
     const [errer,setErrer]=useState(false)
     const [errorMessage,setErrorMessage]=useState("")
 
+    const [parts,setParts]=useState([])
+    const [projets,setProjets]=useState([])
+
+      useEffect((data)=>{
+          async function fetchData(){
+            try {
+                const  projet=await ProjectService.GetAll()
+                setProjets(projet.data)
+                
+                
+            } catch (error) {
+                console.log(error);
+            }
+              
+          }
+          
+        fetchData();
+      },[])
+
+    const fetchMember=async(id)=>{
+        try {
+            const part=await ProjectService.GetProjectMember(id)
+                setParts(part.data)
+        } catch (error) {
+            console.log(error);
+            
+        }
+
+
+    }
    
     const DeleteHandle=async(data)=>{
-            if(nom_membre.includes(data.membername.toUpperCase()) && nom_projet.includes(data.projectname)){
-                await ProjectService.DeleteMember(data.membername.toUpperCase(),data.projectname) 
+            try {
+                console.log(data.id_membre);
+                await ProjectService.DeleteMember(data.id_membre,data.id_projet) 
                 history.push("/admin/dashboard");
-            }else if(!nom_membre.includes(data.membername.toUpperCase())){
+                
+            } catch (error) {
                 setErrer(true)
-                setErrorMessage("Le nom du membre est introuvable")
-            }else{
-                setErrer(true)
-                setErrorMessage("Le nom du projet est introuvable")
-            }
-            
-        
+                setErrorMessage(error.response.data.message)
+                
+            }    
     };
+    
     return ( 
             <>
             <Navbar transparent />
@@ -72,24 +94,28 @@ export default function CheckMemberProject({membre,projet}) {
                                 </div> 
                                 <div className = "flex-auto px-4 lg:px-10 py-10 pt-0" >
                                     <form onSubmit={handleSubmit(DeleteHandle)}>
-                                        <div className = "relative w-full mb-3" >
-                                            <label className = "block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlFor = "projectname" >Nom du projet</label> 
-                                            <input type = "text" id="projectname" name="projectname"  {...register('projectname')}className = "border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"placeholder = "nom du projet" />
-                                            <p className="text-red-500 italic">{errors.projectname?.message}</p>
-
-                                        </div>
-    
-                                        <div className = "relative w-full mb-3" >
-                                            <label className = "block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlFor = "membername" >Nom du membre </label> 
-                                            <input type = "text" id="membername" name="membername" {...register('membername')} className = "border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150" placeholder = "github"/>
-                                            <p className="text-red-500 italic">{errors.membername?.message}</p>
-
-                                        </div>
-                        
-    
-                                        <div className = "text-center mt-6" >
-                                            <input  type="submit" className = "bg-blueGray-800 text-white active:bg-blueGray-600 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full ease-linear transition-all duration-150" value="Remove Member"/> 
-                                        </div> 
+                                    <div className = "relative w-full mb-3" >
+                                        <label  className = "block uppercase text-blueGray-600 text-xs font-bold mb-2"  htmlFor = "project_name" >Nom du projet </label> 
+                                        <select  id="project_name"  name="id_projet"  {...register('id_projet', {
+                                            onChange: (e) => {fetchMember(e.target.value)}
+                                        })} className = "border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150">
+                                        {projets.map((proj)=>(
+                                            <option  key={proj.id} value={proj.id}>{proj.id}-{proj.nom}</option>
+                                        ))}
+                                            
+                                        </select>
+                                     </div>
+                                    <div className = "relative w-full mb-3" >
+                                        <label className = "block uppercase text-blueGray-600 text-xs font-bold mb-2"  htmlFor = "deadline" >Nom du membre </label> 
+                                        <select  name="id_membre" {...register('id_membre')} className = "border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150">
+                                        {parts.map((memb)=>(
+                                            <option key={memb.id} value={memb.id}>{memb.id}-{memb.nom_participant + " " +memb.prenom_participant}</option>
+                                        ))}
+                                        </select>
+                                     </div>
+                                    <div className = "text-center mt-6" >
+                                        <input type="submit" className = "bg-blueGray-800 text-white active:bg-blueGray-600 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full ease-linear transition-all duration-150" value="Valider"/> 
+                                    </div> 
                                     </form>
                                     {errer &&(
                                     <div className="bg-rose-300 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">

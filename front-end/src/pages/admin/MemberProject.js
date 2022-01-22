@@ -20,6 +20,7 @@ export default function MemberProject() {
         fetchdata();
         
     },[]);
+    console.log(membersprojects)
     return ( 
         <>
             <div className="container mx-auto">
@@ -38,7 +39,7 @@ export default function MemberProject() {
                             <thead>
                                 <tr>
                                     <th className = "px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left bg-lightBlue-800 text-lightBlue-300 border-lightBlue-700">Nom du projet</th> 
-                                    <th className ="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left bg-lightBlue-800 text-lightBlue-300 border-lightBlue-700">Total_point</th> 
+                                    <th className ="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left bg-lightBlue-800 text-lightBlue-300 border-lightBlue-700">Total_participant</th> 
                                     <th className = 
                                         "px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left bg-lightBlue-800 text-lightBlue-300 border-lightBlue-700">Completion</th>
                                     <th className = 
@@ -51,10 +52,10 @@ export default function MemberProject() {
                                     <th className = "border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left flex items-center" >
                                         <img src = { require("../../assets/img/projetic.png").default } className = "h-12 w-12 bg-white rounded-full border" alt = "..." ></img>{" "} 
                                         <span className = 
-                                                "text-2xl ml-2 font-bold text-emerald-500 " >{mproject.nom_project} </span> 
+                                                "text-2xl ml-2 font-bold text-emerald-500 " >{mproject.Nom_project} </span> 
                                     </th> 
                                     <td className = "text-emerald-500  text-2xl  border-t-0 px-6 align-middle border-l-0 border-r-0  whitespace-nowrap p-4" >
-                                        {mproject.point}
+                                        {mproject.total_participant}
                                     </td>  
                                     <td className = "border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4" >
                                         <div className = "flex items-center" >

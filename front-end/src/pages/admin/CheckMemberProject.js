@@ -4,16 +4,31 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as Yup from "yup"
 import { useForm } from "react-hook-form";
 import Navbar from "../../components/Navbars/AuthNavbar";
+import { useEffect } from "react";
+import MemberService from "../../utils/service/memberservice"
 
 
-export default function CheckMemberProject({membre}) {
+
+export default function CheckMemberProject() {
     
-    const nom=[]
-    for (let index = 0; index < membre.length; index++) {
-        nom.push(membre[index].nom);   
-    }
+    const [membres,setMembres]=useState([])
+    const [projets,setProjets]=useState([])
+      useEffect(()=>{
+          async function fetchData(){
+            try {
+                const membre=await MemberService.getListMember()
+                setMembres(membre.data)
+                
+            } catch (error) {
+                console.log(error);
+            }
+              
+          }
+          
+        fetchData();
+      },[])
   const validationSchema = Yup.object().shape({
-    membername: Yup.string()
+    id_membre: Yup.number()
       .required('Ce champ est obligatoire'),
     member_github: Yup.string()
       .required('Ce champ est obligatoire')
@@ -31,13 +46,12 @@ export default function CheckMemberProject({membre}) {
     const [errorMessage,setErrorMessage]=useState("")
 
     const handleCheck=(data)=>{
-            if(nom.includes(data.membername.toUpperCase())){
-                history.push(`/admin/member/${data.membername.toUpperCase()}/allproject`);
-            }else{
+            
+                history.push(`/admin/member/${data.id_membre}/allproject`);
+            
                 setErrer(true)
                 setErrorMessage("Le nom du membre est introuvable")
 
-            }
             
     };
     return ( 
@@ -61,19 +75,28 @@ export default function CheckMemberProject({membre}) {
                                 </div> 
                                 <div className = "flex-auto px-4 lg:px-10 py-10 pt-0" >
                                     <form onSubmit={handleSubmit(handleCheck)}>
-                                        <div className = "relative w-full mb-3" >
-                                            <label className = "block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlFor = "nom" >Member_name</label> 
-                                            <input type = "text" name="membername" {...register('membername')} className = "border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"placeholder = "nom de membre" />
-                                            <p className="text-red-500 italic">{errors.membername?.message}</p>
+                                    <div className = "relative w-full mb-3" >
+                                        <label className = "block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlFor = "implication" >Nom du membre</label> 
+                                        <select id="id_membre" name="id_membre" {...register('id_membre')} className = "border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150">
+                                            {membres.map((memb)=>(
+                                            <option key={memb.id} value={memb.id}>{memb.id}-{memb.nom}</option>
+                                            ))}
+                                        </select>
+                                        <p className="text-red-500 italic">{errors.implication?.message}</p>
 
-                                        </div>
+                                     </div>
     
-                                        <div className = "relative w-full mb-3" >
-                                            <label className = "block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlFor = "user_github" >Member_github </label> 
-                                            <input type = "text" id="user_github" name="member_github" {...register('member_github')} className = "border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150" placeholder = "github"/>
-                                            <p className="text-red-500 italic">{errors.member_github?.message}</p>
-                                            
-                                        </div> 
+                                     <div className = "relative w-full mb-3" >
+                                        <label className = "block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlFor = "implication" >Github du membre</label> 
+                                        <select id="id_membre" name="member_github" {...register('member_github')} className = "border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150">
+                                            {membres.map((memb)=>(
+                                            <option key={memb.id} value={memb.git_hub}>{memb.user_github}</option>
+                                            ))}
+                                        </select>
+                                        <p className="text-red-500 italic">{errors.implication?.message}</p>
+
+                                     </div>
+                                        
                         
     
                                         <div className = "text-center mt-6" >

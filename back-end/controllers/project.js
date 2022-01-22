@@ -96,19 +96,19 @@ module.exports = {
         
         try {
             let id_membre=req.body.id_membre;
-            let id_project=req.body.id_project;
+            let id_projet=req.body.id_projet;
 
             let membre = await mdlsProject.checkMember(id_membre);
 
 
             
-            let isExist=await mdlsProject.CheckIfMemberIsOnProject(id_membre,id_project)
+            let isExist=await mdlsProject.CheckIfMemberIsOnProject(id_membre,id_projet)
 
 
             if(isExist.length===0){
             
-            let project = await mdlsProject.checkProject(id_project);
-            let project_part=await mdlsProject.getProjectTotalParticipants(id_project);
+            let project = await mdlsProject.checkProject(id_projet);
+            let project_part=await mdlsProject.getProjectTotalParticipants(id_projet);
 
            
 
@@ -123,7 +123,6 @@ module.exports = {
             }
                  
             let umber=await mdlsProject.addMemberToProject(membre[0].id, project[0].id);
-            console.log(membre[0].id, project[0].id); 
            
 
             let new_participant=project_part[0].total_participant+1;
@@ -131,7 +130,7 @@ module.exports = {
 
             let new_tot_proj=TotProject+1;
 
-            await mdlsProject.setParticipant(new_participant,id_project);
+            await mdlsProject.setParticipant(new_participant,id_projet);
             await mdlsMember.setTotproject(new_tot_proj,membre[0].id)
             
             res.status(200).send({
@@ -144,7 +143,7 @@ module.exports = {
         }
            
         } catch (error) {
-            res.status(500).send(error.message);
+            res.status(500).send({message:error.message});
 
         }
 
@@ -270,7 +269,7 @@ module.exports = {
             })
            
         } catch (error) {
-            res.status(500).send(error);
+            res.status(500).send(error.message);
 
         }
         

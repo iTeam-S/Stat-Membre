@@ -1,23 +1,32 @@
 import {useHistory} from "react-router"
-import React,{useState,useContext} from "react";
+import React,{useState,useContext, useEffect} from "react";
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as Yup from 'yup';
 
 
 
-import { MemberContext } from "../../utils/context/MemberContext";
-import projectservice from "../../utils/service/projectservice";
+import Navbar from "../../components/Navbars/AuthNavbar.js";
+import FooterSmall from "../../components/Footers/FooterSmall.js";
+import ProjectService from "../../utils/service/projectservice";
+import MemberService from "../../utils/service/memberservice.js";
 
 
 export default function AddMember() {
+
+    
+
+
+
     const [errorMessage,setErrorMessage]=useState("")
     const [successMessage,setMessage]=useState("")
     const [errer,setErrer]=useState(false)
+
+
     const validationSchema = Yup.object().shape({
-        membername: Yup.string()
+        id_membre: Yup.number()
           .required('membername  is required'),
-          projectname: Yup.string()
+        id_projet: Yup.number()
           .required('Projectname is required')
       });
       const {
@@ -28,14 +37,28 @@ export default function AddMember() {
         resolver: yupResolver(validationSchema)
       });
     let history=useHistory();
-    const {addMember} =useContext(MemberContext)
-
+    const [membres,setMembres]=useState([])
+    const [projets,setProjets]=useState([])
+      useEffect(()=>{
+          async function fetchData(){
+            try {
+                const membre=await MemberService.getListMember()
+                setMembres(membre.data)
+                const  projet=await ProjectService.GetAll()
+                setProjets(projet.data)
+                
+            } catch (error) {
+                console.log(error);
+            }
+              
+          }
+          
+        fetchData();
+      },[])
     const handleAddmember=async(data)=>{
         try {
-            const response=await projectservice.addMember(data.membername.toUpperCase(),data.projectname);
-            history.push("/admin/dashboard");
-            addMember(response.data);
-            
+            const response=await ProjectService.addMember(data.id_membre,data.id_projet);
+            history.push("/admin/dashboard");   
         } catch (error) {
             setErrer(true)
             setErrorMessage(error.response.data.message);
@@ -43,8 +66,19 @@ export default function AddMember() {
         };
         
     }
+    
     return ( 
         <>
+        <Navbar transparent />
+      <main>
+        <section className="relative w-full h-full py-40 min-h-screen">
+          <div
+            className="absolute top-0 w-full h-full bg-blueGray-800 bg-no-repeat bg-full"
+            style={{
+              backgroundImage:
+                "url(" + require("assets/img/register_bg_2.png").default + ")",
+            }}
+          ></div>
             <div className = "container mx-auto px-4 h-full" >
                 <div className = "flex content-center items-center justify-center h-full" >
                     <div className = "w-full lg:w-6/12 px-4" >
@@ -56,27 +90,28 @@ export default function AddMember() {
                             </div> 
                             <div className = "flex-auto px-4 lg:px-10 py-10 pt-0" >
                                 <form onSubmit={handleSubmit(handleAddmember)}>
-                                    <div className = "relative w-full mb-3" >
-                                        <label className = "block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlFor = "membername" >Nom</label> 
-                                        <input type = "text" name="membername" className = "border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150" placeholder = "Nom du membre(en majuscule)" id="membername" {...register('membername')}/>
-                                        <p className="text-red-500 italic">{errors.membername?.message}</p>
-                                    </div>
-                                    <div className = "relative w-full mb-3" >
-                                        <label className = "block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlFor = "prenom" >Prenom</label> 
-                                        <input type = "text" className = "border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150" placeholder = "Prenom du membre" id="prenom" />
-                                    </div>
-    
-    
-                                    <div className = "relative w-full mb-3" >
-                                        <label className = "block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlFor = "projectname" >Nom_du_projet</label> 
-                                        <input type = "text" name="projectname" id="projectname"   className = "border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"  placeholder = "Nom du projet" {...register('projectname')} />
-                                        <p className="text-red-500 italic">{errors.projectname?.message}</p>
-                                    </div>
-                                    
+                                <div className = "relative w-full mb-3" >
+                                        <label className = "block uppercase text-blueGray-600 text-xs font-bold mb-2"  htmlFor = "deadline" >Nom du membre </label> 
+                                        <select  name="id_membre" {...register('id_membre')} className = "border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150">
+                                        {membres.map((memb)=>(
+                                            <option key={memb.id} value={memb.id}>{memb.id}-{memb.nom + memb.prenom}</option>
+                                        ))}
+                                        </select>
+                                     </div>
+                                     <div className = "relative w-full mb-3" >
+                                        <label className = "block uppercase text-blueGray-600 text-xs font-bold mb-2"  htmlFor = "project_name" >Nom du projet </label> 
+                                        <select id="project_name"  name="id_projet"  {...register('id_projet')} className = "border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150">
+                                        {projets.map((proj)=>(
+                                            <option key={proj.id} value={proj.id}>{proj.id}-{proj.nom}</option>
+                                        ))}
+                                            
+                                        </select>
+                                     </div>
                                     <div className = "text-center mt-6" >
                                         <input type="submit" className = "bg-blueGray-800 text-white active:bg-blueGray-600 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full ease-linear transition-all duration-150" value="Valider"/> 
                                     </div> 
-                                </form> 
+                                </form>
+                                
                                 {errer &&(
                                 <div className="bg-rose-300 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
                                     <strong className="font-bold">Errer!</strong>
@@ -100,6 +135,9 @@ export default function AddMember() {
                     </div> 
                 </div> 
             </div> 
+            <FooterSmall absolute />
+        </section>
+      </main>
         </>
     );
 }

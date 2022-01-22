@@ -23,7 +23,6 @@ export default function AddProject() {
     const [errorMesssage,setErrorMessage]=useState("")
 
     let history=useHistory()
-    const {addCritere}=useContext(CritereContext)
     const {addProject}=useContext(ProjectContext)
     
     const validationSchema = Yup.object().shape({
@@ -45,7 +44,6 @@ export default function AddProject() {
    const  handleAddproject= async(data)=>{
        
         try {
-            const critere=await ProjectService.AddCritere(data.difficulte,data.deadline,data.impact,data.implication,data.point_git)
             const project=await ProjectService.AddProject(data.nom,data.repos,data.delai)
             if(user && user.role==='admin'){
                 history.push(`/admin/dashboard`);
@@ -53,7 +51,6 @@ export default function AddProject() {
                 history.push(`/`)
             }
             setSuccesMessage(project.data.message)
-            addCritere(critere.data);
             addProject(project.data);
         } catch (error) {
             setErrer(true)
@@ -90,67 +87,7 @@ export default function AddProject() {
                                         <label className = "block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlFor = "delai" >Delai du projet</label> 
                                         <input type = "number" id="delai"  name="delai"  className = "border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150" placeholder = "delai de votre projet" {...register('delai')}/>
                                         <p className="text-red-500 italic">{errors.delai?.message}</p>
-
                                     </div>
-
-                                    <div className = "relative w-full mb-3" >
-                                        <label className = "block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlFor = "grid-password" >Impact Projet </label> 
-                                        <select id="impact" name="impact" {...register('impact')}  className = "border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150">
-                                            <option value="1">Debutant</option>
-                                            <option value="2">Amateur</option>
-                                            <option value="3">Normal</option>
-                                            <option value="4">Haut Niveau</option>
-                                            <option value="5">Legende</option>
-                                        </select>
-
-                                     </div>
-
-                                     <div className = "relative w-full mb-3" >
-                                        <label className = "block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlFor = "grid-password" >Difficulté </label> 
-                                        <select id="difficulte" name="difficulte" {...register('difficulte')} className = "border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150">
-                                            <option value="1">Debutant</option>
-                                            <option value="2">Amateur</option>
-                                            <option value="3">Normal</option>
-                                            <option value="4">Haut Niveau</option>
-                                            <option value="5">Legende</option>
-                                        </select>
-
-                                     </div>
-
-                                     <div className = "relative w-full mb-3" >
-                                        <label className = "block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlFor = "implication" >Implication </label> 
-                                        <select id="implication" name="implication" {...register('implication')} className = "border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150">
-                                            <option value="1">Debutant</option>
-                                            <option value="2">Amateur</option>
-                                            <option value="3">Normal</option>
-                                            <option value="4">Haut Niveau</option>
-                                            <option value="5">Legende</option>
-                                        </select>
-                                        <p className="text-red-500 italic">{errors.implication?.message}</p>
-
-                                     </div>
-
-                                     <div className = "relative w-full mb-3" >
-                                        <label className = "block uppercase text-blueGray-600 text-xs font-bold mb-2"  htmlFor = "deadline" >DeadLine </label> 
-                                        <select id="deadline"  name="deadline" {...register('deadline')} className = "border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150">
-                                            <option value="1">Debutant</option>
-                                            <option value="2">Amateur</option>
-                                            <option value="3">Normal</option>
-                                            <option value="4">Haut Niveau</option>
-                                            <option value="5">Legende</option>
-                                        </select>
-                                     </div>
-                                     <div className = "relative w-full mb-3" >
-                                        <label className = "block uppercase text-blueGray-600 text-xs font-bold mb-2"  htmlFor = "deadline" >Point_git </label> 
-                                        <select id="point_git"  name="point_git"  {...register('point_git')} className = "border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150">
-                                            <option value="1">Debutant</option>
-                                            <option value="2">Amateur</option>
-                                            <option value="3">Normal</option>
-                                            <option value="4">Haut Niveau</option>
-                                            <option value="5">Legende</option>
-                                        </select>
-                                     </div>
-
                                     <div className = "text-center mt-6" >
                                         <input  type="submit" className = "bg-blueGray-800 text-white active:bg-blueGray-600 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full ease-linear transition-all duration-150"  value="Valider"/> 
                                     </div>

@@ -1,24 +1,17 @@
-import React,{useState,useEffect} from "react";
+import React,{useState,useEffect,useContext} from "react";
 
 
 import Navbar from "../../components/Navbars/AuthNavbar";
 import FooterSmall from "../../components/Footers/FooterSmall.js";
 import MemberService from "../../utils/service/memberservice"
+import { MemberContext } from "utils/context/MemberContext";
+
 
 
 
 
 export default function MemberList(){
-    const [members,setMembers]=useState([]);
-    const [memberzero,setMemberzero]=useState({});
-
-    useEffect(()=>{
-        MemberService.getListMember().then(response=>{
-            setMembers(response.data)
-            setMemberzero(response.data[0]);
-        });
-        
-    },[])
+    const {members}=useContext(MemberContext)
     return(
         <>
           <Navbar transparent />

@@ -35,9 +35,3 @@ class MemberService{
 export default new MemberService();
 
 
-/*
-vitamine c
-c1c1000
-aspirine
-
-*/
