@@ -12,14 +12,13 @@ import "assets/styles/tailwind.css";
 import Settings from "./components/Cards/CardSettings"
 import Admin from "./pages/layouts/Admin.js";
 import Login from "./pages/auth/Login";
-import AddMember from "./pages/layouts/Addmember";
+import AddMember from "./pages/admin/AddMember";
 import AddProject from "./pages/layouts/Addproject";
-import CheckProject from "./pages/layouts/Checkmproject";
+import CheckProject from "./pages/admin/CheckMemberProject";
 import UpdateProject from "./pages/layouts/Updateproject";
-import UpdateMember from "./pages/layouts/Addmember";
 import MemberProject from "./pages/layouts/MemberProject";
-import DeleteProjectMember from "./pages/layouts/DeleteProjectMember";
-import ProjectMember from "./pages/layouts/ProjectMember";
+import DeleteProjectMember from "./pages/admin/DeleteProjectMember";
+import ProjectMember from "./pages/admin/ProjectMember";
 import {AuthService} from "./utils/service/authservice";
 import MemberList from "./pages/Members/Members";
 import Topfive from "./pages/Topfive/TopFive";
@@ -28,6 +27,7 @@ import UserRoute from "./pages/private/UserRoutes";
 import {ProjectContextProvider} from "./utils/context/ProjectContext"
 import {MemberContextProvider} from "./utils/context/MemberContext"
 import {CritereContextProvider} from "./utils/context/CritereContext"
+import ValideProjet from "./pages/admin/ValideProjet"
 
 
 
@@ -39,22 +39,24 @@ import Landing from "./pages/Landing/Landing";
 import Profile from "./pages/Profile/Profile";
 import Index from "./pages/Home/Index";
 import Project from "./pages/Projets/projets";
+import Errorpage from "pages/error/Error";
 
 
 
 
 const memberUrl = "http://localhost:8000/api/v1/member/getAll";
-const projectUrl = "http://localhost:8000/api/v1/project/ProjectCritere";
+const projectUrl = "http://localhost:8000/api/v1/project/getAll";
 
 
 const App = () => {
     const User=AuthService.getCurrentUser();
   //get member
+
   const [member, setMember] = useState([]);
     useEffect(() => {
         axios.get(memberUrl)
              .then((response) => {
-                const users = response.data;
+                const users =response;
                 setMember(users);
         });
     }, []);
@@ -63,7 +65,7 @@ const App = () => {
     useEffect(() => {
       axios.get(projectUrl)
           .then((response) => {
-              const projet = response.data;
+              const projet = response;
               setProject(projet);
         });
     }, [])
@@ -89,12 +91,16 @@ const App = () => {
                               <Route path="/" exact>
                                   <Index data={project}/>
                               </Route>
+                              <Route exact path="/public/project/:nom/mproject">
+                                  <ProjectMember/>
+                              </Route>
                               <Route path="/landing" exact>
                                   <Landing data={member}/>
                               </Route>
                               <Route path="/profile/:prenom" exact>
                                   <Profile data={member}/>
                               </Route>
+                              
                             
                             {/*User Routes */}
                             
@@ -108,7 +114,9 @@ const App = () => {
                               
 
                              {/*Admin routes */}
-
+                            <AdminRoute exact path="/admin/valide/projet">
+                                <ValideProjet/>
+                            </AdminRoute>
                               <AdminRoute exact path="/admin/dashboard">
                                   <Admin membre={member} projet={project}/>:
                               </AdminRoute>
@@ -119,21 +127,18 @@ const App = () => {
                               <AdminRoute exact path="/admin/project/:id/update">
                                   <UpdateProject/>
                               </AdminRoute>
-                              <AdminRoute exact path="/admin/member/:id/update">
-                                  <UpdateMember/>
-                              </AdminRoute>
                               <AdminRoute exact path="/admin/check/checkmemberproject">
-                                  <CheckProject/>
+                                  <CheckProject membre={member}/>
                               </AdminRoute>
                               <AdminRoute exact path="/admin/member/:membername/allproject">
                                   <MemberProject/>
                               </AdminRoute>
                               <AdminRoute exact path="/admin/delete/projectmember">
-                                  <DeleteProjectMember/>
+                                  <DeleteProjectMember membre={member} projet={project}/>
                               </AdminRoute>
-                              <AdminRoute exact path="/admin/project/:projectname">
-                                  <ProjectMember/>
-                              </AdminRoute>
+                              <Route>
+                                    <Errorpage/>
+                              </Route>
                           </Switch>
                       </BrowserRouter>
                     </MemberContextProvider>

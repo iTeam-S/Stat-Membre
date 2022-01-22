@@ -31,6 +31,8 @@ const IndexDropdown = () => {
       window.removeEventListener("click",checkIfclicked);
     }
   },[dropdownPopoverShow])
+  
+  
   return (
     <>
       <a
@@ -62,7 +64,11 @@ const IndexDropdown = () => {
           <li
             className="cursor-pointer text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700"
           >
-            <Lscroll to="stat" 
+            <Lscroll to="stat"
+            spy={true}
+            smooth={true}
+            offset={-70}
+            duration={1200} 
             onClick={(e) => {
               e.preventDefault();
               closeDropdownPopover();
@@ -72,6 +78,10 @@ const IndexDropdown = () => {
           </li>
           <li className="cursor-pointer text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700">
             <Lscroll to="top5"
+            spy={true}
+            smooth={true}
+            offset={-70}
+            duration={1200}
             onClick={(e) => {
               e.preventDefault();
               closeDropdownPopover();
@@ -89,12 +99,23 @@ const IndexDropdown = () => {
         >
           Project page
         </span>
-        <Link
+        <li
           to="/views/public/projets"
-          className="text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700"
+          className="cursor-pointer text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700"
         >
-          Tous les projets
-        </Link>
+          <Lscroll to="projet" 
+            spy={true}
+            smooth={true}
+            offset={-70}
+            duration={1200}
+            onClick={(e) => {
+              e.preventDefault();
+              closeDropdownPopover();
+            }}>
+              Tous les projets
+            </Lscroll>
+          
+        </li>
         
         <Link
           to="/admin/project/addproject"
@@ -111,16 +132,10 @@ const IndexDropdown = () => {
           Membres
         </span>
         <Link
-          to="/landing"
+          to="/views/public/memberlist"
           className="text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700"
         >
-          Equipes
-        </Link>
-        <Link
-          to="/admin/Settings"
-          className="text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700"
-        >
-          Settings
+          Tous les Membres
         </Link>
       </div>
     </>

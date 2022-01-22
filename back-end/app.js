@@ -38,8 +38,5 @@ const userRoutes = require('./routes/authroutes');
 app.use('/api/v1/auth', userRoutes);
 
 
-const rolesRoutes=require('./routes/role');
-app.use('/api/v1/role',rolesRoutes)
-
 
 module.exports = app;

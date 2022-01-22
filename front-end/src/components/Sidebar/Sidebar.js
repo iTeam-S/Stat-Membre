@@ -1,11 +1,14 @@
 /*eslint-disable*/
 import React from "react";
 import { Link } from "react-router-dom";
+import {AuthService} from "../../utils/service/authservice"
 
 import NotificationDropdown from "components/Dropdowns/NotificationDropdown.js";
 import UserDropdown from "components/Dropdowns/UserDropdown.js";
 
 export default function Sidebar() {
+    const User=AuthService.getCurrentUser();
+    const user_prenom=(!(User===null)) ? User.username:null;
     const [collapseShow, setCollapseShow] = React.useState("hidden");
     return ( 
         <>
@@ -61,7 +64,7 @@ export default function Sidebar() {
                                         "text-lightBlue-500 hover:text-lightBlue-600" :
                                         "text-blueGray-700 hover:text-blueGray-500")
                                 }
-                                to = "/admin/settings">
+                                to={`/settings/${user_prenom}`}>
                                 <i className = {
                                     "fas fa-tools mr-2 text-sm " +
                                     (window.location.href.indexOf("/admin/settings") !== -1 ?
@@ -70,26 +73,7 @@ export default function Sidebar() {
                                 } ></i>{" "}Informations 
                                 </Link> 
                             </li>
-
-                            <li className = "items-center" >
-                                <Link className = {
-                                    "text-xs  py-3 font-bold block " +
-                                    (window.location.href.indexOf("/admin/maps") !== -1 ?
-                                        "text-lightBlue-500 hover:text-lightBlue-600" :
-                                        "text-blueGray-700 hover:text-blueGray-500")
-                                }
-                                to = "/auth/register" >
-                                <i className = {
-                                    "fas fa-map-marked mr-2 text-sm " +
-                                    (window.location.href.indexOf("/admin/maps") !== -1 ?
-                                        "opacity-75" :
-                                        "text-blueGray-300")
-                                }></i>{" "}
-                                Preferences
-                                </Link>
-                            </li> 
                         </ul>
-
                         { /* Divider */ } 
                         <hr className = "my-4 md:min-w-full" / > { /* Heading */ } 
                         <h6 className = "md:min-w-full text-blueGray-500 text-xs uppercase font-bold block pt-1 pb-4 no-underline" >Gestion des projets</h6>
@@ -105,7 +89,7 @@ export default function Sidebar() {
                             </li>
                             <li className = "items-center" >
                                 <Link className = "text-blueGray-700 hover:text-blueGray-500 text-xs  py-3 font-bold block"
-                                to = "/admin/tables" >
+                                to = "/views/public/projets" >
                                 <i className = "fas fa-table text-blueGray-400 mr-2 text-sm" > </i>{" "}
                                     Tous les projets
                                 </Link> 
@@ -121,7 +105,7 @@ export default function Sidebar() {
                             <li className = "items-center" >
                                 <Link className = "text-blueGray-700 hover:text-blueGray-500 text-xs  py-3 font-bold block"
                                 to = "/admin/member/addmember">
-                                <i className = "fas fa-users text-blueGray-400 mr-2 text-sm" > </i>{" "}
+                                <i className = "fas fa-user-plus text-blueGray-400 mr-2 text-sm" > </i>{" "}
                                     Add member on project
                                 </Link> 
                             </li>

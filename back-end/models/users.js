@@ -3,7 +3,7 @@ const db = require('../service/connect');
 module.exports={
     create:(prenom,mail,password,role)=>{
         return new Promise((resolve,reject)=>{
-            db.query("INSERT INTO users(prenom,email,password,role) values($1,$2,$3,$4)",[prenom,mail,password,role],function(err,resultat){
+            db.query("INSERT INTO users(prenom,email,password,role) values(?,?,?,?)",[prenom,mail,password,role],function(err,resultat){
                 if(err){
                     reject(new Error("Errer resource while creating user"));
                 }else{
@@ -27,7 +27,18 @@ module.exports={
     },
     getOneUser:(prenom)=>{
         return new Promise((resolve,reject)=>{
-            db.query("SELECT * FROM users WHERE prenom=$1",[prenom],(err,resultat)=>{
+            db.query("SELECT * FROM users WHERE prenom=?",[prenom],(err,resultat)=>{
+                if(err){
+                    reject(new Error("Error while fetching user"))
+                }else{
+                    resolve(resultat)
+                }
+            })
+        })
+    },
+    getOneUserM:(email)=>{
+        return new Promise((resolve,reject)=>{
+            db.query("SELECT * FROM users WHERE email=?",[email],(err,resultat)=>{
                 if(err){
                     reject(new Error("Error while fetching user"))
                 }else{
@@ -38,7 +49,7 @@ module.exports={
     },
     checkUserByName:(prenom)=>{
         return new Promise((resolve,reject)=>{
-            db.query("SELECT * FROM users WHERE prenom=$1",[prenom],(err,resultat)=>{
+            db.query("SELECT * FROM users WHERE prenom=?",[prenom],(err,resultat)=>{
                 if(err){
                     reject(new Error("Error while fetching user"))
                 }else{
@@ -49,7 +60,7 @@ module.exports={
     },
     checkUserByMail:(mail)=>{
         return new Promise((resolve,reject)=>{
-            db.query("SELECT * FROM users WHERE email=$1",[mail],(err,resultat)=>{
+            db.query("SELECT * FROM users WHERE email=?",[mail],(err,resultat)=>{
                 if(err){
                     reject(new Error("Error while fetching user"))
                 }else{
@@ -60,7 +71,7 @@ module.exports={
     },
     updateUser:(prenom,mail,password,id)=>{
         return new Promise((resolve,reject)=>{
-            db.query("UPDATE users SET nom=$1,email=$2,password=$3 WHERE id=$4",[prenom,mail,password,id],(err,resultat)=>{
+            db.query("UPDATE users SET nom=?,email=?,password=? WHERE id=?",[prenom,mail,password,id],(err,resultat)=>{
                 if(err){
                     reject(new Error("Error while updating user"))
                 }else{
@@ -71,7 +82,7 @@ module.exports={
     },
     deleteUser:(id)=>{
         return new Promise((resolve,reject)=>{
-            db.query("DELETE FROM users WHERE id=$1",[id],(err,resultat)=>{
+            db.query("DELETE FROM users WHERE id=?",[id],(err,resultat)=>{
                 if(err){
                     reject(new Error("Error while deleting member"))
                 }else{

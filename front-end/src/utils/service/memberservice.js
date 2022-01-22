@@ -18,6 +18,11 @@ class MemberService{
                return response;
           })
      }
+     getPdc(prenom){
+          return MemberAxios.get(`/getpdc/${prenom}`).then(response=>{
+               return response
+          })
+     }
      listmemberonproject(){
           return MemberAxios.get('/allonproject').then(response=>{
                return response;
@@ -30,9 +35,3 @@ class MemberService{
 export default new MemberService();
 
 
-/*
-vitamine c
-c1c1000
-aspirine
-
-*/

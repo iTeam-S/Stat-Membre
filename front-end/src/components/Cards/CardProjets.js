@@ -1,82 +1,70 @@
-import React,{useEffect, useContext} from "react";
+import React,{useEffect, useContext,useState} from "react";
 import { useHistory } from "react-router";
+import ProjectService from "../../utils/service/projectservice"
+import { Link } from "react-router-dom";
+import MemberService from "../../utils/service/memberservice"
 
 
 
-import {ProjectAxios} from "../../utils/apis/Stat"
 import { ProjectContext } from "../../utils/context/ProjectContext";
+import { MemberContext } from "../../utils/context/MemberContext";
 
-
-
-
-export default function CardProjets(props) {
+export default function CardProjets() {
   let history=useHistory()
-
   const {projects,setProjects}=useContext(ProjectContext)
-   useEffect( ()=>{
+  const {members,setMembers}=useContext(MemberContext)
+
+   useEffect(()=>{
      const fetchData=async()=>{
       try {
-        const response=await ProjectAxios.get("/getAll");
-        setProjects(response.data); 
+        MemberService.getListMember().then(response=>{
+          setMembers(response)
+        });
+        const bla=[]
+        const response=await ProjectService.GetAll();
+        for (let index = 0; index < response.data.length; index++) {
+          let proj={}
+          let part=[]
+          await ProjectService.GetProjectMember(response.data[index].nom).then(res=>{
+            for (let i = 0; i < res.data.length; i++) {
+              part.push(res.data[i]);
+              
+            }
+          })
+          proj['id']=response.data[index].id
+          proj['nom_projet']=response.data[index].nom
+          proj['total_point']=response.data[index].total_point
+          proj['participant']=part
+          proj['valide']=response.data[index].valide
+          bla.push(proj)
+        }
+        setProjects(bla);
        } catch (error) {
-         console.log(error);  
+         console.log(error);
        }
      } 
      fetchData();
-   },[])
-   const deleteHandle=async (id)=>{
-     try {
-       await ProjectAxios.delete(`/delete/${id}`);
-       setProjects(projects.filter(project=>{
-         return project.id !==id
-       })) 
-     } catch (error) {
-      console.log(error) 
-     }
-     
-   };
-   const handleUpdate = (id)=>{
-    history.push(`/admin/project/${id}/update`)
-    
-  };
-  const handleValide =async (id)=>{
-    let current=new Date()
-    let datvalid=`${current.getFullYear()}-${current.getMonth()+1}-${current.getDate()}}`;
-    try {
-      const validateProject=await ProjectAxios.put(`/valide/${id}`,{
-        valide:"true"
-      });
-      window.location.reload();
-    } catch (error) {
-      console.log(error);
-      
-    }
-    
-  }
+
+   },[setProjects])
+
+   const CheckProjectMember=(nom)=>{
+    history.push(`/public/project/${nom}/mproject`)
+   }
+
   return (
     <>
-      <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded">
+      <h3 className="text-3xl font-semibold text-center text-blueGray-600">
+            Tous nos projets
+      </h3>
+      <div className="text-center mt-5 text-pulse-500 font-semibold">
+                        <Link to="/views/public/projets">Tout voir</Link><span><a href="view/projet.html">
+                        <i className="fa fa-chevron-right"></i></a></span>
+                    </div>
+      <div className="relative flex flex-col min-w-0 break-words bg-teal-700 w-full mt-6 mb-6 shadow-lg rounded">
         <div className="rounded-t mb-0 px-4 py-3 border-0">
           <div className="flex flex-wrap items-center">
             <div className="relative w-full px-4 max-w-full flex-grow flex-1">
-              <h3 className="font-semibold text-base text-center text-blueGray-700">
-                Nos projets
-              </h3>
             </div>
-          </div>
-          <div className=".border-current">
-            <form className="md:flex hidden flex-row flex-wrap items-center lg:ml-auto mr-3">
-              <div className="relative flex w-full flex-wrap items-stretch">
-                <span className="z-10 h-full leading-snug font-normal absolute text-center text-blueGray-300  bg-transparent rounded text-base items-center justify-center w-8 pl-3 py-3">
-                  <i className="fas fa-search"></i>
-                </span>
-                <input
-                  type="text"
-                  placeholder="Search here..."
-                  className="border-current border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 relative  bg-white rounded text-sm shadow outline-none focus:outline-none focus:ring w-full pl-10"
-                />
-              </div>
-            </form>
           </div>
         </div>
         <div className="block w-full overflow-x-auto">
@@ -99,18 +87,25 @@ export default function CardProjets(props) {
               </tr>
             </thead>
             <tbody>
-            {projects.map((project)=>( 
+            {projects.map((project)=>(
               <tr  key={project.id} >
-                <th className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left">
-                {project.nom}
+                <th className="text-white font-semibold text-2xl italic border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left">
+                {project.nom_projet}
                 </th>
-                <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                {project.total_participant}
-                </td>
-                <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                <td onClick={()=>CheckProjectMember(project.nom_projet)} className = "cursor-pointer  border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4" >
+                          <div className="flex container">
+                          {project.participant.map((part)=>(
+                            <div key={project.participant.id} className="relative z-0">
+                              <img src={part.pdc_participant ? part.pdc_participant:require("assets/img/team-1-800x800.jpg").default} alt="..."
+                                className = "w-10 h-10 rounded-full  border-2 border-blueGray-50 shadow"/><title>VALIDER</title>
+                            </div>
+                            ))}
+                          </div>
+                  </td> 
+                <td className="text-white border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
                 {project.total_point}
                 </td>
-                <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                <td className="text-white border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
                   <i className="fas fa-arrow-up text-emerald-500 mr-4"></i>
                   {project.valide ? "100%":"En cours"}
                 </td>
