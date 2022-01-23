@@ -1,15 +1,6 @@
 require('dotenv').config()
 
 
-<<<<<<< HEAD
-const db=new Pool({
-    host: '127.0.0.1',
-    database: 'iteams',
-    password: '1404',
-    user: 'postgres',
-    port: 5432,
-})
-=======
 
 const mysql = require("mysql");
 const db = mysql.createConnection({
@@ -18,7 +9,6 @@ const db = mysql.createConnection({
   password: process.env.DB_PASSWORD,
   database: process.env.DB_NAME,
 });
->>>>>>> 51e4073a9525262cf5d69782410bf62b55691743
 
 db.connect((err) => {
   if (err) {
