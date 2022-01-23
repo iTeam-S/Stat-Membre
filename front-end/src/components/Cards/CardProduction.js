@@ -34,20 +34,6 @@ export default function CardBarChart() {
     let config = {
       type: "bar",
       data: {
-        labels: [
-          "Janvier",
-          "Fevrier",
-          "Mars",
-          "Avril",
-          "Mai",
-          "Juin",
-          "Jullet",
-          "Août",
-          "Septembre",
-          "Octobre",
-          "Novembre",
-          "Decembre"
-        ],
         datasets: [
           {
             label: new Date().getFullYear(),
@@ -142,11 +128,7 @@ export default function CardBarChart() {
         </div>
         <div className="p-4 flex-auto">
           {/* Chart */}
-<<<<<<< HEAD
-          <div className="relative h-350-px">
-=======
-          <div className="relative" style={ {height: '322px'}}>
->>>>>>> 2530a34b00256dd91e1e29ff3170a11dd2b29f1f
+          <div className="relative" style={{height: '310ox'}}>
             <canvas id="bar-chart"></canvas>
           </div>
         </div>
