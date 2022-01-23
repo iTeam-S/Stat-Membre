@@ -1,23 +1,29 @@
 /*eslint-disable*/
-import React from "react";
+import React, { useEffect } from "react";
 
 
 
 import IndexNavbar from "../../components/Navbars/IndexNavbar.js";
 import Footer from "../../components/Footers/Footer.js";
-import CardStats from "../../components/Cards/CardStats.js";
+import Simplestat from "../../components/Cards/Statsimple";
 import CardLineChart from "../../components/Cards/CardLineChart.js";
 import CardProduction from "../../components/Cards/CardProduction.js";
 import { Link } from "react-router-dom";
+import {MemberContext} from "../../utils/context/MemberContext"
 
 
 import Topfive from "../Topfive/TopFive";
 
 import CardProjets from "../../components/Cards/CardProjets";
+import CardTable from "../../components/Cards/CardTable";
+import { useState } from "react";
 
 
 export default function Index() {
-   
+    window.onbeforeunload = function () {
+        window.scrollTo(0, 0);
+      }
+
     return ( 
         <>
             <IndexNavbar fixed/>
@@ -30,7 +36,7 @@ export default function Index() {
                                 <a href = "https://Iteam-$.mg" className = "text-blueGray-600" target = "_blank" >{" "}iTeam - $ </a>.
                             </p> 
                             <div className = "mt-12" >
-                                <a href = "https://iteam-s.mg/" target = "_blank" className = "get-started text-white font-bold px-6 py-4 rounded outline-none focus:outline-none mr-1 mb-1 bg-lightBlue-500 active:bg-lightBlue-600 uppercase text-sm shadow hover:shadow-lg ease-linear transition-all duration-150" style = {{ backgroundColor: '#008080' }}>Get started </a> 
+                                <a href = "https://iteam-s.mg/" target = "_blank" className = "get-started text-white font-bold px-6 py-4 rounded outline-none focus:outline-none mr-1 mb-1 bg-teal-700 active:bg-teal-700 uppercase text-sm shadow hover:shadow-lg ease-linear transition-all duration-150" style = {{ backgroundColor: '#008080' }}>Get started </a> 
                                 <a href = "https://github.com/iTeam-S" className = "github-star ml-1 text-white font-bold px-6 py-4 rounded outline-none focus:outline-none mr-1 mb-1 bg-blueGray-700 active:bg-blueGray-600 uppercase text-sm shadow hover:shadow-lg ease-linear transition-all duration-150" target = "_blank"  style = {{ backgroundColor: '#18b7b7' }}>Github Star </a> 
                             </div> 
                         </div> 
@@ -54,7 +60,7 @@ export default function Index() {
                 <div className = "container mx-auto" >
                     <div className = "flex flex-wrap items-center" >
                         <div className = "w-10/12 md:w-6/12 lg:w-4/12 px-12 md:px-4 mr-auto ml-auto -mt-32" >
-                            <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded-lg bg-lightBlue-500">
+                            <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded-lg bg-teal-700">
                                 <img
                                   alt="..."
                                   src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=700&q=80"
@@ -69,7 +75,7 @@ export default function Index() {
                                   >
                                     <polygon
                                       points="-30,95 583,95 583,65"
-                                      className="text-lightBlue-500 fill-current"
+                                      className="text-purple-700 fill-current"
                                     ></polygon>
                                   </svg>
                                   <h4 className="text-xl font-bold text-white">
@@ -116,148 +122,44 @@ export default function Index() {
                                             <h6 className = "text-xl mb-1 font-semibold" > Automatisation et scripting</h6> 
                                             <p className = "mb-4 text-blueGray-500" >Nous réalisons divers scripts pour vos tâches répétitives  pouvant être automatisés.</p> 
                                         </div> 
-                                    </div> 
-                                    <div className = "relative flex flex-col min-w-0" >
-                                        <div className = "px-4 py-5 flex-auto" >
-                                            <div className = "text-blueGray-500 p-3 text-center inline-flex items-center justify-center w-12 h-12 mb-5 shadow-lg rounded-full bg-white" >
-                                                <i className = "fas fa-file-alt" > </i> 
-                                            </div> 
-                                            <h6 className = "text-xl mb-1 font-semibold" >Others </h6> 
-                                            <p className = "mb-4 text-blueGray-500" >Other projet </p> 
-                                        </div> 
-                                    </div> 
+                                    </div>  
                                 </div>              
                             </div> 
                         </div> 
                     </div> 
                 </div> 
-
-
-
+            <section name="stat">
+            <div className="mx-1/5">
                 <div className="container overflow-hidden pb-20 mt-32">
                         <h3 className="text-center text-3xl font-semibold text-blueGray-600">
                             Statistique de la communauté
                         </h3>
-                        <div className="rounded-lg w-full container px-4 h-full md:w-12  md:px-4 mt-4">
-                            <div className = "flex flex-wrap justify-center">
-                                <div className=" relative flex flex-row">
-                                    <div className="px-4 py-5">
-                                        <CardStats
-                                            statSubtitle="EFFECTIF"
-                                            statTitle="20"
-                                            statArrow="up"
-                                            statPercent="43.48"
-                                            statPercentColor="text-emerald-500"
-                                            statDescripiron="Since last month"
-                                            statIconName="far fa-chart-bar"
-                                            statIconColor="bg-teal-500"
-                                        />
-                                    </div>
-                                </div>
-                                <div className=" relative flex flex-col">
-                                    <div className="px-4 py-5">
-                                        <CardStats
-                                            statSubtitle="COMMIT"
-                                            statTitTle="2,356"
-                                            statArrow="down"
-                                            statPercent="3.48"
-                                            statPercentColor="text-red-500"
-                                            statDescripiron="Since last week"
-                                            statIconName="fas fa-chart-pie"
-                                            statIconColor="bg-red-500"
-                                        />
-                                    </div>
-                                </div>
-                                <div className=" relative flex flex-col">
-                                    <div className="px-4 py-5">
-                                        <CardStats
-                                            statSubtitle="PRODUCTION"
-                                            statTitle="18"
-                                            statArrow="down"
-                                            statPercent="1.10"
-                                            statPercentColor="text-emerald-500"
-                                            statDescripiron="Since last yer"
-                                            statIconName="fas fa-users"
-                                            statIconColor="bg-orange-500"
-                                        />
-                                    </div>
-                                </div>
-                            </div>  
-                        </div>
-
-                        <div className="rounded-lg flex md:flex-no-wrap border-blueGray-50" style={{ margin: '0px 80px'}}>
-                            <div className="w-full pr-4 pt-4">
-                                < CardLineChart/>
+                        <div className="mx-1/10 mb-3  w-full">
+                            <div className="w-full">
+                                <Simplestat/>
                             </div>
-                            <div className="w-full pt-4">
+                        </div>
+                        <div className="flex flex-wrap">
+                            <div className="w-full xl:w-8/12 mb-12 xl:mb-0 px-4">
+                                <CardLineChart/>
+                            </div>
+                            <div className="w-full xl:w-4/12 px-4">
                                 <CardProduction />
                             </div>
                         </div>
                 </div>
-                <div style={{ margin: '0px 36px' }}>
+            </div>
+            </section>
+            <section name="projet">
+                <div  className="mx-1/4">
                     <CardProjets />
                 </div>
-                
-                <div>
-                    <Topfive />
-                </div>
             </section>
-
-            <section className="block relative z-1" style={{ height: '280px', backgroundColor: '#008080'}}>
-                <div className="container mx-auto">
-                    <div className="justify-center flex flex-wrap">
-                        <div className="w-full lg:w-12/12 px-4  -mt-24">
-                            <div className="flex flex-wrap">
-                                <div className="w-full lg:w-4/12 px-4">
-                                <h5 className="text-xl font-semibold pb-4 text-center">
-                                    Login Page
-                                </h5>
-                                <Link to="/auth/login">
-                                    <div className="hover:-mt-4 relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded-lg ease-linear transition-all duration-150">
-                                    <img
-                                        alt="..."
-                                        className="align-middle border-none max-w-full h-auto rounded-lg"
-                                        src={require("assets/img/login.png").default}
-                                    />
-                                    </div>
-                                </Link>
-                                </div>
-
-                                <div className="w-full lg:w-4/12 px-4">
-                                    <h5 className="text-xl font-semibold pb-4 text-center">
-                                        Project
-                                    </h5>
-                                        
-                                        <div className="hover:-mt-4 relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded-lg ease-linear transition-all duration-150">
-                                        <a href = "https://iteam-s.mg/view/projet.html" className = "text-blueGray-600" target = "_blank" >
-                                            <img
-                                            alt="..."
-                                            className="align-middle border-none max-w-full h-auto rounded-lg"
-                                            src={require("assets/img/projet.png").default}
-                                            />    
-                                         </a>
-                                        </div>
-                                </div>
-
-                                <div className="w-full lg:w-4/12 px-4">
-                                <h5 className="text-xl font-semibold pb-4 text-center">
-                                    Membres
-                                </h5>
-                                <Link to="/landing">
-                                    <div className="hover:-mt-4 relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded-lg ease-linear transition-all duration-150">
-                                    <img
-                                        alt="..."
-                                        className="align-middle border-none max-w-full h-auto rounded-lg"
-                                        src={require("assets/img/equipe.png").default}
-                                        style={{ height: '217px'}}
-                                    />
-                                    </div>
-                                </Link>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            <section name="top5">
+            <div>
+                <Topfive />
+            </div>
+            </section>
             </section>
             <Footer/>
         </>

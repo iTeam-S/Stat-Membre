@@ -1,11 +1,11 @@
 const db = require('../service/connect');
 
 module.exports = {
-    create:(nom,prenom,user_github,fonction,pdc,mail,admin)=>{
+    create:(nom,prenom,user_github,fonction,pdc,mail,admin,point_experience)=>{
         return new Promise((resolve, reject) => {
-        db.query("INSERT INTO members(nom,prenom,user_github,fonction,pdc,mail,admin) values($1,$2,$3,$4,$5,$6,$7)",[nom,prenom,user_github,fonction,pdc,mail,admin],function(err,resultat){
+        db.query("INSERT INTO membre(nom,prenom,user_github,fonction,pdc,mail,admin,point_experience) values(?,?,?,?,?,?,?,?)",[nom,prenom,user_github,fonction,pdc,mail,admin,point_experience],function(err,resultat){
             if(err){
-                  reject(new Error("Errer resource while fetching membre"));
+                  reject(new Error(err));
               }else{
                 resolve(resultat)
               }
@@ -14,7 +14,7 @@ module.exports = {
     },
     getListMember: () => {
         return new Promise((resolve, reject) => {
-            db.query("SELECT * FROM members WHERE members.point_experience!=0 ORDER BY members.point_experience DESC ", function(err, resultat){
+            db.query("SELECT * FROM membre", function(err, resultat){
                 if(err){
                     reject(new Error("Errer resource while fetching membre"));
                 }else{
@@ -26,7 +26,7 @@ module.exports = {
 
     getOneMember: (id) => {
         return new Promise((resolve, reject) => {
-            db.query("SELECT * FROM members WHERE id = $1", [id] , function(err, resultat){
+            db.query("SELECT * FROM membre WHERE id = ?", [id] , function(err, resultat){
               if(err){
                   reject(new Error("Errer resource while fetching membre"));
               }else{
@@ -37,7 +37,7 @@ module.exports = {
     },
     getmemberonproject:()=>{
         return new Promise((resolve, reject) => {
-            db.query("SELECT * FROM members WHERE nombre_projet!=0", function(err, resultat){
+            db.query("SELECT * FROM membre WHERE nombre_projet IS NOT NULL", function(err, resultat){
                 if(err){
                     reject(new Error("Errer resource while fetching membre on project"));
                 }else{
@@ -47,11 +47,11 @@ module.exports = {
         }) 
 
     },
-    getAllMemberProject:(membername)=>{
+    getAllMemberProject:(id)=>{
         return new Promise((resolve,reject)=>{
-            db.query("SELECT project.nom as Nom_project,project.repos as Repos_project,project.delai as Delai_project FROM project LEFT JOIN project_member ON project.id=project_member.id_project LEFT JOIN members ON members.id=project_member.id_member  WHERE members.nom=$1",[membername],(err,result)=>{
+            db.query("SELECT projet.nom as Nom_project,projet.repos as Repos_project,projet.delai as Delai_project,projet.delai,projet.valide,projet.total_participant FROM projet LEFT JOIN membre_projet ON projet.id=membre_projet.projet LEFT JOIN membre ON membre.id=membre_projet.membre  WHERE membre.id=?",[id],(err,result)=>{
                 if(err){
-                    reject(new Error("Error while fetching member'project"))
+                    reject(new Error(err))
                 }else{
                     resolve(result)
                 }
@@ -62,7 +62,7 @@ module.exports = {
     
     getTopFive:()=>{
         return new Promise((resolve,reject)=>{
-            db.query("SELECT  members.id,members.nom ,members.prenom,members.fonction,members.pdc,members.point_experience FROM members WHERE members.point_experience!=0 ORDER BY members.point_experience DESC    LIMIT 5",(err,resultat)=>{
+            db.query("SELECT  membre.id,membre.nom ,membre.prenom,membre.fonction,membre.pdc,membre.point_experience,membre.nombre_projet FROM membre WHERE membre.point_experience!=0 ORDER BY membre.point_experience DESC    LIMIT 5",(err,resultat)=>{
                 if(err){
                     reject(new Error("Error while fetching member"))
                 }else{
@@ -72,9 +72,20 @@ module.exports = {
         })
 
     },
+    getByprenom:(id)=>{
+        return new Promise((resolve,reject)=>{
+            db.query("select membre.pdc FROM membre WHERE membre.id=?",[id],function(error,res){
+                if(error){
+                    reject(new Error("Error while fetching member"))
+                }else{
+                    resolve(res)
+                }
+            })
+        })
+    },
     getPoint:(id_m)=>{
         return new Promise((resolve,reject)=>{
-            db.query("SELECT members.point_experience FROM members WHERE members.id=$1",[id_m],(err,resultat)=>{
+            db.query("SELECT membre.point_experience FROM membre WHERE membre.id=?",[id_m],(err,resultat)=>{
                 if(err){
                     reject(new Error("Error while fetching point_experience"))
                 }else{
@@ -86,7 +97,7 @@ module.exports = {
     },
     setPoint:(point,id)=>{
         return new Promise((resolve,reject)=>{
-            db.query("UPDATE members SET point_experience=$1 WHERE members.id=$2",[point,id],(err,resultat)=>{
+            db.query("UPDATE membre SET point_experience=?  WHERE membre.id=?",[point,id],(err,resultat)=>{
                 if(err){
                     reject(new Error("Error while updating member_point"))
                 }else{
@@ -98,7 +109,7 @@ module.exports = {
     },
     setTotproject:(totproj,id)=>{
         return new Promise((resolve,reject)=>{
-            db.query("UPDATE members SET nombre_projet =$1 WHERE members.id=$2",[totproj,id],(err,resultat)=>{
+            db.query("UPDATE membre SET nombre_projet =? WHERE membre.id=?",[totproj,id],(err,resultat)=>{
                 if(err){
                     reject(new Error("Error while updating member_point"))
                 }else{
@@ -111,7 +122,7 @@ module.exports = {
 
     updateMember:(nom,prenom,user_github,fonction,pdc,mail,admin,id)=>{
         return new Promise((resolve,reject)=>{
-            db.query("UPDATE members SET nom =$1,prenom=$2,user_github=$3,fonction=$4,pdc=$5,mail=$6,admin=$7 WHERE id=$8",[nom,prenom,user_github,fonction,pdc,mail,admin,id],function(err,resultat){
+            db.query("UPDATE membre SET nom =?,prenom=?,user_github=?,fonction=?,pdc=?,mail=?,admin=? WHERE id=?",[nom,prenom,user_github,fonction,pdc,mail,admin,id],function(err,resultat){
                 if(err){
                     reject(new Error("Errer resource while updating membre"));
                 }else{
@@ -121,11 +132,10 @@ module.exports = {
         })
 
     },
-    
 
     deleteMember:(id)=> {
         return new Promise((resolve, reject) => {
-            db.query("DELETE  FROM members WHERE id = $1", [id] , function(err, resultat){
+            db.query("DELETE  FROM membre WHERE id = ?", [id] , function(err, resultat){
                 if(err){
                     reject(new Error("Errer resource while deleting membre"));
                 }else{

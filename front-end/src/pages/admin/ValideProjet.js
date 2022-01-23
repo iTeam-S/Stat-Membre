@@ -1,20 +1,13 @@
-import React from "react";
-
-// components
+import React from "react"
 
 import Navbar from "../../components/Navbars/AuthNavbar.js";
 import FooterSmall from "../../components/Footers/FooterSmall.js";
 
-// views
 
-
-import Addmember from "../admin/AddMember"
-
-
-export default function AddMember() {
-  return (
-    <>
-      <Navbar transparent />
+export default function ValideProjet(){
+     return(
+          <>
+           <Navbar transparent />
       <main>
         <section className="relative w-full h-full py-40 min-h-screen">
           <div
@@ -24,10 +17,10 @@ export default function AddMember() {
                 "url(" + require("assets/img/register_bg_2.png").default + ")",
             }}
           ></div>
-            <Addmember/>
+               
           <FooterSmall absolute />
         </section>
       </main>
-    </>
-  );
+          </>
+     )
 }

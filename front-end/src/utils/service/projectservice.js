@@ -1,7 +1,65 @@
 import {ProjectAxios} from "../apis/Stat"
+import {CritereAxios} from "../apis/Stat"
 
 
 class ProjectService {
+     AddCritere(difficulte,deadline,impact,implication,point_git){
+               return CritereAxios.post("/create",{
+                    difficulte,
+                    deadline,
+                    impact,
+                    implication,
+                    point_git
+               }) 
+
+     }
+     UpdateCritere(difficulte,deadline,impact,implication,point_git,id){
+          return CritereAxios.put(`/update/${id}`,{
+               difficulte,
+               deadline,
+               impact,
+               implication,
+               point_git 
+
+               })
+          
+     }
+     UpdateProject(nom,repos,delai,id){
+               return ProjectAxios.put(`/update/${id}`,{
+                    nom,
+                    repos,
+                    delai,
+               }) 
+
+     }
+     GetProjectMember(id){
+          return ProjectAxios.get(`/${id}/part`).then(response=>{
+               return response
+          })
+     }
+     AddProject(nom,repos,delai){
+               return ProjectAxios.post("/create",{
+                    nom,
+                    repos,
+                    delai,
+               }) 
+     }
+     addMember(id_membre,id_projet){
+               return ProjectAxios.post("/addMember",{
+                    id_membre,
+                    id_projet,
+               },console.log(id_membre,id_projet))
+          
+     }
+
+     DeleteMember(id_membre,id_projet){
+               return ProjectAxios.post('/remove',{
+                    id_membre,
+                    id_projet,
+               })
+
+
+     }
      GetAll(){
           return ProjectAxios.get("/getAll").then(response=>{
                return response
@@ -25,17 +83,7 @@ class ProjectService {
           })
      }
 
-     addMember(membername,projectname){
-          try {
-          return ProjectAxios.post("/addMember",{
-               membername,
-               projectname
-          }) 
-           } catch (error) {
-               console.log(error);
-               
-           };
-     }
+     
 }
 
 export default new ProjectService()

@@ -1,7 +1,8 @@
+
 CREATE DATABASE iteams;
 
-CREATE TABLE members(
-     id SERIAL PRIMARY KEY,
+CREATE TABLE membre(
+    id int NOT NULL AUTO_INCREMENT,
     nom varchar(255) NOT NULL,
     prenom varchar(255) NOT NULL,
     user_github varchar(255) NOT NULL,
@@ -10,59 +11,69 @@ CREATE TABLE members(
     mail varchar(255) NOT NULL,
     admin boolean NOT NULL,
     point_experience INTEGER,
-    nombre_projet INTEGER 
-);
+    nombre_projet INTEGER,
+    id_critere INTEGER NOT NULL,
+    PRIMARY KEY(id)
+)ENGINE=INNODB DEFAULT CHARSET=utf8mb3;
 
+CREATE TABLE critere_membre(
+    membre int NOT NULL,
+    critere int NOT NULL,
+    PRIMARY KEY (membre,critere),
+    FOREIGN KEY (membre) REFERENCES critere(id) ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY (critere) REFERENCES membre(id) ON DELETE CASCADE ON UPDATE CASCADE,
+    INDEX(membre),
+    INDEX(critere)
 
-CREATE TABLE project(
-    id SERIAL PRIMARY KEY,
+)ENGINE=INNODB DEFAULT CHARSET=utf8mb3;
+
+CREATE TABLE projet(
+    id int NOT NULL AUTO_INCREMENT,
     nom varchar(255) NOT NULL,
     repos varchar(255) NOT NULL,
     delai INTEGER NOT NULL,
-    id_critere INTEGER NOT NULL,
-    total_point INTEGER,
     total_participant INTEGER,
     valide BOOLEAN NOT NULL,
-    creation_date DATE NOT NULL,
-    validation_date DATE 
-    
-);
+    creation_date timestamp NOT NULL,
+    validation_date timestamp NULL DEFAULT NULL,
+    PRIMARY KEY(id)
+
+)ENGINE=INNODB DEFAULT CHARSET=utf8mb3;
+
+
 CREATE TABLE critere(
-     id SERIAL PRIMARY KEY,
+    id int NOT NULL AUTO_INCREMENT,
     difficulte INTEGER NOT NULL,
     deadline INTEGER NOT NULL,
     impact INTEGER NOT NULL,
     implication INTEGER NOT NULL,
-    point_git INTEGER NOT NULL
-);
-CREATE TABLE role(
-   id SERIAL PRIMARY KEY,
-    name varchar(255) NOT NULL
-);
+    point_git INTEGER NOT NULL,
+    PRIMARY KEY(id)
+    
+)ENGINE=INNODB DEFAULT CHARSET=utf8mb3;
+
 
 CREATE TABLE users(
-   id SERIAL PRIMARY KEY,
+   id int NOT NULL AUTO_INCREMENT,
    prenom varchar(255) NOT NULL,
     email varchar(255) NOT NULL,
     password varchar(255) NOT NULL,
-    role varchar(255) NOT NULL
-);
-CREATE TABLE user_role(
-    id_role INTEGER NOT NULL,
-    id_users INTEGER NOT NULL,
-    PRIMARY KEY (id_role,id_users),
-    FOREIGN KEY (id_role) REFERENCES role(id) ON DELETE CASCADE,
-    FOREIGN KEY (id_users) REFERENCES users(id) ON DELETE CASCADE
+    role varchar(255) NOT NULL,
+     PRIMARY KEY(id)
+)ENGINE=INNODB DEFAULT CHARSET=utf8mb3;
 
-);
 
-CREATE TABLE project_member(
-    id_member INTEGER NOT NULL,
-    id_project INTEGER NOT NULL,
-    PRIMARY KEY (id_member,id_project),
-    FOREIGN KEY (id_project) REFERENCES project(id) ON DELETE CASCADE ON UPDATE CASCADE,
-    FOREIGN KEY (id_member) REFERENCES members(id) ON DELETE CASCADE ON UPDATE CASCADE
-);
+CREATE TABLE membre_projet(
+    membre int NOT NULL,
+    projet int NOT NULL,
+    PRIMARY KEY (membre,projet),
+    FOREIGN KEY (membre) REFERENCES projet(id) ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY (projet) REFERENCES membre(id) ON DELETE CASCADE ON UPDATE CASCADE,
+    INDEX(membre),
+    INDEX(projet)
+)ENGINE=INNODB DEFAULT CHARSET=utf8mb3;
+
+
 
 
 

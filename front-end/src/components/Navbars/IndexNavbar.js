@@ -14,6 +14,8 @@ import IndexDropdown from "../../components/Dropdowns/IndexDropdown.js";
 import UserDropdown from "../../components/Dropdowns/UserDropdown.js"
 
 export default function Navbar(props) {
+    const User=AuthService.getCurrentUser();
+    const user_prenom=(!(User===null)) ? User.username:null;
     const [navbarOpen, setNavbarOpen] = useState(false);
     return ( 
         <>
@@ -40,11 +42,11 @@ export default function Navbar(props) {
 
                         <ul className = "flex flex-col lg:flex-row list-none lg:ml-auto">
                             <li className="flex items-center lg:text-blueGray-700  px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold">
-                            
+                            {(User == null) &&(
                             <Link to="/auth/login">
                                 SE CONNECTER
                             </Link>
-                            
+                            )}
                             </li>
                             <li className="flex items-center lg:text-blueGray-700  px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold">
                                 <UserDropdown/>

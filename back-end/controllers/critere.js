@@ -19,7 +19,7 @@ module.exports = {
     listAll: async (req, res) => {
         try {
             let listCritere = await mdlsCritere.getListCritere();
-            res.send(listCritere.rows);
+            res.send(listCritere);
             
         } catch (error) {
             res.status(500).send(error);
@@ -32,7 +32,7 @@ module.exports = {
         try {
             let id = parseInt(req.params.id)
             let critere = await mdlsCritere.getOneCritere(id);
-            res.send(critere.rows[0]);
+            res.send(critere[0]);
             
         } catch (error) {
             res.status(500).send(error);
