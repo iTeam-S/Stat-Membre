@@ -134,7 +134,7 @@ export default function Index() {
                         <h3 className="text-center text-3xl font-semibold text-blueGray-600">
                             Statistique de la communauté
                         </h3>
-                        <div className="mx-1/10 mb-3  w-full">
+                        <div className="mx-1/10 mb-3 w-full">
                             <div className="w-full">
                                 <Simplestat/>
                             </div>

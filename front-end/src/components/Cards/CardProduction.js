@@ -128,7 +128,7 @@ export default function CardBarChart() {
         </div>
         <div className="p-4 flex-auto">
           {/* Chart */}
-          <div className="relative" style={{height: '310ox'}}>
+          <div className="relative h-350-px" style={{height: '322px'}}>
             <canvas id="bar-chart"></canvas>
           </div>
         </div>

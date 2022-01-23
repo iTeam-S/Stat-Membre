@@ -35,7 +35,7 @@ export default function Topfive(){
                         <Link to="/views/public/memberlist">Tout voir</Link><span><a href="view/projet.html">
                         <i className="fa fa-chevron-right"></i></a></span>
                     </div>
-                    <div className="mx-1/5 w-9/12 rounded-lg mt-5 flex flex-no-wrap bg-white container h-full border-blueGray-50">
+                    <div className="mx-1/5 w-10/12 rounded-lg flex flex-no-wrap bg-white container h-full border-blueGray-50" style={ {margin: "30px auto"}}>
                         {first &&(
                         <div className="relative flex flex-col w-1/5 break-words bg-teal-700 rounded mt-1/2  shadow-lg">
                                 <div className=" w-full">
@@ -52,15 +52,16 @@ export default function Topfive(){
                                                 <thead>
                                                     <tr>
                                                         <th className="px-6 bg-teal-700 text-white align-middle border border-solid border-blueGray-600 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">Rang</th>
-                                                        <th className="px-6  bg-orange-500 align-middle border border-solid border-blueGray-600 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">1</th>
+                                                        <th className="px-6 bg-orange-500 align-middle border border-solid border-blueGray-600 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">1</th>
                                                     </tr>
+                                                    
                                                     <tr>
                                                         <th className="px-6 bg-teal-700 text-white align-middle border border-solid border-blueGray-600 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">Total point</th>
-                                                        <th className="px-6  bg-orange-500 align-middle border border-solid border-blueGray-600 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">{first.point_experience}</th>
+                                                        <th className="px-6 bg-orange-500 align-middle border border-solid border-blueGray-600 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">{first.point_experience}</th>
                                                     </tr>
                                                     <tr>
                                                         <th className="px-6 bg-teal-700 text-white align-middle border border-solid border-blueGray-600 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">Total projets</th>
-                                                        <th className="px-6  bg-orange-500 align-middle border border-solid border-blueGray-600 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">{first.nombre_projet}</th>
+                                                        <th className="px-6 bg-orange-500 align-middle border border-solid border-blueGray-600 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">{first.nombre_projet}</th>
                                                     </tr>
                                                 </thead>
                                             </table>
