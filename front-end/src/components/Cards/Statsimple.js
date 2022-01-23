@@ -37,7 +37,7 @@ export default function Simplestat(){
   },[])
 
      return (
-          <div className="w-full flex flex-wrap">
+          <div className="w-full flex flex-wrap justify-center md:ml-96">
                <div className="w-full lg:w-9/12 xl:w-3/12 px-4">
                     <CardStats
                     statSubtitle="PARTICIPATION"
