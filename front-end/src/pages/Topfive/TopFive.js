@@ -47,22 +47,22 @@ export default function Topfive(){
                                                 {first.prenom}
                                             </span>
                                         </div> 
+                                        
                                         <div className="w-full">
                                             <table className="w-full bg-transparent border-collapse">
-                                                <thead>
-                                                    <tr>
-                                                        <th className="px-6 bg-teal-700 text-white align-middle border border-solid border-blueGray-600 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">Rang</th>
-                                                        <th className="px-6 bg-orange-500 align-middle border border-solid border-blueGray-600 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">1</th>
-                                                    </tr>
-                                                    
-                                                    <tr>
-                                                        <th className="px-6 bg-teal-700 text-white align-middle border border-solid border-blueGray-600 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">Total point</th>
-                                                        <th className="px-6 bg-orange-500 align-middle border border-solid border-blueGray-600 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">{first.point_experience}</th>
-                                                    </tr>
-                                                    <tr>
-                                                        <th className="px-6 bg-teal-700 text-white align-middle border border-solid border-blueGray-600 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">Total projets</th>
-                                                        <th className="px-6 bg-orange-500 align-middle border border-solid border-blueGray-600 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">{first.nombre_projet}</th>
-                                                    </tr>
+                                                <thead class="text-white">
+                                                        <tr class="bg-teal-400 flex flex-wrap rounded-l-lg sm:rounded-none mb-2 sm:mb-0 flex-col md:flex-col lg:flex-row">
+                                                            <th className="px-6 bg-teal-500 text-white border border-solid border-blueGray-600 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">Rang</th>
+                                                            <th className="px-6 bg-orange-500 border border-solid border-blueGray-600 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">1</th>
+                                                        </tr>
+                                                        <tr class="bg-teal-400 flex flex-wrap rounded-l-lg sm:rounded-none mb-2 sm:mb-0 flex-col md:flex-col lg:flex-row">
+                                                            <th className="px-6 bg-teal-500 text-white border border-solid border-blueGray-600 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">Total point</th>
+                                                            <th className="px-6 bg-orange-500 border border-solid border-blueGray-600 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">{first.point_experience}</th>
+                                                        </tr>
+                                                        <tr class="bg-teal-400 flex flex-wrap rounded-l-lg sm:rounded-none mb-2 sm:mb-0 flex-col md:flex-col lg:flex-row">
+                                                            <th className="px-6 bg-teal-500 text-white border border-solid border-blueGray-600 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">Total projets</th>
+                                                            <th className="px-6  bg-orange-500 border border-solid border-blueGray-600 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">{first.nombre_projet}</th>
+                                                        </tr>
                                                 </thead>
                                             </table>
                                         </div> 
@@ -83,19 +83,19 @@ export default function Topfive(){
                                         </div>   
                                         <div className="w-full"> 
                                             <table className="w-full bg-transparent border-collapse">
-                                                <thead>
-                                                    <tr>
-                                                        <th className="px-6 bg-teal-500 text-white align-middle border border-solid border-blueGray-600 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">Rang</th>
-                                                        <th className="px-6  bg-orange-500 align-middle border border-solid border-blueGray-600 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">2</th>
-                                                    </tr>
-                                                    <tr>
-                                                        <th className="px-6 bg-teal-500 text-white align-middle border border-solid border-blueGray-600 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">Total point</th>
-                                                        <th className="px-6  bg-orange-500 align-middle border border-solid border-blueGray-600 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">{second.point_experience}</th>
-                                                    </tr>
-                                                    <tr>
-                                                        <th className="px-6 bg-teal-500 text-white align-middle border border-solid border-blueGray-600 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">Total projets</th>
-                                                        <th className="px-6  bg-orange-500 align-middle border border-solid border-blueGray-600 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">{second.nombre_projet}</th>
-                                                    </tr>
+                                                  <thead class="text-white">col
+                                                        <tr class="bg-teal-400 flex flex-wrap rounded-l-lg sm:rounded-none mb-2 sm:mb-0 flex-col md:flex-col lg:flex-row">
+                                                            <th className="px-6 bg-teal-500 text-white border border-solid border-blueGray-600 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">Rang</th>
+                                                            <th className="px-6 bg-orange-500 border border-solid border-blueGray-600 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">2</th>
+                                                        </tr>
+                                                        <tr class="bg-teal-400 flex flex-wrap rounded-l-lg sm:rounded-none mb-2 sm:mb-0 flex-col md:flex-col lg:flex-row">
+                                                            <th className="px-6 bg-teal-500 text-white border border-solid border-blueGray-600 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">Total point</th>
+                                                            <th className="px-6 bg-orange-500 border border-solid border-blueGray-600 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">{second.point_experience}</th>
+                                                        </tr>
+                                                        <tr class="bg-teal-400 flex flex-wrap rounded-l-lg sm:rounded-none mb-2 sm:mb-0 flex-col md:flex-col lg:flex-row">
+                                                            <th className="px-6 bg-teal-500 text-white border border-solid border-blueGray-600 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">Total projets</th>
+                                                            <th className="px-6  bg-orange-500 border border-solid border-blueGray-600 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">{second.nombre_projet}</th>
+                                                        </tr>
                                                 </thead>
                                             </table>
                                         </div> 
@@ -115,19 +115,19 @@ export default function Topfive(){
                                         </div>   
                                         <div className="w-full"> 
                                             <table className="w-full bg-transparent border-collapse">
-                                                <thead>
-                                                    <tr>
-                                                        <th className="px-6 bg-teal-300 text-blueGray-600 align-middle border border-solid border-blueGray-600 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">Rang</th>
-                                                        <th className="px-6 bg-orange-500  align-middle border border-solid border-blueGray-600 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">3</th>
-                                                    </tr>
-                                                    <tr>
-                                                        <th className="px-6 bg-teal-300 text-blueGray-600 align-middle border border-solid border-blueGray-600 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">Total point</th>
-                                                        <th className="px-6 bg-orange-500  align-middle border border-solid border-blueGray-600 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">{third.point_experience}</th>
-                                                    </tr>
-                                                    <tr>
-                                                        <th className="px-6 bg-teal-300 text-blueGray-600 align-middle border border-solid border-blueGray-600 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">Total projets</th>
-                                                        <th className="px-6 bg-orange-500  align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">{third.nombre_projet}</th>
-                                                    </tr>
+                                                <thead class="text-white">
+                                                        <tr class="bg-teal-400 flex flex-wrap rounded-l-lg sm:rounded-none mb-2 sm:mb-0 flex-col md:flex-col lg:flex-row">
+                                                            <th className="px-6 bg-teal-500 text-white border border-solid border-blueGray-600 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">Rang</th>
+                                                            <th className="px-6 bg-orange-500 border border-solid border-blueGray-600 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">3</th>
+                                                        </tr>
+                                                        <tr class="bg-teal-400 flex flex-wrap rounded-l-lg sm:rounded-none mb-2 sm:mb-0 flex-col md:flex-col lg:flex-row">
+                                                            <th className="px-6 bg-teal-500 text-white border border-solid border-blueGray-600 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">Total point</th>
+                                                            <th className="px-6 bg-orange-500 border border-solid border-blueGray-600 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">{third.point_experience}</th>
+                                                        </tr>
+                                                        <tr class="bg-teal-400 flex flex-wrap rounded-l-lg sm:rounded-none mb-2 sm:mb-0 flex-col md:flex-col lg:flex-row">
+                                                            <th className="px-6 bg-teal-500 text-white border border-solid border-blueGray-600 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">Total projets</th>
+                                                            <th className="px-6  bg-orange-500 border border-solid border-blueGray-600 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">{third.nombre_projet}</th>
+                                                        </tr>
                                                 </thead>
                                             </table>
                                         </div> 
@@ -147,21 +147,19 @@ export default function Topfive(){
                                         </div>   
                                         <div className="w-full"> 
                                             <table className="w-full bg-transparent border-collapse">
-                                                <thead>
-                                                    <tr>
-                                                        <th className="px-6 bg-teal-200 text-blueGray-600 align-middle border border-solid border-blueGray-600 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">Rang</th>
-                                                        <th className="px-6 bg-orange-500  align-middle border border-solid border-blueGray-600 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">4</th>
-                                                    </tr>
-                                                    <tr>
-                                                        <th className="px-6 bg-teal-200 text-blueGray-600 align-middle border border-solid border-blueGray-600 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">Total point</th>
-                                                        <th className="px-6 bg-orange-500  align-middle border border-solid border-blueGray-600 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">{forth.point_experience}</th>
-                                                        
-                                                    </tr>
-                                                    <tr>
-                                                        <th className="px-6 bg-teal-200 text-blueGray-600 align-middle border border-solid border-blueGray-600 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">Total projets</th>
-                                                        <th className="px-6 bg-orange-500  align-middle border border-solid border-blueGray-600 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">{forth.nombre_projet}</th>
-                                                        
-                                                    </tr>
+                                                 <thead class="text-white">
+                                                        <tr class="bg-teal-400 flex flex-wrap rounded-l-lg sm:rounded-none mb-2 sm:mb-0 flex-col md:flex-col lg:flex-row">
+                                                            <th className="px-6 bg-teal-500 text-white border border-solid border-blueGray-600 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">Rang</th>
+                                                            <th className="px-6 bg-orange-500 border border-solid border-blueGray-600 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">4</th>
+                                                        </tr>
+                                                        <tr class="bg-teal-400 flex flex-wrap rounded-l-lg sm:rounded-none mb-2 sm:mb-0 flex-col md:flex-col lg:flex-row">
+                                                            <th className="px-6 bg-teal-500 text-white border border-solid border-blueGray-600 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">Total point</th>
+                                                            <th className="px-6 bg-orange-500 border border-solid border-blueGray-600 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">{forth.point_experience}</th>
+                                                        </tr>
+                                                        <tr class="bg-teal-400 flex flex-wrap rounded-l-lg sm:rounded-none mb-2 sm:mb-0 flex-col md:flex-col lg:flex-row">
+                                                            <th className="px-6 bg-teal-500 text-white border border-solid border-blueGray-600 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">Total projets</th>
+                                                            <th className="px-6  bg-orange-500 border border-solid border-blueGray-600 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">{forth.nombre_projet}</th>
+                                                        </tr>
                                                 </thead>
                                             </table>
                                         </div> 
@@ -181,24 +179,21 @@ export default function Topfive(){
                                         </div>   
                                         <div className="w-full"> 
                                             <table className="w-full bg-transparent border-collapse">
-                                                <thead>
-                                                    <tr>
-                                                        <th className="px-6 bg-zinc-300 text-blueGray-600 align-middle border border-solid border-blueGray-600 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">Rang</th>
-                                                        <th className="px-6 bg-orange-500  align-middle border border-solid border-blueGray-600 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">5</th>
-                                                        
-                                                    </tr>
-                                                    <tr>
-                                                        <th className="px-6 bg-zinc-300 text-blueGray-600 align-middle border border-solid border-blueGray-600 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">Total point</th>
-                                                        <th className="px-6  bg-orange-500 align-middle border border-solid border-blueGray-600 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">{fifth.point_experience}</th>
-                                                        
-                                                    </tr>
-                                                    <tr>
-                                                        <th className="px-6 bg-zinc-300 text-blueGray-600 align-middle border border-solid border-blueGray-600 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">Total projets</th>
-                                                        <th className="px-6  bg-orange-500 align-middle border border-solid border-blueGray-600 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">{fifth.nombre_projet}</th>
-                                                        
-                                                    </tr>
+                                                   <thead class="text-white">
+                                                        <tr class="bg-teal-400 flex flex-wrap rounded-l-lg sm:rounded-none mb-2 sm:mb-0 flex-col md:flex-col lg:flex-row">
+                                                            <th className="px-6 bg-teal-500 text-white border border-solid border-blueGray-600 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">Rang</th>
+                                                            <th className="px-6 bg-orange-500 border border-solid border-blueGray-600 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">5</th>
+                                                        </tr>
+                                                        <tr class="bg-teal-400 flex flex-wrap rounded-l-lg sm:rounded-none mb-2 sm:mb-0 flex-col md:flex-col lg:flex-row">
+                                                            <th className="px-6 bg-teal-500 text-white border border-solid border-blueGray-600 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">Total point</th>
+                                                            <th className="px-6 bg-orange-500 border border-solid border-blueGray-600 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">{fifth.point_experience}</th>
+                                                        </tr>
+                                                        <tr class="bg-teal-400 flex flex-wrap rounded-l-lg sm:rounded-none mb-2 sm:mb-0 flex-col md:flex-col lg:flex-row">
+                                                            <th className="px-6 bg-teal-500 text-white border border-solid border-blueGray-600 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">Total projets</th>
+                                                            <th className="px-6  bg-orange-500 border border-solid border-blueGray-600 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">{fifth.nombre_projet}</th>
+                                                        </tr>
                                                 </thead>
-                                            </table>
+                                         </table>
                                         </div> 
                                 </div>
                         </div>
