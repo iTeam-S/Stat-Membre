@@ -10,7 +10,6 @@ import {useHistory} from "react-router"
 
 import ProjectService from "../../utils/service/projectservice"
 import { ProjectContext } from "../../utils/context/ProjectContext";
-import { CritereContext } from "../../utils/context/CritereContext";
 import { AuthService } from "../../utils/service/authservice";
 
 

@@ -9,39 +9,8 @@ import { useHistory } from "react-router";
 
 export default function CardProjetsAdmin(props) {
   let history=useHistory()
-
   const {projects,setProjects}=useContext(ProjectContext)
-  useEffect(()=>{
-    const fetchData=async()=>{
-     try {
-       const bla=[]
-       const response=await ProjectService.GetAll();
-       for (let index = 0; index < response.data.length; index++) {
-         let proj={}
-         let part=[]
-         await ProjectService.GetProjectMember(response.data[index].nom).then(res=>{
-           for (let i = 0; i < res.data.length; i++) {
-             part.push(res.data[i]);
-             
-           }
-         })
-         proj['id']=response.data[index].id
-         proj['nom_projet']=response.data[index].nom
-         proj['total_participant']=response.data[index].total_participant
-         proj['total_point']=response.data[index].total_point
-         proj['participant']=part
-         proj['valide']=response.data[index].valide
-         bla.push(proj)
-       }
-       setProjects(bla);
-      } catch (error) {
-        console.log(error);
-      }
-    } 
-    fetchData();
-
-  },[setProjects])
-
+  
    const deleteHandle=async (id)=>{
      try {
        await ProjectAxios.delete(`/delete/${id}`);
@@ -71,6 +40,9 @@ export default function CardProjetsAdmin(props) {
       
     }
     
+  }
+  const CheckProjectMember=(id)=>{
+    history.push(`/public/project/${id}/mproject`)
   }
   return (
     <>
@@ -109,8 +81,8 @@ export default function CardProjetsAdmin(props) {
                 <th className="font-semibold text-2xl italic border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left">
                 {project.nom_projet}
                 </th>
-                <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                {project.total_participant}
+                <td className="font-semibold border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                <button onClick={()=>CheckProjectMember(project.id)}  className="w-1/2 h-5 font-semibold bg-teal-700 text-white">{project.total_part ? project.total_part:"0"}</button>
                 </td>
                 <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
                   <i className="fas fa-arrow-up text-emerald-500 mr-4"></i>

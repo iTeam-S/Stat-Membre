@@ -15,11 +15,9 @@ module.exports = {
             /*verifier si le projet existe déjà*/
 
             let thisproject=await mdlsProject.checkProject(nom);
-            console.log(thisproject[0]);
             if(thisproject[0]===undefined){
             
             /*create project*/
-            console.log(nom,repos,delai,valide);
             await mdlsProject.create(nom,repos,delai,valide);
 
             res.status(200).send({
@@ -192,8 +190,7 @@ module.exports = {
             let {valide}=req.body;
             let isValide=await mdlsProject.CheckProjectIfnotValidedYet(id)
             
-            if(isValide[0].valide===0){
-                console.log(isValide[0].valide);                
+            if(isValide[0].valide===0){               
                 await mdlsProject.valideProject(valide,date_validation,id);
                 res.status(200).send({
                     message:"Project valided successfully"
@@ -216,7 +213,6 @@ module.exports = {
     listAllvalided:async(req,res)=>{
         try {
             let validedProject=await mdlsProject.listAllvalidedProject();
-            console.log(validedProject);
             res.status(200).send(validedProject)
         } catch (error) {
             res.status(500).send(error.message)

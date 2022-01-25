@@ -1,24 +1,20 @@
-import React,{useEffect, useContext,useState} from "react";
+import React,{ useContext} from "react";
 import { useHistory } from "react-router";
-import ProjectService from "../../utils/service/projectservice"
 import { Link } from "react-router-dom";
-import MemberService from "../../utils/service/memberservice"
 
 
 
 import { ProjectContext } from "../../utils/context/ProjectContext";
-import { MemberContext } from "../../utils/context/MemberContext";
 
 export default function CardProjets() {
 
   let history=useHistory()
-  const [withpart,setWithpart]=useState([])
   const {projects}=useContext(ProjectContext)
 
    
-  const CheckProjectMember=(nom)=>{
-    history.push(`/public/project/${nom}/mproject`)
-   }
+  const CheckProjectMember=(id)=>{
+    history.push(`/public/project/${id}/mproject`)
+  }
 
   
   return (
@@ -49,9 +45,6 @@ export default function CardProjets() {
                   Participants
                 </th>
                 <th className="px-6 bg-teal-500 text-white align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
-                  Total Points
-                </th>
-                <th className="px-6 bg-teal-500 text-white align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
                   Avancement
                 </th>
               </tr>
@@ -62,7 +55,7 @@ export default function CardProjets() {
                 <th className="text-white font-semibold text-2xl italic border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left">
                 {project.nom_projet}
                 </th>
-                <td onClick={()=>CheckProjectMember(project.nom_projet)} className = "cursor-pointer  border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4" >
+                <td onClick={()=>CheckProjectMember(project.id)} className = "cursor-pointer  border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4" >
                           <div className="flex container">
                           {project.participant.map((part)=>(
                             <div key={project.participant.id} className="relative z-0">
@@ -71,11 +64,7 @@ export default function CardProjets() {
                             </div>
                             ))}
                           </div>
-                    
                   </td> 
-                <td className="text-white border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                {project.total_point}
-                </td>
                 <td className="text-white border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
                   <i className="fas fa-arrow-up text-emerald-500 mr-4"></i>
                   {project.valide ? "100%":"En cours"}

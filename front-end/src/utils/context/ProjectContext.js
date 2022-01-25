@@ -28,8 +28,8 @@ export const ProjectContextProvider=(props)=>{
                     })
                     apart['id']=response.data[i].id
                     apart['nom_projet']=response.data[i].nom
-                    apart['total_point']=response.data[i].total_point
                     apart['participant']=part
+                    apart['total_part']=response.data[i].total_participant
                     apart['valide']=response.data[i].valide
 
                     pwithpart.push(apart)
