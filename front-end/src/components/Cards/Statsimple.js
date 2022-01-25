@@ -6,8 +6,8 @@ import MemberService from "../../utils/service/memberservice";
 
 export default function Simplestat(){
      const [projectval,setProjval]=useState([]);
-     const [memberact,setMemberact]=useState(0);
-     const [freqmemberact,setFreqmemberact]=useState(0);
+  const [memberact,setMemberact]=useState(0);
+  const [freqmemberact,setFreqmemberact]=useState(0);
 
   useEffect(()=>{
     async function fetchData(){
@@ -37,7 +37,7 @@ export default function Simplestat(){
   },[])
 
      return (
-          <div className="w-full flex flex-wrap">
+          <div className="flex flex-wrap">
                <div className="w-full lg:w-9/12 xl:w-3/12 px-4">
                     <CardStats
                     statSubtitle="PARTICIPATION"
@@ -50,7 +50,7 @@ export default function Simplestat(){
                     statIconColor="bg-teal-500"
                     />
                </div>
-               <div className="w-full lg:w-9/12 xl:w-3/12 px-4">
+               <div className="w-full lg:w-6/12 xl:w-3/12 px-4">
                     <CardStats
                     statSubtitle="COMMIT"
                     statTitle="2,356"
@@ -62,7 +62,7 @@ export default function Simplestat(){
                     statIconColor="bg-red-500"
                     />
                </div>
-               <div className="w-full lg:w-9/12 xl:w-3/12 px-4">
+               <div className="w-full lg:w-6/12 xl:w-3/12 px-4">
                     <CardStats
                     statSubtitle="PRODUCTION"
                     statTitle={projectval}

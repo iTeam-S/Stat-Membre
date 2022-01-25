@@ -12,8 +12,10 @@ import Navbar from "../../components/Navbars/AuthNavbar";
 import FooterSmall from "../../components/Footers/FooterSmall.js";
 
 
+
 export default function Project(){
-     const [projets,setProjets]=useState([]);
+    
+    const [projets,setProjets]=useState([]);
     useEffect(()=>{
         ProjectService.GetAll().then(response=>{
             setProjets(response.data)

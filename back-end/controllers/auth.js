@@ -1,4 +1,3 @@
-const db = require('../service/connect');
 const mdlsUser = require("../models/users");
 var jwt = require("jsonwebtoken")
 var bcrypt = require("bcryptjs");
@@ -42,7 +41,6 @@ module.exports = {
             }
             
             let useR = await mdlsUser.getOneUserM(email);
-            console.log(useR[0].prenom);
             if (!useR[0]) {
                 return res.status(404).send({
                     message: "User Not found."

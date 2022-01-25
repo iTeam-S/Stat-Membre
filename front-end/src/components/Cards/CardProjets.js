@@ -10,47 +10,17 @@ import { ProjectContext } from "../../utils/context/ProjectContext";
 import { MemberContext } from "../../utils/context/MemberContext";
 
 export default function CardProjets() {
+
   let history=useHistory()
-  const {projects,setProjects}=useContext(ProjectContext)
-  const {members,setMembers}=useContext(MemberContext)
+  const [withpart,setWithpart]=useState([])
+  const {projects}=useContext(ProjectContext)
 
-   useEffect(()=>{
-     const fetchData=async()=>{
-      try {
-        MemberService.getListMember().then(response=>{
-          setMembers(response)
-        });
-        const bla=[]
-        const response=await ProjectService.GetAll();
-        for (let index = 0; index < response.data.length; index++) {
-          let proj={}
-          let part=[]
-          await ProjectService.GetProjectMember(response.data[index].nom).then(res=>{
-            for (let i = 0; i < res.data.length; i++) {
-              part.push(res.data[i]);
-              
-            }
-          })
-          proj['id']=response.data[index].id
-          proj['nom_projet']=response.data[index].nom
-          proj['total_point']=response.data[index].total_point
-          proj['participant']=part
-          proj['valide']=response.data[index].valide
-          bla.push(proj)
-        }
-        setProjects(bla);
-       } catch (error) {
-         console.log(error);
-       }
-     } 
-     fetchData();
-
-   },[setProjects])
-
-   const CheckProjectMember=(nom)=>{
+   
+  const CheckProjectMember=(nom)=>{
     history.push(`/public/project/${nom}/mproject`)
    }
 
+  
   return (
     <>
       <h3 className="text-3xl font-semibold text-center text-blueGray-600">
@@ -68,7 +38,7 @@ export default function CardProjets() {
           </div>
         </div>
         <div className="block w-full overflow-x-auto">
-          {/* Projects table */}
+         
           <table className="items-center w-full bg-transparent border-collapse">
             <thead>
               <tr>
@@ -101,6 +71,7 @@ export default function CardProjets() {
                             </div>
                             ))}
                           </div>
+                    
                   </td> 
                 <td className="text-white border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
                 {project.total_point}
@@ -114,6 +85,7 @@ export default function CardProjets() {
             </tbody>
           </table>
         </div>
+        
       </div>
     </>
   );
