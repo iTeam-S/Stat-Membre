@@ -2,12 +2,13 @@ import {useEffect,useState} from "react"
 import ProjectService from "../../utils/service/projectservice"
 
 
-import { useParams } from "react-router";
+import { useParams,useHistory } from "react-router";
 
 
 import {ProjectAxios } from "../../utils/apis/Stat";
 
 export default function UpdateProject() {
+    let history=useHistory();
     const {id}=useParams();
      const [nom,setNom]=useState("")
      const [repos,setRepos]=useState("")
@@ -26,8 +27,9 @@ export default function UpdateProject() {
     const handleSubmit=async (e)=>{
         e.preventDefault();
         try {
-            await ProjectService.UpdateProject(nom,repos,delai,id);
-            
+            console.log(nom,repos,delai,id)
+            await ProjectService.UpdateProject(nom,repos,delai,id)
+            history.push('/admin/dashboard')
         } catch (error) {
             console.log(error);
         }  

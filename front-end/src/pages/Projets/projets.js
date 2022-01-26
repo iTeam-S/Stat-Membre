@@ -1,19 +1,12 @@
-import React,{useState,useEffect} from "react";
-
-
+import React from "react";
 
 import { useContext} from "react";
 import {ProjectContext} from "../../utils/context/ProjectContext"
 
-
-
 import Navbar from "../../components/Navbars/AuthNavbar";
 import FooterSmall from "../../components/Footers/FooterSmall.js";
 
-
-
 export default function Project(){
-    
     const {projects}=useContext(ProjectContext)
      return(
                <>

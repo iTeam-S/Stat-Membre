@@ -27,18 +27,7 @@ export default function CardProjetsAdmin(props) {
     
   };
   const handleValide =async (id)=>{
-    let current=new Date()
-    let datvalid=`${current.getFullYear()}-${current.getMonth()+1}-${current.getDate()}}`;
-    try {
-      const validateProject=await ProjectAxios.put(`/valide/${id}`,{
-        valide:"true"
-      });
-      window.location.reload();
-      
-    } catch (error) {
-      console.log(error);
-      
-    }
+    history.push(`/admin/valide/projet/${id}`)
     
   }
   const CheckProjectMember=(id)=>{
