@@ -36,7 +36,7 @@ router.get('/onewithcrit/:id',ProjectCtrl.listOneWithCritere);
 router.get('/ProjectMember',ProjectCtrl.listAllWithMember);
 
 //afficher un projet avec les participants
-router.get('/:id/part',ProjectCtrl.listOneWithParticipant);
+router.get('/:nom/part',ProjectCtrl.listOneWithParticipant);
 
 //afficher un projet sans critere ni participant
 router.get('/:id',ProjectCtrl.getOne);

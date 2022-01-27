@@ -160,8 +160,8 @@ module.exports = {
 
     listOneWithParticipant: async (req, res) => {
         try {
-            let id = req.params.id;
-            let listp = await mdlsProject.getOneProjectWithPart(id);
+            let nom = req.params.nom;
+            let listp = await mdlsProject.getOneProjectWithPart(nom);
             res.status(200).send(listp);
 
         } catch (error) {

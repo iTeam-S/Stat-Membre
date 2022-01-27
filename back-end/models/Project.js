@@ -122,9 +122,9 @@ module.exports = {
             })
         })
     },
-    getOneProjectWithPart:(id)=>{
+    getOneProjectWithPart:(nom)=>{
         return new Promise((resolve,reject)=>{
-            db.query("SELECT membre.id,membre.nom as nom_participant, membre.prenom as prenom_participant,membre.pdc as pdc_participant,membre.point_experience,membre.nombre_projet,projet.nom as Nom_project FROM membre LEFT JOIN membre_projet ON membre.id=membre_projet.membre LEFT JOIN projet ON projet.id=membre_projet.projet WHERE projet.id=?",[id],function(err,resultat){
+            db.query("SELECT membre.id,membre.nom as nom_participant, membre.prenom as prenom_participant,membre.pdc as pdc_participant,membre.point_experience,membre.nombre_projet,projet.nom as Nom_project FROM membre LEFT JOIN membre_projet ON membre.id=membre_projet.membre LEFT JOIN projet ON projet.id=membre_projet.projet WHERE projet.nom=?",[nom],function(err,resultat){
                 if(err){
                     reject(new Error(err));
                 }else{

@@ -59,7 +59,7 @@ module.exports = {
                 });
             }
             var token = jwt.sign({ id: useR[0].id }, config.secret, {
-                expiresIn: 86400
+                expiresIn: '24h'
             });
 
 
