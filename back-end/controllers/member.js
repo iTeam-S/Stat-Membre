@@ -43,17 +43,11 @@ module.exports = {
 
     },
     NoterMembre:async(req,res)=>{
-
-
         try {
-            let id_membre=req.body.id_membre
-
-            //Ajouter le critere à un membre
-            let dern_cri=await mdlsCritere.getListCritere(),dern_id=dern_cri[0].id;
-            let Pp = await mdlsCritere.getOneCritere(dern_id),i = Pp[0];
-
+            let {difficulte,deadline,impact,implication,point_git,id_membre}=req.body
+            
             //calcul du critere avec le coefficient
-            let scoef = (i.difficulte * 25) + (i.deadline * 10) + (i.impact * 30) + (i.implication * 15) + (i.point_git * 20)
+            let scoef = (difficulte * 25) + (deadline * 10) + (impact * 30) + (implication * 15) + (point_git * 20)
 
             //Incrementer le point du membre
             let Pa=await mdlsMember.getPoint(id_membre),pointact=(Pa[0].point_experience);
@@ -70,6 +64,16 @@ module.exports = {
             res.status(500).send({
                 message:"Il y a une errer lors de notation du membre"
             })
+            
+        }
+
+    },
+    valideMembre:async(req,res)=>{
+        try {
+            
+            let scoef = (difficulte * 25) + (deadline * 10) + (impact * 30) + (implication * 15) + (point_git * 20)
+            let validMembre=await mdlsMember.ValideMember(scoef,id)
+        } catch (error) {
             
         }
 

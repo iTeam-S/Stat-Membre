@@ -1,8 +1,14 @@
-POST http://localhost:8000/api/v1/project/remove
+POST http://localhost:8000/api/v1/member/create
 Content-Type: application/json
 
 {
-     
+     "nom":"RAJAONARIVONY",
+     "prenom":"Rivo lalaina",
+     "user_github":"tafita",
+     "fonction":"devellopeur",
+     "pdc":"https://avatars.githubusercontent.com/u/59861055?v=4",
+     "mail":"rivo@gmail.com",
+     "admin":0
 }
 
 

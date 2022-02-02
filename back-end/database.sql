@@ -12,20 +12,10 @@ CREATE TABLE membre(
     admin boolean NOT NULL,
     point_experience INTEGER,
     nombre_projet INTEGER,
-    id_critere INTEGER NOT NULL,
     PRIMARY KEY(id)
 )ENGINE=INNODB DEFAULT CHARSET=utf8mb3;
 
-CREATE TABLE critere_membre(
-    membre int NOT NULL,
-    critere int NOT NULL,
-    PRIMARY KEY (membre,critere),
-    FOREIGN KEY (membre) REFERENCES critere(id) ON DELETE CASCADE ON UPDATE CASCADE,
-    FOREIGN KEY (critere) REFERENCES membre(id) ON DELETE CASCADE ON UPDATE CASCADE,
-    INDEX(membre),
-    INDEX(critere)
 
-)ENGINE=INNODB DEFAULT CHARSET=utf8mb3;
 
 CREATE TABLE projet(
     id int NOT NULL AUTO_INCREMENT,
@@ -41,16 +31,6 @@ CREATE TABLE projet(
 )ENGINE=INNODB DEFAULT CHARSET=utf8mb3;
 
 
-CREATE TABLE critere(
-    id int NOT NULL AUTO_INCREMENT,
-    difficulte INTEGER NOT NULL,
-    deadline INTEGER NOT NULL,
-    impact INTEGER NOT NULL,
-    implication INTEGER NOT NULL,
-    point_git INTEGER NOT NULL,
-    PRIMARY KEY(id)
-    
-)ENGINE=INNODB DEFAULT CHARSET=utf8mb3;
 
 
 CREATE TABLE users(
@@ -64,13 +44,18 @@ CREATE TABLE users(
 
 
 CREATE TABLE membre_projet(
-    membre int NOT NULL,
-    projet int NOT NULL,
-    PRIMARY KEY (membre,projet),
-    FOREIGN KEY (membre) REFERENCES projet(id) ON DELETE CASCADE ON UPDATE CASCADE,
-    FOREIGN KEY (projet) REFERENCES membre(id) ON DELETE CASCADE ON UPDATE CASCADE,
-    INDEX(membre),
-    INDEX(projet)
+    id_membre int NOT NULL,
+    id_projet int NOT NULL,
+    difficulte INTEGER NOT NULL,
+    deadline INTEGER NOT NULL,
+    impact INTEGER NOT NULL,
+    implication INTEGER NOT NULL,
+    point_git INTEGER NOT NULL,
+    PRIMARY KEY (id_membre,id_projet),
+    FOREIGN KEY (id_membre) REFERENCES projet(id) ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY (id_projet) REFERENCES membre(id) ON DELETE CASCADE ON UPDATE CASCADE,
+    INDEX(id_membre),
+    INDEX(id_projet)
 )ENGINE=INNODB DEFAULT CHARSET=utf8mb3;
 
 

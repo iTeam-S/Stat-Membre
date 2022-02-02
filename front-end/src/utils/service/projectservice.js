@@ -33,8 +33,8 @@ class ProjectService {
                }) 
 
      }
-     GetProjectMember(nom){
-          return ProjectAxios.get(`/${nom}/part`).then(response=>{
+     GetProjectMember(id){
+          return ProjectAxios.get(`/${id}/part`).then(response=>{
                return response
           })
      }

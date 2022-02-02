@@ -51,7 +51,7 @@ module.exports = {
     },
     addMemberToProject:(id_m,id_p)=>{
         return new Promise((resolve,reject)=>{
-            db.query("INSERT INTO membre_projet(membre,projet) values(?,?)",[id_m,id_p],function(err,resultat){
+            db.query("INSERT INTO membre_projet(id_membre,id_projet) values(?,?)",[id_m,id_p],function(err,resultat){
                 if(err){
                     reject(new Error(err));
                 }else{
@@ -99,7 +99,7 @@ module.exports = {
     },
     getProjectMember:()=>{
         return new Promise((resolve,reject)=>{
-            db.query("SELECT membre.nom as nom_participant, membre.prenom as prenom_participant,membre.pdc as pdc_participant,membre.fonction as fonction_participant,projet.nom as Nom_project,projet.repos as Repos_project,projet.delai as Delai_project,projet.total_point,projet.total_participant FROM membre LEFT JOIN membre_projet ON membre.id=membre_projet.id_member LEFT JOIN projet ON projet.id=membre_projet.id_project",function(err,resultat){
+            db.query("SELECT membre.nom as nom_participant, membre.prenom as prenom_participant,membre.pdc as pdc_participant,membre.fonction as fonction_participant,projet.nom as Nom_project,projet.repos as Repos_project,projet.delai as Delai_project,projet.total_point,projet.total_participant FROM membre LEFT JOIN membre_projet ON membre.id=membre_projet.id_membre LEFT JOIN projet ON projet.id=membre_projet.id_projet",function(err,resultat){
                 if(err){
                     reject(new Error("Errer resource while fetching project"));
                 }else{
@@ -122,9 +122,9 @@ module.exports = {
             })
         })
     },
-    getOneProjectWithPart:(nom)=>{
+    getOneProjectWithPart:(id)=>{
         return new Promise((resolve,reject)=>{
-            db.query("SELECT membre.id,membre.nom as nom_participant, membre.prenom as prenom_participant,membre.pdc as pdc_participant,membre.point_experience,membre.nombre_projet,projet.nom as Nom_project FROM membre LEFT JOIN membre_projet ON membre.id=membre_projet.membre LEFT JOIN projet ON projet.id=membre_projet.projet WHERE projet.nom=?",[nom],function(err,resultat){
+            db.query("SELECT membre.id,membre.nom as nom_participant, membre.prenom as prenom_participant,membre.pdc as pdc_participant,membre.point_experience,membre.nombre_projet,projet.nom as Nom_project FROM membre LEFT JOIN membre_projet ON membre.id=membre_projet.membre LEFT JOIN projet ON projet.id=membre_projet.projet WHERE projet.id=?",[nom],function(err,resultat){
                 if(err){
                     reject(new Error(err));
                 }else{
