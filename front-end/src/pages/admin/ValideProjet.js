@@ -8,26 +8,26 @@ import ProjectService from "../../utils/service/projectservice"
 
 export default function ValideProjet(){
     let history=useHistory();
-    const nom=useParams();
+    const {id}=useParams();
     const [part,setPart]=useState([])
     const [commit,setCommit]=useState([])
     useEffect(()=>{
       const fetchdata=async()=>{
       try{
-        await ProjectService.GetProjectMember(nom.nom).then((response)=>{
+        await ProjectService.GetProjectMember(id).then((response)=>{
           setPart(response.data)
         })
-        await ProjectService.GetCommit(nom.nom).then((response)=>{
+        await ProjectService.GetCommit(id).then((response)=>{
           setCommit(response)
         })
       }catch(error){
-        console.log(error);
+       console.log(error);
       }   
       }
       fetchdata();
 
-  },[nom])
-  console.log(nom.nom);
+  },[])
+  console.log(id);
      return(
           <>
            <Navbar transparent />

@@ -1,9 +1,9 @@
 const db = require('../service/connect');
 
 module.exports = {
-    create:(nom,prenom,user_github,fonction,pdc,mail,admin,point_experience)=>{
+    create:(nom,prenom,user_github,fonction,pdc,mail,point_experience,password,role)=>{
         return new Promise((resolve, reject) => {
-        db.query("INSERT INTO membre(nom,prenom,user_github,fonction,pdc,mail,admin,point_experience) values(?,?,?,?,?,?,?,?)",[nom,prenom,user_github,fonction,pdc,mail,admin,point_experience],function(err,resultat){
+        db.query("INSERT INTO membre(nom,prenom,user_github,fonction,pdc,mail,point_experience,password,role) values(?,?,?,?,?,?,?,?,?)",[nom,prenom,user_github,fonction,pdc,mail,point_experience,password,role],function(err,resultat){
             if(err){
                   reject(new Error(err));
               }else{
@@ -74,7 +74,7 @@ module.exports = {
     
     getTopFive:()=>{
         return new Promise((resolve,reject)=>{
-            db.query("SELECT  membre.id,membre.nom ,membre.prenom,membre.fonction,membre.pdc,membre.point_experience,membre.nombre_projet FROM membre WHERE membre.point_experience!=0 ORDER BY membre.point_experience DESC    LIMIT 5",(err,resultat)=>{
+            db.query("SELECT  id,nom ,membre.prenom,fonction,pdc,point_experience,nombre_projet FROM membre WHERE point_experience IS NOT NULL ORDER BY point_experience DESC    LIMIT 5",(err,resultat)=>{
                 if(err){
                     reject(new Error("Error while fetching member"))
                 }else{

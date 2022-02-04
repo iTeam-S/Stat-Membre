@@ -1,15 +1,18 @@
 const mdlsMember = require('../models/Member');
-const mdlsProject= require("../models/Project");
-const mdlsCritere=require("../models/Critere")
+var jwt = require("jsonwebtoken")
+var bcrypt = require("bcryptjs");
+const config=require('../config/authconfig')
 
 const fs = require('fs');
 
 module.exports = {
+    
     create:async(req,res)=>{
         try {
-            let {nom,prenom,user_github,fonction,pdc,mail,admin}=req.body;
+            let {nom,prenom,user_github,fonction,pdc,mail,password,role}=req.body;
+            let hashPassword = bcrypt.hashSync(req.body.password, 8);
             let point_experience=0
-            await mdlsMember.create(nom,prenom,user_github,fonction,pdc,mail,admin,point_experience);
+            await mdlsMember.create(nom,prenom,user_github,fonction,pdc,mail,point_experience,hashPassword,role);
             res.status(200).send({
                 message:"add member successfully"
             });

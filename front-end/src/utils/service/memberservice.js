@@ -18,11 +18,6 @@ class MemberService{
                return response;
           })
      }
-     getPdc(prenom){
-          return MemberAxios.get(`/getpdc/${prenom}`).then(response=>{
-               return response
-          })
-     }
      listmemberonproject(){
           return MemberAxios.get('/allonproject').then(response=>{
                return response;

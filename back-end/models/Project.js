@@ -40,7 +40,7 @@ module.exports = {
     },
     CheckIfMemberIsOnProject:(member_id,project_id)=>{
         return new Promise((resolve,reject)=>{
-            db.query("SELECT membre.nom, membre.prenom FROM membre LEFT JOIN membre_projet ON membre.id=membre_projet.membre LEFT JOIN projet ON projet.id=membre_projet.projet WHERE membre.id=? AND projet.id=?",[member_id,project_id],function(err,result){
+            db.query("SELECT membre.nom, membre.prenom FROM membre LEFT JOIN membre_projet ON membre.id=membre_projet.id_membre LEFT JOIN projet ON projet.id=membre_projet.id_projet WHERE membre.id=? AND projet.id=?",[member_id,project_id],function(err,result){
                 if(err){
                     reject(new Error(err))
                 }else{
@@ -124,7 +124,7 @@ module.exports = {
     },
     getOneProjectWithPart:(id)=>{
         return new Promise((resolve,reject)=>{
-            db.query("SELECT membre.id,membre.nom as nom_participant, membre.prenom as prenom_participant,membre.pdc as pdc_participant,membre.point_experience,membre.nombre_projet,projet.nom as Nom_project FROM membre LEFT JOIN membre_projet ON membre.id=membre_projet.membre LEFT JOIN projet ON projet.id=membre_projet.projet WHERE projet.id=?",[nom],function(err,resultat){
+            db.query("SELECT membre.id,membre.nom as nom_participant, membre.prenom as prenom_participant,membre.pdc as pdc_participant,membre.point_experience,membre.nombre_projet,projet.nom as Nom_project FROM membre LEFT JOIN membre_projet ON membre.id=membre_projet.membre LEFT JOIN projet ON projet.id=membre_projet.projet WHERE projet.id=?", [id],function(err,resultat){
                 if(err){
                     reject(new Error(err));
                 }else{

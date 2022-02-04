@@ -9,9 +9,10 @@ CREATE TABLE membre(
     fonction varchar(255) NOT NULL,
     pdc varchar(255) NOT NULL,
     mail varchar(255) NOT NULL,
-    admin boolean NOT NULL,
     point_experience INTEGER,
     nombre_projet INTEGER,
+    password varchar(255) NOT NULL,
+    role varchar(255) NOT NULL,
     PRIMARY KEY(id)
 )ENGINE=INNODB DEFAULT CHARSET=utf8mb3;
 
@@ -33,24 +34,14 @@ CREATE TABLE projet(
 
 
 
-CREATE TABLE users(
-   id int NOT NULL AUTO_INCREMENT,
-   prenom varchar(255) NOT NULL,
-    email varchar(255) NOT NULL,
-    password varchar(255) NOT NULL,
-    role varchar(255) NOT NULL,
-     PRIMARY KEY(id)
-)ENGINE=INNODB DEFAULT CHARSET=utf8mb3;
-
-
 CREATE TABLE membre_projet(
     id_membre int NOT NULL,
     id_projet int NOT NULL,
-    difficulte INTEGER NOT NULL,
-    deadline INTEGER NOT NULL,
-    impact INTEGER NOT NULL,
-    implication INTEGER NOT NULL,
-    point_git INTEGER NOT NULL,
+    difficulte INTEGER DEFAULT  NULL,
+    deadline INTEGER DEFAULT NULL,
+    impact INTEGER DEFAULT NULL,
+    implication INTEGER DEFAULT NULL,
+    point_git INTEGER DEFAULT NULL,
     PRIMARY KEY (id_membre,id_projet),
     FOREIGN KEY (id_membre) REFERENCES projet(id) ON DELETE CASCADE ON UPDATE CASCADE,
     FOREIGN KEY (id_projet) REFERENCES membre(id) ON DELETE CASCADE ON UPDATE CASCADE,

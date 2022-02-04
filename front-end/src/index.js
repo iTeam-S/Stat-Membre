@@ -114,7 +114,7 @@ const App = () => {
                               
 
                              {/*Admin routes */}
-                            <AdminRoute exact path="/admin/valide/projet/:nom">
+                            <AdminRoute exact path="/admin/valide/projet/:id">
                                 <ValideProjet/>
                             </AdminRoute>
                               <AdminRoute exact path="/admin/dashboard">

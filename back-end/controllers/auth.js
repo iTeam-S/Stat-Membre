@@ -31,7 +31,7 @@ module.exports = {
     },
     signin: async (req,res) => {
         try {
-            let email = req.body.email;
+            let email = req.body.mail;
             if(!email){
                 return res.status(404).send(
                     {
@@ -68,6 +68,7 @@ module.exports = {
                 username: useR[0].prenom,
                 email: useR[0].email,
                 role: useR[0].role,
+                pdc:useR[0].pdc,
                 token: token
             });
 
