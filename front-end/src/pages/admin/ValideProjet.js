@@ -4,15 +4,26 @@ import FooterSmall from "../../components/Footers/FooterSmall.js";
 import { useParams,useHistory } from "react-router";
 import ProjectService from "../../utils/service/projectservice"
 import { ProjectContext } from "../../utils/context/ProjectContext.js";
+import { Link } from "react-router-dom";
+
 
 
 
 export default function ValideProjet(){
+
+  const [difficulte,setDifficulte]=useState(1);
+  const [deadline,setDeadine]=useState(1);
+  const [implication,setImplication]=useState(1);
+  const [impact,setImpact]=useState(1);
+  /*    */
+
     let history=useHistory();
     const {id}=useParams();
     const [part,setPart]=useState([])
     const {projects}=useContext(ProjectContext)
-    const [nompro,setNomProject]=useState("");
+ 
+
+
     useEffect(()=>{
       const fetchdata=async()=>{
       try{
@@ -27,7 +38,9 @@ export default function ValideProjet(){
       fetchdata();
 
   },[])
-  console.log(projects);
+  const handleValideMember=(e)=>{
+      console.log(difficulte,deadline,impact,implication);
+    }
      return(
           <>
            <Navbar transparent />
@@ -40,7 +53,7 @@ export default function ValideProjet(){
                 "url(" + require("assets/img/register_bg_2.png").default + ")",
             }}
           ></div>
-      <div className="mx-1/3 relative  container flex flex-col min-w-0 break-words bg-gray-400 w-full mb-6 shadow-xl rounded-lg mt-4">
+      <div className="mx-1/3 relative  container flex flex-col min-w-0 break-words w-full mb-6 shadow-xl rounded-lg mt-4">
       <section className="bg-white h-12">
       {
         projects
@@ -49,82 +62,54 @@ export default function ValideProjet(){
         <h1 className="text-center font-semibold text-2xl italic">Valider tous les participants du projet <span className="text-teal-500 ">{project.nom_projet}</span></h1>
         ))}
       </section>
-      <div className="bg-gray-400  py-4 rounded-lg ml-5 flex flex-wrap  container mx-auto px-1/100 h-full border-blueGray-50">
+      <div className=" py-4 rounded-lg ml-5 flex flex-wrap  container mx-auto px-1/100 h-full border-blueGray-50">
         {part.map((participant)=>(
-        <div className="w-1/3 mx-4 rounded-lg bg-white px-6">
+        <div className="w-1/3 mx-4 mt-1/2 rounded-lg bg-white px-6">
+        <div className="px-6">
           <div className="flex flex-wrap justify-center">
             <div className="w-full px-4 flex justify-center">
               <div className="relative">
                 <img
-                  src={participant.pdc_participant ? participant.pdc_participant:require("assets/img/team-1-800x800.jpg").default} alt="..."
-                  className="shadow-xl rounded-full h-auto align-middle border-none absolute m-2 -ml-20 lg:-ml-16 max-w-150-px"
+                  alt="..."
+                  src={participant.pdc_participant ? participant.pdc_participant:require("assets/img/team-1-800x800.jpg").default}
+                  className="shadow-xl rounded-full h-auto align-middle border-none absolute -m-16 -ml-20 lg:-ml-16 max-w-150-px"
                 />
               </div>
             </div>
             <div className="w-full px-4 text-center mt-20">
-              <h3 className="text-xl font-semibold leading-normal mt-1/10 mb-2 text-blueGray-700 mb-2">
-                {participant.nom_participant +" "+ participant.prenom_participant}
-              </h3>
+              <div className="flex justify-center py-4 lg:pt-4 pt-8">
+                <div className="mr-4 p-3 text-center">
+                  <span className="text-xl font-bold block uppercase tracking-wide text-blueGray-600">
+                    {participant.point_experience}
+                  </span>
+                  <span className="text-sm text-blueGray-400">Point Actuel</span>
+                </div>
+                <div className="lg:mr-4 p-3 text-center">
+                  <span className="text-xl font-bold block uppercase tracking-wide text-blueGray-600">
+                    {participant.nombre_projet}
+                  </span>
+                  <span className="text-sm text-blueGray-400">Nombre_projet</span>
+                </div>
+              </div>
             </div>
           </div>
-        <div className = "bg-gray-400 flex-auto mb-5 px-4 lg:px-10 py-10 pt-0" >
-          <form action="">
-            <div className = "relative w-full mb-3" >
-              <label className = "block uppercase text-blueGray-600 text-xs font-bold mb-2"  htmlFor = "deadline" >Impact Projet </label> 
-                <select id="deadline"   className = "border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150">
-                  <option value="1">Debutant</option>
-                  <option value="2">Amateur</option>
-                  <option value="3">Normal</option>
-                  <option value="4">Haut Niveau</option>
-                  <option value="5">Legende</option>
-                </select>
+          <div className="text-center mt-12">
+            <h3 className="text-xl font-semibold leading-normal mb-2 text-blueGray-700 mb-2">
+             {participant.nom_participant + " " +participant.prenom_participant}
+            </h3>
+            <div className="mb-2 text-blueGray-600 mt-10">
+              <i className="fas fa-briefcase mr-2 text-lg text-blueGray-400"></i>
+              {participant.fonction}
             </div>
-            <div className = "relative w-full mb-3" >
-              <label className = "block uppercase text-blueGray-600 text-xs font-bold mb-2"  htmlFor = "deadline" >Difficulté </label> 
-                <select id="deadline"   className = "border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150">
-                  <option value="1">Debutant</option>
-                  <option value="2">Amateur</option>
-                  <option value="3">Normal</option>
-                  <option value="4">Haut Niveau</option>
-                  <option value="5">Legende</option>
-                </select>
+            <div className="mb-2 text-blueGray-600">
+              <Link to={`/admin/project/noterone/${participant.id}/${id}`}>
+              <input   type="submit" className = "bg-teal-700 text-white active:bg-blueGray-600 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full ease-linear transition-all duration-150" value="Noter"/>
+              </Link>
             </div>
-            <div className = "relative w-full mb-3" >
-              <label className = "block uppercase text-blueGray-600 text-xs font-bold mb-2"  htmlFor = "deadline" >Implication  </label> 
-                <select id="deadline"   className = "border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150">
-                  <option value="1">Debutant</option>
-                  <option value="2">Amateur</option>
-                  <option value="3">Normal</option>
-                  <option value="4">Haut Niveau</option>
-                  <option value="5">Legende</option>
-                </select>
-            </div>
-            <div className = "relative w-full mb-3" >
-              <label className = "block uppercase text-blueGray-600 text-xs font-bold mb-2"  htmlFor = "deadline" >DeadLine </label> 
-                <select id="deadline"   className = "border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150">
-                  <option value="1">Debutant</option>
-                  <option value="2">Amateur</option>
-                  <option value="3">Normal</option>
-                  <option value="4">Haut Niveau</option>
-                  <option value="5">Legende</option>
-                </select>
-            </div>
-            <div className = "relative w-full mb-3" >
-              <label className = "block uppercase text-blueGray-600 text-xs font-bold mb-2"  htmlFor = "deadline" >Point_git </label> 
-                <select id="point_git"   className = "border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150">
-                  <option value="1">Debutant</option>
-                  <option value="2">Amateur</option>
-                  <option value="3">Normal</option>
-                  <option value="4">Haut Niveau</option>
-                  <option value="5">Legende</option>
-                </select>
-            </div>
-            <div className = "text-center mt-6" >
-              <button  type="submit" className = "bg-teal-700 text-white active:bg-blueGray-600 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full ease-linear transition-all duration-150" >Valider</button> 
-            </div>
-          </form> 
-         </div> 
+          </div>
         </div>
+      </div>
+               
       ))}
       </div>
       

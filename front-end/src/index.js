@@ -28,6 +28,7 @@ import {ProjectContextProvider} from "./utils/context/ProjectContext"
 import {MemberContextProvider} from "./utils/context/MemberContext"
 import {CritereContextProvider} from "./utils/context/CritereContext"
 import ValideProjet from "./pages/admin/ValideProjet"
+import NoterOneMembre from "./pages/admin/NoterUnMembre"
 
 
 
@@ -115,6 +116,9 @@ const App = () => {
                              {/*Admin routes */}
                             <AdminRoute exact path="/admin/valide/projet/:id">
                                 <ValideProjet/>
+                            </AdminRoute>
+                            <AdminRoute exact path="/admin/project/noterone/:id_membre/:id_projet">
+                                <NoterOneMembre/>
                             </AdminRoute>
                               <AdminRoute exact path="/admin/dashboard">
                                   <Admin membre={member} projet={project}/>:

@@ -11,7 +11,7 @@ import {MemberContext} from "../../utils/context/MemberContext"
 import Navbar from "../../components/Navbars/AuthNavbar.js";
 import FooterSmall from "../../components/Footers/FooterSmall.js";
 import ProjectService from "../../utils/service/projectservice";
-import MemberService from "../../utils/service/memberservice.js";
+
 
 
 export default function AddMember() {
@@ -46,7 +46,9 @@ export default function AddMember() {
       } = useForm({
         resolver: yupResolver(validationSchema)
       });
+      
     let history=useHistory();
+
     const handleAddmember=async(data)=>{
         try {
             const response=await ProjectService.addMember(data.id_membre,data.id_projet);

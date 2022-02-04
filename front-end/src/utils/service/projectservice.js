@@ -56,7 +56,7 @@ class ProjectService {
                return ProjectAxios.post("/addMember",{
                     id_membre,
                     id_projet,
-               },console.log(id_membre,id_projet))
+               })
           
      }
 

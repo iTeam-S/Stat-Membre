@@ -120,7 +120,7 @@ module.exports = {
                 TotProject=0
             }
                  
-            let umber=await mdlsProject.addMemberToProject(membre[0].id, project[0].id);
+            let umber=await mdlsProject.addMemberToProject(id_membre,id_projet);
            
 
             let new_participant=project_part[0].total_participant+1;

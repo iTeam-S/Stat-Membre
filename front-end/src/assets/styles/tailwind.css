@@ -1742,6 +1742,11 @@ background-color: rgba(55, 48, 163, var(--tw-bg-opacity));}
   margin-right: 21%;
   
 }
+.mx-1\/4{
+  margin-left: 25%;
+  margin-right: 25%;
+  
+}
 .mr-2\/5{
 
   margin-right: 40%;

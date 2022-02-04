@@ -31,6 +31,7 @@ export const ProjectContextProvider=(props)=>{
                     apart['participant']=part
                     apart['total_part']=response.data[i].total_participant
                     apart['valide']=response.data[i].valide
+                    
 
                     pwithpart.push(apart)
                 }

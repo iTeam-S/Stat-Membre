@@ -27,7 +27,6 @@ export default function UpdateProject() {
     const handleSubmit=async (e)=>{
         e.preventDefault();
         try {
-            console.log(nom,repos,delai,id)
             await ProjectService.UpdateProject(nom,repos,delai,id)
             history.push('/admin/dashboard')
         } catch (error) {
@@ -65,7 +64,6 @@ export default function UpdateProject() {
                                 <div className = "text-center mt-6" >
                                     <button onClick={handleSubmit} type="submit" className = "bg-blueGray-800 text-white active:bg-blueGray-600 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full ease-linear transition-all duration-150" >Update</button> 
                                 </div>
-                                
                             </form> 
                         </div> 
                     </div> 

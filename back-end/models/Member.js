@@ -47,9 +47,9 @@ module.exports = {
         }) 
 
     },
-    ValideMember:(n_point,id)=>{
+    ValideMember:(difficulte, deadline, impact, implication,id_membre,id_projet)=>{
         return new Promise((resolve,reject)=>{
-            db.query("UPDATE membre SET point_exprerience=? WHERE id=?",[n_point,id],function(err,resultat){
+            db.query("UPDATE membre_projet SET difficulte =?, deadline=?, impact=?, implication=? WHERE id_membre=? AND id_projet=?",[difficulte, deadline, impact, implication,id_membre,id_projet],function(err,resultat){
                 if(err){
                     reject(new Error("Errer lors de validation de membre"))
                 }else{
@@ -59,6 +59,7 @@ module.exports = {
         })
 
     },
+
     getAllMemberProject:(id)=>{
         return new Promise((resolve,reject)=>{
             db.query("SELECT projet.nom as Nom_project,projet.repos as Repos_project,projet.delai as Delai_project,projet.delai,projet.valide,projet.total_participant FROM projet LEFT JOIN membre_projet ON projet.id=membre_projet.projet LEFT JOIN membre ON membre.id=membre_projet.membre  WHERE membre.id=?",[id],(err,result)=>{

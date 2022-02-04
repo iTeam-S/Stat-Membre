@@ -23,6 +23,18 @@ class MemberService{
                return response;
           })
      }
+     NoterUnMembre(difficulte, deadline, impact, implication,id_membre,id_projet){
+          return MemberAxios.put('/notermembre',{
+               difficulte,
+               deadline,
+               impact,
+               implication,
+               id_membre,
+               id_projet
+          })
+
+     }
+     
 
 }
 

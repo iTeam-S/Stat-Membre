@@ -1,7 +1,5 @@
 const mdlsMember = require('../models/Member');
-var jwt = require("jsonwebtoken")
 var bcrypt = require("bcryptjs");
-const config=require('../config/authconfig')
 
 const fs = require('fs');
 
@@ -47,18 +45,19 @@ module.exports = {
     },
     NoterMembre:async(req,res)=>{
         try {
-            let {difficulte,deadline,impact,implication,point_git,id_membre}=req.body
+            let {difficulte, deadline, impact, implication,id_membre,id_projet}=req.body
             
             //calcul du critere avec le coefficient
-            let scoef = (difficulte * 25) + (deadline * 10) + (impact * 30) + (implication * 15) + (point_git * 20)
-
+            let scoef = (difficulte * 25) + (deadline * 10) + (impact * 30) + (implication * 15)
+        
             //Incrementer le point du membre
             let Pa=await mdlsMember.getPoint(id_membre),pointact=(Pa[0].point_experience);
+            
             let new_point=scoef+pointact
-
+            
             //ajouter le point au membre.point_experience
-            await mdlsMember.setPoint(new_point,id_membre)
-
+            await mdlsMember.ValideMember(difficulte, deadline, impact, implication,id_membre,id_projet);
+            await mdlsMember.setPoint(new_point,id_membre);
 
             res.status(200).send({
                 message:"Ce membre est noté sur ce projet"

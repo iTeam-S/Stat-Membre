@@ -22,7 +22,7 @@ router.get('/allonproject',MemberCtrl.listallonproject)
 router.get('/getOne/:id',MemberCtrl.getOne);
 
 //Noter membre
-router.post('/notermembre',MemberCtrl.NoterMembre)
+router.put('/notermembre',MemberCtrl.NoterMembre)
 
 //get topfive with their point
 
