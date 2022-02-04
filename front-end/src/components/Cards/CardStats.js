@@ -1,4 +1,4 @@
-import React,{useState,useEffect} from "react"; 
+import React from "react"; 
 import PropTypes from "prop-types";
 
 
@@ -73,9 +73,9 @@ CardStats.defaultProps = {
 
 CardStats.propTypes = {
   statSubtitle: PropTypes.string,
-  statTitle: PropTypes.string,
+  statTitle: PropTypes.number,
   statArrow: PropTypes.oneOf(["up", "down"]),
-  statPercent: PropTypes.string,
+  statPercent: PropTypes.number,
   // can be any of the text color utilities
   // from tailwindcss
   statPercentColor: PropTypes.string,

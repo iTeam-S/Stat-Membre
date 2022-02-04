@@ -1,5 +1,5 @@
 import Chart from "chart.js";
-import React,{useEffect,useState} from "react";
+import React,{useEffect} from "react";
 import moment from "moment";
 
 
@@ -121,8 +121,8 @@ export default function CardBarChart() {
       },
     };
 
-    {/*let ctx = document.getElementById("chart").getContext("2d");
-  window.myBar = new Chart(ctx, config);*/}
+    let ctx = document.getElementById("chart").getContext("2d");
+  window.myBar = new Chart(ctx, config);
   }
   CardData();
   }, []);

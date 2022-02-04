@@ -5,7 +5,7 @@ import MemberService from "../../utils/service/memberservice";
 
 
 export default function Simplestat(){
-     const [projectval,setProjval]=useState([]);
+     const [projectval,setProjval]=useState(0);
   const [memberact,setMemberact]=useState(0);
   const [freqmemberact,setFreqmemberact]=useState(0);
 
@@ -53,9 +53,9 @@ export default function Simplestat(){
                <div className="w-full lg:w-6/12 xl:w-3/12 px-4">
                     <CardStats
                     statSubtitle="COMMIT"
-                    statTitle="2,356"
+                    statTitle={2}
                     statArrow="down"
-                    statPercent="3.48"
+                    statPercent={3.48}
                     statPercentColor="text-red-500"
                     statDescripiron="Since last week"
                     statIconName="fas fa-chart-pie"
@@ -67,7 +67,7 @@ export default function Simplestat(){
                     statSubtitle="PRODUCTION"
                     statTitle={projectval}
                     statArrow="up"
-                    statPercent="18"
+                    statPercent={18}
                     statPercentColor="text-emerald-500"
                     statDescripiron="Depuis l'année dernier"
                     statIconName="far fa-chart-bar"

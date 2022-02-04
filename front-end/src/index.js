@@ -49,7 +49,6 @@ const projectUrl = "http://localhost:8000/api/v1/project/getAll";
 
 
 const App = () => {
-    const User=AuthService.getCurrentUser();
   //get member
 
   const [member, setMember] = useState([]);

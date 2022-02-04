@@ -4,7 +4,6 @@ import {Link} from "react-router-dom";
 
 
 import {AuthService} from "../../utils/service/authservice";
-import MemberService from "../../utils/service/memberservice"
 
 
 const UserDropdown = () => {
@@ -35,7 +34,7 @@ const UserDropdown = () => {
         }
         
 
-    },[dropdownPopoverShow])
+    },[dropdownPopoverShow,btnDropdownRef])
     const closeDropdownPopover = () => {
         setDropdownPopoverShow(false);
     };

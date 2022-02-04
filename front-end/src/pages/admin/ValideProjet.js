@@ -1,8 +1,9 @@
-import React,{useEffect,useState} from "react"
+import React,{useEffect,useState,useContext} from "react"
 import Navbar from "../../components/Navbars/AuthNavbar.js";
 import FooterSmall from "../../components/Footers/FooterSmall.js";
 import { useParams,useHistory } from "react-router";
 import ProjectService from "../../utils/service/projectservice"
+import { ProjectContext } from "../../utils/context/ProjectContext.js";
 
 
 
@@ -10,16 +11,15 @@ export default function ValideProjet(){
     let history=useHistory();
     const {id}=useParams();
     const [part,setPart]=useState([])
-    const [commit,setCommit]=useState([])
+    const {projects}=useContext(ProjectContext)
+    const [nompro,setNomProject]=useState("");
     useEffect(()=>{
       const fetchdata=async()=>{
       try{
         await ProjectService.GetProjectMember(id).then((response)=>{
           setPart(response.data)
         })
-        await ProjectService.GetCommit(id).then((response)=>{
-          setCommit(response)
-        })
+        
       }catch(error){
        console.log(error);
       }   
@@ -27,7 +27,7 @@ export default function ValideProjet(){
       fetchdata();
 
   },[])
-  console.log(id);
+  console.log(projects);
      return(
           <>
            <Navbar transparent />
@@ -42,7 +42,12 @@ export default function ValideProjet(){
           ></div>
       <div className="mx-1/3 relative  container flex flex-col min-w-0 break-words bg-gray-400 w-full mb-6 shadow-xl rounded-lg mt-4">
       <section className="bg-white h-12">
-        <h1 className="text-center font-semibold text-2xl italic">Valider tous les partcipants du projet <span className="text-teal-500 ">Nom du projet</span></h1>
+      {
+        projects
+          .filter((project) => project.id==id)
+          .map((project) => (
+        <h1 className="text-center font-semibold text-2xl italic">Valider tous les participants du projet <span className="text-teal-500 ">{project.nom_projet}</span></h1>
+        ))}
       </section>
       <div className="bg-gray-400  py-4 rounded-lg ml-5 flex flex-wrap  container mx-auto px-1/100 h-full border-blueGray-50">
         {part.map((participant)=>(

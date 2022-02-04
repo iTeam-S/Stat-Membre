@@ -9,12 +9,10 @@ import MemberService from "../../utils/service/memberservice"
 
 export default function Landing({data}) {
     const [members,setMembers]=useState([]);
-    const [memberzero,setMemberzero]=useState({});
 
     useEffect(()=>{
         MemberService.getListMember().then(response=>{
             setMembers(response.data)
-            setMemberzero(response.data[0]);
         });
         
     },[])

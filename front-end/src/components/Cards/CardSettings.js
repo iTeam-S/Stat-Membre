@@ -1,12 +1,14 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useParams } from "react-router";
 import { Link } from "react-router-dom";
+import { MemberContext } from "../../utils/context/MemberContext";
 
 
 // components
 
-export default function Settings({data}) {
+export default function Settings() {
     const {prenom}=useParams();
+    const {members}=useContext(MemberContext)
     return ( 
         <>
             <div className = "relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-blueGray-100 border-0" >
@@ -20,7 +22,7 @@ export default function Settings({data}) {
                 </div> 
                 <div className = "flex-auto px-4 lg:px-10 py-10 pt-0" >
                 {
-                         data
+                         members
                          .filter((membre) => membre.prenom ===prenom)
                          .map((membre) => (
                     <form >
