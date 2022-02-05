@@ -54,12 +54,12 @@ export default function ValideProjet(){
             }}
           ></div>
       <div className="mx-1/3 relative  container flex flex-col min-w-0 break-words w-full mb-6 shadow-xl rounded-lg mt-4">
-      <section className="bg-white h-12">
+      <section className=" h-12">
       {
         projects
           .filter((project) => project.id==id)
           .map((project) => (
-        <h1 className="text-center font-semibold text-2xl italic">Valider tous les participants du projet <span className="text-teal-500 ">{project.nom_projet}</span></h1>
+            <h1 className="animate-bounce cursor-pointer rounded-full mx-2/5 text-base mb-8 italic font-semibold bg-teal-700 text-white fas fa-angle-double-down text-center"> Les participants du projet {project.nom_projet}</h1>
         ))}
       </section>
       <div className=" py-4 rounded-lg ml-5 flex flex-wrap  container mx-auto px-1/100 h-full border-blueGray-50">

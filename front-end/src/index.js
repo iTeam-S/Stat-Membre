@@ -29,6 +29,7 @@ import {MemberContextProvider} from "./utils/context/MemberContext"
 import {CritereContextProvider} from "./utils/context/CritereContext"
 import ValideProjet from "./pages/admin/ValideProjet"
 import NoterOneMembre from "./pages/admin/NoterUnMembre"
+import ProjetdMembre from "./pages/Projets/Projetdmembre"
 
 
 
@@ -78,6 +79,9 @@ const App = () => {
                               {/* add routes with layouts */}
                               <Route exact path="/views/public/memberlist">
                                       <MemberList />
+                              </Route>
+                              <Route exact path="/views/public/projetdmembre/:id">
+                                      <ProjetdMembre />
                               </Route>
                               <Route exact path="/views/public/projets">
                                       <Project />

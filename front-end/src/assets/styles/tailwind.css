@@ -1742,11 +1742,6 @@ background-color: rgba(55, 48, 163, var(--tw-bg-opacity));}
   margin-right: 21%;
   
 }
-.mx-1\/4{
-  margin-left: 25%;
-  margin-right: 25%;
-  
-}
 .mr-2\/5{
 
   margin-right: 40%;
@@ -1976,6 +1971,14 @@ background-color: rgba(55, 48, 163, var(--tw-bg-opacity));}
 
 .hover\:-mt-4:hover {
   margin-top: -1rem;
+}
+.hover\:mt-4:hover {
+  margin-top: 1rem;
+  background-color:#e4e4e7;
+}
+.hover\:mt-2:hover {
+  margin-top: 0.1rem;
+
 }
 
 .max-h-860-px {

@@ -62,9 +62,9 @@ module.exports = {
 
     getAllMemberProject:(id)=>{
         return new Promise((resolve,reject)=>{
-            db.query("SELECT projet.nom as Nom_project,projet.repos as Repos_project,projet.delai as Delai_project,projet.delai,projet.valide,projet.total_participant FROM projet LEFT JOIN membre_projet ON projet.id=membre_projet.projet LEFT JOIN membre ON membre.id=membre_projet.membre  WHERE membre.id=?",[id],(err,result)=>{
+            db.query("SELECT projet.nom as Nom_project,projet.repos as Repos_project,projet.delai as Delai_project,projet.delai,projet.valide,projet.total_participant FROM projet LEFT JOIN membre_projet ON projet.id=membre_projet.id_projet LEFT JOIN membre ON membre.id=membre_projet.id_membre  WHERE membre.id=?",[id],(err,result)=>{
                 if(err){
-                    reject(new Error(err))
+                    reject(new Error("Projet du membre introuvable"))
                 }else{
                     resolve(result)
                 }
