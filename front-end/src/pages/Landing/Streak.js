@@ -1,4 +1,5 @@
 import React,{useState,useEffect} from "react";
+import axios from "axios";
 
 // components
 
@@ -7,7 +8,7 @@ import Footer from "../../components/Footers/Footer.js";
 import MemberService from "../../utils/service/memberservice"
 
 
-export default function Landing({data}) {
+export default function Streak({data}) {
     const [members,setMembers]=useState([]);
     const [memberzero,setMemberzero]=useState({});
 
@@ -17,10 +18,13 @@ export default function Landing({data}) {
             setMemberzero(response.data[0]);
         });
         
-    },[])
+    },[]);
+
+    const streak_url = "https://github-readme-streak-stats.herokuapp.com/?theme=vue&ring=D96098&fire=D96098&user= ";
+
     return ( 
         <>
-            <Navbar transparent/>
+            <Navbar />
             <main >
                 <div className = "relative pt-16 pb-32 flex content-center items-center justify-center min-h-screen-75" >
                     <div className = "absolute top-0 w-full h-full bg-center bg-cover"
@@ -34,8 +38,8 @@ export default function Landing({data}) {
                         <div className = "items-center flex flex-wrap" >
                             <div className = "w-full lg:w-6/12 px-4 ml-auto mr-auto text-center" >
                                 <div className = "pr-12" >
-                                    <h1 className = "text-white font-semibold text-5xl" >Les équipes dans Iteam - $. </h1> 
-                                    <p className = "mt-4 text-lg text-blueGray-200" >Vous pouvez voir ici tous les développeurs chez Iteam - $ avec leur point et rang. </p> 
+                                    <h1 className = "text-white font-semibold text-5xl" style={styles.titre}>Statistique sur github </h1> 
+                                    <p className = "mt-4 text-lg text-blueGray-100" style={styles.titre}>Voici les Streak de tous les membres dans iTeam-$ </p> 
                                 </div> 
                             </div> 
                         </div> 
@@ -52,54 +56,23 @@ export default function Landing({data}) {
                         </svg> 
                     </div> 
                 </div>
-                <section>
-                    <div className="block relative z-1  pb-48 mx-1/5 ">
-                    <div className = "py-4 rounded-lg flex flex-wrap  container mx-auto px-48 h-full border-blueGray-50" >
-                        <div className = "flex  flex-wrap " >
-                            <div className = "w-full" >
-                                <div className = "w-full container flex flex-wrap pt-2" style={ {margin: '10px 15px'} } >
-                                {members.map((member=>(
-                                    <div key={member.id} className = "w-3/5 ml-1/40 mt-1/2 h-1/2" >
-                                        <div className="w-full max-w-sm rounded overflow-hidden shadow-lg">
-                                        <img alt = "..." className = "w-full  align-middle border-none shadow-lg" src = {member.pdc?member.pdc:("https://h5ckfun.info/wp-content/uploads/2015/07/MyAvatar.png") }/>
-                                            <div className="px-5 py-4">
-                                                <p className="text-center font-bold text-xl ">{member.nom}</p>
-                                                <p className="text-center font-bold text-xl ">{member.prenom}</p>
-                                            </div>
-                                            <div className="w-full">
-                                            <table className="w-full bg-transparent
-                                            border-collapse">
-                                                <thead>
-                                                    <tr>
-                                                        <th className="px-6 bg-teal-500  align-middle border border-solid border-blueGray-100 py-3 text-xs  border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">Rang</th>
-                                                        <th className="px-6 bg-orange-500 text-white  align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">{(members.indexOf(member))+1}</th>
-                                                    </tr>
-                                                    <tr>
-                                                        <th className="px-6 bg-teal-500  align-middle border border-solid border-blueGray-100 py-3 text-xs  border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">Total point</th>
-                                                        <th className="px-6  bg-orange-500 text-white align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">{member.point_experience}</th>
-                                                    </tr>
-                                                    <tr>
-                                                        <th className="px-6 bg-teal-500  align-middle border border-solid border-blueGray-100 py-3 text-xs  border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">Total projet</th>
-                                                        <th className="px-6  bg-orange-500 text-white align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">{member.nombre_projet}</th>
-                                                    </tr>
-                                                </thead>
-                                            </table>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    )))}
-                                </div> 
-                            </div>
-                        </div> 
-                    </div>
+            <section>
+                <div style={styles.streak}>
+                    {members.map((member) => (
+                        <div style={styles.content_streak}>
+                            <p style={styles.nom_user}>{member.prenom}</p>
+                            <img
+                                alt={member.prenom}
+                                src= { streak_url.trim() + member.user_github }
+                                className="rounded-t-lg"
+                            />
+                        </div>  
+                    ))}
                 </div>
             </section>      
                            
                         
-
-
-
-                <section className = "pb-20 relative block bg-blueGray-800" >
+            <section className = "pb-20 relative block bg-blueGray-800" >
 
                     <div className = "container mx-auto px-4 lg:pt-24 lg:pb-64" >
                         <div className = "flex flex-wrap text-center justify-center" >
@@ -144,4 +117,28 @@ export default function Landing({data}) {
             <Footer/>
         </>
     );
+}
+
+const styles = {
+    streak: {
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'space-around',
+        width: '100%',
+        flexWrap: 'wrap',
+        position: 'relative',
+        margin: '50px 0px'
+    },
+    content_streak: {
+        width: '500px',
+        margin: '15px 0px'
+    },
+    nom_user: {
+        textAlign: 'center',
+        fontSize: '22px',
+        fontWeight: 'bold'
+    },
+    titre: {
+        color: '#325288'
+    }
 }

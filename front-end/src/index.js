@@ -33,9 +33,10 @@ import ValideProjet from "./pages/admin/ValideProjet"
 
 
 
+
 // views without layouts
 
-import Landing from "./pages/Landing/Landing";
+import Streak from "./pages/Landing/Streak";
 import Profile from "./pages/Profile/Profile";
 import Index from "./pages/Home/Index";
 import Project from "./pages/Projets/projets";
@@ -117,8 +118,8 @@ const App = () => {
                               <Route exact path="/public/project/:nom/mproject">
                                   <ProjectMember/>
                               </Route>
-                              <Route path="/landing" exact>
-                                  <Landing data={member}/>
+                              <Route path="/streak" exact>
+                                  <Streak data={member}/>
                               </Route>
                               <Route path="/profile/:prenom" exact>
                                   <Profile data={member}/>
