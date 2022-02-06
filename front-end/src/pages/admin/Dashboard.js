@@ -1,4 +1,4 @@
-import React,{useState,useEffect} from "react";
+import React from "react";
 
 
 // components
@@ -9,9 +9,6 @@ import CardProjetsAdmin from "../../components/Cards/CardProjetsAdmin";
 
 
 export default function Dashboard() {
-  
-  
-
   return (
     <>
       <div className="flex flex-wrap">

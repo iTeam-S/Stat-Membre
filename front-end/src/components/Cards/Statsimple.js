@@ -5,9 +5,9 @@ import MemberService from "../../utils/service/memberservice";
 
 
 export default function Simplestat(){
-     const [projectval,setProjval]=useState(0);
-  const [memberact,setMemberact]=useState(0);
-  const [freqmemberact,setFreqmemberact]=useState(0);
+     const [projectval,setProjval]=useState([]);
+     const [memberact,setMemberact]=useState(0);
+     const [freqmemberact,setFreqmemberact]=useState(0);
 
   useEffect(()=>{
     async function fetchData(){
@@ -37,7 +37,7 @@ export default function Simplestat(){
   },[])
 
      return (
-          <div className="flex flex-wrap">
+          <div className="w-full flex flex-wrap">
                <div className="w-full lg:w-9/12 xl:w-3/12 px-4">
                     <CardStats
                     statSubtitle="PARTICIPATION"
@@ -50,24 +50,24 @@ export default function Simplestat(){
                     statIconColor="bg-teal-500"
                     />
                </div>
-               <div className="w-full lg:w-6/12 xl:w-3/12 px-4">
+               <div className="w-full lg:w-9/12 xl:w-3/12 px-4">
                     <CardStats
                     statSubtitle="COMMIT"
-                    statTitle={2}
+                    statTitle="2,356"
                     statArrow="down"
-                    statPercent={3.48}
+                    statPercent="3.48"
                     statPercentColor="text-red-500"
                     statDescripiron="Since last week"
                     statIconName="fas fa-chart-pie"
                     statIconColor="bg-red-500"
                     />
                </div>
-               <div className="w-full lg:w-6/12 xl:w-3/12 px-4">
+               <div className="w-full lg:w-9/12 xl:w-3/12 px-4">
                     <CardStats
                     statSubtitle="PRODUCTION"
                     statTitle={projectval}
                     statArrow="up"
-                    statPercent={18}
+                    statPercent="18"
                     statPercentColor="text-emerald-500"
                     statDescripiron="Depuis l'année dernier"
                     statIconName="far fa-chart-bar"

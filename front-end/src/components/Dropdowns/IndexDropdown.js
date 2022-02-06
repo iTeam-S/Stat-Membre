@@ -30,7 +30,7 @@ const IndexDropdown = () => {
     return ()=>{
       window.removeEventListener("click",checkIfclicked);
     }
-  },[dropdownPopoverShow,btnDropdownRef])
+  },[dropdownPopoverShow])
   
   
   return (

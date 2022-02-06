@@ -1,5 +1,5 @@
 import Chart from "chart.js";
-import React,{useEffect} from "react";
+import React,{useEffect,useState} from "react";
 import moment from "moment";
 
 
@@ -34,20 +34,6 @@ export default function CardBarChart() {
     let config = {
       type: "bar",
       data: {
-        labels: [
-          "Janvier",
-          "Fevrier",
-          "Mars",
-          "Avril",
-          "Mai",
-          "Juin",
-          "Jullet",
-          "Août",
-          "Septembre",
-          "Octobre",
-          "Novembre",
-          "Decembre"
-        ],
         datasets: [
           {
             label: new Date().getFullYear(),
@@ -120,9 +106,8 @@ export default function CardBarChart() {
         },
       },
     };
-
-    let ctx = document.getElementById("chart").getContext("2d");
-  window.myBar = new Chart(ctx, config);
+    let ctx = document.getElementById("bar-chart").getContext("2d");
+    window.myBar = new Chart(ctx, config);
   }
   CardData();
   }, []);
@@ -143,8 +128,8 @@ export default function CardBarChart() {
         </div>
         <div className="p-4 flex-auto">
           {/* Chart */}
-          <div className="relative h-350-px">
-            <canvas id="chart"></canvas>
+          <div className="relative h-350-px" style={{height: '322px'}}>
+            <canvas id="bar-chart"></canvas>
           </div>
         </div>
       </div>

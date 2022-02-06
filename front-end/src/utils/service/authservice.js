@@ -1,9 +1,9 @@
 import {AuthAxios} from "../apis/Stat"
 
 
-  function login(mail,password){
+  function login(email,password){
     return AuthAxios.post("/signin",{
-        mail,
+        email,
         password
       
     }).then(response=>{

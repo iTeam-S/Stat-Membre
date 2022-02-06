@@ -8,6 +8,7 @@ import FooterSmall from "../../components/Footers/FooterSmall.js";
 
 export default function ProjectMember(){
     const nom=useParams()
+    console.log(nom);
     const [pmembers,setPmembers]=useState([]);
     
     useEffect(()=>{
@@ -34,7 +35,7 @@ export default function ProjectMember(){
                   <section>
              <div className="block relative z-1  pb-48">
              <div className = "bg-white py-4 rounded-lg ml-5 flex flex-wrap  container mx-auto px-1/100 h-full border-blueGray-50" >
-                <h1 className=" cursor-pointer rounded-full mx-2/5 text-2xl mb-8 italic font-semibold bg-teal-700 text-white  text-center"><span className="far fa-arrow-alt-circle-down animate-bounce"></span>Les participants du projet numero {nom.nom}</h1>
+                <h1 className=" cursor-pointer rounded-full mx-2/5 text-2xl mb-8 italic font-semibold bg-teal-700 text-white  text-center"><span className="far fa-arrow-alt-circle-down animate-bounce"></span>Les participants du projet {nom.nom}</h1>
              <div className = "mx-1/50  w-full flex flex-wrap" >
              {pmembers.map((member)=>(
                      <div key={member.id}  className = "hover:-mt-4  relative flex flex-col min-w-0 break-words mb-6 shadow-lg rounded-lg ease-linear transition-all duration-100 px-3 w-1/4 h-1/2" >

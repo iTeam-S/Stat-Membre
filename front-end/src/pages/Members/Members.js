@@ -3,89 +3,71 @@ import React,{useState,useEffect,useContext} from "react";
 
 import Navbar from "../../components/Navbars/AuthNavbar";
 import FooterSmall from "../../components/Footers/FooterSmall.js";
+import MemberService from "../../utils/service/memberservice"
 import { MemberContext } from "utils/context/MemberContext";
-import { Link } from "react-router-dom";
 
 
 
 
 
 export default function MemberList(){
-    const {members}=useContext(MemberContext);
+    const {members}=useContext(MemberContext)
     return(
         <>
-        <Navbar transparent />
-      <main>
-        <section className="relative w-full h-full py-40 min-h-screen">
-          <div
-            className="absolute top-0 w-full h-full bg-blueGray-800 bg-no-repeat bg-full"
-            style={{
-              backgroundImage:
-                "url(" + require("assets/img/register_bg_2.png").default + ")",
-            }}
-          ></div>
-      <div className="mx-1/3 relative  container flex flex-col min-w-0 break-words w-full mb-6 shadow-xl rounded-lg mt-4">
-      <section className=" h-12">
-      
-            <h1 className="animate-bounce cursor-pointer rounded-full mx-2/5 text-base mb-8 italic font-semibold bg-teal-700 text-white fas fa-angle-double-down text-center">Tous les membres iTeams-$</h1>
-      </section>
-      <div className=" py-4 rounded-lg ml-5 flex flex-wrap  container mx-auto px-1/100 h-full border-blueGray-50">
-        {members.map((membre)=>(
-        <div className="w-1/3 mx-4 mt-1/2 rounded-lg bg-white px-6">
-        <div className="hover:mt-4 px-6">
-          <div className="flex flex-wrap justify-center">
-            <div className="w-full px-4 flex justify-center">
-              <div className="relative">
-                <img
-                  alt="..."
-                  src={membre.pdc ? membre.pdc:require("assets/img/team-1-800x800.jpg").default}
-                  className="shadow-xl rounded-full h-auto align-middle border-none absolute -m-16 -ml-20 lg:-ml-16 max-w-150-px"
-                />
-              </div>
-            </div>
-            <div className="w-full px-4 text-center mt-20">
-              <div className="flex justify-center py-4 lg:pt-4 pt-8">
-                <div className="mr-4 p-3 text-center">
-                  <span className="text-xl font-bold block uppercase tracking-wide text-black">
-                    {membre.point_experience}
-                  </span>
-                  <span className="text-sm text-blueGray-400">Point Actuel</span>
-                </div>
-                <div className="lg:mr-4 p-3 text-center">
-                  <span className="text-xl font-bold block uppercase tracking-wide text-black">
-                    {membre.nombre_projet?membre.nombre_projet:0}
-                  </span>
-                  <span className="text-sm text-blueGray-400">Nombre_projet</span>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="text-center mt-12">
-            <h3 className="text-center font-bold text-xl mb-2 text-black">
-             {membre.nom + " " +membre.prenom}
-            </h3>
-            <div className="mb-2 text-blueGray-600 mt-10">
-              <i className="fas fa-briefcase mr-2 text-lg text-blueGray-400"></i>
-              {membre.fonction}
-            </div>
-            <div className="mb-2 text-blueGray-600">
-              <Link to={`/views/public/projetdmembre/${membre.id}`}>
-              <input   type="submit" className = "cursor-pointer bg-teal-700 text-white active:bg-blueGray-600 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full ease-linear transition-all duration-150" value="Voir tous les projets"/>
-              </Link>
-            </div>
-          </div>
-        </div>
-      </div>
-               
-      ))}
-      </div>
-      
-    </div>
-          <FooterSmall absolute />
-        </section>
-      </main>
-
-
+          <Navbar transparent />
+          <main>
+            <section className="relative w-full h-full py-40 min-h-screen">
+              <div
+                className="absolute top-0 w-full h-full bg-blueGray-800 bg-no-repeat bg-full"
+                style={{
+                  backgroundImage:
+                    "url(" + require("assets/img/register_bg_2.png").default + ")",
+                }}
+              ></div>
+             <section>
+             <div className="block relative z-1  pb-48">
+             <div className = "bg-white py-4 rounded-lg ml-5 flex flex-wrap  container mx-auto px-1/100 h-full border-blueGray-50" >
+                    <h1 className="animate-bounce cursor-pointer rounded-full mx-2/5 text-base mb-8 italic font-semibold bg-teal-700 text-white fas fa-angle-double-down text-center"> Voici les membres d'iTeams</h1>
+             <div className = "mx-1/50  w-full flex flex-wrap" >
+             {members.map((member)=>(
+                     <div key={member.id}  className = "hover:-mt-4  relative flex flex-col min-w-0 break-words mb-6 shadow-lg rounded-lg ease-linear transition-all duration-100 px-3 w-1/4 h-1/2" >
+                            <div className="w-full">
+                                 <div class="w-full rounded overflow-hidden shadow-lg">
+                                     <img class="w-full" src={member.pdc ? member.pdc:require("assets/img/team-1-800x800.jpg").default} alt="..." />
+                                     <div className="px-5 py-4">
+                                                <p className="text-center font-bold text-xl mb-2 text-teal-500">{member.nom}</p>
+                                                <p className="text-center font-bold text-xl mb-2 text-teal-500">{member.prenom}</p>
+                                            </div>
+                                     <div className="w-full"> 
+                                     <table className="w-full bg-transparent
+                                            border-collapse">
+                                                <thead>
+                                                    <tr>
+                                                        <th className="px-6 bg-zinc-300 border-blueGray-600 text-blueGray-600 align-middle border border-solid  py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">Rang</th>
+                                                        <th className="px-6 bg-orange-500  align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">{(members.indexOf(member))+1}</th>
+                                                    </tr>
+                                                    <tr>
+                                                        <th className="px-6 bg-zinc-300 align-middle border border-solid border-blueGray-600 text-blueGray-600  py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">Total_point</th>
+                                                        <th className="px-6  bg-orange-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">{member.point_experience}</th>
+                                                    </tr>
+                                                    <tr>
+                                                        <th className="px-6 bg-zinc-300 border-blueGray-600 text-blueGray-600   align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">Total_project</th>
+                                                        <th className="px-6  bg-orange-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">{member.nombre_projet}</th>
+                                                    </tr>
+                                                </thead>
+                                            </table>
+                                     </div>
+                                 </div>
+                                 </div>
+                             </div> 
+             ))}
+             </div> 
+             </div>
+         </div>
+     </section>      
+   <FooterSmall absolute />
+   </section>
+</main>
 </>
 );
 }

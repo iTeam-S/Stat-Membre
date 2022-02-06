@@ -1,13 +1,24 @@
-import React from "react";
+import React,{useState,useEffect} from "react";
+
+
 
 import { useContext} from "react";
+import ProjectService from "../../utils/service/projectservice";
 import {ProjectContext} from "../../utils/context/ProjectContext"
+
+
 
 import Navbar from "../../components/Navbars/AuthNavbar";
 import FooterSmall from "../../components/Footers/FooterSmall.js";
 
+
 export default function Project(){
-    const {projects}=useContext(ProjectContext)
+     const [projets,setProjets]=useState([]);
+    useEffect(()=>{
+        ProjectService.GetAll().then(response=>{
+            setProjets(response.data)
+        });  
+    },[])
      return(
                <>
                  <Navbar transparent />
@@ -22,9 +33,9 @@ export default function Project(){
                      ></div>
                     <section>
                     <div className="block relative z-1  pb-48">
-                    <div className = "bg-gray-400 py-4 rounded-lg ml-5 flex flex-wrap  container mx-auto px-1/100 h-full border-blueGray-50" >
+                    <div className = "bg-transparent py-4 rounded-lg ml-5 flex flex-wrap  container mx-auto px-1/100 h-full border-blueGray-50" >
                     <h1 className=" cursor-pointer rounded-full mx-2/5 text-2xl mb-8 italic font-semibold bg-teal-700 text-white  text-center"><span className="far fa-arrow-alt-circle-down animate-bounce"></span> Voici Nos projets</h1>
-                    {projects.map((project)=>(
+                    {projets.map((project)=>(
                         <div key={project.id} className = "flex  flex-wrap" >
                             <div className = "hover:-mt-4  relative flex flex-col min-w-0 break-words  w-full mb-6 shadow-lg rounded-lg ease-linear transition-all duration-100  px-3" >
                                 <div className = "flex flex-wrap" >

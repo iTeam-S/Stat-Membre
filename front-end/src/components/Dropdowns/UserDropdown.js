@@ -4,12 +4,13 @@ import {Link} from "react-router-dom";
 
 
 import {AuthService} from "../../utils/service/authservice";
+import MemberService from "../../utils/service/memberservice"
 
 
 const UserDropdown = () => {
     const User=AuthService.getCurrentUser();
     const user_prenom=(!(User===null)) ? User.username:null;
-    const user_pdc=(!(User===null)) ? User.pdc:null;
+    const [pdc,setPdc]=useState("")
     
     // dropdown props
     const [dropdownPopoverShow, setDropdownPopoverShow] =useState(false);
@@ -22,11 +23,17 @@ const UserDropdown = () => {
         setDropdownPopoverShow(true);
     };
     useEffect(()=>{
+        
+        async function fetchMember(){
+            const response=await MemberService.getPdc(user_prenom)
+            setPdc(response.data)
+        }
         const checkIfclicked=()=>{
             if(dropdownPopoverShow && btnDropdownRef.current){
                 setDropdownPopoverShow(false)
             }
         }
+        fetchMember()
         document.addEventListener("click",checkIfclicked);
 
         return ()=>{
@@ -34,7 +41,8 @@ const UserDropdown = () => {
         }
         
 
-    },[dropdownPopoverShow,btnDropdownRef])
+    },[dropdownPopoverShow])
+    console.log(pdc);
     const closeDropdownPopover = () => {
         setDropdownPopoverShow(false);
     };
@@ -52,7 +60,7 @@ const UserDropdown = () => {
                     {!(User == null) &&(
                     <div className = "items-center flex">
                         <span className = "h-12 w-12 text-sm text-white bg-blueGray-200 inline-flex items-center justify-center rounded-full" >
-                            <img alt = "..." className = "w-full rounded-full align-middle border-none shadow-lg" src = {user_pdc?user_pdc:"https://avatars.githubusercontent.com/u/80751503?s=400&u=558c3a3825b0d3ba43b3e2ab4b40c8f72df71bc7&v=4"}/>
+                            <img alt = "..." className = "w-full rounded-full align-middle border-none shadow-lg" src = {pdc?pdc:"https://avatars.githubusercontent.com/u/80751503?s=400&u=558c3a3825b0d3ba43b3e2ab4b40c8f72df71bc7&v=4"}/>
                         </span> 
                         
                     

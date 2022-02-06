@@ -1,6 +1,5 @@
 import {ProjectAxios} from "../apis/Stat"
 import {CritereAxios} from "../apis/Stat"
-import {GithubAxios} from "../apis/Stat"
 
 
 class ProjectService {
@@ -38,13 +37,6 @@ class ProjectService {
                return response
           })
      }
-     GetCommit(nom){
-          return GithubAxios.get(`/${nom}?commit_only=true`).then(response=>{
-               return response
-          })
-          
-
-     }
      AddProject(nom,repos,delai){
                return ProjectAxios.post("/create",{
                     nom,
@@ -56,7 +48,7 @@ class ProjectService {
                return ProjectAxios.post("/addMember",{
                     id_membre,
                     id_projet,
-               })
+               },console.log(id_membre,id_projet))
           
      }
 

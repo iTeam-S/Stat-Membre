@@ -8,17 +8,19 @@ import {MemberAxios} from "../../utils/apis/Stat";
 
 
 export default function MemberProject() {
-    const {id}=useParams()
+    const membername=useParams()
     const [membersprojects,setMembersProjects]=useState([]);
+    
+    
     useEffect(()=>{
         async function fetchdata(){
-            const MemberProject=await MemberAxios.get(`/${id}/allproject`);
+            const MemberProject=await MemberAxios.get(`/${membername.membername}/allproject`);
             setMembersProjects(MemberProject.data);
         }
         fetchdata();
-        console.log(membersprojects)
+        
     },[]);
-    
+    console.log(membersprojects)
     return ( 
         <>
             <div className="container mx-auto">
@@ -50,7 +52,7 @@ export default function MemberProject() {
                                     <th className = "border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left flex items-center" >
                                         <img src = { require("../../assets/img/projetic.png").default } className = "h-12 w-12 bg-white rounded-full border" alt = "..." ></img>{" "} 
                                         <span className = 
-                                                "text-2xl ml-2 font-bold text-black " >{mproject.Nom_project} </span> 
+                                                "text-2xl ml-2 font-bold text-emerald-500 " >{mproject.Nom_project} </span> 
                                     </th> 
                                     <td className = "text-emerald-500  text-2xl  border-t-0 px-6 align-middle border-l-0 border-r-0  whitespace-nowrap p-4" >
                                         {mproject.total_participant}

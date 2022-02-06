@@ -3,31 +3,21 @@ import React,{useState,useContext, useEffect} from "react";
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as Yup from 'yup';
-import {ProjectContext} from "../../utils/context/ProjectContext"
-import {MemberContext} from "../../utils/context/MemberContext"
 
 
 
 import Navbar from "../../components/Navbars/AuthNavbar.js";
 import FooterSmall from "../../components/Footers/FooterSmall.js";
 import ProjectService from "../../utils/service/projectservice";
-
+import MemberService from "../../utils/service/memberservice.js";
 
 
 export default function AddMember() {
 
-    const {projects}=useContext(ProjectContext)
-    const {members}=useContext(MemberContext)
-    const [projetEncours,setProjetencours]=useState([])
+    
 
-    useEffect(()=>{
-      const filterData=()=>{
-        const tabfiltre=projects.filter(proj=>proj.valide===0)
-        setProjetencours(tabfiltre)
-      }
-      filterData();
 
-    },[projects])
+
     const [errorMessage,setErrorMessage]=useState("")
     const [successMessage,setMessage]=useState("")
     const [errer,setErrer]=useState(false)
@@ -46,9 +36,25 @@ export default function AddMember() {
       } = useForm({
         resolver: yupResolver(validationSchema)
       });
-      
     let history=useHistory();
-
+    const [membres,setMembres]=useState([])
+    const [projets,setProjets]=useState([])
+      useEffect(()=>{
+          async function fetchData(){
+            try {
+                const membre=await MemberService.getListMember()
+                setMembres(membre.data)
+                const  projet=await ProjectService.GetAll()
+                setProjets(projet.data)
+                
+            } catch (error) {
+                console.log(error);
+            }
+              
+          }
+          
+        fetchData();
+      },[])
     const handleAddmember=async(data)=>{
         try {
             const response=await ProjectService.addMember(data.id_membre,data.id_projet);
@@ -87,7 +93,7 @@ export default function AddMember() {
                                 <div className = "relative w-full mb-3" >
                                         <label className = "block uppercase text-blueGray-600 text-xs font-bold mb-2"  htmlFor = "deadline" >Nom du membre </label> 
                                         <select  name="id_membre" {...register('id_membre')} className = "border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150">
-                                        {members.map((memb)=>(
+                                        {membres.map((memb)=>(
                                             <option key={memb.id} value={memb.id}>{memb.id}-{memb.nom + memb.prenom}</option>
                                         ))}
                                         </select>
@@ -95,8 +101,8 @@ export default function AddMember() {
                                      <div className = "relative w-full mb-3" >
                                         <label className = "block uppercase text-blueGray-600 text-xs font-bold mb-2"  htmlFor = "project_name" >Nom du projet </label> 
                                         <select id="project_name"  name="id_projet"  {...register('id_projet')} className = "border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150">
-                                        {projetEncours.map((proj)=>(
-                                            <option key={proj.id} value={proj.id}>{proj.id}-{proj.nom_projet}</option>
+                                        {projets.map((proj)=>(
+                                            <option key={proj.id} value={proj.id}>{proj.id}-{proj.nom}</option>
                                         ))}
                                             
                                         </select>

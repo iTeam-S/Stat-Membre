@@ -4,15 +4,29 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as Yup from "yup"
 import { useForm } from "react-hook-form";
 import Navbar from "../../components/Navbars/AuthNavbar";
-import { useEffect,useContext } from "react";
+import { useEffect } from "react";
 import MemberService from "../../utils/service/memberservice"
-import {MemberContext} from "../../utils/context/MemberContext"
 
 
 
 export default function CheckMemberProject() {
-
-  const {members}=useContext(MemberContext)
+    
+    const [membres,setMembres]=useState([])
+    const [projets,setProjets]=useState([])
+      useEffect(()=>{
+          async function fetchData(){
+            try {
+                const membre=await MemberService.getListMember()
+                setMembres(membre.data)
+                
+            } catch (error) {
+                console.log(error);
+            }
+              
+          }
+          
+        fetchData();
+      },[])
   const validationSchema = Yup.object().shape({
     id_membre: Yup.number()
       .required('Ce champ est obligatoire'),
@@ -64,7 +78,7 @@ export default function CheckMemberProject() {
                                     <div className = "relative w-full mb-3" >
                                         <label className = "block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlFor = "implication" >Nom du membre</label> 
                                         <select id="id_membre" name="id_membre" {...register('id_membre')} className = "border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150">
-                                            {members.map((memb)=>(
+                                            {membres.map((memb)=>(
                                             <option key={memb.id} value={memb.id}>{memb.id}-{memb.nom}</option>
                                             ))}
                                         </select>
@@ -75,7 +89,7 @@ export default function CheckMemberProject() {
                                      <div className = "relative w-full mb-3" >
                                         <label className = "block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlFor = "implication" >Github du membre</label> 
                                         <select id="id_membre" name="member_github" {...register('member_github')} className = "border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150">
-                                            {members.map((memb)=>(
+                                            {membres.map((memb)=>(
                                             <option key={memb.id} value={memb.git_hub}>{memb.user_github}</option>
                                             ))}
                                         </select>
