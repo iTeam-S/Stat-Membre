@@ -21,12 +21,12 @@ export default function Project(){
                })
                
           } catch (error) {
-               console.log(error.response.data);
+               console.log(error);
           }
      }
      fetchProjet();
      },[])
-
+     console.log(pmembre);
      return(
                <>
                  <Navbar transparent />
@@ -41,7 +41,7 @@ export default function Project(){
                      ></div>
                     <section>
                     <div className="block relative z-1  pb-48">
-                    <div className = "bg-gray-400 py-4 rounded-lg  flex flex-wrap  container mx-auto px-1/100 h-full border-blueGray-50" >
+                    <div className = " py-4 rounded-lg  flex flex-wrap  container mx-auto px-1/100 h-full border-blueGray-50" >
                     {
                          members
                               .filter((memb) => memb.id==id)
@@ -49,36 +49,49 @@ export default function Project(){
                               <h1 className="animate-bounce cursor-pointer rounded-full mx-2/5 text-base mb-8 italic font-semibold bg-teal-700 text-white fas fa-angle-double-down text-center"> Tous les projets de<span className="text-black"> {memb.prenom}</span></h1>
                          ))}
                     {pmembre.map((project)=>(
-                        <div key={project.id} className = "flex  flex-wrap" >
-                            <div className = "hover:-mt-4  relative flex flex-col min-w-0 break-words  w-full mb-6 shadow-lg rounded-lg ease-linear transition-all duration-100  px-3" >
-                                <div className = "flex flex-wrap">
-                                    <div className = "w-full ">
-                                        <div class="w-full rounded overflow-hidden shadow-lg">
-                                            <img class="w-full" src={project.pdc ? project.pdc:require("assets/img/projet_fond.jpeg").default} alt="project" />
-                                            <div class="px-6 py-4">
-                                                <div class="font-bold text-xl mb-2 text-black">{project.Nom_project}</div>
+                            <div key={project.id} className = "flex  flex-wrap" >
+                                <div className="hover:-mt-4 duration-300 focus:outline-none mx-4 relative flex flex-col min-w-0 break-words  w-full mb-6 shadow-lg rounded-lg bg-teal-700">
+                                    <img
+                                    alt="..."
+                                    src={require("assets/img/projet_fond.jpeg").default}
+                                    className="w-full align-middle rounded-t-lg"
+                                    />
+                                    <blockquote className="relative p-8 mb-4">
+                                    <svg
+                                        preserveAspectRatio="none"
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        viewBox="0 0 583 95"
+                                        className="absolute left-0 w-full block h-95-px -top-94-px"
+                                    >
+                                        <polygon
+                                        points="-30,95 583,95 583,65"
+                                        className="text-purple-700 fill-current"
+                                        ></polygon>
+                                    </svg>
+                                    <h3 className="text-2xl font-bold text-white">{project.Nom_project}</h3>
+                                    
+                                    <div className="w-full px-4 text-center mt-10">
+                                            <div className="flex justify-center py-4 lg:pt-4 pt-8">
+                                                <div className="mr-4 p-3 text-center">
+                                                    <span className="text-base font-bold block uppercase tracking-wide text-black">
+                                                        {project.valide?"100%":"En cours"}
+                                                    </span>
+                                                    <span className="text-xl text-white">Status</span>
+                                                </div>
+                                                    <div className="mr-4 p-3 text-center">
+                                                        <span className="text-base font-bold block uppercase tracking-wide text-black">
+                                                            {project.total_participant?project.total_participant:0}
+                                                        </span>
+                                                        <span className="text-xl text-white">Participant</span>
+                                                </div>
                                             </div>
-                                            <div className="w-full"> 
-                                                <table className="w-full bg-transparent border-collapse">
-                                                    <thead>
-                                                        <tr>
-                                                            <th className="px-6 bg-teal-500 text-white align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">Participant</th>
-                                                            <th className="px-6 bg-orange-500  align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">{project.total_participant}</th>
-                                                            
-                                                        </tr>
-                                                        <tr>
-                                                            <th className="px-6 bg-teal-500 text-white align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">Status</th>
-                                                            <th className="px-6 bg-orange-500  align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">{project.valide?"100%":"en cours"}</th>
-                                                            
-                                                        </tr>
-                                                    </thead>
-                                                </table>
-                                            </div>
-                                        </div>
                                     </div>
+                                    <i className = "text-blueGray-400 fab fa-github text-lg leading-lg "/><button className="hover:text-blueGray-800 text-xl ">
+                                    <a href={project.Repos_project} target="_blank" rel="noreferrer" >Voir sur github</a>
+                                        </button>
+                                    </blockquote>
                                 </div> 
                             </div> 
-                        </div> 
                     ))}
                     </div>
                 </div>

@@ -14,7 +14,7 @@ module.exports = {
     },
     getListMember: () => {
         return new Promise((resolve, reject) => {
-            db.query("SELECT * FROM membre", function(err, resultat){
+            db.query("SELECT * FROM membre ORDER BY point_experience DESC", function(err, resultat){
                 if(err){
                     reject(new Error("Errer resource while fetching membre"));
                 }else{
@@ -49,7 +49,7 @@ module.exports = {
     },
     ValideMember:(difficulte, deadline, impact, implication,id_membre,id_projet)=>{
         return new Promise((resolve,reject)=>{
-            db.query("UPDATE membre_projet SET difficulte =?, deadline=?, impact=?, implication=? WHERE id_membre=? AND id_projet=?",[difficulte, deadline, impact, implication,id_membre,id_projet],function(err,resultat){
+            db.query("UPDATE membre_projet SET difficulte =?, deadline=?, impact=?, implication=? WHERE id_membre=? AND id_projet=? AND difficulte IS NULL",[difficulte, deadline, impact, implication,id_membre,id_projet],function(err,resultat){
                 if(err){
                     reject(new Error("Errer lors de validation de membre"))
                 }else{

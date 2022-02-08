@@ -28,7 +28,8 @@ import {ProjectContextProvider} from "./utils/context/ProjectContext"
 import {MemberContextProvider} from "./utils/context/MemberContext"
 import {CritereContextProvider} from "./utils/context/CritereContext"
 import ValideProjet from "./pages/admin/ValideProjet"
-
+import NoterOneMembre from "./pages/admin/NoterUnMembre"
+import ProjetdMembre from "./pages/Projets/Projetdmembre"
 
 
 
@@ -36,7 +37,7 @@ import ValideProjet from "./pages/admin/ValideProjet"
 
 // views without layouts
 
-import Streak from "./pages/Landing/Streak";
+import Landing from "./pages/Landing/Landing";
 import Profile from "./pages/Profile/Profile";
 import Index from "./pages/Home/Index";
 import Project from "./pages/Projets/projets";
@@ -47,11 +48,9 @@ import Errorpage from "pages/error/Error";
 
 const memberUrl = "http://localhost:8000/api/v1/member/getAll";
 const projectUrl = "http://localhost:8000/api/v1/project/getAll";
-const commitURL = "https://api.github.com/repos/iTeam-S/Website/commits?sha=main&fbclid=IwAR2ng7lV56lHqCdSiyReSkXB4b3LFhbmLb0aNM8aeGYYwTtG4Vlprp9KYbE";
-const listRepos = "https://api.github.com/orgs/iTeam-S/repos";
+
 
 const App = () => {
-    const User=AuthService.getCurrentUser();
   //get member
 
   const [member, setMember] = useState([]);
@@ -70,29 +69,7 @@ const App = () => {
               const projet = response;
               setProject(projet);
         });
-    }, []);
-
-    // get commit
-    // eslint-disable-next-line no-unused-vars
-    const [ commit, setCommit] = useState([]);
-    useEffect(() => {
-      axios.get(commitURL)
-          .then((response) => {
-              const commit = response;
-              setCommit(commit);
-        });
-    }, []);
-
-    //get repos
-    // eslint-disable-next-line no-unused-vars
-    const [ repos, setRepos] = useState([]);
-    useEffect(() => {
-         axios.get(listRepos)
-          .then((response) => {
-              const repos = response;
-              setRepos(repos);
-        });
-    }, []);
+    }, [])
         return (
             <CritereContextProvider>
                 <ProjectContextProvider>
@@ -102,6 +79,9 @@ const App = () => {
                               {/* add routes with layouts */}
                               <Route exact path="/views/public/memberlist">
                                       <MemberList />
+                              </Route>
+                              <Route exact path="/views/public/projetdmembre/:id">
+                                      <ProjetdMembre />
                               </Route>
                               <Route exact path="/views/public/projets">
                                       <Project />
@@ -113,13 +93,13 @@ const App = () => {
                                   <Login />
                               </Route>
                               <Route path="/" exact>
-                                  <Index commit={commit} repos={repos}/>
+                                  <Index data={project}/>
                               </Route>
-                              <Route exact path="/public/project/:nom/mproject">
+                              <Route exact path="/public/project/:id/mproject">
                                   <ProjectMember/>
                               </Route>
-                              <Route path="/streak" exact>
-                                  <Streak data={member}/>
+                              <Route path="/landing" exact>
+                                  <Landing data={member}/>
                               </Route>
                               <Route path="/profile/:prenom" exact>
                                   <Profile data={member}/>
@@ -138,8 +118,11 @@ const App = () => {
                               
 
                              {/*Admin routes */}
-                            <AdminRoute exact path="/admin/valide/projet">
+                            <AdminRoute exact path="/admin/valide/projet/:id">
                                 <ValideProjet/>
+                            </AdminRoute>
+                            <AdminRoute exact path="/admin/project/noterone/:id_membre/:id_projet">
+                                <NoterOneMembre/>
                             </AdminRoute>
                               <AdminRoute exact path="/admin/dashboard">
                                   <Admin membre={member} projet={project}/>:

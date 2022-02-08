@@ -1,24 +1,20 @@
-import React,{useState,useEffect} from "react";
-
-
+import React,{useState} from "react";
 
 import { useContext} from "react";
-import ProjectService from "../../utils/service/projectservice";
 import {ProjectContext} from "../../utils/context/ProjectContext"
-
-
 
 import Navbar from "../../components/Navbars/AuthNavbar";
 import FooterSmall from "../../components/Footers/FooterSmall.js";
-
+import { Input } from "postcss";
 
 export default function Project(){
-     const [projets,setProjets]=useState([]);
-    useEffect(()=>{
-        ProjectService.GetAll().then(response=>{
-            setProjets(response.data)
-        });  
-    },[])
+    const {projects}=useContext(ProjectContext)
+    const radios=[
+        {title:"En_cours",value:0},
+        {title:"Valide",value:1}
+
+    ]
+    const [selectedRadio,setSelectedRadio]=useState("")
      return(
                <>
                  <Navbar transparent />
@@ -33,43 +29,77 @@ export default function Project(){
                      ></div>
                     <section>
                     <div className="block relative z-1  pb-48">
-                    <div className = "bg-transparent py-4 rounded-lg ml-5 flex flex-wrap  container mx-auto px-1/100 h-full border-blueGray-50" >
-                    <h1 className=" cursor-pointer rounded-full mx-2/5 text-2xl mb-8 italic font-semibold bg-teal-700 text-white  text-center"><span className="far fa-arrow-alt-circle-down animate-bounce"></span> Voici Nos projets</h1>
-                    {projets.map((project)=>(
-                        <div key={project.id} className = "flex  flex-wrap" >
-                            <div className = "hover:-mt-4  relative flex flex-col min-w-0 break-words  w-full mb-6 shadow-lg rounded-lg ease-linear transition-all duration-100  px-3" >
-                                <div className = "flex flex-wrap" >
-                                    <div className = "w-full ">
-                                        <div class="w-full rounded overflow-hidden shadow-lg">
-                                            <img class="w-full" src={project.pdc ? project.pdc:require("assets/img/projet_fond.jpeg").default} alt="project" />
-                                            <div class="px-6 py-4">
-                                                <div class="font-bold text-xl mb-2 text-white">{project.nom}</div>
+                        <div className = "py-4 rounded-lg ml-5 flex flex-wrap  container mx-auto px-1/100 h-full border-blueGray-50" >
+                        <h1 className=" cursor-pointer rounded-full mx-2/5 text-2xl mb-8 italic font-semibold bg-teal-700 text-white  text-center"><span className="far fa-arrow-alt-circle-down animate-bounce"></span> Voici Nos projets</h1>
+                            <section className="w-full   mb-8 h-8 flex-nowrap">
+                                {radios.map((radio)=>{
+                                    return(
+                                    <span key={radio.value}>
+                                    <input 
+                                    className="mx-4 text-2xl" 
+                                    type="radio"
+                                    value={radio.value}
+                                    id={radio.title}
+                                    checked={radio.value==selectedRadio}
+                                    onChange={(e)=>setSelectedRadio(e.target.value)}
+                                    />
+                                        <label className="text-2xl font-bold text-white" htmlFor={radio.title}>{radio.title}</label>
+                                    
+                                    </span>
+                                    )
+                                    
+                                })}
+                            </section>
+                        {projects
+                        .filter((project)=>project.valide==(selectedRadio)).map((project)=>(
+                            <div key={project.id} className = "flex  flex-wrap" >
+                                <div className="hover:-mt-4 duration-300 focus:outline-none mx-4 relative flex flex-col min-w-0 break-words  w-full mb-6 shadow-lg rounded-lg bg-teal-700">
+                                    <img
+                                    alt="..."
+                                    src={require("assets/img/projet_fond.jpeg").default}
+                                    className="w-full align-middle rounded-t-lg"
+                                    />
+                                    <blockquote className="relative p-8 mb-4">
+                                    <svg
+                                        preserveAspectRatio="none"
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        viewBox="0 0 583 95"
+                                        className="absolute left-0 w-full block h-95-px -top-94-px"
+                                    >
+                                        <polygon
+                                        points="-30,95 583,95 583,65"
+                                        className="text-purple-700 fill-current"
+                                        ></polygon>
+                                    </svg>
+                                    <h3 className="text-2xl font-bold text-white">{project.nom_projet}</h3>
+                                    <div className="flex container mt-10">
+                                        {project.participant.map((part)=>(
+                                            <div key={project.participant.id} className="relative z-0">
+                                            <img src={part.pdc_participant ? part.pdc_participant:require("assets/img/team-1-800x800.jpg").default} alt="..."
+                                                className = "w-10 h-10 rounded-full  border-2 border-blueGray-50 shadow"/>
                                             </div>
-                                            <div className="w-full"> 
-                                                <table className="w-full bg-transparent border-collapse">
-                                                    <thead>
-                                                        <tr>
-                                                            <th className="px-6 bg-teal-500 text-white align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">Point</th>
-                                                            <th className="px-6 bg-orange-500  align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">{project.total_point}</th>
-                                                        </tr>
-                                                        <tr>
-                                                            <th className="px-6 bg-teal-500 text-white align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">Participant</th>
-                                                            <th className="px-6 bg-orange-500  align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">{project.total_participant}</th>
-                                                            
-                                                        </tr>
-                                                        <tr>
-                                                            <th className="px-6 bg-teal-500 text-white align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">Status</th>
-                                                            <th className="px-6 bg-orange-500  align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">{project.valide?"100%":"en cours"}</th>
-                                                            
-                                                        </tr>
-                                                    </thead>
-                                                </table>
-                                            </div>
+                                            ))}
                                         </div>
+                                    <div className="w-full px-4 text-center mt-10">
+                                            <div className="flex justify-center py-4 lg:pt-4 pt-8">
+                                                <div className="mr-4 p-3 text-center">
+                                                    <span className="text-base font-bold block uppercase tracking-wide text-black">
+                                                        {project.valide?"100%":"En cours"}
+                                                    </span>
+                                                    <span className="text-xl text-white">Status</span>
+                                                </div>
+                                                    <div className="mr-4 p-3 text-center">
+                                                        <span className="text-base font-bold block uppercase tracking-wide text-black">
+                                                            {project.total_part?project.total_part:0}
+                                                        </span>
+                                                        <span className="text-xl text-white">Participant</span>
+                                                </div>
+                                            </div>
                                     </div>
+                                    <i className = "text-blueGray-400 fab fa-github text-lg leading-lg "/><button className="hover:text-blueGray-800 text-xl ">Voir sur github</button>
+                                    </blockquote>
                                 </div> 
                             </div> 
-                        </div> 
                     ))}
                     </div>
                 </div>

@@ -15,6 +15,8 @@ router.post('/addMember',ProjectCtrl.add);
 
 router.post('/remove',ProjectCtrl.deleteProjectMember)
 
+router.get('/nbvalide',ProjectCtrl.getNombreValide)
+router.get('/pourcentagev',ProjectCtrl.getPourcentageValide)
 //afficher tous les projet sans critere ni participant
 router.get('/getAll',ProjectCtrl.listAll);
 
@@ -38,6 +40,7 @@ router.get('/ProjectMember',ProjectCtrl.listAllWithMember);
 //afficher un projet avec les participants
 router.get('/:id/part',ProjectCtrl.listOneWithParticipant);
 
+router.get('/:id/partv',ProjectCtrl.listOneWithParticipantv)
 //afficher un projet sans critere ni participant
 router.get('/:id',ProjectCtrl.getOne);
 

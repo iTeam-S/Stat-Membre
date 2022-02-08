@@ -1,12 +1,14 @@
 /*eslint-disable*/
-import React from "react";
+import React, { useContext } from "react";
 import { Link, useParams } from "react-router-dom";
 
 import Navbar from "../../components/Navbars/AuthNavbar.js";
 import Footer from "../../components/Footers/Footer.js";
+import { MemberContext } from "../../utils/context/MemberContext.js";
 
 
-export default function Profile({data}) {
+export default function Profile() {
+  const {members}=useContext(MemberContext)
     const { prenom } = useParams();
 
     return ( 
@@ -36,7 +38,7 @@ export default function Profile({data}) {
                 </section> 
                <section className = "relative py-16 bg-blueGray-200" >
                     {
-                        data
+                        members
                         .filter((membre) => membre.prenom ===prenom)
                         .map((membre) => (
                             <div className="container mx-auto px-4">

@@ -10,11 +10,7 @@ import {useHistory} from "react-router"
 
 import ProjectService from "../../utils/service/projectservice"
 import { ProjectContext } from "../../utils/context/ProjectContext";
-import { CritereContext } from "../../utils/context/CritereContext";
 import { AuthService } from "../../utils/service/authservice";
-
-
-
 
 export default function AddProject() {
     const user=AuthService.getCurrentUser()
@@ -48,7 +44,8 @@ export default function AddProject() {
             if(user && user.role==='admin'){
                 history.push(`/admin/dashboard`);
             }else{
-                history.push(`/`)
+                history.push(`/`);
+                window.location.reload();
             }
             setSuccesMessage(project.data.message)
             addProject(project.data);

@@ -1,4 +1,4 @@
-import React,{useEffect,useState} from "react";
+import React,{useEffect} from "react";
 import Chart from "chart.js";
 import moment from "moment";
 
@@ -59,11 +59,11 @@ export default function CardLineChart() {
             backgroundColor: "#4c51bf",
             borderColor: "#4c51bf",
             data: project,
-
             fill: false,
           }
         ],
       },
+      
       options: {
         maintainAspectRatio: false,
         responsive: true,

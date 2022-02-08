@@ -136,7 +136,44 @@ module.exports = {
         })
 
     },
-    
+    getOneProjectWithPartV:(id)=>{
+        return new Promise((resolve,reject)=>{
+            db.query("SELECT membre.id,membre.nom as nom_participant, membre.prenom as prenom_participant,membre.pdc as pdc_participant,membre.fonction,membre.point_experience,membre.nombre_projet,projet.nom as Nom_project FROM membre LEFT JOIN membre_projet ON membre.id=membre_projet.id_membre LEFT JOIN projet ON projet.id=membre_projet.id_projet WHERE projet.id=? AND membre_projet.difficulte IS NULL", [id],function(err,resultat){
+                if(err){
+                    reject(new Error(err));
+                }else{
+                  resolve(resultat)
+                }
+
+            });
+
+        })
+
+    },
+    getNombreValide:()=>{
+        return new Promise((resolve,reject)=>{
+            db.query("select count(nom) as nb_valide from projet WHERE valide=1;",function(err,resultat){
+                if(err){
+                    reject(new Error("Errer lors du fatching"))
+                }else{
+                    resolve(resultat)
+                }
+            })
+        })
+
+    },
+    getNombreEncours:()=>{
+        return new Promise((resolve,reject)=>{
+            db.query("select count(nom) as nb_encours from projet WHERE valide!=1",function(err,resultat){
+                if(err){
+                    reject(new Error(err))
+                }else{
+                    resolve(resultat)
+                }
+            })
+        })
+
+    },
     listAllvalidedProject:()=>{
         return new Promise((resolve,reject)=>{
             db.query("SELECT * FROM projet WHERE projet.valide=1",function(err,resultat){

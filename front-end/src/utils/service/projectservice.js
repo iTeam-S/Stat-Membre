@@ -1,5 +1,6 @@
 import {ProjectAxios} from "../apis/Stat"
 import {CritereAxios} from "../apis/Stat"
+import {GithubAxios} from "../apis/Stat"
 
 
 class ProjectService {
@@ -37,6 +38,18 @@ class ProjectService {
                return response
           })
      }
+     GetProjectMemberv(id){
+          return ProjectAxios.get(`/${id}/partv`).then(response=>{
+               return response
+          })
+     }
+     GetCommit(nom){
+          return GithubAxios.get(`/${nom}?commit_only=true`).then(response=>{
+               return response
+          })
+          
+
+     }
      AddProject(nom,repos,delai){
                return ProjectAxios.post("/create",{
                     nom,
@@ -48,7 +61,7 @@ class ProjectService {
                return ProjectAxios.post("/addMember",{
                     id_membre,
                     id_projet,
-               },console.log(id_membre,id_projet))
+               })
           
      }
 
@@ -76,9 +89,14 @@ class ProjectService {
                return response
           })
      }
+     getPourcentage(){
+          return ProjectAxios.get("/pourcentagev").then(response=>{
+               return response
+          })
+     }
 
      getAllvalide(){
-          return ProjectAxios.get("/listAlldeployed").then(response=>{
+          return ProjectAxios.get("/nbvalide").then(response=>{
                return response
           })
      }

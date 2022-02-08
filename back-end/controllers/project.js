@@ -169,6 +169,17 @@ module.exports = {
         }
 
     },
+    listOneWithParticipantv: async (req, res) => {
+        try {
+            let id = req.params.id;
+            let listp = await mdlsProject.getOneProjectWithPartV(id);
+            res.status(200).send(listp);
+
+        } catch (error) {
+            res.status(500).send(error.message)
+        }
+
+    },
 
     getOne: async (req, res) => {
         try {
@@ -230,6 +241,29 @@ module.exports = {
         } catch (error) {
             res.status(500).send(error);
 
+        }
+
+    },
+    getNombreValide:async (req,res)=>{
+        try {
+            let nb=await mdlsProject.getNombreValide();
+            res.send(nb)
+        } catch (error) {
+            res.status(500).send(error)
+            
+        }
+
+    },
+    getPourcentageValide:async (req,res)=>{
+        try {
+            let nbvalide=await mdlsProject.getNombreValide();
+            let nbencours=await mdlsProject.getNombreEncours();
+            let prct=Math.round((nbvalide[0].nb_valide*100)/(nbvalide[0].nb_valide + nbencours[0].nb_encours));
+
+            res.status(200).send({pourcentage:prct})
+        } catch (error) {
+            res.status(500).send(error.message)
+            
         }
 
     },
