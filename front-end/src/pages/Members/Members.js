@@ -12,6 +12,7 @@ import { Link } from "react-router-dom";
 
 export default function MemberList(){
     const {members}=useContext(MemberContext);
+    const streak_url = "https://github-readme-streak-stats.herokuapp.com/?theme=vue&ring=D96098&fire=D96098&user= ";
     return(
         <>
         <Navbar transparent />
@@ -60,6 +61,14 @@ export default function MemberList(){
               </div>
             </div>
           </div>
+          <div style={styles.content_streak}>
+                <p style={styles.nom_user}>Streak</p>
+                  <img
+                    alt={membre.prenom}
+                    src= { streak_url.trim() + membre.user_github }
+                    className="rounded-t-lg"
+                    />
+          </div>
           <div className="text-center mt-12">
             <h3 className="text-xl font-semibold leading-normal mb-2 text-blueGray-700 mb-2">
              {membre.nom + " " +membre.prenom}
@@ -88,4 +97,27 @@ export default function MemberList(){
 
 </>
 );
+}
+const styles = {
+  streak: {
+      display: 'flex',
+      flexDirection: 'row',
+      justifyContent: 'space-around',
+      width: '100%',
+      flexWrap: 'wrap',
+      position: 'relative',
+      margin: '50px 0px'
+  },
+  content_streak: {
+      width: '100%',
+      margin: '15px 0px'
+  },
+  nom_user: {
+      textAlign: 'center',
+      fontSize: '22px',
+      fontWeight: 'bold'
+  },
+  titre: {
+      color: '#325288'
+  }
 }
