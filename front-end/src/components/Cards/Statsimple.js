@@ -56,7 +56,7 @@ export default function Simplestat(){
                     statIconColor="bg-teal-500"
                     />
                </div>
-               <div className="w-full lg:w-6/12 xl:w-3/12 px-4">
+               {/*<div className="w-full lg:w-6/12 xl:w-3/12 px-4">
                     <CardStats
                     statSubtitle="COMMIT"
                     statTitle={2}
@@ -67,7 +67,7 @@ export default function Simplestat(){
                     statIconName="fas fa-chart-pie"
                     statIconColor="bg-red-500"
                     />
-               </div>
+                </div>*/}
                <div className="w-full lg:w-6/12 xl:w-3/12 px-4">
                     <CardStats
                     statSubtitle="PRODUCTION"

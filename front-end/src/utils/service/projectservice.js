@@ -33,6 +33,16 @@ class ProjectService {
                }) 
 
      }
+     getnombrecourspm(){
+          return ProjectAxios.get('/getnbencourspm').then(response=>{
+               return response
+          })
+     }
+     getnombrevalidepm(){
+          return ProjectAxios.get('/getnbvalidepm').then(response=>{
+               return response
+          })
+     }
      GetProjectMember(id){
           return ProjectAxios.get(`/${id}/part`).then(response=>{
                return response

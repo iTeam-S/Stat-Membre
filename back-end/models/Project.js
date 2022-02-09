@@ -124,7 +124,7 @@ module.exports = {
     },
     getOneProjectWithPart:(id)=>{
         return new Promise((resolve,reject)=>{
-            db.query("SELECT membre.id,membre.nom as nom_participant, membre.prenom as prenom_participant,membre.pdc as pdc_participant,membre.fonction,membre.point_experience,membre.nombre_projet,projet.nom as Nom_project FROM membre LEFT JOIN membre_projet ON membre.id=membre_projet.id_membre LEFT JOIN projet ON projet.id=membre_projet.id_projet WHERE projet.id=?", [id],function(err,resultat){
+            db.query("SELECT membre.id,membre.nom as nom_participant, membre.prenom as prenom_participant,membre.pdc as pdc_participant,membre.fonction,membre.point_experience,membre.nombre_projet,membre.user_github ,projet.nom as Nom_project FROM membre LEFT JOIN membre_projet ON membre.id=membre_projet.id_membre LEFT JOIN projet ON projet.id=membre_projet.id_projet WHERE projet.id=? ORDER BY membre.point_experience DESC", [id],function(err,resultat){
                 if(err){
                     reject(new Error(err));
                 }else{
@@ -138,7 +138,7 @@ module.exports = {
     },
     getOneProjectWithPartV:(id)=>{
         return new Promise((resolve,reject)=>{
-            db.query("SELECT membre.id,membre.nom as nom_participant, membre.prenom as prenom_participant,membre.pdc as pdc_participant,membre.fonction,membre.point_experience,membre.nombre_projet,projet.nom as Nom_project FROM membre LEFT JOIN membre_projet ON membre.id=membre_projet.id_membre LEFT JOIN projet ON projet.id=membre_projet.id_projet WHERE projet.id=? AND membre_projet.difficulte IS NULL", [id],function(err,resultat){
+            db.query("SELECT membre.id,membre.nom as nom_participant, membre.prenom as prenom_participant,membre.pdc as pdc_participant,membre.fonction,membre.point_experience,membre.nombre_projet,membre.user_github,projet.nom as Nom_project FROM membre LEFT JOIN membre_projet ON membre.id=membre_projet.id_membre LEFT JOIN projet ON projet.id=membre_projet.id_projet WHERE projet.id=? AND membre_projet.difficulte IS NULL ORDER BY membre.point_experience DESC", [id],function(err,resultat){
                 if(err){
                     reject(new Error(err));
                 }else{
@@ -150,6 +150,29 @@ module.exports = {
         })
 
     },
+    getNombreEncoursPm:()=>{
+        return new Promise((resolve,reject)=>{
+            db.query("select month(creation_date) as mois,count(nom)nombre_projet  from projet WHERE validation_date IS NULL GROUP BY month(creation_date)  ORDER BY mois ASC;",function(err,resultat) {
+                if(err){
+                    reject(new Error("Error while fetching nombre du projet"))
+                }else{
+                    resolve(resultat)
+                }
+            })
+        })
+    },
+    getNombreValidePm:()=>{
+        return new Promise((resolve,reject)=>{
+            db.query("select month(validation_date) as mois,count(nom)nombre_projet from projet WHERE validation_date IS NOT NULL GROUP BY month(validation_date)  ORDER BY mois ASC;",function(err,resultat) {
+                if(err){
+                    reject(new Error("Error while fetching nombre du projet"))
+                }else{
+                    resolve(resultat)
+                }
+            })
+        })
+    },
+
     getNombreValide:()=>{
         return new Promise((resolve,reject)=>{
             db.query("select count(nom) as nb_valide from projet WHERE valide=1;",function(err,resultat){

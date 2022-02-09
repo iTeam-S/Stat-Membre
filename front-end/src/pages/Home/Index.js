@@ -18,9 +18,11 @@ import Topfive from "../Topfive/TopFive";
 
 import CardProjets from "../../components/Cards/CardProjets";
 import Specialite from "../../components/Cards/Specialite.js";
+import ProjectService from "../../utils/service/projectservice.js";
 
 
 export default function Index() {
+
     window.onbeforeunload = function () {
         window.scrollTo(0, 0);
       }
@@ -74,13 +76,13 @@ export default function Index() {
                         </div>
                     </div>
                 </section>
-                <section name="projet">
+                <section className="mt-1/2" name="projet">
                     <div  className="mx-1/4">
                         <CardProjets />
                     </div>
                 </section>
                 <section name="top5">
-                    <div>
+                    <div className="mt-1/4">
                         <Topfive topfive={topfive} />
                     </div>
                 </section>

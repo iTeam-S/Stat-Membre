@@ -5,9 +5,12 @@ import Navbar from "../../components/Navbars/AuthNavbar";
 import FooterSmall from "../../components/Footers/FooterSmall.js";
 import { ProjectContext } from "../../utils/context/ProjectContext";
 import { Link } from "react-router-dom";
+import styles from "../../assets/styles/streak"
 
 
 export default function ProjectMember(){
+
+  const streak_url = "https://github-readme-streak-stats.herokuapp.com/?theme=vue&ring=D96098&fire=D96098&user= ";
     const {id}=useParams()
     const [pmembers,setPmembers]=useState([]);
     const {projects}=useContext(ProjectContext)
@@ -26,6 +29,7 @@ export default function ProjectMember(){
         fetchdata();
         
     },[]);
+    console.log(pmembers);
     return(
         <div>
               <Navbar transparent />
@@ -63,20 +67,28 @@ export default function ProjectMember(){
             </div>
             <div className="w-full px-4 text-center mt-20">
               <div className="flex justify-center py-4 lg:pt-4 pt-8">
+              <div className="mr-4 p-3 text-center">
+                  <span className="text-xl font-bold block uppercase tracking-wide text-blueGray-600">
+                    {participant.nombre_projet}
+                  </span>
+                  <span className="text-sm text-blueGray-400">Projet</span>
+                </div>
                 <div className="mr-4 p-3 text-center">
                   <span className="text-xl font-bold block uppercase tracking-wide text-blueGray-600">
                     {participant.point_experience}
                   </span>
-                  <span className="text-sm text-blueGray-400">Point Actuel</span>
-                </div>
-                <div className="lg:mr-4 p-3 text-center">
-                  <span className="text-xl font-bold block uppercase tracking-wide text-blueGray-600">
-                    {participant.nombre_projet}
-                  </span>
-                  <span className="text-sm text-blueGray-400">Nombre_projet</span>
+                  <span className="text-sm text-blueGray-400">Point</span>
                 </div>
               </div>
             </div>
+          </div>
+          <div style={styles.content_streak}>
+                <p style={styles.nom_user}>Streak</p>
+                  <img
+                    alt={participant.prenom}
+                    src= { streak_url.trim() + participant.user_github }
+                    className="rounded-t-lg"
+                    />
           </div>
           <div className="text-center mt-12">
             <h3 className="text-xl font-semibold leading-normal mb-2 text-blueGray-700 mb-2">
@@ -94,6 +106,7 @@ export default function ProjectMember(){
           </div>
         </div>
       </div>
+               
                
       ))}
       </div>

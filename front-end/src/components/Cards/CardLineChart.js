@@ -1,4 +1,4 @@
-import React,{useEffect} from "react";
+import React,{useEffect,useState} from "react";
 import Chart from "chart.js";
 import moment from "moment";
 
@@ -7,29 +7,14 @@ import moment from "moment";
 import ProjectService from "../../utils/service/projectservice";
 
 export default function CardLineChart() {
+  
   useEffect(() => {
     async function CardLineData(){
-    let project=[];
-    const cdate=new Date();
+    let chartdata=[]
     try {
-      await ProjectService.getAllencours().then((response)=>{
-          let i=0;
-          let totalproj=0;
-          while(i<response.data.length){
-            if(moment(`${response.data[i].creation_date}`).isBefore(`${cdate}`) || moment(`${response.data[i].creation_date}`).isSame(`${cdate}`)){
-              totalproj+=1;
-            }
-            i++;
-          }
-          project[cdate.getMonth()]=totalproj
-          let anneactuelle=cdate.getFullYear();
-          let anneAncien=moment(response.data[0].creation_date).year();
-          if(anneactuelle!==anneAncien){
-            project=[];
-          }  
-    })
-
-      
+      await ProjectService.getnombrecourspm().then((response)=>{
+          chartdata=(response.data);
+      })
     } catch (error) {
       console.log(error);
       
@@ -58,7 +43,7 @@ export default function CardLineChart() {
             label: new Date().getFullYear(),
             backgroundColor: "#4c51bf",
             borderColor: "#4c51bf",
-            data: project,
+            data: chartdata,
             fill: false,
           }
         ],
@@ -140,7 +125,6 @@ export default function CardLineChart() {
   }
   CardLineData();
   }, []);
-  
   return (
     <>
       <div className="relative flex flex-col min-w-0 break-words w-full  shadow-lg rounded bg-teal-700">

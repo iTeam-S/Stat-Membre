@@ -9,24 +9,13 @@ import ProjectService from "../../utils/service/projectservice";
 export default function CardBarChart() {
   useEffect(() => {
     async function CardData(){
-    const projectv=[];
-    const cdate=new Date();
+    let projectv=[];
     try {
-      await ProjectService.getAllvalide().then((response)=>{
-          let i=0;
-          let totalproj=0;
-          while(i<response.data.length){
-            if(cdate.getMonth()===moment(response.data[i].validation_date).month()){
-              totalproj+=1;
-            }
-            i++;
-          }
-          projectv[cdate.getMonth()]=totalproj
-          
-          
+      await ProjectService.getnombrevalidepm().then((response)=>{
+          projectv=response.data
+           
     })
 
-      
     } catch (error) {
       console.log(error);
       
@@ -53,7 +42,7 @@ export default function CardBarChart() {
             label: new Date().getFullYear(),
             backgroundColor: "#21212",
             borderColor: "#21212",
-            data: [1,2,3,1,5,6,7,8,9,10,11,12],
+            data: projectv,
             fill: false,
             barThickness: 13,
           }

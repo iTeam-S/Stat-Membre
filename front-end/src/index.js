@@ -42,6 +42,7 @@ import Profile from "./pages/Profile/Profile";
 import Index from "./pages/Home/Index";
 import Project from "./pages/Projets/projets";
 import Errorpage from "pages/error/Error";
+import Streak from "./pages/Landing/Streak";
 
 
 
@@ -94,6 +95,9 @@ const App = () => {
                               </Route>
                               <Route path="/" exact>
                                   <Index data={project}/>
+                              </Route>
+                              <Route path="/streak" exact>
+                                  <Streak data={member}/>
                               </Route>
                               <Route exact path="/public/project/:id/mproject">
                                   <ProjectMember/>

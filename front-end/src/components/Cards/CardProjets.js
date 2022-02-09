@@ -20,7 +20,7 @@ export default function CardProjets() {
   return (
     <>
       <h3 className="text-3xl font-semibold text-center text-blueGray-600">
-            Tous nos projets
+            Nos projets
       </h3>
       <div className="text-center mt-5 text-pulse-500 font-semibold">
                         <Link to="/views/public/projets">Tout voir</Link><span><a href="view/projet.html">

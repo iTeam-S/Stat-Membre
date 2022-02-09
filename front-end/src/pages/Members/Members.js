@@ -5,6 +5,7 @@ import Navbar from "../../components/Navbars/AuthNavbar";
 import FooterSmall from "../../components/Footers/FooterSmall.js";
 import { MemberContext } from "utils/context/MemberContext";
 import { Link } from "react-router-dom";
+import styles from "../../assets/styles/streak"
 
 
 
@@ -46,17 +47,23 @@ export default function MemberList(){
             </div>
             <div className="w-full px-4 text-center mt-20">
               <div className="flex justify-center py-4 lg:pt-4 pt-8">
+              <div className="lg:mr-4 p-3 text-center">
+                  <span className="text-xl font-bold block uppercase tracking-wide text-blueGray-600">
+                    {members.indexOf(membre)+1}
+                  </span>
+                  <span className="text-sm text-blueGray-400">Rang</span>
+                </div>
+              <div className="mr-4 p-3 text-center">
+                  <span className="text-xl font-bold block uppercase tracking-wide text-blueGray-600">
+                    {membre.point_experience}
+                  </span>
+                  <span className="text-sm text-blueGray-400">Projet</span>
+                </div>
                 <div className="mr-4 p-3 text-center">
                   <span className="text-xl font-bold block uppercase tracking-wide text-blueGray-600">
                     {membre.point_experience}
                   </span>
-                  <span className="text-sm text-blueGray-400">Point Actuel</span>
-                </div>
-                <div className="lg:mr-4 p-3 text-center">
-                  <span className="text-xl font-bold block uppercase tracking-wide text-blueGray-600">
-                    {membre.nombre_projet?membre.nombre_projet:0}
-                  </span>
-                  <span className="text-sm text-blueGray-400">Nombre_projet</span>
+                  <span className="text-sm text-blueGray-400">Point</span>
                 </div>
               </div>
             </div>
@@ -97,27 +104,4 @@ export default function MemberList(){
 
 </>
 );
-}
-const styles = {
-  streak: {
-      display: 'flex',
-      flexDirection: 'row',
-      justifyContent: 'space-around',
-      width: '100%',
-      flexWrap: 'wrap',
-      position: 'relative',
-      margin: '50px 0px'
-  },
-  content_streak: {
-      width: '100%',
-      margin: '15px 0px'
-  },
-  nom_user: {
-      textAlign: 'center',
-      fontSize: '22px',
-      fontWeight: 'bold'
-  },
-  titre: {
-      color: '#325288'
-  }
 }

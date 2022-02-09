@@ -46,6 +46,46 @@ module.exports = {
         }
         
     },
+    getNombreEncoursPm:async(req,res)=>{
+        try {
+
+            let nbencourspm=await mdlsProject.getNombreEncoursPm();
+            let tab=[];
+            nbencourspm.forEach(element => {
+                tab[element.mois-1]=element.nombre_projet
+            });
+            for (let i = 1; i < tab.length; i++) {
+                tab[i]+=tab[i-1]
+                
+            }
+        
+        res.status(200).send(tab)   
+        } catch (error) {
+            res.status(500).send({
+                message:"Errer lors du calcul"
+            })
+        }
+    },
+    getNombreValidePm:async(req,res)=>{
+        try {
+            
+            let nbevalidepm=await mdlsProject.getNombreValidePm();
+            let tab=[];
+            nbevalidepm.forEach(element => {
+                tab[element.mois-1]=element.nombre_projet
+            });
+            for (let i = 1; i < tab.length; i++) {
+                tab[i]+=tab[i-1]
+                
+            }
+        
+        res.status(200).send(tab)   
+        } catch (error) {
+            res.status(500).send({
+                message:"Errer lors du calcul"
+            })
+        }
+    },
     listAllnodeploye: async(req,res)=>{
         try {
             let listnodproject=await mdlsProject.listAllnodeploye();
