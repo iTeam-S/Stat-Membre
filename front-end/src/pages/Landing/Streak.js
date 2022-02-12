@@ -20,12 +20,12 @@ export default function Streak({data}) {
         
     },[]);
 
-    const streak_url = "https://github-readme-streak-stats.herokuapp.com/?theme=vue&ring=D96098&fire=D96098&user= ";
+    const streak_url = "https://github-readme-streak-stats.herokuapp.com?theme=leafy&date_format=j%20M%5B%20Y%5D&ring=047884&sideNums=06ACBD&dates=06ACBD&currStreakNum=08E8FF&currStreakLabel=08E8FF&background=ffffff00&hide_border=true&user=";
 
     return ( 
         <>
             <Navbar />
-            <main >
+            <main className="bg-blueGray-800">
                 <div className = "relative pt-16 pb-32 flex content-center items-center justify-center min-h-screen-75" >
                     <div className = "absolute top-0 w-full h-full bg-center bg-cover"
                             style = {
@@ -52,7 +52,7 @@ export default function Streak({data}) {
                                 viewBox = "0 0 2560 100"
                                 x = "0"
                                 y = "0" >
-                            <polygon className = "text-blueGray-200 fill-current" points = "2560 0 2560 100 0 100" ></polygon>
+                            <polygon className = "text-blueGray-800 fill-current" points = "2560 0 2560 100 0 100" ></polygon>
                         </svg> 
                     </div> 
                 </div>
@@ -72,7 +72,7 @@ export default function Streak({data}) {
             </section>      
                            
                         
-            <section className = "pb-20 relative block bg-blueGray-800" >
+            <section className = "pb-20 relative block" >
 
                     <div className = "container mx-auto px-4 lg:pt-24 lg:pb-64" >
                         <div className = "flex flex-wrap text-center justify-center" >
@@ -82,7 +82,7 @@ export default function Streak({data}) {
                         </div> 
                     </div> 
                 </section> 
-                <section className = "relative block py-24 lg:pt-0 bg-blueGray-800" >
+                <section className = "relative block py-24 lg:pt-0 " >
                     <div className = "container mx-auto px-4" >
                         <div className = "flex flex-wrap justify-center lg:-mt-64 -mt-48" >
                             <div className = "w-full lg:w-6/12 px-4" >
@@ -130,15 +130,16 @@ const styles = {
         margin: '50px 0px'
     },
     content_streak: {
-        width: '500px',
+        width: '400px',
         margin: '15px 0px'
     },
     nom_user: {
         textAlign: 'center',
         fontSize: '22px',
-        fontWeight: 'bold'
+        fontWeight: 'bold',
+        color: 'white'
     },
     titre: {
-        color: '#325288'
+        color: '#287979'
     }
 }

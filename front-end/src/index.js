@@ -37,7 +37,6 @@ import ProjetdMembre from "./pages/Projets/Projetdmembre"
 
 // views without layouts
 
-import Landing from "./pages/Landing/Landing";
 import Profile from "./pages/Profile/Profile";
 import Index from "./pages/Home/Index";
 import Project from "./pages/Projets/projets";
@@ -101,9 +100,6 @@ const App = () => {
                               </Route>
                               <Route exact path="/public/project/:id/mproject">
                                   <ProjectMember/>
-                              </Route>
-                              <Route path="/landing" exact>
-                                  <Landing data={member}/>
                               </Route>
                               <Route path="/profile/:prenom" exact>
                                   <Profile data={member}/>
