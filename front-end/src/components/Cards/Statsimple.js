@@ -43,8 +43,8 @@ export default function Simplestat(){
   },[])
 
      return (
-          <div className="flex flex-wrap">
-               <div className="w-full lg:w-9/12 xl:w-3/12 px-4">
+          <div className="flex flex-row">
+              <div className="w-6/12 lg:w-6/12 xl:w-6/12 px-4">
                     <CardStats
                     statSubtitle="PARTICIPATION"
                     statTitle={memberact}
@@ -56,19 +56,7 @@ export default function Simplestat(){
                     statIconColor="bg-teal-500"
                     />
                </div>
-               {/*<div className="w-full lg:w-6/12 xl:w-3/12 px-4">
-                    <CardStats
-                    statSubtitle="COMMIT"
-                    statTitle={2}
-                    statArrow="down"
-                    statPercent={3.48}
-                    statPercentColor="text-red-500"
-                    statDescripiron="Since last week"
-                    statIconName="fas fa-chart-pie"
-                    statIconColor="bg-red-500"
-                    />
-                </div>*/}
-               <div className="w-full lg:w-6/12 xl:w-3/12 px-4">
+               <div className="w-6/12 lg:w-6/12 xl:w-6/12 px-4">
                     <CardStats
                     statSubtitle="PRODUCTION"
                     statTitle={projectval}
@@ -76,7 +64,7 @@ export default function Simplestat(){
                     statPercent={prcent}
                     statPercentColor="text-emerald-500"
                     statDescripiron="Des projets"
-                    statIconName="far fa-chart-bar"
+                    statIconName="fas fa-chart-bar"
                     statIconColor="bg-orange-500"
                     />
                </div>

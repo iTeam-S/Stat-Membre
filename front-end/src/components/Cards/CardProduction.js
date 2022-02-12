@@ -125,7 +125,7 @@ export default function CardBarChart() {
                 Production
               </h6>
               <h2 className="text-blueGray-700 text-xl font-semibold">
-                Nombre de Projets validés
+                Projets validés
               </h2>
             </div>
           </div>

@@ -11,7 +11,7 @@ import MemberService from "../../utils/service/memberservice";
 export default function Topfive({topfive}){
          
      const [first,second,third,forth,fifth]=topfive;
-     const streak_url = "https://github-readme-streak-stats.herokuapp.com/?theme=vue&ring=D96098&fire=D96098&user= ";
+     const streak_url = "https://github-readme-streak-stats.herokuapp.com/?theme=dark&ring=7c8a16&fire=7c8a16&date_format=j%20M%5B%20Y%5D&dates=06ACBD&background=ffffff00&hide_border=true&user=";
     console.log(topfive);
      return(
           <div>
@@ -25,38 +25,40 @@ export default function Topfive({topfive}){
                     </div>
                     <div className="mx-auto w-8/12 rounded-lg mt-5 flex flex-no-wrap bg-white container h-full border-blueGray-50">
                         {first &&(
-                        <div className="hover:-mt-4 duration-500 relative flex flex-col w-1/5 break-words bg-teal-700 rounded mt-1/2 h-1/4  shadow-lg">
+                        <div className="hover:-mt-4 duration-500 relative flex flex-col w-1/5 break-words bg-lightBlue-600 rounded mt-1/2 h-1/4  shadow-lg">
                             <div className=" w-full">
-                                            <div className="relative w-10/12 pr-4 max-w-full flex-grow flex-1">
+                                            <div className="relative w-10/12 pr-4 max-w-full flex flex-grow flex-1">
                                                 <span className = "h-12 w-12 text-sm text-white bg-blueGray-200 inline-flex items-center justify-center rounded-full" >
                                                     <img alt = "..." className = "w-full rounded-full align-middle border-none shadow-lg" src = {first.pdc?first.pdc: require("../../assets/img/team-1-800x800.jpg").default }/>
                                                 </span>
-                                                <span className="font-semibold text-xl text-black">
-                                                {first.prenom + " "+first.nom}
+                                                <span className="font-semibold text-xl flex flex-col justify-center text-black">
+                                                    {first.prenom}
                                                 </span>
                                             </div>   
                                             <div className=" mx-auto w-full px-2 text-center mt-1/2">
-                                            <div className="bg-white flex flex-wrap px-1 py-4 lg:pt-4 pt-8">
-                                            <div className="lg:mr-2 p-3 text-center">
-                                                <span className="text-xl font-bold block uppercase tracking-wide text-black">
-                                                   1
-                                                </span>
-                                                <span className="text-sm font-semibold  uppercase text-teal-500">Rang</span>
-                                                </div>
-                                            <div className="lg:mr-2 p-3 text-center">
-                                                <span className="text-xl font-bold block uppercase tracking-wide text-black">
-                                                    {first.nombre_projet?first.nombre_projet:0}
-                                                </span>
-                                                <span className="text-sm font-semibold  uppercase text-teal-500">Projet</span>
-                                                </div>
+                                              <div className="bg-white flex flex-col flex-wrap px-1 py-4 lg:pt-4 pt-8">
                                                 <div className="lg:mr-2 p-3 text-center">
-                                                <span className="text-xl font-bold block uppercase tracking-wide text-black">
-                                                    {first.point_experience}
-                                                </span>
-                                                <span className="text-sm font-semibold  uppercase text-teal-500">Point</span>
+                                                    <span className="text-xl font-bold block uppercase tracking-wide text-lightBlue-600">
+                                                      1
+                                                    </span>
+                                                    <span className="text-sm font-semibold  uppercase text-lightBlue-600">Rang</span>
                                                 </div>
+                                                <div className="flex flex-row flex-wrap justify-between">
+                                                  <div className="lg:mr-2 p-3 text-center">
+                                                      <span className="text-xl font-bold block uppercase tracking-wide text-black">
+                                                          {first.nombre_projet?first.nombre_projet:0}
+                                                      </span>
+                                                      <span className="text-sm font-semibold  uppercase text-lightBlue-600">Projet</span>
+                                                  </div>
+                                                  <div className="lg:mr-2 p-3 text-center">
+                                                      <span className="text-xl font-bold block uppercase tracking-wide text-black">
+                                                          {first.point_experience}
+                                                      </span>
+                                                      <span className="text-sm font-semibold  uppercase text-lightBlue-600">Point</span>
+                                                  </div>
+                                                </div>
+                                              </div>
                                             </div>
-                                        </div>
                                         <div style={styles.content_streak}>
                                                 <p style={styles.nom_user}>Streak</p>
                                                 <img
@@ -68,40 +70,42 @@ export default function Topfive({topfive}){
                             </div>
                         )}   
                         {second &&(
-                        <div className="hover:-mt-4 duration-500 relative flex flex-col w-1/5 break-words bg-teal-500  h-1/4 rounded mt-1/4 xl:mb-0 shadow-lg">
+                        <div className="hover:-mt-4 duration-500 relative flex flex-col w-1/5 break-words bg-blueGray-700 h-1/4 rounded mt-1/4 xl:mb-0 shadow-lg">
                                 <div className=" w-full">
                                         <div className="relative w-10/12 pr-4 max-w-full flex-grow flex-1">
                                             <span className = "h-12 w-12 text-sm text-white bg-blueGray-200 inline-flex items-center justify-center rounded-full" >
                                                 <img alt = "..." className = "w-full rounded-full align-middle border-none shadow-lg" src = {second.pdc?second.pdc: require("../../assets/img/team-1-800x800.jpg").default }/>
                                             </span>
-                                            <span className="font-semibold text-xl text-black">
-                                               {second.prenom+ " " +second.nom}
+                                            <span className="font-semibold text-xl text-white">
+                                               {second.prenom}
                                             </span>
                                         </div>   
-                                        <div className="mx-auto w-full px-2 text-center mt-1/2">
-                                        <div className="bg-white flex flex-wrap px-1 py-4 lg:pt-4 pt-8">
-                                          <div className="lg:mr-2 p-3 text-center">
-                                              <span className="text-xl font-bold block uppercase tracking-wide text-blueGray-600">
-                                                2
-                                              </span>
-                                              <span className="text-sm font-semibold  uppercase text-teal-500">Rang</span>
+                                        <div className=" mx-auto w-full px-2 text-center mt-1/2">
+                                              <div className="bg-white flex flex-col flex-wrap px-1 py-4 lg:pt-4 pt-8">
+                                                <div className="lg:mr-2 p-3 text-center">
+                                                    <span className="text-xl font-bold block uppercase tracking-wide text-blueGray-700">
+                                                      2
+                                                    </span>
+                                                    <span className="text-sm font-semibold  uppercase text-blueGray-700">Rang</span>
+                                                </div>
+                                                <div className="flex flex-row flex-wrap justify-between">
+                                                  <div className="lg:mr-2 p-3 text-center">
+                                                      <span className="text-xl font-bold block uppercase tracking-wide text-black">
+                                                          {second.nombre_projet?first.nombre_projet:0}
+                                                      </span>
+                                                      <span className="text-sm font-semibold  uppercase text-teal-500">Projet</span>
+                                                  </div>
+                                                  <div className="lg:mr-2 p-3 text-center">
+                                                      <span className="text-xl font-bold block uppercase tracking-wide text-black">
+                                                          {second.point_experience}
+                                                      </span>
+                                                      <span className="text-sm font-semibold  uppercase text-teal-500">Point</span>
+                                                  </div>
+                                                </div>
+                                              </div>
                                             </div>
-                                          <div className="lg:mr-2 p-3 text-center">
-                                              <span className="text-xl font-bold block uppercase tracking-wide text-blueGray-600">
-                                                {second.nombre_projet?second.nombre_projet:0}
-                                              </span>
-                                              <span className="text-sm font-semibold  uppercase text-teal-500">Projet</span>
-                                            </div>
-                                            <div className="lg:mr-2 p-3 text-center">
-                                              <span className="text-xl font-bold block uppercase tracking-wide text-blueGray-600">
-                                                {second.point_experience}
-                                              </span>
-                                              <span className="text-sm font-semibold  uppercase text-teal-500">Point</span>
-                                            </div>
-                                          </div>
-                                      </div>
                                       <div style={styles.content_streak}>
-                                            <p style={styles.nom_user}>Streak</p>
+                                            <p className="text-white"style={styles.nom_user}>Streak</p>
                                               <img
                                                 src= { streak_url.trim()+second.user_github}
                                                 className="rounded-t-lg"
@@ -111,38 +115,40 @@ export default function Topfive({topfive}){
                         </div>
                         )}
                         {third &&(
-                        <div className="hover:-mt-4 duration-500 relative flex flex-col w-1/5 break-words bg-teal-300 h-1/4 rounded mt-1/6 xl:mb-0 shadow-lg">
+                        <div className="hover:-mt-4 duration-500 relative flex flex-col w-1/5 break-words bg-orange-500 h-1/4 rounded mt-1/6 xl:mb-0 shadow-lg">
                             <div className=" w-full">
                                         <div className="relative w-10/12 pr-4 max-w-full flex-grow flex-1">
                                             <span className = "h-12 w-12 text-sm text-white bg-blueGray-200 inline-flex items-center justify-center rounded-full" >
                                                 <img alt = "..." className = "w-full rounded-full align-middle border-none shadow-lg" src = {third.pdc?third.pdc: require("../../assets/img/team-1-800x800.jpg").default }/>
                                             </span>
                                             <span className="font-semibold text-xl text-black">
-                                               {third.prenom + " " +third.nom}
+                                               {third.prenom}
                                             </span>
                                         </div>   
-                                        <div className="mx-auto w-full px-2 text-center mt-1/2">
-                                        <div className="bg-white flex flex-wrap px-1 py-4 lg:pt-4 pt-8">
-                                          <div className="lg:mr-2 p-3 text-center">
-                                              <span className="text-xl font-bold block uppercase tracking-wide text-blueGray-600">
-                                                3
-                                              </span>
-                                              <span className="text-sm font-semibold  uppercase text-teal-500">Rang</span>
+                                        <div className=" mx-auto w-full px-2 text-center mt-1/2">
+                                              <div className="bg-white flex flex-col flex-wrap px-1 py-4 lg:pt-4 pt-8">
+                                                <div className="lg:mr-2 p-3 text-center">
+                                                    <span className="text-xl font-bold block uppercase tracking-wide text-orange-500">
+                                                      3
+                                                    </span>
+                                                    <span className="text-sm font-semibold  uppercase text-orange-500">Rang</span>
+                                                </div>
+                                                <div className="flex flex-row flex-wrap justify-between">
+                                                  <div className="lg:mr-2 p-3 text-center">
+                                                      <span className="text-xl font-bold block uppercase tracking-wide text-black">
+                                                          {third.nombre_projet?first.nombre_projet:0}
+                                                      </span>
+                                                      <span className="text-sm font-semibold  uppercase text-teal-500">Projet</span>
+                                                  </div>
+                                                  <div className="lg:mr-2 p-3 text-center">
+                                                      <span className="text-xl font-bold block uppercase tracking-wide text-black">
+                                                          {third.point_experience}
+                                                      </span>
+                                                      <span className="text-sm font-semibold  uppercase text-teal-500">Point</span>
+                                                  </div>
+                                                </div>
+                                              </div>
                                             </div>
-                                          <div className="lg:mr-2 p-3 text-center">
-                                              <span className="text-xl font-bold block uppercase tracking-wide text-blueGray-600">
-                                                {third.nombre_projet?third.nombre_projet:0}
-                                              </span>
-                                              <span className="text-sm font-semibold  uppercase text-teal-500">Projet</span>
-                                            </div>
-                                            <div className="lg:mr-2 p-3 text-center">
-                                              <span className="text-xl font-bold block uppercase tracking-wide text-blueGray-600">
-                                                {third.point_experience}
-                                              </span>
-                                              <span className="text-sm font-semibold  uppercase text-teal-500">Point</span>
-                                            </div>
-                                          </div>
-                                      </div>
                                       <div style={styles.content_streak}>
                                             <p style={styles.nom_user}>Streak</p>
                                               <img
@@ -154,38 +160,40 @@ export default function Topfive({topfive}){
                         </div>
                         )}
                         {forth&&(
-                        <div className="hover:-mt-4 duration-500 relative flex flex-col w-1/5 break-words bg-teal-200 h-1/4 rounded mt-1/8 xl:mb-0 shadow-lg">
+                        <div className="hover:-mt-4 duration-500 relative flex flex-col w-1/5 break-words bg-emerald-500 h-1/4 rounded mt-1/8 xl:mb-0 shadow-lg">
                             <div className=" w-full">
                                         <div className="relative w-10/12 pr-4 max-w-full flex-grow flex-1">
                                             <span className = "h-12 w-12 text-sm text-white bg-blueGray-200 inline-flex items-center justify-center rounded-full" >
                                                 <img alt = "..." className = "w-full rounded-full align-middle border-none shadow-lg" src = { forth.pdc?forth.pdc:require("../../assets/img/team-1-800x800.jpg").default }/>
                                             </span>
                                             <span className="font-semibold text-xl text-black">
-                                                {forth.prenom+" "+forth.nom}
+                                                {forth.prenom}
                                             </span>
                                         </div>   
                                         <div className=" mx-auto w-full px-2 text-center mt-1/2">
-                                        <div className="bg-white flex flex-wrap px-1 py-4 lg:pt-4 pt-8">
-                                          <div className="lg:mr-2 p-3 text-center">
-                                              <span className="text-xl font-bold block uppercase tracking-wide text-blueGray-600">
-                                                4
-                                              </span>
-                                              <span className="text-sm font-semibold  uppercase text-teal-500">Rang</span>
+                                              <div className="bg-white flex flex-col flex-wrap px-1 py-4 lg:pt-4 pt-8">
+                                                <div className="lg:mr-2 p-3 text-center">
+                                                    <span className="text-xl font-bold block uppercase tracking-wide text-emerald-500">
+                                                      4
+                                                    </span>
+                                                    <span className="text-sm font-semibold  uppercase text-emerald-500">Rang</span>
+                                                </div>
+                                                <div className="flex flex-row flex-wrap justify-between">
+                                                  <div className="lg:mr-2 p-3 text-center">
+                                                      <span className="text-xl font-bold block uppercase tracking-wide text-black">
+                                                          {forth.nombre_projet?first.nombre_projet:0}
+                                                      </span>
+                                                      <span className="text-sm font-semibold  uppercase text-teal-500">Projet</span>
+                                                  </div>
+                                                  <div className="lg:mr-2 p-3 text-center">
+                                                      <span className="text-xl font-bold block uppercase tracking-wide text-black">
+                                                          {forth.point_experience}
+                                                      </span>
+                                                      <span className="text-sm font-semibold  uppercase text-teal-500">Point</span>
+                                                  </div>
+                                                </div>
+                                              </div>
                                             </div>
-                                          <div className="lg:mr-2 p-3 text-center">
-                                              <span className="text-xl font-bold block uppercase tracking-wide text-blueGray-600">
-                                                {forth.nombre_projet?forth.nombre_projet:0}
-                                              </span>
-                                              <span className="text-sm font-semibold  uppercase text-teal-500">Projet</span>
-                                            </div>
-                                            <div className="lg:mr-2 p-3 text-center">
-                                              <span className="text-xl font-bold block uppercase tracking-wide text-blueGray-600">
-                                                {forth.point_experience}
-                                              </span>
-                                              <span className="text-sm font-semibold  uppercase text-teal-500">Point</span>
-                                            </div>
-                                          </div>
-                                      </div>
                                       <div style={styles.content_streak}>
                                             <p style={styles.nom_user}>Streak</p>
                                               <img
@@ -204,31 +212,33 @@ export default function Topfive({topfive}){
                                                 <img alt = "..." className = "w-full rounded-full align-middle border-none shadow-lg" src = {fifth.pdc?fifth.pdc: require("../../assets/img/team-1-800x800.jpg").default }/>
                                             </span>
                                             <span className="font-semibold text-xl text-black">
-                                                {fifth.prenom+" "+fifth.nom}
+                                                {fifth.prenom}
                                             </span>
                                         </div>   
                                         <div className=" mx-auto w-full px-2 text-center mt-1/2">
-                                        <div className="bg-white flex flex-wrap px-1 py-4 lg:pt-4 pt-8">
-                                          <div className="lg:mr-2 p-3 text-center">
-                                              <span className="text-xl font-bold block uppercase tracking-wide text-blueGray-600">
-                                                5
-                                              </span>
-                                              <span className="text-sm font-semibold  uppercase text-teal-500">Rang</span>
+                                              <div className="bg-white flex flex-col flex-wrap px-1 py-4 lg:pt-4 pt-8">
+                                                <div className="lg:mr-2 p-3 text-center">
+                                                    <span className="text-xl font-bold block uppercase tracking-wide text-red-500">
+                                                      5
+                                                    </span>
+                                                    <span className="text-sm font-semibold  uppercase text-red-500">Rang</span>
+                                                </div>
+                                                <div className="flex flex-row flex-wrap justify-between">
+                                                  <div className="lg:mr-2 p-3 text-center">
+                                                      <span className="text-xl font-bold block uppercase tracking-wide text-black">
+                                                          {fifth.nombre_projet?first.nombre_projet:0}
+                                                      </span>
+                                                      <span className="text-sm font-semibold  uppercase text-teal-500">Projet</span>
+                                                  </div>
+                                                  <div className="lg:mr-2 p-3 text-center">
+                                                      <span className="text-xl font-bold block uppercase tracking-wide text-black">
+                                                          {fifth.point_experience}
+                                                      </span>
+                                                      <span className="text-sm font-semibold  uppercase text-teal-500">Point</span>
+                                                  </div>
+                                                </div>
+                                              </div>
                                             </div>
-                                          <div className="lg:mr-2 p-3 text-center">
-                                              <span className="text-xl font-bold block uppercase tracking-wide text-blueGray-600">
-                                                {fifth.nombre_projet?fifth.nombre_projet:0}
-                                              </span>
-                                              <span className="text-sm font-semibold  uppercase text-teal-500">Projet</span>
-                                            </div>
-                                            <div className="lg:mr-2 p-3 text-center">
-                                              <span className="text-xl font-bold block uppercase tracking-wide text-blueGray-600">
-                                                {fifth.point_experience}
-                                              </span>
-                                              <span className="text-sm font-semibold  uppercase text-teal-500">Point</span>
-                                            </div>
-                                          </div>
-                                      </div>
                                       <div style={styles.content_streak}>
                                             <p style={styles.nom_user}>Streak</p>
                                               <img
