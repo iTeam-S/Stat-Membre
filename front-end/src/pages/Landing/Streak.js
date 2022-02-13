@@ -1,5 +1,4 @@
 import React,{useState,useEffect} from "react";
-import axios from "axios";
 
 // components
 
@@ -59,14 +58,16 @@ export default function Streak({data}) {
             <section>
                 <div style={styles.streak}>
                     {members.map((member) => (
-                        <div style={styles.content_streak}>
-                            <p style={styles.nom_user}>{member.prenom}</p>
-                            <img
-                                alt={member.prenom}
-                                src= { streak_url.trim() + member.user_github }
-                                className="rounded-t-lg"
-                            />
-                        </div>  
+                        <a href={"https://github.com/" + member.user_github} target="_blank">
+                            <div style={styles.content_streak}>
+                                <p style={styles.nom_user}>{member.prenom}</p>
+                                <img
+                                    alt={member.prenom}
+                                    src= { streak_url.trim() + member.user_github }
+                                    className="rounded-t-lg"
+                                />
+                            </div>  
+                        </a>
                     ))}
                 </div>
             </section>      
