@@ -14,6 +14,11 @@ class ProjectService {
                }) 
 
      }
+     getNombreDuprojetDmembre(id){
+          return ProjectAxios.get(`/getnbprojetdmembre/${id}`).then(response=>{
+               return response;
+          })
+     }
      UpdateCritere(difficulte,deadline,impact,implication,point_git,id){
           return CritereAxios.put(`/update/${id}`,{
                difficulte,
@@ -60,11 +65,12 @@ class ProjectService {
           
 
      }
-     AddProject(nom,repos,delai){
+     AddProject(nom,repos,delai,pdc){
                return ProjectAxios.post("/create",{
                     nom,
                     repos,
                     delai,
+                    pdc,
                }) 
      }
      addMember(id_membre,id_projet){
@@ -85,6 +91,11 @@ class ProjectService {
      }
      GetAll(){
           return ProjectAxios.get("/getAll").then(response=>{
+               return response
+          })
+     }
+     getnbactif(){
+          return ProjectAxios.get('/nbactif').then(response=>{
                return response
           })
      }

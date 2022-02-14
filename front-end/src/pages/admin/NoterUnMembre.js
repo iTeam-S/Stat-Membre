@@ -62,7 +62,7 @@ export default function NoterOne(){
           members
           .filter((membre)=>membre.id==id_membre)
           .map((membre)=>(
-          <div className="relative flex flex-col mx-auto min-w-0 break-words bg-white w-1/4 mb-6 shadow-xl rounded-lg mt-16">
+          <div key={membre.id} className="relative flex flex-col mx-auto min-w-0 break-words bg-white w-1/4 mb-6 shadow-xl rounded-lg mt-16">
         <div className="px-6 ">
           <div className="flex flex-wrap justify-center">
             <div className="w-full px-4 flex justify-center">

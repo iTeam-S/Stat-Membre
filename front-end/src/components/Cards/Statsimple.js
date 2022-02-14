@@ -1,7 +1,7 @@
 import CardStats from "./CardStats"
 import React,{useState,useEffect} from "react";
 import ProjectService from "../../utils/service/projectservice";
-import MemberService from "../../utils/service/memberservice";
+
 
 
 export default function Simplestat(){
@@ -25,12 +25,13 @@ export default function Simplestat(){
         setPrcent(response.data.pourcentage);
       })
 
-      await MemberService.listmemberonproject().then(response=>{
-        if(response.data.length==null){
+      await ProjectService.getnbactif().then(response=>{
+        console.log(response.data);
+        if(response.data==null){
           setMemberact(0)
         }
-        setMemberact(response.data.length);
-        let eff=((response.data.length)*100)/memberT;
+        setMemberact(response.data);
+        let eff=((response.data)*100)/memberT;
         setFreqmemberact(eff);
       })
       

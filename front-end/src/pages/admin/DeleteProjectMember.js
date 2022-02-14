@@ -6,7 +6,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import Navbar from "../../components/Navbars/AuthNavbar";
 import { useEffect } from "react";
 import ProjectService from "../../utils/service/projectservice"
-import Note from "../../components/Cards/Error"
+
 
 
 
@@ -55,7 +55,6 @@ export default function CheckMemberProject() {
                 setParts(part.data)
         } catch (error) {
             console.log(error);
-            
         }
     }
     const DeleteHandle=async(data)=>{
@@ -63,7 +62,7 @@ export default function CheckMemberProject() {
                 console.log(data.id_membre);
                 await ProjectService.DeleteMember(data.id_membre,data.id_projet) 
                 history.push("/admin/dashboard");
-                
+                window.location.reload();
             } catch (error) {
                 setErrer(true)
                 setErrorMessage(error.response.data.message)
@@ -97,8 +96,10 @@ export default function CheckMemberProject() {
                                         <label  className = "block uppercase text-blueGray-600 text-xs font-bold mb-2"  htmlFor = "project_name" >Nom du projet </label> 
                                         <select  id="project_name"  name="id_projet"  {...register('id_projet', {
                                             onChange: (e) => {fetchMember(e.target.value)}
-                                        })} className = "border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150">
-                                        {projets.map((proj)=>(
+                                        })} className = "border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150" defaultValue={1}>
+                                        {projets
+                                        .filter((proj)=>proj.valide==0)
+                                        .map((proj)=>(
                                             <option  key={proj.id} value={proj.id}>{proj.id}-{proj.nom}</option>
                                         ))}
                                             
@@ -116,10 +117,15 @@ export default function CheckMemberProject() {
                                         <input type="submit" className = "bg-blueGray-800 text-white active:bg-blueGray-600 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full ease-linear transition-all duration-150" value="Valider"/> 
                                     </div> 
                                     </form>
-                                    <Note
-                                        Errer={errer}
-                                        ErrorMessage={errorMessage}
-                                    />
+                                    {errer &&(
+                                    <div className="bg-rose-300 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
+                                        <strong className="font-bold">Errer!</strong>
+                                            <span className="block sm:inline">{errorMessage} </span>
+                                            <span className="absolute top-0 bottom-0 right-0 px-4 py-3">
+                                        <svg onClick={()=>{setErrer(false)}} className="fill-current h-5 w-12 text-red-500" role="button" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><title>Close</title><path d="M14.348 14.849a1.2 1.2 0 0 1-1.697 0L10 11.819l-2.651 3.029a1.2 1.2 0 1 1-1.697-1.697l2.758-3.15-2.759-3.152a1.2 1.2 0 1 1 1.697-1.697L10 8.183l2.651-3.031a1.2 1.2 0 1 1 1.697 1.697l-2.758 3.152 2.758 3.15a1.2 1.2 0 0 1 0 1.698z"/></svg>
+                                        </span>
+                                    </div>
+                                    )}
                                 </div> 
                             </div> 
                         </div> 

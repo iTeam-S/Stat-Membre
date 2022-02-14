@@ -2,8 +2,6 @@ import React from 'react'
 
 
 export default function Specialite(){
-
-
      return (
           <>
                  <div className = "container mx-auto" >
@@ -28,13 +26,10 @@ export default function Specialite(){
                                     ></polygon>
                                   </svg>
                                   <h4 className="text-xl font-bold text-white">
-                                    Great for your awesome project
+                                    "Prêt pour toutes types de  projet"
                                   </h4>
                                   <p className="text-md font-light mt-2 text-white">
-                                    Putting together a page has never been easier than matching
-                                    together pre-made components. From landing pages
-                                    presentation to login areas, you can easily customise and
-                                    built your pages.
+                                    
                                   </p>
                                 </blockquote>
                             </div> 

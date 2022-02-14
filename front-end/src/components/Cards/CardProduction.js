@@ -1,6 +1,5 @@
 import Chart from "chart.js";
 import React,{useEffect} from "react";
-import moment from "moment";
 
 
 import ProjectService from "../../utils/service/projectservice";

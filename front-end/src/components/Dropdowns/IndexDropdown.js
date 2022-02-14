@@ -30,7 +30,7 @@ const IndexDropdown = () => {
     return ()=>{
       window.removeEventListener("click",checkIfclicked);
     }
-  },[dropdownPopoverShow])
+  },[dropdownPopoverShow,btnDropdownRef])
   
   
   return (
@@ -68,7 +68,7 @@ const IndexDropdown = () => {
             spy={true}
             smooth={true}
             offset={-70}
-            duration={1200} 
+            duration={600} 
             onClick={(e) => {
               e.preventDefault();
               closeDropdownPopover();
@@ -81,7 +81,7 @@ const IndexDropdown = () => {
             spy={true}
             smooth={true}
             offset={-70}
-            duration={1200}
+            duration={600}
             onClick={(e) => {
               e.preventDefault();
               closeDropdownPopover();
@@ -99,6 +99,7 @@ const IndexDropdown = () => {
         >
           Project page
         </span>
+        <ul>
         <li
           to="/views/public/projets"
           className="cursor-pointer text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700"
@@ -116,7 +117,7 @@ const IndexDropdown = () => {
             </Lscroll>
           
         </li>
-        
+        </ul>
         <Link
           to="/admin/project/addproject"
           className="text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700"

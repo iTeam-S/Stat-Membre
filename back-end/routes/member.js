@@ -16,7 +16,6 @@ router.get('/getAll',MemberCtrl.listAll);
 
 //afficher tous les membres qui ont déjà des projets
 
-router.get('/allonproject',MemberCtrl.listallonproject)
 
 //Afficher un membre
 router.get('/getOne/:id',MemberCtrl.getOne);

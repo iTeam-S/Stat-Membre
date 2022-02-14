@@ -1,6 +1,5 @@
 const mdlsProject = require('../models/Project');
 const mdlsMember=require('../models/Member')
-const mdlsCritere=require("../models/Critere")
 const fs = require('fs');
 const moment=require('moment');
 const { format } = require('path');
@@ -9,7 +8,7 @@ module.exports = {
     create: async (req, res) => {
         try {
             /*body*/
-            let { nom, repos, delai} = req.body;
+            let { nom, repos, delai,pdc} = req.body;
             let valide=false;
 
             /*verifier si le projet existe déjà*/
@@ -18,7 +17,7 @@ module.exports = {
             if(thisproject[0]===undefined){
             
             /*create project*/
-            await mdlsProject.create(nom,repos,delai,valide);
+            await mdlsProject.create(nom,repos,delai,pdc,valide);
 
             res.status(200).send({
                 message: "Project created successfully"
@@ -38,10 +37,17 @@ module.exports = {
     listAll: async (req, res) => {
         try {
             let listProject = await mdlsProject.getListProject();
+            for (let i = 0; i < listProject.length; i++) {
+                let part=[]
+                    let parti=await mdlsProject.getOneProjectWithPart(listProject[i].id)
+                        for (let j = 0; j < parti.length; j++) {
+                            part.push(parti[j])
+                        }
+                    listProject[i]['participant']=part
+                }
             res.send(listProject);
-            
         } catch (error) {
-            res.status(500).send(error)
+            res.status(500).send(error.message)
             
         }
         
@@ -50,10 +56,20 @@ module.exports = {
         try {
 
             let nbencourspm=await mdlsProject.getNombreEncoursPm();
+
+
             let tab=[];
             nbencourspm.forEach(element => {
-                tab[element.mois-1]=element.nombre_projet
+                tab[(element.mois)-1]=element.projet
             });
+            
+            for (let j = 0; j < tab.length; j++) {
+                if(tab[j]==undefined){
+                    tab[j]=0;
+                }
+                
+            }
+
             for (let i = 1; i < tab.length; i++) {
                 tab[i]+=tab[i-1]
                 
@@ -65,6 +81,19 @@ module.exports = {
                 message:"Errer lors du calcul"
             })
         }
+    },
+    getNombreProjetDumembre:async(req,res)=>{
+        try {
+            let id=req.params.id
+            let nbprojet=await mdlsProject.getMembreTotalProject(id)
+            res.status(200).send(nbprojet)
+        } catch (error) {
+            res.status(500).send({
+                message:"Errer lors du calcul de nombre de projet"
+            })
+            
+        }
+
     },
     getNombreValidePm:async(req,res)=>{
         try {
@@ -74,6 +103,14 @@ module.exports = {
             nbevalidepm.forEach(element => {
                 tab[element.mois-1]=element.nombre_projet
             });
+
+            for (let j = 0; j < tab.length; j++) {
+                if(tab[j]==undefined){
+                    tab[j]=0;
+                }
+                
+            }
+
             for (let i = 1; i < tab.length; i++) {
                 tab[i]+=tab[i-1]
                 
@@ -84,16 +121,6 @@ module.exports = {
             res.status(500).send({
                 message:"Errer lors du calcul"
             })
-        }
-    },
-    listAllnodeploye: async(req,res)=>{
-        try {
-            let listnodproject=await mdlsProject.listAllnodeploye();
-            res.status(200).send(listnodproject)
-            
-        } catch (error) {
-            res.status(500).send(error);
-            
         }
     },
     listAlldeployed:async(req,res)=>{
@@ -107,73 +134,36 @@ module.exports = {
         }
 
     },
-    listAllWithCritere: async (req, res) => {
-        try {
-            let listPc = await mdlsProject.getAllProjectCritere();
-            res.send(listPc)
-
-        } catch (error) {
-            res.status(500).send(error)
-        }
-
-    },
-    listOneWithCritere: async (req, res) => {
-        try {
-            let id = parseInt(req.params.id)
-            let listc = await mdlsProject.getOneProjectCritere(id);
-            res.send(listc)
-
-
-        } catch (error) {
-            res.status(500).send(error)
-
-        }
-
-    },
     add: async (req, res) => {
         
         try {
             let id_membre=req.body.id_membre;
             let id_projet=req.body.id_projet;
+            let membre = await mdlsMember.checkMember(id_membre);
 
-            let membre = await mdlsProject.checkMember(id_membre);
-
-
-            
             let isExist=await mdlsProject.CheckIfMemberIsOnProject(id_membre,id_projet)
-
 
             if(isExist.length===0){
             
             let project = await mdlsProject.checkProject(id_projet);
             let project_part=await mdlsProject.getProjectTotalParticipants(id_projet);
 
-           
-
             if(project_part[0].total_participant ===null){
                 project_part[0].total_participant =0
             }
             
-
-            let TotProject= membre[0].nombre_projet;
-            if(TotProject===null){
-                TotProject=0
-            }
-                 
             let umber=await mdlsProject.addMemberToProject(id_membre,id_projet);
            
 
             let new_participant=project_part[0].total_participant+1;
 
 
-            let new_tot_proj=TotProject+1;
 
             await mdlsProject.setParticipant(new_participant,id_projet);
-            await mdlsMember.setTotproject(new_tot_proj,membre[0].id)
             
             res.status(200).send({
                 message: "Member added on a project successfully"
-            })
+            });
         }else{
             res.status(500).send({
                 message:`Ce membre est déjà dans le projet`
@@ -202,6 +192,10 @@ module.exports = {
         try {
             let id = req.params.id;
             let listp = await mdlsProject.getOneProjectWithPart(id);
+            for (let i = 0; i < listp.length; i++) {
+                let nbproj=await mdlsProject.getMembreTotalProject(listp[i].id)
+                listp[i]['nombre_projet']=nbproj[0].nombre_projet
+            }
             res.status(200).send(listp);
 
         } catch (error) {
@@ -213,6 +207,10 @@ module.exports = {
         try {
             let id = req.params.id;
             let listp = await mdlsProject.getOneProjectWithPartV(id);
+            for (let i = 0; i < listp.length; i++) {
+                let nbproj=await mdlsProject.getMembreTotalProject(listp[i].id)
+                listp[i]['nombre_projet']=nbproj[0].nombre_projet
+            }
             res.status(200).send(listp);
 
         } catch (error) {
@@ -220,7 +218,16 @@ module.exports = {
         }
 
     },
-
+    getNombreMembreActif:async(req,res)=>{
+        try {
+            let nbactif=await mdlsProject.getNombreDuMembreActif()
+            res.status(200).json(nbactif.length);
+        } catch (error) {
+            res.status(500).send({
+                message:"Yl y a eu une errer lors du calcul nbactif"
+            })
+        }
+    },
     getOne: async (req, res) => {
         try {
             let id = parseInt(req.params.id)
@@ -237,36 +244,15 @@ module.exports = {
         try {
             let id=parseInt(req.params.id)
             let current=new Date();
-            let date_validation=`${current.getFullYear()}-${current.getMonth()+1}-${current.getDate()}`;
-            let {valide}=req.body;
-            let isValide=await mdlsProject.CheckProjectIfnotValidedYet(id)
+            await mdlsProject.updateValideProject(current,1,id);
+            let res=await mdlsProject.CountPointMembre(id);
             
-            if(isValide[0].valide===0){               
-                await mdlsProject.valideProject(valide,date_validation,id);
-                res.status(200).send({
-                    message:"Project valided successfully"
-                })
-                
-            }else{
-                res.status(500).send({
-                    message:"Ce projet est déjà validé"
-                })
-            }
+            console.log(res);
             
         } catch (error) {
             res.status(500).send(
                 error.message
             )
-            
-        }
-
-    },
-    listAllvalided:async(req,res)=>{
-        try {
-            let validedProject=await mdlsProject.listAllvalidedProject();
-            res.status(200).send(validedProject)
-        } catch (error) {
-            res.status(500).send(error.message)
             
         }
 
@@ -311,25 +297,20 @@ module.exports = {
         try {
             let id_membre=req.body.id_membre;
             let id_projet=req.body.id_projet;
-            let membre = await mdlsProject.checkMember(id_membre);
-            let project = await mdlsProject.checkProject(id_projet);
             let project_part=await mdlsProject.getProjectTotalParticipants(id_projet);
+
 
             if(project_part[0].total_participant ===null){
                 project_part[0].total_participant =0
             }
-
    
-            let umber=await mdlsProject.deleteProjectMember(membre[0].id, project[0].id);
+            let umber=await mdlsProject.deleteProjectMember(id_membre,id_projet);
             let new_participant=0
             if(project_part[0].total_participant>0){
                 new_participant=project_part[0].total_participant-1;
             }else{
                 new_participant=0
             }
-            
-
-            
 
             await mdlsProject.setParticipant(new_participant,id_projet);
             

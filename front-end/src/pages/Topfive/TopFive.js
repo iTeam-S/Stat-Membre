@@ -1,18 +1,11 @@
-import React,{useState,useEffect} from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import styles from "../../assets/styles/streak"
-
-
-
-import MemberService from "../../utils/service/memberservice";
-
-
 
 export default function Topfive({topfive}){
          
      const [first,second,third,forth,fifth]=topfive;
      const streak_url = "https://github-readme-streak-stats.herokuapp.com/?theme=dark&ring=7c8a16&fire=7c8a16&date_format=j%20M%5B%20Y%5D&dates=06ACBD&background=ffffff00&hide_border=true&user=";
-    console.log(topfive);
      return(
           <div>
             <section className="mt-12" >
@@ -29,7 +22,7 @@ export default function Topfive({topfive}){
                             <div className=" w-full">
                                             <div className="relative w-10/12 pr-4 max-w-full flex flex-grow flex-1">
                                                 <span className = "h-12 w-12 text-sm text-white bg-blueGray-200 inline-flex items-center justify-center rounded-full" >
-                                                    <img alt = "..." className = "w-full rounded-full align-middle border-none shadow-lg" src = {first.pdc?first.pdc: require("../../assets/img/team-1-800x800.jpg").default }/>
+                                                    <img alt = "..." className = "w-full rounded-full align-middle border-none shadow-lg" src = {first.pdc?first.pdc: require("../../assets/img/team-1-800x800.jpg").default } />
                                                 </span>
                                                 <span className="font-semibold text-xl flex flex-col justify-center text-black">
                                                     {first.prenom}
@@ -64,6 +57,7 @@ export default function Topfive({topfive}){
                                                 <img
                                                     src= { streak_url.trim()+first.user_github}
                                                     className="rounded-t-lg"
+                                                    alt = "..."
                                                     />
                                         </div>
                                     </div>
@@ -91,7 +85,7 @@ export default function Topfive({topfive}){
                                                 <div className="flex flex-row flex-wrap justify-between">
                                                   <div className="lg:mr-2 p-3 text-center">
                                                       <span className="text-xl font-bold block uppercase tracking-wide text-black">
-                                                          {second.nombre_projet?first.nombre_projet:0}
+                                                          {second.nombre_projet?second.nombre_projet:0}
                                                       </span>
                                                       <span className="text-sm font-semibold  uppercase text-teal-500">Projet</span>
                                                   </div>
@@ -109,6 +103,7 @@ export default function Topfive({topfive}){
                                               <img
                                                 src= { streak_url.trim()+second.user_github}
                                                 className="rounded-t-lg"
+                                                alt = "..."
                                                 />
                                       </div>
                                 </div>
@@ -136,7 +131,7 @@ export default function Topfive({topfive}){
                                                 <div className="flex flex-row flex-wrap justify-between">
                                                   <div className="lg:mr-2 p-3 text-center">
                                                       <span className="text-xl font-bold block uppercase tracking-wide text-black">
-                                                          {third.nombre_projet?first.nombre_projet:0}
+                                                          {third.nombre_projet?third.nombre_projet:0}
                                                       </span>
                                                       <span className="text-sm font-semibold  uppercase text-teal-500">Projet</span>
                                                   </div>
@@ -154,13 +149,14 @@ export default function Topfive({topfive}){
                                               <img
                                                 src= { streak_url.trim()+third.user_github}
                                                 className="rounded-t-lg"
+                                                alt = "..."
                                                 />
                                       </div>
                             </div>
                         </div>
                         )}
                         {forth&&(
-                        <div className="hover:-mt-4 duration-500 relative flex flex-col w-1/5 break-words bg-emerald-500 h-1/4 rounded mt-1/8 xl:mb-0 shadow-lg">
+                        <div className="hover:-mt-4 duration-500 relative flex flex-col w-1/5 break-words bg-teal-700 h-1/4 rounded mt-1/8 xl:mb-0 shadow-lg">
                             <div className=" w-full">
                                         <div className="relative w-10/12 pr-4 max-w-full flex-grow flex-1">
                                             <span className = "h-12 w-12 text-sm text-white bg-blueGray-200 inline-flex items-center justify-center rounded-full" >
@@ -181,7 +177,7 @@ export default function Topfive({topfive}){
                                                 <div className="flex flex-row flex-wrap justify-between">
                                                   <div className="lg:mr-2 p-3 text-center">
                                                       <span className="text-xl font-bold block uppercase tracking-wide text-black">
-                                                          {forth.nombre_projet?first.nombre_projet:0}
+                                                          {forth.nombre_projet?forth.nombre_projet:0}
                                                       </span>
                                                       <span className="text-sm font-semibold  uppercase text-teal-500">Projet</span>
                                                   </div>
@@ -199,6 +195,7 @@ export default function Topfive({topfive}){
                                               <img
                                                 src= { streak_url.trim()+forth.user_github}
                                                 className="rounded-t-lg"
+                                                alt = "..."
                                                 />
                                       </div>
                             </div>
@@ -226,13 +223,13 @@ export default function Topfive({topfive}){
                                                 <div className="flex flex-row flex-wrap justify-between">
                                                   <div className="lg:mr-2 p-3 text-center">
                                                       <span className="text-xl font-bold block uppercase tracking-wide text-black">
-                                                          {fifth.nombre_projet?first.nombre_projet:0}
+                                                          {fifth.nombre_projet?fifth.nombre_projet:0}
                                                       </span>
                                                       <span className="text-sm font-semibold  uppercase text-teal-500">Projet</span>
                                                   </div>
                                                   <div className="lg:mr-2 p-3 text-center">
                                                       <span className="text-xl font-bold block uppercase tracking-wide text-black">
-                                                          {fifth.point_experience}
+                                                          {fifth.point_experience?fifth.point_experience:0}
                                                       </span>
                                                       <span className="text-sm font-semibold  uppercase text-teal-500">Point</span>
                                                   </div>
@@ -244,6 +241,7 @@ export default function Topfive({topfive}){
                                               <img
                                                 src= { streak_url.trim()+fifth.user_github}
                                                 className="rounded-t-lg"
+                                                alt = "..."
                                                 />
                                       </div>
                             </div>

@@ -1,4 +1,5 @@
 const mdlsMember = require('../models/Member');
+const mdlsProject=require('../models/Project')
 var bcrypt = require("bcryptjs");
 
 const fs = require('fs');
@@ -24,6 +25,10 @@ module.exports = {
     listAll: async (req, res) => {
         try {
             let listMember = await mdlsMember.getListMember();
+            for (let i = 0; i < listMember.length; i++) {
+               let nbproj=await mdlsProject.getMembreTotalProject(listMember[i].id)
+               listMember[i]['nombre_projet']=nbproj[0].nombre_projet;
+            }
             res.send(listMember);
             
         } catch (error) {
@@ -32,39 +37,23 @@ module.exports = {
         }
         
     },
-    listallonproject:async(req,res)=>{
-        try {
-            let listM=await mdlsMember.getmemberonproject();
-            res.send(listM);
-            
-        } catch (error) {
-            res.status(500).send(error);
-            
-        }
-
-    },
     NoterMembre:async(req,res)=>{
         try {
             let {difficulte, deadline, impact, implication,id_membre,id_projet}=req.body
             
             //calcul du critere avec le coefficient
             let scoef = (difficulte * 25) + (deadline * 10) + (impact * 30) + (implication * 15)
-        
-            //Incrementer le point du membre
-            let Pa=await mdlsMember.getPoint(id_membre),pointact=(Pa[0].point_experience);
             
-            let new_point=scoef+pointact
             
             //ajouter le point au membre.point_experience
-            await mdlsMember.ValideMember(difficulte, deadline, impact, implication,id_membre,id_projet);
-            await mdlsMember.setPoint(new_point,id_membre);
+            await mdlsProject.ValideMember(difficulte, deadline, impact, implication,id_membre,id_projet);
 
             res.status(200).send({
                 message:"Ce membre est noté sur ce projet"
             })
         } catch (error) {
             res.status(500).send({
-                message:"Il y a une errer lors de notation du membre"
+                message:error.message
             })
             
         }
@@ -74,7 +63,7 @@ module.exports = {
         try {
             
             let scoef = (difficulte * 25) + (deadline * 10) + (impact * 30) + (implication * 15) + (point_git * 20)
-            let validMembre=await mdlsMember.ValideMember(scoef,id)
+            let validMembre=await mdlsProject.ValideMember(scoef,id)
         } catch (error) {
             
         }
@@ -106,7 +95,6 @@ module.exports = {
             let id = parseInt(req.params.id)
             let projects=await mdlsMember.getAllMemberProject(id);
             res.status(200).json(projects)
-            
         } catch (error) {
             res.status(500).send(error.message)
             
@@ -116,6 +104,10 @@ module.exports = {
     getTopFive:async(req,res)=>{
         try {
             let topfive=await mdlsMember.getTopFive();
+                for (let i = 0; i < topfive.length; i++) {
+                let nbproj=await mdlsProject.getMembreTotalProject(topfive[i].id);
+                topfive[i]['nombre_projet']=(nbproj[0].nombre_projet);
+                }
             res.status(200).json(topfive)     
         } catch (error) {
             res.status(500).send(error)

@@ -42,7 +42,7 @@ module.exports = {
             
             let useR = await mdlsUser.getOneUserM(email);
             if (!useR[0]) {
-                return res.status(404).send({
+                return res.status(404).json({
                     message: "User Not found."
                 })
             }

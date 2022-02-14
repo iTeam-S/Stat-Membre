@@ -1,23 +1,12 @@
-const db = require('../service/connect');
+const {db1 }= require('../service/connect');
 
 module.exports={
    
-    getOneUser:(prenom)=>{
-        return new Promise((resolve,reject)=>{
-            db.query("SELECT * FROM users WHERE prenom=?",[prenom],(err,resultat)=>{
-                if(err){
-                    reject(new Error("Error while fetching user"))
-                }else{
-                    resolve(resultat)
-                }
-            })
-        })
-    },
     getOneUserM:(email)=>{
         return new Promise((resolve,reject)=>{
-            db.query("SELECT * FROM membre WHERE mail=?",[email],(err,resultat)=>{
+            db1.query("SELECT * FROM membre WHERE mail=?",[email],(err,resultat)=>{
                 if(err){
-                    reject(new Error("Error while fetching user"))
+                    reject(new Error(err))
                 }else{
                     resolve(resultat)
                 }
@@ -26,7 +15,7 @@ module.exports={
     },
     checkUserByName:(prenom)=>{
         return new Promise((resolve,reject)=>{
-            db.query("SELECT * FROM membre WHERE prenom=?",[prenom],(err,resultat)=>{
+            db1.query("SELECT * FROM membre WHERE prenom=?",[prenom],(err,resultat)=>{
                 if(err){
                     reject(new Error("Error while fetching user"))
                 }else{
@@ -37,7 +26,7 @@ module.exports={
     },
     checkUserByMail:(mail)=>{
         return new Promise((resolve,reject)=>{
-            db.query("SELECT * FROM membre WHERE mail=?",[mail],(err,resultat)=>{
+            db1.query("SELECT * FROM membre WHERE mail=?",[mail],(err,resultat)=>{
                 if(err){
                     reject(new Error("Error while fetching user"))
                 }else{

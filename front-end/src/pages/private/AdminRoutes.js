@@ -7,7 +7,7 @@ export default function AdminRoute({ children, ...rest }) {
        <Route {...rest} render={() => {
          return user && user.role ==='admin'
            ? children
-           :<Redirect to='/auth/login' /> 
+           :<Redirect to='/auth/login' />
        }} />
      )
 }

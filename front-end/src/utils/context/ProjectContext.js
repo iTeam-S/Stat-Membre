@@ -10,32 +10,9 @@ export const ProjectContextProvider=(props)=>{
 
 
     useEffect(()=>{
-        
-        
         async function fetchProject(){
-            let pwithpart=[]
-            
-                const response=await ProjectService.GetAll();
-                for (let i = 0; i < response.data.length; i++) {
-                    let apart={}
-                    let part=[]
-                    ProjectService.GetProjectMember(response.data[i].id).then((res)=>{
-                        
-                        for (let j = 0; j < res.data.length; j++) {
-                            
-                            part.push(res.data[j])
-                        }
-                    })
-                    apart['id']=response.data[i].id
-                    apart['nom_projet']=response.data[i].nom
-                    apart['participant']=part
-                    apart['total_part']=response.data[i].total_participant
-                    apart['valide']=response.data[i].valide
-                    
-
-                    pwithpart.push(apart)
-                }
-            setProjects(pwithpart)
+            const response=await ProjectService.GetAll();
+            setProjects(response.data)
         }
         fetchProject()
         

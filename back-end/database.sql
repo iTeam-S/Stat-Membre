@@ -10,7 +10,6 @@ CREATE TABLE membre(
     pdc varchar(255) NOT NULL,
     mail varchar(255) NOT NULL,
     point_experience INTEGER,
-    nombre_projet INTEGER,
     password varchar(255) NOT NULL,
     role varchar(255) NOT NULL,
     PRIMARY KEY(id)
@@ -23,9 +22,10 @@ CREATE TABLE projet(
     nom varchar(255) NOT NULL,
     repos varchar(255) NOT NULL,
     delai INTEGER NOT NULL,
+    pdc varchar(255) NOT NULL,
     total_participant INTEGER,
     valide BOOLEAN NOT NULL,
-    creation_date timestamp NOT NULL,
+    creation_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     validation_date timestamp NULL DEFAULT NULL,
     PRIMARY KEY(id)
 
@@ -43,11 +43,13 @@ CREATE TABLE membre_projet(
     implication INTEGER DEFAULT NULL,
     point_git INTEGER DEFAULT NULL,
     PRIMARY KEY (id_membre,id_projet),
-    FOREIGN KEY (id_membre) REFERENCES membre(id) ON DELETE CASCADE ON UPDATE CASCADE,
-    FOREIGN KEY (id_projet) REFERENCES projet(id) ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY (id_membre) REFERENCES ITEAMS.membre(id) ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY (id_projet) REFERENCES STAT_MEMBRE.projet(id) ON DELETE CASCADE ON UPDATE CASCADE,
     INDEX(id_membre),
     INDEX(id_projet)
 )ENGINE=INNODB DEFAULT CHARSET=utf8mb3;
+
+
 
 
 
