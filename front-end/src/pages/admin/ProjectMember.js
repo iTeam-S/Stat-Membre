@@ -28,8 +28,8 @@ export default function ProjectMember(){
         }
         fetchdata();
         
-    },[]);
-    console.log(pmembers);
+    },[id]);
+
     return(
         <div>
               <Navbar transparent />
@@ -46,7 +46,7 @@ export default function ProjectMember(){
       <section className=" h-12">
       {
         projects
-          .filter((project) => project.id==id)
+          .filter((project) => project.id===id)
           .map((project) => (
             <h1 className="animate-bounce cursor-pointer rounded-full mx-2/5 text-base mb-8 italic font-semibold bg-teal-700 text-white fas fa-angle-double-down text-center"> Les participants du projet {project.nom_projet}</h1>
         ))}

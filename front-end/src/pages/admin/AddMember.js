@@ -29,7 +29,6 @@ export default function AddMember() {
 
     },[projects])
     const [errorMessage,setErrorMessage]=useState("")
-    const [successMessage,setMessage]=useState("")
     const [errer,setErrer]=useState(false)
 
 
@@ -51,8 +50,9 @@ export default function AddMember() {
 
     const handleAddmember=async(data)=>{
         try {
-            const response=await ProjectService.addMember(data.id_membre,data.id_projet);
-            history.push("/admin/dashboard");   
+            await ProjectService.addMember(data.id_membre,data.id_projet);
+            history.push("/admin/dashboard");
+            window.location.reload();
         } catch (error) {
             setErrer(true)
             setErrorMessage(error.response.data.message);
@@ -96,7 +96,7 @@ export default function AddMember() {
                                         <label className = "block uppercase text-blueGray-600 text-xs font-bold mb-2"  htmlFor = "project_name" >Nom du projet </label> 
                                         <select id="project_name"  name="id_projet"  {...register('id_projet')} className = "border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150">
                                         {projetEncours.map((proj)=>(
-                                            <option key={proj.id} value={proj.id}>{proj.id}-{proj.nom_projet}</option>
+                                            <option key={proj.id} value={proj.id}>{proj.id}-{proj.nom}</option>
                                         ))}
                                             
                                         </select>
@@ -111,16 +111,7 @@ export default function AddMember() {
                                     <strong className="font-bold">Errer!</strong>
                                         <span className="block sm:inline">{errorMessage} </span>
                                         <span className="absolute top-0 bottom-0 right-0 px-4 py-3">
-                                    <svg onClick={()=>{setErrer(false)}} className="fill-current h-12 w-12 text-red-500" role="button" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><title>Close</title><path d="M14.348 14.849a1.2 1.2 0 0 1-1.697 0L10 11.819l-2.651 3.029a1.2 1.2 0 1 1-1.697-1.697l2.758-3.15-2.759-3.152a1.2 1.2 0 1 1 1.697-1.697L10 8.183l2.651-3.031a1.2 1.2 0 1 1 1.697 1.697l-2.758 3.152 2.758 3.15a1.2 1.2 0 0 1 0 1.698z"/></svg>
-                                    </span>
-                                </div>
-                                )}
-                                {successMessage &&(
-                                <div className="bg-teal-700 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
-                                    <strong className="font-bold">Bravo!</strong>
-                                        <span className="block sm:inline">{successMessage} </span>
-                                        <span className="absolute top-0 bottom-0 right-0 px-4 py-3">
-                                    <svg onClick={()=>{setErrer(false)}} className="fill-current h-12 w-12 text-red-500" role="button" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><title>Close</title><path d="M14.348 14.849a1.2 1.2 0 0 1-1.697 0L10 11.819l-2.651 3.029a1.2 1.2 0 1 1-1.697-1.697l2.758-3.15-2.759-3.152a1.2 1.2 0 1 1 1.697-1.697L10 8.183l2.651-3.031a1.2 1.2 0 1 1 1.697 1.697l-2.758 3.152 2.758 3.15a1.2 1.2 0 0 1 0 1.698z"/></svg>
+                                    <svg onClick={()=>{setErrer(false)}} className="fill-current h-5 w-12 text-red-500" role="button" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><title>Close</title><path d="M14.348 14.849a1.2 1.2 0 0 1-1.697 0L10 11.819l-2.651 3.029a1.2 1.2 0 1 1-1.697-1.697l2.758-3.15-2.759-3.152a1.2 1.2 0 1 1 1.697-1.697L10 8.183l2.651-3.031a1.2 1.2 0 1 1 1.697 1.697l-2.758 3.152 2.758 3.15a1.2 1.2 0 0 1 0 1.698z"/></svg>
                                     </span>
                                 </div>
                                 )}

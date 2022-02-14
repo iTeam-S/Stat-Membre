@@ -9,12 +9,10 @@ import MemberService from "../../utils/service/memberservice"
 
 export default function Streak({data}) {
     const [members,setMembers]=useState([]);
-    const [memberzero,setMemberzero]=useState({});
 
     useEffect(()=>{
         MemberService.getListMember().then(response=>{
             setMembers(response.data)
-            setMemberzero(response.data[0]);
         });
         
     },[]);
@@ -58,16 +56,14 @@ export default function Streak({data}) {
             <section>
                 <div style={styles.streak}>
                     {members.map((member) => (
-                        <a href={"https://github.com/" + member.user_github} target="_blank">
-                            <div style={styles.content_streak}>
-                                <p style={styles.nom_user}>{member.prenom}</p>
-                                <img
-                                    alt={member.prenom}
-                                    src= { streak_url.trim() + member.user_github }
-                                    className="rounded-t-lg"
-                                />
-                            </div>  
-                        </a>
+                        <div style={styles.content_streak}>
+                            <p style={styles.nom_user}>{member.prenom}</p>
+                            <img
+                                alt={member.prenom}
+                                src= { streak_url.trim() + member.user_github }
+                                className="rounded-t-lg"
+                            />
+                        </div>  
                     ))}
                 </div>
             </section>      

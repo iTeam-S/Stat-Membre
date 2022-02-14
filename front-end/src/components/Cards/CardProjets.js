@@ -15,8 +15,6 @@ export default function CardProjets() {
   const CheckProjectMember=(id)=>{
     history.push(`/public/project/${id}/mproject`)
   }
-
-  
   return (
     <>
       <h3 className="text-3xl font-semibold text-center text-blueGray-600">
@@ -51,16 +49,18 @@ export default function CardProjets() {
             </thead>
             <tbody>
             {projects
-            .filter((project)=>project.valide==0)
+            .filter((project)=>project.valide===0)
             .map((project)=>(
-              <tr  key={project.id} >
-                <th className="text-white font-semibold text-2xl italic border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left">
-                {project.nom_projet}
+              <tr  key={project.nom} >
+                <th className = "border-t-0 px-4 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left flex items-center" >
+                                        <img src = {project.pdc?project.pdc:require("../../assets/img/projetic.png").default } className = "h-12 w-12 bg-white rounded-full border" alt = "..." ></img>
+                                        <span className = 
+                                                "text-2xl ml-2 font-bold text-white " >{project.nom} </span> 
                 </th>
                 <td onClick={()=>CheckProjectMember(project.id)} className = "cursor-pointer  border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4" >
                           <div className="flex container">
                           {project.participant.map((part)=>(
-                            <div key={project.participant.id} className="relative z-0">
+                            <div key={part.id} className="relative z-0">
                               <img src={part.pdc_participant ? part.pdc_participant:require("assets/img/team-1-800x800.jpg").default} alt="..."
                                 className = "w-10 h-10 rounded-full  border-2 border-blueGray-50 shadow"/><title>VALIDER</title>
                             </div>

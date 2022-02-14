@@ -19,14 +19,12 @@ import UpdateProject from "./pages/layouts/Updateproject";
 import MemberProject from "./pages/layouts/MemberProject";
 import DeleteProjectMember from "./pages/admin/DeleteProjectMember";
 import ProjectMember from "./pages/admin/ProjectMember";
-import {AuthService} from "./utils/service/authservice";
 import MemberList from "./pages/Members/Members";
 import Topfive from "./pages/Topfive/TopFive";
 import AdminRoute from "./pages/private/AdminRoutes"
 import UserRoute from "./pages/private/UserRoutes";
 import {ProjectContextProvider} from "./utils/context/ProjectContext"
 import {MemberContextProvider} from "./utils/context/MemberContext"
-import {CritereContextProvider} from "./utils/context/CritereContext"
 import ValideProjet from "./pages/admin/ValideProjet"
 import NoterOneMembre from "./pages/admin/NoterUnMembre"
 import ProjetdMembre from "./pages/Projets/Projetdmembre"
@@ -46,8 +44,8 @@ import Streak from "./pages/Landing/Streak";
 
 
 
+
 const memberUrl = "http://localhost:8000/api/v1/member/getAll";
-const projectUrl = "http://localhost:8000/api/v1/project/getAll";
 
 
 const App = () => {
@@ -60,18 +58,8 @@ const App = () => {
                 const users =response;
                 setMember(users);
         });
-    }, []);
-    // get project
-    const [ project, setProject] = useState([]);
-    useEffect(() => {
-      axios.get(projectUrl)
-          .then((response) => {
-              const projet = response;
-              setProject(projet);
-        });
-    }, [])
+    },[]);
         return (
-            <CritereContextProvider>
                 <ProjectContextProvider>
                     <MemberContextProvider>
                       <BrowserRouter>
@@ -93,7 +81,7 @@ const App = () => {
                                   <Login />
                               </Route>
                               <Route path="/" exact>
-                                  <Index data={project}/>
+                                  <Index />
                               </Route>
                               <Route path="/streak" exact>
                                   <Streak data={member}/>
@@ -102,7 +90,7 @@ const App = () => {
                                   <ProjectMember/>
                               </Route>
                               <Route path="/profile/:prenom" exact>
-                                  <Profile data={member}/>
+                                  <Profile />
                               </Route>
                               
                             
@@ -113,7 +101,7 @@ const App = () => {
                                   <AddProject/>
                               </UserRoute>
                               <UserRoute exact path="/settings/:prenom">
-                                  <Settings data={member}/>
+                                  <Settings />
                               </UserRoute>
                               
 
@@ -125,7 +113,7 @@ const App = () => {
                                 <NoterOneMembre/>
                             </AdminRoute>
                               <AdminRoute exact path="/admin/dashboard">
-                                  <Admin membre={member} projet={project}/>:
+                                  <Admin />:
                               </AdminRoute>
                               <AdminRoute exact path="/admin/member/addmember">
                                   <AddMember/>
@@ -135,13 +123,13 @@ const App = () => {
                                   <UpdateProject/>
                               </AdminRoute>
                               <AdminRoute exact path="/admin/check/checkmemberproject">
-                                  <CheckProject membre={member}/>
+                                  <CheckProject />
                               </AdminRoute>
-                              <AdminRoute exact path="/admin/member/:membername/allproject">
+                              <AdminRoute exact path="/admin/member/:id/allproject">
                                   <MemberProject/>
                               </AdminRoute>
                               <AdminRoute exact path="/admin/delete/projectmember">
-                                  <DeleteProjectMember membre={member} projet={project}/>
+                                  <DeleteProjectMember />
                               </AdminRoute>
                               <Route>
                                     <Errorpage/>
@@ -150,7 +138,6 @@ const App = () => {
                       </BrowserRouter>
                     </MemberContextProvider>
                 </ProjectContextProvider>
-            </CritereContextProvider>
           );
     }
 const rootElement = document.getElementById("root");

@@ -1,18 +1,17 @@
 import React,{useState} from "react";
 
+
 import { useContext} from "react";
 import {ProjectContext} from "../../utils/context/ProjectContext"
 
 import Navbar from "../../components/Navbars/AuthNavbar";
 import FooterSmall from "../../components/Footers/FooterSmall.js";
-import { Input } from "postcss";
 
 export default function Project(){
     const {projects}=useContext(ProjectContext)
     const radios=[
         {title:"En_cours",value:0},
         {title:"Valide",value:1}
-
     ]
     const [selectedRadio,setSelectedRadio]=useState("")
      return(
@@ -50,14 +49,15 @@ export default function Project(){
                                     
                                 })}
                             </section>
+                        
                         {projects
                         .filter((project)=>project.valide==(selectedRadio)).map((project)=>(
-                            <div key={project.id} className = "flex  flex-wrap" >
-                                <div className="hover:-mt-4 duration-300 focus:outline-none mx-4 relative flex flex-col min-w-0 break-words  w-full mb-6 shadow-lg rounded-lg bg-teal-700">
+                            <div key={project.pdc?project.pdc:project.id} className = "flex  flex-wrap" >
+                                <div className="max-w-300-px  hover:-mt-4 duration-300 focus:outline-none mx-4 relative flex flex-col min-w-0 break-words  w-full mb-6 shadow-lg rounded-lg bg-teal-700">
                                     <img
                                     alt="..."
-                                    src={require("assets/img/projet_fond.jpeg").default}
-                                    className="w-full align-middle rounded-t-lg"
+                                    src={project.pdc?project.pdc:require("assets/img/projet_fond.jpeg").default}
+                                    className="max-w-300-px h-1/25  align-middle rounded-t-lg"
                                     />
                                     <blockquote className="relative p-8 mb-4">
                                     <svg
@@ -71,10 +71,10 @@ export default function Project(){
                                         className="text-purple-700 fill-current"
                                         ></polygon>
                                     </svg>
-                                    <h3 className="text-2xl font-bold text-white">{project.nom_projet}</h3>
+                                    <h3 className="text-2xl font-bold text-white">{project.nom}</h3>
                                     <div className="flex container mt-10">
                                         {project.participant.map((part)=>(
-                                            <div key={project.participant.id} className="relative z-0">
+                                            <div key={part.id} className="relative z-0">
                                             <img src={part.pdc_participant ? part.pdc_participant:require("assets/img/team-1-800x800.jpg").default} alt="..."
                                                 className = "w-10 h-10 rounded-full  border-2 border-blueGray-50 shadow"/>
                                             </div>
@@ -96,7 +96,9 @@ export default function Project(){
                                                 </div>
                                             </div>
                                     </div>
+                                    <a href={project.repos}>
                                     <i className = "text-blueGray-400 fab fa-github text-lg leading-lg "/><button className="hover:text-blueGray-800 text-xl ">Voir sur github</button>
+                                    </a>
                                     </blockquote>
                                 </div> 
                             </div> 

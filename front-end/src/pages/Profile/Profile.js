@@ -1,6 +1,6 @@
 /*eslint-disable*/
 import React, { useContext } from "react";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 import Navbar from "../../components/Navbars/AuthNavbar.js";
 import Footer from "../../components/Footers/Footer.js";

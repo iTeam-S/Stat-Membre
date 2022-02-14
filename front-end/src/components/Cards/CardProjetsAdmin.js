@@ -68,14 +68,14 @@ export default function CardProjetsAdmin(props) {
             </thead>
             <tbody>
             {projects
-            .filter((projet)=>projet.valide==0)
+            .filter((projet)=>projet.valide===0)
             .map((project)=>( 
               <tr  key={project.id} >
                 <th className="font-semibold text-2xl italic border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left">
-                {project.nom_projet}
+                {project.nom}
                 </th>
                 <td className="font-semibold border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                <button onClick={()=>CheckProjectMember(project.id)}  className="w-1/2 h-5 font-semibold bg-teal-700 text-white">{project.total_part ? project.total_part:"0"}</button>
+                <button onClick={()=>CheckProjectMember(project.id)}  className="w-1/2 h-5 font-semibold bg-teal-700 text-white">{project.total_participant ? project.total_participant:"0"}</button>
                 </td>
                 <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
                   <i className="fas fa-arrow-up text-emerald-500 mr-4"></i>

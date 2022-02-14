@@ -27,8 +27,6 @@ app.use('/public/images', express.static(path.join(__dirname, 'public/images')))
 const MembersRoutes = require('./routes/member');
 app.use('/api/v1/member',MembersRoutes );
 
-const CriteresRoutes = require('./routes/critere');
-app.use('/api/v1/critere',CriteresRoutes );
 
 const ProjectsRoutes = require('./routes/project');
 app.use('/api/v1/project', ProjectsRoutes);

@@ -11,8 +11,8 @@ export default function MemberProject() {
         async function fetchProjet(){
              try {
                   await MemberService.getOneMemberProject(id).then((response)=>{
+                    console.log(response);
                     setMembersProjects(response.data)
-                    console.log(response.data);
                   })
                   
              } catch (error) {
@@ -20,8 +20,8 @@ export default function MemberProject() {
              }
         }
         fetchProjet();
-        },[])
-    console.log(id);
+        },[id])
+    console.log(membersprojects);
     return ( 
         <>
             <div className="container mx-auto">
@@ -51,7 +51,7 @@ export default function MemberProject() {
                                 {membersprojects.map((mproject)=>(
                                 <tr key={mproject.user_id}>
                                     <th className = "border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left flex items-center" >
-                                        <img src = { require("../../assets/img/projetic.png").default } className = "h-12 w-12 bg-white rounded-full border" alt = "..." ></img>{" "} 
+                                        <img src = {mproject.pdc?mproject.pdc: require("../../assets/img/projetic.png").default } className = "h-12 w-12 bg-white rounded-full border" alt = "..." ></img>{" "} 
                                         <span className = 
                                                 "text-2xl ml-2 font-bold text-black " >{mproject.Nom_project} </span> 
                                     </th> 

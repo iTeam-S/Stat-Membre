@@ -13,6 +13,7 @@ class MemberService{
                return response;
           })
      }
+     
      getOneMember(id){
           return MemberAxios.get(`/getonemember/${id}`).then(response=>{
                return response;
