@@ -1,5 +1,5 @@
 /*eslint-disable*/
-import React, { useContext, useEffect,useState } from "react";
+import React, { useEffect,useState } from "react";
 
 
 
@@ -8,8 +8,6 @@ import Footer from "../../components/Footers/Footer.js";
 import Simplestat from "../../components/Cards/Statsimple";
 import CardLineChart from "../../components/Cards/CardLineChart.js";
 import CardProduction from "../../components/Cards/CardProduction.js";
-import {ProjectContext} from "../../utils/context/ProjectContext"
-import {MemberContext} from "../../utils/context/MemberContext"
 import MemberService from "../../utils/service/memberservice"
 import Main from "../../components/Cards/Main.js";
 
@@ -25,9 +23,7 @@ export default function Index() {
     window.onbeforeunload = function () {
         window.scrollTo(0, 0);
       }
-    const {members}=useContext(MemberContext)
     const [topfive,setTopfive]=useState([])
-    const {projects}=useContext(ProjectContext)
     useEffect(()=>{
         async function fetchTopfive(){
             await MemberService.getTopFive().then((response)=>{

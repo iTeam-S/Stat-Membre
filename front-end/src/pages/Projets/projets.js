@@ -13,7 +13,7 @@ export default function Project(){
         {title:"En_cours",value:0},
         {title:"Valide",value:1}
     ]
-    const [selectedRadio,setSelectedRadio]=useState("")
+    const [selectedRadio,setSelectedRadio]=useState("");
      return(
                <>
                  <Navbar transparent />
@@ -37,13 +37,13 @@ export default function Project(){
                                     <input 
                                     className="mx-4 text-2xl" 
                                     type="radio"
+                                    name="projet"
                                     value={radio.value}
                                     id={radio.title}
-                                    checked={radio.value === selectedRadio}
+                                    checked={radio.value === parseInt(selectedRadio)}
                                     onChange={(e)=>setSelectedRadio(e.target.value)}
                                     />
                                         <label className="text-2xl font-bold text-white" htmlFor={radio.title}>{radio.title}</label>
-                                    
                                     </span>
                                     )
                                     
@@ -51,7 +51,7 @@ export default function Project(){
                             </section>
                         
                         {projects
-                        .filter((project)=>project.valide === (selectedRadio)).map((project)=>(
+                        .filter((project)=>project.valide === parseInt(selectedRadio)).map((project)=>(
                             <div key={project.pdc?project.pdc:project.id} className = "flex  flex-wrap" >
                                 <div className="max-w-300-px  hover:-mt-4 duration-300 focus:outline-none mx-4 relative flex flex-col min-w-0 break-words  w-full mb-6 shadow-lg rounded-lg bg-teal-700">
                                     <img
