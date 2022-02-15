@@ -52,7 +52,7 @@ export default function ValideProjet(){
       <section className=" h-12">
       {
         projects
-          .filter((project) => project.id==id)
+          .filter((project) => project.id === id)
           .map((project) => (
             <h1 key={project.nom} className="animate-bounce cursor-pointer rounded-full mx-2/5 text-xl mb-8 italic font-semibold bg-teal-700 text-white fas fa-angle-double-down text-center"> Les participants du projet <span className="text-orange-500 font-semibold"> {project.nom}</span></h1>
         ))}

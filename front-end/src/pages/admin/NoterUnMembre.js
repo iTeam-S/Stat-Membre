@@ -29,8 +29,7 @@ export default function NoterOne(){
         });
         const {
           register,
-          handleSubmit,
-          formState: { errors }
+          handleSubmit
         } = useForm({
           resolver: yupResolver(validationSchema)
         });
@@ -60,7 +59,7 @@ export default function NoterOne(){
           ></div>
           {
           members
-          .filter((membre)=>membre.id==id_membre)
+          .filter((membre)=>membre.id === id_membre)
           .map((membre)=>(
           <div key={membre.id} className="relative flex flex-col mx-auto min-w-0 break-words bg-white w-1/4 mb-6 shadow-xl rounded-lg mt-16">
         <div className="px-6 ">

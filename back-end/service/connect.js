@@ -24,14 +24,14 @@ const db={
 
 db.db1.connect((err) => {
   if (err) {
-    console.log("Errer lors de connexion à la base de donnee ITEAMS");
+    console.log("Erreur lors de connexion à la base de donnee ITEAMS");
     return;
   }
   console.log("Connexion à la base de donnée  ITEAMS reussie");
 });
 db.db2.connect((err) => {
   if (err) {
-    console.log("Errer lors de connexion à la base de donnee MEMBRE_STAT");
+    console.log("Erreur lors de connexion à la base de donnee MEMBRE_STAT");
     return;
   }
   console.log("Connexion à la base MEMBRE_STAT de donnée reussie");

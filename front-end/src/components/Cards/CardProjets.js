@@ -49,7 +49,7 @@ export default function CardProjets() {
             </thead>
             <tbody>
             {projects
-            .filter((project)=>project.valide===0)
+            .filter((project)=>project.valide===1)
             .map((project)=>(
               <tr  key={project.nom} >
                 <th className = "border-t-0 px-4 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left flex items-center" >
@@ -61,7 +61,7 @@ export default function CardProjets() {
                           <div className="flex container">
                           {project.participant.map((part)=>(
                             <div key={part.id} className="relative z-0">
-                              <img src={part.pdc_participant ? part.pdc_participant:require("assets/img/team-1-800x800.jpg").default} alt="..."
+                              <img src={part.pdc_participant ? part.pdc_participant:require("assets/img/team-1-800x800.jpg").default} alt="pdc"
                                 className = "w-10 h-10 rounded-full  border-2 border-blueGray-50 shadow"/><title>VALIDER</title>
                             </div>
                             ))}

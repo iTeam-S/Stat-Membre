@@ -18,7 +18,6 @@ import Topfive from "../Topfive/TopFive";
 
 import CardProjets from "../../components/Cards/CardProjets";
 import Specialite from "../../components/Cards/Specialite.js";
-import ProjectService from "../../utils/service/projectservice.js";
 
 
 export default function Index() {
@@ -42,7 +41,6 @@ export default function Index() {
         <IndexNavbar fixed/>
             <Main/>
             <section className = "mt-48 md:mt-40 pb-40 relative bg-blueGray-100" >
-                               
                     <Specialite/>
                     <section name="stat">
                         <div className="mx-1/5">
