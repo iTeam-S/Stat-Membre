@@ -12,7 +12,6 @@ import HeaderStats from "../../components/Headers/HeaderStats.js";
 import FooterAdmin from "../../components/Footers/FooterAdmin.js";
 import Dashboard from "../admin/Dashboard.js";
 import Settings from "../admin/Settings.js";
-import Tables from "../../components/Cards/CardTable";
 
 
 
@@ -31,9 +30,6 @@ export default function Admin({ membre, projet }) {
             </Route>                              
             <Route path="/admin/settings" exact >
                 <Settings membre={membre} projet={projet}/>
-            </Route>
-            <Route path="/admin/tables" exact component={Tables}>
-                <Tables />
             </Route>
             <Redirect from="/admin" to="/admin/dashboard" />
           </Switch>

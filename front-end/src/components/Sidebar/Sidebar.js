@@ -3,8 +3,6 @@ import React from "react";
 import { Link } from "react-router-dom";
 import {AuthService} from "../../utils/service/authservice"
 
-import NotificationDropdown from "components/Dropdowns/NotificationDropdown.js";
-import UserDropdown from "components/Dropdowns/UserDropdown.js";
 
 export default function Sidebar() {
     const User=AuthService.getCurrentUser();
@@ -19,15 +17,7 @@ export default function Sidebar() {
                             () => setCollapseShow("bg-white m-2 py-3 px-6") } >
                         <i className = "fas fa-bars" > </i> 
                     </button> { /* Brand */ } 
-                    <Link className = "md:block text-left md:pb-2 text-blueGray-600 mr-0 inline-block whitespace-nowrap text-sm uppercase font-bold p-4 px-0"to = "/admin/dashboard" >Dashboard</Link> { /* User */ } 
-                    <ul className = "md:hidden items-center flex flex-wrap list-none" >
-                        <li className = "inline-block relative" >
-                            <NotificationDropdown/>
-                        </li> 
-                        <li className = "inline-block relative" >
-                            <UserDropdown/>
-                        </li> 
-                    </ul> { /* Collapse */ } 
+                    <Link className = "md:block text-left md:pb-2 text-blueGray-600 mr-0 inline-block whitespace-nowrap text-sm uppercase font-bold p-4 px-0"to = "/admin/dashboard" >Dashboard</Link>
                     <div className = {
                         "md:flex md:flex-col md:items-stretch md:opacity-100 md:relative md:mt-4 md:shadow-none shadow absolute top-0 left-0 right-0 z-40 overflow-y-auto overflow-x-hidden h-auto items-center flex-1 rounded " +
                         collapseShow} >
