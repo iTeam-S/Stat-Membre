@@ -1,5 +1,5 @@
 /*eslint-disable*/
-import React, { useEffect,useState } from "react";
+import React, { useContext, useEffect,useState } from "react";
 
 
 
@@ -8,6 +8,8 @@ import Footer from "../../components/Footers/Footer.js";
 import Simplestat from "../../components/Cards/Statsimple";
 import CardLineChart from "../../components/Cards/CardLineChart.js";
 import CardProduction from "../../components/Cards/CardProduction.js";
+import {ProjectContext} from "../../utils/context/ProjectContext"
+import {MemberContext} from "../../utils/context/MemberContext"
 import MemberService from "../../utils/service/memberservice"
 import Main from "../../components/Cards/Main.js";
 
@@ -16,6 +18,7 @@ import Topfive from "../Topfive/TopFive";
 
 import CardProjets from "../../components/Cards/CardProjets";
 import Specialite from "../../components/Cards/Specialite.js";
+import ProjectService from "../../utils/service/projectservice.js";
 
 
 export default function Index() {
@@ -37,6 +40,7 @@ export default function Index() {
         <IndexNavbar fixed/>
             <Main/>
             <section className = "mt-48 md:mt-40 pb-40 relative bg-blueGray-100" >
+                               
                     <Specialite/>
                     <section name="stat">
                         <div className="mx-1/5">

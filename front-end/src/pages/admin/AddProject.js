@@ -83,12 +83,12 @@ export default function AddProject() {
                                     </div>
                                     <div className = "relative w-full mb-3" >
                                         <label className = "block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlFor = "delai" >Delai du projet</label> 
-                                        <input type = "number" id="delai"  name="delai"  className = "border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150" placeholder = "delai de votre projet" {...register('delai')}/>
+                                        <input type = "number" id="delai"  name="delai"  className = "border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150" placeholder = "delai de votre projet(mois)" {...register('delai')}/>
                                         <p className="text-red-500 italic">{errors.delai?.message}</p>
                                     </div>
                                     <div className = "relative w-full mb-3" >
                                         <label className = "block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlFor = "delai" >Pdc du projet</label> 
-                                        <input type = "text" id="pdc"  name="pdc"  className = "border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150" placeholder = "photo de couverture du projet" {...register('pdc')}/>
+                                        <input type = "text" id="pdc"  name="pdc"  className = "border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150" placeholder = "pdc  du projet" {...register('pdc')}/>
                                         <p className="text-red-500 italic">{errors.pdc?.message}</p>
                                     </div>
                                     <div className = "text-center mt-6" >

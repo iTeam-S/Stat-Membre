@@ -29,7 +29,8 @@ export default function NoterOne(){
         });
         const {
           register,
-          handleSubmit
+          handleSubmit,
+          formState: { errors }
         } = useForm({
           resolver: yupResolver(validationSchema)
         });
@@ -59,7 +60,7 @@ export default function NoterOne(){
           ></div>
           {
           members
-          .filter((membre)=>membre.id === id_membre)
+          .filter((membre)=>membre.id==id_membre)
           .map((membre)=>(
           <div key={membre.id} className="relative flex flex-col mx-auto min-w-0 break-words bg-white w-1/4 mb-6 shadow-xl rounded-lg mt-16">
         <div className="px-6 ">
@@ -68,7 +69,7 @@ export default function NoterOne(){
               <div className="relative">
                 <img
                   alt="..."
-                  src={membre.pdc ? membre.pdc:require("assets/img/team-1-800x800.jpg").default}
+                  src={membre.user_github_pic ? membre.user_github_pic:require("assets/img/team-1-800x800.jpg").default}
                   className="shadow-xl rounded-full h-auto align-middle border-none absolute -m-16 -ml-20 lg:-ml-16 max-w-150-px"
                 />
               </div>

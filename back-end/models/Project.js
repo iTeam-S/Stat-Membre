@@ -62,7 +62,7 @@ module.exports = {
     },
     getListProject: () => {
         return new Promise((resolve, reject) => {
-            db2.query("SELECT * FROM projet", function(err, resultat){
+            db2.query("SELECT * FROM projet ORDER BY creation_date DESC LIMIT 10", function(err, resultat){
                 if(err){
                     reject(new Error("Errer resource while fetching project"));
                 }else{
@@ -95,7 +95,7 @@ module.exports = {
     },
     getOneProjectWithPart:(id)=>{
         return new Promise((resolve,reject)=>{
-            db2.query("SELECT ITEAMS.membre.id,ITEAMS.membre.nom as nom_participant, ITEAMS.membre.prenom as prenom_participant,ITEAMS.membre.pdc as pdc_participant,ITEAMS.membre.fonction,ITEAMS.membre.point_experience,ITEAMS.membre.user_github ,STAT_MEMBRE.projet.nom as Nom_project FROM ITEAMS.membre LEFT JOIN STAT_MEMBRE.membre_projet ON ITEAMS.membre.id=STAT_MEMBRE.membre_projet.id_membre LEFT JOIN STAT_MEMBRE.projet ON STAT_MEMBRE.projet.id=STAT_MEMBRE.membre_projet.id_projet WHERE projet.id=? ORDER BY ITEAMS.membre.point_experience DESC", [id],function(err,resultat){
+            db2.query("SELECT ITEAMS.membre.id,ITEAMS.membre.nom as nom_participant, ITEAMS.membre.prenom as prenom_participant,ITEAMS.membre.user_github_pic as pdc_participant,ITEAMS.membre.fonction,ITEAMS.membre.point_experience,ITEAMS.membre.user_github ,STAT_MEMBRE.projet.nom as Nom_project FROM ITEAMS.membre LEFT JOIN STAT_MEMBRE.membre_projet ON ITEAMS.membre.id=STAT_MEMBRE.membre_projet.id_membre LEFT JOIN STAT_MEMBRE.projet ON STAT_MEMBRE.projet.id=STAT_MEMBRE.membre_projet.id_projet WHERE projet.id=? ORDER BY ITEAMS.membre.point_experience DESC", [id],function(err,resultat){
                 if(err){
                     reject(new Error(err));
                 }else{
@@ -109,7 +109,7 @@ module.exports = {
     },
     getOneProjectWithPartV:(id)=>{
         return new Promise((resolve,reject)=>{
-            db2.query("SELECT ITEAMS.membre.id,ITEAMS.membre.nom as nom_participant,ITEAMS.membre.prenom as prenom_participant,ITEAMS.membre.pdc as pdc_participant,ITEAMS.membre.fonction,ITEAMS.membre.point_experience,ITEAMS.membre.user_github,STAT_MEMBRE.projet.nom as Nom_project FROM ITEAMS.membre LEFT JOIN STAT_MEMBRE.membre_projet ON ITEAMS.membre.id=STAT_MEMBRE.membre_projet.id_membre LEFT JOIN STAT_MEMBRE.projet ON STAT_MEMBRE.projet.id=STAT_MEMBRE.membre_projet.id_projet WHERE STAT_MEMBRE.projet.id=? AND STAT_MEMBRE.membre_projet.difficulte IS NULL ORDER BY ITEAMS.membre.point_experience DESC", [id],function(err,resultat){
+            db2.query("SELECT ITEAMS.membre.id,ITEAMS.membre.nom as nom_participant,ITEAMS.membre.prenom as prenom_participant,ITEAMS.membre.user_github_pic as pdc_participant,ITEAMS.membre.fonction,ITEAMS.membre.point_experience,ITEAMS.membre.user_github,STAT_MEMBRE.projet.nom as Nom_project FROM ITEAMS.membre LEFT JOIN STAT_MEMBRE.membre_projet ON ITEAMS.membre.id=STAT_MEMBRE.membre_projet.id_membre LEFT JOIN STAT_MEMBRE.projet ON STAT_MEMBRE.projet.id=STAT_MEMBRE.membre_projet.id_projet WHERE STAT_MEMBRE.projet.id=? AND STAT_MEMBRE.membre_projet.difficulte IS NULL ORDER BY ITEAMS.membre.point_experience DESC", [id],function(err,resultat){
                 if(err){
                     reject(new Error(err));
                 }else{

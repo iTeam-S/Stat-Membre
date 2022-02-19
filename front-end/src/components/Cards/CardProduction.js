@@ -11,7 +11,7 @@ export default function CardBarChart() {
     let projectv=[];
     try {
       await ProjectService.getnombrevalidepm().then((response)=>{
-          projectv=response.data;
+          projectv=response.data
            
     })
 

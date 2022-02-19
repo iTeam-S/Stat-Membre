@@ -26,7 +26,6 @@ export default function Simplestat(){
       })
 
       await ProjectService.getnbactif().then(response=>{
-        console.log(response.data);
         if(response.data==null){
           setMemberact(0)
         }

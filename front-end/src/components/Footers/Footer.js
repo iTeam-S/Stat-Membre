@@ -71,7 +71,7 @@ export default function Footer() {
                                     <ul className = "list-unstyled" >
                                         <li> 
                                             <a className = "text-blueGray-600 hover:text-blueGray-800 font-semibold block pb-2 text-sm"
-                                                href = "https://iteam-s.mg/#contactus" target="_blank" rel="noreferrer" > Contact Us 
+                                                href = "https://iteam-s.mg/contactus" target="_blank" rel="noreferrer" > Contact Us 
                                             </a> 
                                         </li>
                                     </ul>  
@@ -83,7 +83,7 @@ export default function Footer() {
                     <div className = "flex flex-wrap items-center md:justify-between justify-center" >
                         <div className = "w-full md:w-4/12 px-4 mx-auto text-center" >
                             <div className = "text-sm text-blueGray-500 font-semibold py-1" >Copyright© { new Date().getFullYear() } { " " } by { " " } 
-                                < a href = "https://iteam-s.mg/" className = "text-blueGray-500 hover:text-blueGray-800" rel="noreferrer"  target="_blank"> iTeam-$ </a> 
+                                < a href = "https://iteam-s.mg/" className = "text-blueGray-500 hover:text-blueGray-800" rel="noreferrer"  target="_blank"> Iteam - $ </a> 
                             </div>  
                         </div>  
                     </div>  

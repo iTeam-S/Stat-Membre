@@ -39,7 +39,7 @@ export default function CheckMemberProject() {
                 setErrorMessage("Le nom du membre est introuvable")  
     };
     const searchNomgithub=(id_membre)=>{
-        const membre=members.filter((membre)=>membre.id === id_membre)
+        const membre=members.filter((membre)=>membre.id==id_membre)
         setUsergit(membre[0].user_github)
     }
     return ( 

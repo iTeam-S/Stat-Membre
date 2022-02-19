@@ -13,7 +13,7 @@ export default function Main(){
                                 <a href = "https://Iteam-$.mg" className = "text-blueGray-600" target = "_blank" rel="noreferrer" >{" "}iTeam-$ </a>.
                             </p> 
                             <div className = "mt-12" >
-                                <a href = "https://iteam-s.mg/" target = "_blank" rel="noreferrer" className = "get-started text-white font-bold px-6 py-4 rounded outline-none focus:outline-none mr-1 mb-1 bg-teal-700 active:bg-teal-700 uppercase text-sm shadow hover:shadow-lg ease-linear transition-all duration-150" style = {{ backgroundColor: '#008080' }}>Site web </a> 
+                                <a href = "https://iteam-s.mg/" target = "_blank" rel="noreferrer" className = "get-started text-white font-bold px-6 py-4 rounded outline-none focus:outline-none mr-1 mb-1 bg-teal-700 active:bg-teal-700 uppercase text-sm shadow hover:shadow-lg ease-linear transition-all duration-150" style = {{ backgroundColor: '#008080' }}>Get started </a> 
                                 <a href = "https://github.com/iTeam-S" rel="noreferrer" className = "github-star ml-1 text-white font-bold px-6 py-4 rounded outline-none focus:outline-none mr-1 mb-1 bg-blueGray-700 active:bg-blueGray-600 uppercase text-sm shadow hover:shadow-lg ease-linear transition-all duration-150" target = "_blank"  style = {{ backgroundColor: '#18b7b7' }}>Github Star </a> 
                             </div>
                         </div> 

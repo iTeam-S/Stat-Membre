@@ -26,20 +26,21 @@ export default function MemberList(){
                 "url(" + require("assets/img/register_bg_2.png").default + ")",
             }}
           ></div>
-      <div className="relative  container lg:mx-auto flex flex-col min-w-0 break-words w-full mb-6 shadow-xl rounded-lg mt-4" style={{marginLeft:'70px'}}>
+      <div className="mx-1/3 relative  container flex flex-col min-w-0 break-words w-full mb-6 shadow-xl rounded-lg mt-4">
       <section className=" h-12">
+      
             <h1 className="animate-bounce cursor-pointer rounded-full mx-2/5 text-base mb-8 italic font-semibold bg-teal-700 text-white fas fa-angle-double-down text-center">Tous les membres iTeams-$</h1>
       </section>
-      <div className=" py-4 rounded-lg flex flex-wrap  container px-1/100 h-full border-blueGray-50">
+      <div className=" py-4 rounded-lg ml-5 flex flex-wrap  container mx-auto px-1/100 h-full border-blueGray-50">
       {members.map((membre)=>(
-        <div key={membre.id} className="hover:mt-4 duration-300 w-1/3 sm:w-full md:w-2/3 mx-4 mt-1/2 rounded-lg bg-white px-6">
+        <div key={membre.id} className="hover:mt-4 duration-300 w-1/3 mx-4 mt-1/2 rounded-lg bg-white px-6">
         <div className="px-6">
           <div className="flex flex-wrap justify-center">
             <div className="w-full px-4 flex justify-center">
               <div className="relative">
                 <img
                   alt="..."
-                  src={membre.pdc ? membre.pdc:require("assets/img/team-1-800x800.jpg").default}
+                  src={membre.user_github_pic ? membre.user_github_pic:require("assets/img/team-1-800x800.jpg").default}
                   className="shadow-xl rounded-full h-auto align-middle border-none absolute -m-16 -ml-20 lg:-ml-16 max-w-150-px"
                 />
               </div>

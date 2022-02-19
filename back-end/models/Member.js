@@ -14,9 +14,9 @@ module.exports = {
     },
     getListMember: () => {
         return new Promise((resolve, reject) => {
-            db1.query("SELECT * FROM membre ORDER BY point_experience DESC", function(err, resultat){
+            db1.query("SELECT * FROM membre", function(err, resultat){
                 if(err){
-                    reject(new Error("Erreur resource while fetching iteams.membre"));
+                    reject(new Error("Errer resource while fetching iteams.membre"));
                 }else{
                   resolve(resultat)
                 }
@@ -28,7 +28,7 @@ module.exports = {
         return new Promise((resolve, reject) => {
             db1.query("SELECT * FROM membre WHERE id = ?", [id] , function(err, resultat){
               if(err){
-                  reject(new Error("Erreur resource while fetching iteams.membre"));
+                  reject(new Error("Errer resource while fetching iteams.membre"));
               }else{
                 resolve(resultat)
               }
@@ -51,7 +51,7 @@ module.exports = {
         return new Promise((resolve,reject)=>{
             db1.query("SELECT * FROM membre where id=?",[id_member],function(err,member){
                 if(err){
-                    reject(new Error("Erreur resource while fetching project"));
+                    reject(new Error("Errer resource while fetching project"));
                 }else{
                   resolve(member)
                 }
@@ -63,7 +63,7 @@ module.exports = {
     
     getTopFive:()=>{
         return new Promise((resolve,reject)=>{
-            db1.query("SELECT  id,nom ,prenom,fonction,pdc,point_experience,user_github FROM membre ORDER BY point_experience DESC    LIMIT 5",(err,resultat)=>{
+            db1.query("SELECT  id,nom ,prenom,fonction,pdc,point_experience,user_github_pic,user_github FROM membre     LIMIT 5",(err,resultat)=>{
                 if(err){
                     reject(new Error("Error while fetching member"))
                 }else{
@@ -71,7 +71,6 @@ module.exports = {
                 }
             })
         })
-
     },
     getPoint:(id_m)=>{
         return new Promise((resolve,reject)=>{
@@ -114,7 +113,7 @@ module.exports = {
         return new Promise((resolve,reject)=>{
             db1.query("UPDATE membre SET nom =?,prenom=?,user_github=?,fonction=?,pdc=?,mail=?,admin=? WHERE id=?",[nom,prenom,user_github,fonction,pdc,mail,admin,id],function(err,resultat){
                 if(err){
-                    reject(new Error("Erreur resource while updating iteams.membre"));
+                    reject(new Error("Errer resource while updating iteams.membre"));
                 }else{
                   resolve(resultat)
                 }
@@ -127,7 +126,7 @@ module.exports = {
         return new Promise((resolve, reject) => {
             db1.query("DELETE  FROM membre WHERE id = ?", [id] , function(err, resultat){
                 if(err){
-                    reject(new Error("Erreur resource while deleting membre"));
+                    reject(new Error("Errer resource while deleting membre"));
                 }else{
                   resolve(resultat)
                 } 

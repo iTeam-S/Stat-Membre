@@ -21,7 +21,8 @@ export default function CheckMemberProject() {
   });
   const {
     register,
-    handleSubmit
+    handleSubmit,
+    formState: { errors }
   } = useForm({
     resolver: yupResolver(validationSchema)
   });
@@ -97,7 +98,7 @@ export default function CheckMemberProject() {
                                             onChange: (e) => {fetchMember(e.target.value)}
                                         })} className = "border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150" defaultValue={1}>
                                         {projets
-                                        .filter((proj)=>proj.valide === 0)
+                                        .filter((proj)=>proj.valide==0)
                                         .map((proj)=>(
                                             <option  key={proj.id} value={proj.id}>{proj.id}-{proj.nom}</option>
                                         ))}

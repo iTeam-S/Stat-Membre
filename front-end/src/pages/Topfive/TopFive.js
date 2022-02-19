@@ -22,7 +22,7 @@ export default function Topfive({topfive}){
                             <div className=" w-full">
                                             <div className="relative w-10/12 pr-4 max-w-full flex flex-grow flex-1">
                                                 <span className = "h-12 w-12 text-sm text-white bg-blueGray-200 inline-flex items-center justify-center rounded-full" >
-                                                    <img alt = "..." className = "w-full rounded-full align-middle border-none shadow-lg" src = {first.pdc?first.pdc: require("../../assets/img/team-1-800x800.jpg").default } />
+                                                    <img alt = "..." className = "w-full rounded-full align-middle border-none shadow-lg" src = {first.user_github_pic?first.user_github_pic: require("../../assets/img/team-1-800x800.jpg").default } />
                                                 </span>
                                                 <span className="font-semibold text-xl flex flex-col justify-center text-black">
                                                     {first.prenom}
@@ -68,7 +68,7 @@ export default function Topfive({topfive}){
                                 <div className=" w-full">
                                         <div className="relative w-10/12 pr-4 max-w-full flex-grow flex-1">
                                             <span className = "h-12 w-12 text-sm text-white bg-blueGray-200 inline-flex items-center justify-center rounded-full" >
-                                                <img alt = "..." className = "w-full rounded-full align-middle border-none shadow-lg" src = {second.pdc?second.pdc: require("../../assets/img/team-1-800x800.jpg").default }/>
+                                                <img alt = "..." className = "w-full rounded-full align-middle border-none shadow-lg" src = {second.user_github_pic?second.user_github_pic: require("../../assets/img/team-1-800x800.jpg").default }/>
                                             </span>
                                             <span className="font-semibold text-xl text-white">
                                                {second.prenom}
@@ -114,7 +114,7 @@ export default function Topfive({topfive}){
                             <div className=" w-full">
                                         <div className="relative w-10/12 pr-4 max-w-full flex-grow flex-1">
                                             <span className = "h-12 w-12 text-sm text-white bg-blueGray-200 inline-flex items-center justify-center rounded-full" >
-                                                <img alt = "..." className = "w-full rounded-full align-middle border-none shadow-lg" src = {third.pdc?third.pdc: require("../../assets/img/team-1-800x800.jpg").default }/>
+                                                <img alt = "..." className = "w-full rounded-full align-middle border-none shadow-lg" src = {third.user_github_pic?third.user_github_pic: require("../../assets/img/team-1-800x800.jpg").default }/>
                                             </span>
                                             <span className="font-semibold text-xl text-black">
                                                {third.prenom}
@@ -160,7 +160,7 @@ export default function Topfive({topfive}){
                             <div className=" w-full">
                                         <div className="relative w-10/12 pr-4 max-w-full flex-grow flex-1">
                                             <span className = "h-12 w-12 text-sm text-white bg-blueGray-200 inline-flex items-center justify-center rounded-full" >
-                                                <img alt = "..." className = "w-full rounded-full align-middle border-none shadow-lg" src = { forth.pdc?forth.pdc:require("../../assets/img/team-1-800x800.jpg").default }/>
+                                                <img alt = "..." className = "w-full rounded-full align-middle border-none shadow-lg" src = { forth.user_github_pic?forth.user_github_pic:require("../../assets/img/team-1-800x800.jpg").default }/>
                                             </span>
                                             <span className="font-semibold text-xl text-black">
                                                 {forth.prenom}
@@ -206,7 +206,7 @@ export default function Topfive({topfive}){
                             <div className=" w-full">
                                         <div className="relative w-10/12 pr-4 max-w-full flex-grow flex-1">
                                             <span className = "h-12 w-12 text-sm text-white bg-blueGray-200 inline-flex items-center justify-center rounded-full" >
-                                                <img alt = "..." className = "w-full rounded-full align-middle border-none shadow-lg" src = {fifth.pdc?fifth.pdc: require("../../assets/img/team-1-800x800.jpg").default }/>
+                                                <img alt = "..." className = "w-full rounded-full align-middle border-none shadow-lg" src = {fifth.user_github_pic?fifth.user_github_pic: require("../../assets/img/team-1-800x800.jpg").default }/>
                                             </span>
                                             <span className="font-semibold text-xl text-black">
                                                 {fifth.prenom}
