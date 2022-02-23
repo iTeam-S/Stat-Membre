@@ -10,12 +10,9 @@ import {MemberContext} from "../../utils/context/MemberContext"
 
 
 export default function CheckMemberProject() {
-    const [usergit,setUsergit]=useState("")
   const {members}=useContext(MemberContext)
   const validationSchema = Yup.object().shape({
     id_membre: Yup.number()
-      .required('Ce champ est obligatoire'),
-    member_github: Yup.string()
       .required('Ce champ est obligatoire')
   });
   const {
@@ -38,10 +35,6 @@ export default function CheckMemberProject() {
                 setErrer(true)
                 setErrorMessage("Le nom du membre est introuvable")  
     };
-    const searchNomgithub=(id_membre)=>{
-        const membre=members.filter((membre)=>membre.id==id_membre)
-        setUsergit(membre[0].user_github)
-    }
     return ( 
         <>
         <Navbar transparent />
@@ -65,21 +58,13 @@ export default function CheckMemberProject() {
                                     <form onSubmit={handleSubmit(handleCheck)}>
                                     <div className = "relative w-full mb-3" >
                                         <label className = "block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlFor = "id_memb" >Nom du membre</label> 
-                                        <select id="id_memb"  name="id_membre" {...register('id_membre',{
-                                            onChange: (e) => {searchNomgithub(e.target.value)}})} className = "border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150">
+                                        <select id="id_memb"  name="id_membre" {...register('id_membre')} className = "border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150">
                                             {members.map((memb)=>(
-                                            <option key={memb.id} value={memb.id}>{memb.id}-{memb.nom}</option>
+                                            <option key={memb.id} value={memb.id}>{memb.id}-{memb.nom+ " " +memb.prenom}</option>
                                             ))}
                                         </select>
                                         <p className="text-red-500 italic">{errors.implication?.message}</p>
 
-                                     </div>
-    
-                                     <div className = "relative w-full mb-3" >
-                                        <label className = "block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlFor = "implication" >Github du membre</label> 
-                                        <select id="id_membre" name="member_github" {...register('member_github')} className = "border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150">
-                                         <option value={usergit}>{usergit}</option>
-                                        </select>
                                      </div>
                                         <div className = "text-center mt-6" >
                                             <input type="submit" className = "bg-blueGray-800 text-white active:bg-blueGray-600 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full ease-linear transition-all duration-150" value="Check"/>

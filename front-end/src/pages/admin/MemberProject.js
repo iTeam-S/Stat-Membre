@@ -11,7 +11,6 @@ export default function MemberProject() {
         async function fetchProjet(){
              try {
                   await MemberService.getOneMemberProject(id).then((response)=>{
-                    console.log(response);
                     setMembersProjects(response.data)
                   })
                   
@@ -21,7 +20,6 @@ export default function MemberProject() {
         }
         fetchProjet();
         },[id])
-    console.log(membersprojects);
     return ( 
         <>
             <div className="container mx-auto">
@@ -49,7 +47,7 @@ export default function MemberProject() {
                             </thead> 
                             <tbody >
                                 {membersprojects.map((mproject)=>(
-                                <tr key={mproject.user_id}>
+                                <tr key={mproject.Nom_project}>
                                     <th className = "border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left flex items-center" >
                                         <img src = {mproject.pdc?mproject.pdc: require("../../assets/img/projetic.png").default } className = "h-12 w-12 bg-white rounded-full border" alt = "..." ></img>{" "} 
                                         <span className = 
@@ -60,7 +58,7 @@ export default function MemberProject() {
                                     </td>  
                                     <td className = "border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4" >
                                         <div className = "flex items-center" >
-                                            <span className = "text-2xl mr-2 text-lightBlue-300" >{mproject.valide?"100%":"En cours"}</span> 
+                                            <span className = "text-2xl mr-2 text-lightBlue-300" ><i className="fas  fa-cog fa-spin text-black"></i>{mproject.valide?"100%":"En cours"}</span> 
                                         </div> 
                                     </td> 
                                 </tr> 

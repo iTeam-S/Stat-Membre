@@ -38,17 +38,15 @@ export default function CheckMemberProject() {
             try {
                 const  projet=await ProjectService.GetAll()
                 setProjets(projet.data)
-                
-                
+                let par=await ProjectService.GetProjectMember(projet.data[0].id);
+                setParts(par.data);
             } catch (error) {
                 console.log(error);
-            }
-              
+            }  
           }
           
         fetchData();
       },[])
-
     const fetchMember=async(id)=>{
         try {
             const part=await ProjectService.GetProjectMember(id)
@@ -59,7 +57,6 @@ export default function CheckMemberProject() {
     }
     const DeleteHandle=async(data)=>{
             try {
-                console.log(data.id_membre);
                 await ProjectService.DeleteMember(data.id_membre,data.id_projet) 
                 history.push("/admin/dashboard");
                 window.location.reload();
@@ -69,7 +66,6 @@ export default function CheckMemberProject() {
                 
             }    
     };
-    
     return ( 
             <>
             <Navbar transparent />

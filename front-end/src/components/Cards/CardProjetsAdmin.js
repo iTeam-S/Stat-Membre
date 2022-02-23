@@ -78,7 +78,7 @@ export default function CardProjetsAdmin(props) {
                 <button onClick={()=>CheckProjectMember(project.id)}  className="w-1/2 h-5 font-semibold bg-teal-700 text-white">{project.total_participant ? project.total_participant:"0"}</button>
                 </td>
                 <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                  <i className="fas fa-arrow-up text-emerald-500 mr-4"></i>
+                <i className="fas  fa-cog fa-spin text-emerald-500"></i>
                   {project.valide ? "100%":"En cours"}
                 </td>
                 <td className="border-t-0 px-2 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap">

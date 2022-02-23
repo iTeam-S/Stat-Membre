@@ -39,7 +39,7 @@ export default function Simplestat(){
       
     }
   }
-  fetchData()
+  fetchData();
   },[])
 
      return (

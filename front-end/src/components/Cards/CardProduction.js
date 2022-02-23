@@ -7,10 +7,10 @@ import ProjectService from "../../utils/service/projectservice";
 
 export default function CardBarChart() {
   useEffect(() => {
-    async function CardData(){
+    function CardData(){
     let projectv=[];
     try {
-      await ProjectService.getnombrevalidepm().then((response)=>{
+      ProjectService.getnombrevalidepm().then((response)=>{
           projectv=response.data
            
     })

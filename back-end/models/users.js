@@ -2,9 +2,9 @@ const {db1 }= require('../service/connect');
 
 module.exports={
    
-    getOneUserM:(email)=>{
+    getOneUserM:(email,password)=>{
         return new Promise((resolve,reject)=>{
-            db1.query("SELECT * FROM membre WHERE mail=?",[email],(err,resultat)=>{
+            db1.query("SELECT * FROM  membre WHERE mail =? AND password = SHA2(?, 256) ",[email,password],(err,resultat)=>{
                 if(err){
                     reject(new Error(err))
                 }else{
@@ -23,16 +23,5 @@ module.exports={
                 }
             })
         })
-    },
-    checkUserByMail:(mail)=>{
-        return new Promise((resolve,reject)=>{
-            db1.query("SELECT * FROM membre WHERE mail=?",[mail],(err,resultat)=>{
-                if(err){
-                    reject(new Error("Error while fetching user"))
-                }else{
-                    resolve(resultat)
-                }
-            })
-        })
-    },
+    }
 }

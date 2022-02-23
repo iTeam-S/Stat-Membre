@@ -53,7 +53,7 @@ export default function ProjectMember(){
       </section>
       <div className=" py-4 rounded-lg ml-5 flex flex-wrap  container mx-auto px-1/100 h-full border-blueGray-50">
         {pmembers.map((participant)=>(
-        <div className="hover:-mt-4 duration-300 w-1/3 mx-4 mt-1/2 rounded-lg bg-white px-6">
+        <div key={participant.id} className="hover:-mt-4 duration-300 w-1/3 mx-4 mt-1/2 rounded-lg bg-white px-6">
         <div className="px-6">
           <div className="flex flex-wrap justify-center">
             <div className="w-full px-4 flex justify-center">

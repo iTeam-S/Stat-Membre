@@ -40,23 +40,12 @@ module.exports = {
                 )
             }
             
-            let useR = await mdlsUser.getOneUserM(email);
+            let useR = await mdlsUser.getOneUserM(email,req.body.password);
+            console.log(useR);
             if (!useR[0]) {
                 return res.status(404).json({
-                    message: "User Not found."
+                    message: "User Not found ckeck your mail and password"
                 })
-            }
-            var passwordIsValid = bcrypt.compareSync(
-                req.body.password,
-                useR[0].password
-
-            );
-
-            if (!passwordIsValid) {
-                return res.status(401).send({
-                    accessToken: null,
-                    message: "Invalid password"
-                });
             }
             var token = jwt.sign({ id: useR[0].id }, config.secret, {
                 expiresIn: '24h'
@@ -65,10 +54,10 @@ module.exports = {
 
             res.status(200).send({
                 id: useR[0].id,
-                username: useR[0].prenom,
+                username: useR[0].nom,
                 email: useR[0].email,
                 role: useR[0].role,
-                pdc:useR[0].pdc,
+                pdc:useR[0].user_github_pic,
                 token: token
             });
 

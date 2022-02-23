@@ -22,7 +22,7 @@ export default function AddMember() {
 
     useEffect(()=>{
       const filterData=()=>{
-        const tabfiltre=projects.filter(proj=>proj.valide===0)
+        const tabfiltre=projects.filter(proj=>proj.valide==0)
         setProjetencours(tabfiltre)
       }
       filterData();
@@ -60,7 +60,6 @@ export default function AddMember() {
         };
         
     }
-    
     return ( 
         <>
         <Navbar transparent />
@@ -98,7 +97,6 @@ export default function AddMember() {
                                         {projetEncours.map((proj)=>(
                                             <option key={proj.id} value={proj.id}>{proj.id}-{proj.nom}</option>
                                         ))}
-                                            
                                         </select>
                                      </div>
                                     <div className = "text-center mt-6" >
