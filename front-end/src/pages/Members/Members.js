@@ -9,8 +9,6 @@ import styles from "../../assets/styles/streak"
 
 
 
-
-
 export default function MemberList(){
     const {members}=useContext(MemberContext);
     const streak_url = "https://github-readme-streak-stats.herokuapp.com/?theme=vue&ring=D96098&fire=D96098&user= ";
@@ -26,7 +24,7 @@ export default function MemberList(){
                 "url(" + require("assets/img/register_bg_2.png").default + ")",
             }}
           ></div>
-      <div className="mx-1/3 relative  container flex flex-col min-w-0 break-words w-full mb-6 shadow-xl rounded-lg mt-4">
+      <div className="relative  container flex flex-col min-w-0 break-words w-full mb-6 shadow-xl rounded-lg mt-4" style={styles.conteneur}>
       <section className=" h-12">
       
             <h1 className="animate-bounce cursor-pointer rounded-full mx-2/5 text-base mb-8 italic font-semibold bg-teal-700 text-white fas fa-angle-double-down text-center">Tous les membres iTeams-$</h1>
@@ -95,13 +93,10 @@ export default function MemberList(){
                
       ))}
       </div>
-      
     </div>
           <FooterSmall absolute />
         </section>
       </main>
-
-
 </>
 );
 }
