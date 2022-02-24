@@ -39,7 +39,7 @@ export default function Profile() {
                <section className = "relative py-16 bg-blueGray-200" >
                     {
                         members
-                        .filter((membre) => membre.prenom ===prenom)
+                        .filter((membre) => membre.prenom === prenom)
                         .map((membre) => (
                             <div className="container mx-auto px-4">
                                 <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-xl rounded-lg -mt-64">
