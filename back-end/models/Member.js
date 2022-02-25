@@ -14,7 +14,7 @@ module.exports = {
     },
     getListMember: () => {
         return new Promise((resolve, reject) => {
-            db1.query("SELECT * FROM membre", function(err, resultat){
+            db1.query("SELECT * FROM membre ORDER BY point_experience", function(err, resultat){
                 if(err){
                     reject(new Error("Errer resource while fetching iteams.membre"));
                 }else{
@@ -63,7 +63,7 @@ module.exports = {
     
     getTopFive:()=>{
         return new Promise((resolve,reject)=>{
-            db1.query("SELECT  id,nom ,prenom,fonction,pdc,point_experience,user_github_pic,user_github FROM membre     LIMIT 5",(err,resultat)=>{
+            db1.query("SELECT  id,nom ,prenom,fonction,pdc,point_experience,user_github_pic,user_github FROM membre ORDER BY point_experience  LIMIT 5",(err,resultat)=>{
                 if(err){
                     reject(new Error("Error while fetching member"))
                 }else{

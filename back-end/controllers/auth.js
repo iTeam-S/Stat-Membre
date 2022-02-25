@@ -41,7 +41,6 @@ module.exports = {
             }
             
             let useR = await mdlsUser.getOneUserM(email,req.body.password);
-            console.log(useR);
             if (!useR[0]) {
                 return res.status(404).json({
                     message: "User Not found ckeck your mail and password"
