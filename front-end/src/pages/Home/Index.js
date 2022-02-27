@@ -8,6 +8,8 @@ import Footer from "../../components/Footers/Footer.js";
 import Simplestat from "../../components/Cards/Statsimple";
 import CardLineChart from "../../components/Cards/CardLineChart.js";
 import CardProduction from "../../components/Cards/CardProduction.js";
+import {ProjectContext} from "../../utils/context/ProjectContext"
+import {MemberContext} from "../../utils/context/MemberContext"
 import MemberService from "../../utils/service/memberservice"
 import Main from "../../components/Cards/Main.js";
 
@@ -16,6 +18,7 @@ import Topfive from "../Topfive/TopFive";
 
 import CardProjets from "../../components/Cards/CardProjets";
 import Specialite from "../../components/Cards/Specialite.js";
+import ProjectService from "../../utils/service/projectservice.js";
 
 
 export default function Index() {
@@ -23,6 +26,15 @@ export default function Index() {
     window.onbeforeunload = function () {
         window.scrollTo(0, 0);
       }
+    const [topfive,setTopfive]=useState([])
+    useEffect(()=>{
+        async function fetchTopfive(){
+            await MemberService.getTopFive().then((response)=>{
+                setTopfive(response.data)
+            })
+        }
+        fetchTopfive();
+    },[])
     return ( 
         <>
         <IndexNavbar fixed/>
@@ -59,7 +71,7 @@ export default function Index() {
                     </section>
                     <section name="top5">
                         <div className="mt-1/4">
-                            <Topfive/>
+                            <Topfive topfive={topfive} />
                         </div>
                     </section>
             </section>

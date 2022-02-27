@@ -5,7 +5,6 @@ import {AuthAxios} from "../apis/Stat"
     return AuthAxios.post("/signin",{
         mail,
         password
-      
     }).then(response=>{
       if (response.data.token) {
         localStorage.setItem("user", JSON.stringify(response.data));

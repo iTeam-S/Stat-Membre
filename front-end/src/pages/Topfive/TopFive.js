@@ -1,21 +1,11 @@
-import React,{useState,useEffect} from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import styles from "../../assets/styles/streak"
-import MemberService from "../../utils/service/memberservice"
 
-export default function Topfive(){
-    
-     const streak_url = "https://github-readme-streak-stats.herokuapp.com/?theme=dark&ring=7c8a16&fire=7c8a16&date_format=j%20M%5B%20Y%5D&dates=06ACBD&background=ffffff00&hide_border=true&user=";
-     const [topfive,setTopfive]=useState([]);
+export default function Topfive({topfive}){
+         
      const [first,second,third,forth,fifth]=topfive;
-    useEffect(()=>{
-        async function fetchTopfive(){
-            await MemberService.getTopFive().then((response)=>{
-                setTopfive(response.data)
-            })
-        }
-        fetchTopfive();
-    },[])
+     const streak_url = "https://github-readme-streak-stats.herokuapp.com/?theme=dark&ring=7c8a16&fire=7c8a16&date_format=j%20M%5B%20Y%5D&dates=06ACBD&background=ffffff00&hide_border=true&user=";
      return(
           <div>
             <section className="mt-12" >

@@ -1,5 +1,5 @@
 import React,{ useContext} from "react";
-import {ProjectAxios,GithubAxios} from "../../utils/apis/Stat"
+import {ProjectAxios} from "../../utils/apis/Stat"
 import { ProjectContext } from "../../utils/context/ProjectContext";
 import { useHistory } from "react-router";
 
@@ -30,12 +30,7 @@ export default function CardProjetsAdmin(props) {
     
   }
   const handleValideProject=(id)=>{
-    try {
-      GithubAxios.get(`/update/${id}`)
-    } catch (error) {
-      console.log(error);
-    }
-    
+    console.log('le projet est validé maintenant');
   }
   const CheckProjectMember=(id)=>{
     history.push(`/public/project/${id}/mproject`)
