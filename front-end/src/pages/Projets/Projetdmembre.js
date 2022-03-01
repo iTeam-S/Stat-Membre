@@ -64,11 +64,11 @@ export default function Project(){
                     )}
                     {pmembre.map((project)=>(
                             <div key={project.Nom_project} className = "flex  flex-wrap" >
-                                <div className="max-w-300-px hover:-mt-4 duration-300 focus:outline-none mx-4 relative flex flex-col min-w-0 break-words  w-full mb-6 shadow-lg rounded-lg bg-teal-700">
+                                <div className="max-w-250-px hover:mt-4 duration-300 focus:outline-none mx-4 relative flex flex-col min-w-0 break-words  w-full mb-6 shadow-lg rounded-lg bg-teal-700">
                                     <img
                                     alt="..."
                                     src={project.pdc?project.pdc:require("assets/img/projet_fond.jpeg").default}
-                                    className="w-full max-w-300-px h-1/25 align-middle rounded-t-lg"
+                                    className="w-full max-w-250-px h-1/25 align-middle rounded-t-lg"
                                     />
                                     <blockquote className="relative p-8 mb-4">
                                     <svg

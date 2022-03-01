@@ -48,7 +48,7 @@ export default function ValideProjet(){
                 "url(" + require("assets/img/register_bg_2.png").default + ")",
             }}
           ></div>
-      <div className="mx-1/3 relative  container flex flex-col min-w-0 break-words w-full mb-6 shadow-xl rounded-lg mt-4">
+      <div className="mx-1/3 relative  container flex flex-col min-w-0 break-words w-full mb-6 rounded-lg mt-4">
       <section className=" h-12">
       {
         projects
@@ -74,7 +74,7 @@ export default function ValideProjet(){
       )}
       <div className=" py-4 rounded-lg ml-5 flex flex-wrap  container mx-auto px-1/100 h-full border-blueGray-50">
         {part.map((participant)=>(
-        <div key={participant.id} className="hover:-mt-4 duration-300 w-1/3 mx-4 mt-1/2 rounded-lg bg-white px-6">
+        <div key={participant.id} className="hover:mt-4 duration-300 w-1/3 mx-4 mt-1/2 rounded-lg bg-white px-6">
         <div className="px-6">
           <div className="flex flex-wrap justify-center">
             <div className="w-full px-4 flex justify-center">
