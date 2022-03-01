@@ -1975,9 +1975,8 @@ background-color: rgba(55, 48, 163, var(--tw-bg-opacity));}
   margin-top: -1rem;
 }
 .hover\:mt-4:hover {
-  margin-right: 2.5rem;
-  background-color: rgb(17 94 89);
-  color: rgb(255 255 255);
+  margin-top: 1rem;
+  background-color:#e4e4e7;
 }
 .hover\:mt-2:hover {
   margin-top: 0.1rem;
@@ -2014,9 +2013,6 @@ background-color: rgba(55, 48, 163, var(--tw-bg-opacity));}
 
 .max-w-210-px {
   max-width: 210px;
-}
-.max-w-250-px {
-  max-width: 250px;
 }
 .max-w-300-px {
   max-width: 300px;

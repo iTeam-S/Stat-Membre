@@ -24,12 +24,12 @@ export default function MemberList(){
                 "url(" + require("assets/img/register_bg_2.png").default + ")",
             }}
           ></div>
-      <div className="relative  container flex flex-col min-w-0 break-words w-full mb-6 shadow-xl rounded-lg mt-4 mx-auto" style={styles.conteneur}>
+      <div className="relative  container flex flex-col min-w-0 break-words w-full mb-6 shadow-xl rounded-lg mt-4" style={styles.conteneur}>
       <section className=" h-12">
       
             <h1 className="animate-bounce cursor-pointer rounded-full mx-2/5 text-base mb-8 italic font-semibold bg-teal-700 text-white fas fa-angle-double-down text-center">Tous les membres iTeams-$</h1>
       </section>
-      <div className=" py-4 rounded-lg ml-5 flex flex-wrap   px-1/100 h-full border-blueGray-50 mx-auto">
+      <div className=" py-4 rounded-lg ml-5 flex flex-wrap  container mx-auto px-1/100 h-full border-blueGray-50">
       {members.map((membre)=>(
         <div key={membre.id} className="hover:mt-4 duration-300 w-1/3 mx-4 mt-1/2 rounded-lg bg-white px-6">
         <div className="px-6">

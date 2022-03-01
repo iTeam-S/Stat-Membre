@@ -51,7 +51,7 @@ export default function CardProjets() {
             {projects
             .filter((project)=>project.valide===0)
             .map((project)=>(
-              <tr  key={project.nom} className="hover:mt-4 duration-300" >
+              <tr  key={project.nom} >
                 <th className = "border-t-0 px-4 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left flex items-center" >
                                         <img src = {project.pdc?project.pdc:require("../../assets/img/projetic.png").default } className = "h-12 w-12 bg-white rounded-full border" alt = "..." ></img>
                                         <span className = 
