@@ -45,8 +45,8 @@ export default function Login() {
                     }else if(response.role==="user"){
                       history.push("/")
                     }else{
-                      setErrer(true)
-                       setErrorMessage('Verifiez votre email et mot de passe');
+                        setErrer(true)
+                        setErrorMessage('Verifiez votre email et mot de passe');
                     }
                 })
         } catch (error) {

@@ -5,7 +5,7 @@ export default function AdminRoute({ children, ...rest }) {
     const user=AuthService.getCurrentUser();
      return (
        <Route {...rest} render={() => {
-         return user && user.role ==='admin'
+         return user && user.role === 'admin'
            ? children
            :<Redirect to='/auth/login' />
        }} />
