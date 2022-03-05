@@ -35,7 +35,7 @@ export default function Topfive(){
                                                     <img alt = "..." className = "w-full rounded-full align-middle border-none shadow-lg" src = {first.user_github_pic?first.user_github_pic: require("../../assets/img/team-1-800x800.jpg").default } />
                                                 </span>
                                                 <span className="font-semibold text-xl flex flex-col justify-center text-black">
-                                                    {first.prenom}
+                                                    {first.prenom_usuel}
                                                 </span>
                                             </div>   
                                             <div className=" mx-auto w-full px-2 text-center mt-1/2">
@@ -81,7 +81,7 @@ export default function Topfive(){
                                                 <img alt = "..." className = "w-full rounded-full align-middle border-none shadow-lg" src = {second.user_github_pic?second.user_github_pic: require("../../assets/img/team-1-800x800.jpg").default }/>
                                             </span>
                                             <span className="font-semibold text-xl text-white">
-                                               {second.prenom}
+                                               {second.prenom_usuel}
                                             </span>
                                         </div>   
                                         <div className=" mx-auto w-full px-2 text-center mt-1/2">
@@ -127,7 +127,7 @@ export default function Topfive(){
                                                 <img alt = "..." className = "w-full rounded-full align-middle border-none shadow-lg" src = {third.user_github_pic?third.user_github_pic: require("../../assets/img/team-1-800x800.jpg").default }/>
                                             </span>
                                             <span className="font-semibold text-xl text-black">
-                                               {third.prenom}
+                                               {third.prenom_usuel}
                                             </span>
                                         </div>   
                                         <div className=" mx-auto w-full px-2 text-center mt-1/2">
@@ -173,7 +173,7 @@ export default function Topfive(){
                                                 <img alt = "..." className = "w-full rounded-full align-middle border-none shadow-lg" src = { forth.user_github_pic?forth.user_github_pic:require("../../assets/img/team-1-800x800.jpg").default }/>
                                             </span>
                                             <span className="font-semibold text-xl text-black">
-                                                {forth.prenom}
+                                                {forth.prenom_usuel}
                                             </span>
                                         </div>   
                                         <div className=" mx-auto w-full px-2 text-center mt-1/2">
@@ -219,7 +219,7 @@ export default function Topfive(){
                                                 <img alt = "..." className = "w-full rounded-full align-middle border-none shadow-lg" src = {fifth.user_github_pic?fifth.user_github_pic: require("../../assets/img/team-1-800x800.jpg").default }/>
                                             </span>
                                             <span className="font-semibold text-xl text-black">
-                                                {fifth.prenom}
+                                                {fifth.prenom_usuel}
                                             </span>
                                         </div>   
                                         <div className=" mx-auto w-full px-2 text-center mt-1/2">
