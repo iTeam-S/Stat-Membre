@@ -40,7 +40,7 @@ export default function Login() {
         try {
             AuthService.login(data.email,data.password).then(
                 (response) => {
-                    if(response.type==="admin"){
+                    if(response.role==="admin"){
                       history.push("/admin/dashboard")
                     }else if(response.role==="user"){
                       history.push("/")

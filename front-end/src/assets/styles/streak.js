@@ -20,9 +20,6 @@ const  styles = {
     },
     titre: {
         color: '#325288'
-    },
-    conteneur: {
-        margin: '0px 50px'
     }
   }
   export default styles;

@@ -1975,8 +1975,9 @@ background-color: rgba(55, 48, 163, var(--tw-bg-opacity));}
   margin-top: -1rem;
 }
 .hover\:mt-4:hover {
-  margin-top: 1rem;
-  background-color:#e4e4e7;
+  margin-right: 2.5rem;
+  background-color: rgb(17 94 89);
+  color: rgb(255 255 255);
 }
 .hover\:mt-2:hover {
   margin-top: 0.1rem;
@@ -2013,6 +2014,9 @@ background-color: rgba(55, 48, 163, var(--tw-bg-opacity));}
 
 .max-w-210-px {
   max-width: 210px;
+}
+.max-w-250-px {
+  max-width: 250px;
 }
 .max-w-300-px {
   max-width: 300px;
@@ -3334,7 +3338,6 @@ animation: bounce 1s infinite;
 .bg-teal-300	{background-color: rgb(94 234 212)};
 .bg-teal-100	{background-color: rgb(204 251 241)};	
 .bg-teal-200	{background-color: rgb(153 246 228)};
-
 
 
 
