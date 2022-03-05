@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 export default function FooterSmall(props) {
     return ( 
@@ -23,6 +24,11 @@ export default function FooterSmall(props) {
                                 <li >
                                     <a href = "https://iteam-s.mg/index.html#contact" target="_blank" rel="noreferrer" className = "text-white hover:text-blueGray-300 text-sm font-semibold block py-1 px-3" >Contact Us </a> 
                                 </li> 
+                                <li>
+                                    <Link to="/developpeur">
+                                        develloppeur
+                                    </Link>
+                                </li>
                             </ul> 
                         </div> 
                     </div> 

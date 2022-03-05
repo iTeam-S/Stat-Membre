@@ -40,6 +40,7 @@ import Index from "./pages/Home/Index";
 import Project from "./pages/Projets/projets";
 import Errorpage from "pages/error/Error";
 import Streak from "./pages/Landing/Streak";
+import Developpeur from "pages/developpeur/Developpeur";
 
 
 
@@ -82,6 +83,9 @@ const App = () => {
                               </Route>
                               <Route path="/" exact>
                                   <Index />
+                              </Route>
+                              <Route path="/developpeur" exact>
+                                  <Developpeur />
                               </Route>
                               <Route path="/streak" exact>
                                   <Streak data={member}/>
