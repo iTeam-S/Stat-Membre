@@ -18,7 +18,7 @@ jobs:
         with:
           host: ${{secrets.CD_HOST}}
           username: ${{secrets.CD_USER}}
-          key: ${{secrets.CD_SK}}
+          password: ${{secrets.CD_SK}}
           port: 22
           script: |
             cd $DIR_PROJECT/Stat-Membre
