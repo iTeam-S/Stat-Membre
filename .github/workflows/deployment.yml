@@ -12,8 +12,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: SSH into production server
-        env:
-          DIR_PROJECT: ${{secrets.PROJECT_DIR}}
         uses: appleboy/ssh-action@master
         with:
           host: ${{secrets.CD_HOST}}
@@ -21,7 +19,7 @@ jobs:
           password: ${{secrets.CD_SK}}
           port: 22
           script: |
-            cd $DIR_PROJECT/Stat-Membre
+            cd /var/www/Stat-Membre
             # Mise a jour du code
             git pull
             cd front-end/
