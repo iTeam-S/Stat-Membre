@@ -14,7 +14,7 @@ module.exports = {
     },
     getListMember: () => {
         return new Promise((resolve, reject) => {
-            db1.query("SELECT * FROM membre ORDER BY point_experience", function(err, resultat){
+            db1.query("SELECT * FROM membre  ORDER BY point_experience DESC", function(err, resultat){
                 if(err){
                     reject(new Error("Errer resource while fetching iteams.membre"));
                 }else{
