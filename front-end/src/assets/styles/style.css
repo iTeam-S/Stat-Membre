@@ -12,3 +12,20 @@
 .fonction-card-profil{
     height: 80px;
 }
+
+.developpeur {
+    margin: 0px 100px;
+    padding-left:  200px;
+}
+.nom{
+    height: 60px;
+}
+
+@media screen and (max-width = 640px) {
+    .developpeur{
+        margin: 0px;
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+    }
+}
