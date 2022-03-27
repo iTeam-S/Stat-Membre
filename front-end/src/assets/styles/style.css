@@ -21,11 +21,11 @@
     height: 60px;
 }
 
-@media screen and (max-width = 640px) {
+@media screen and (max-width: 640px) {
     .developpeur{
-        margin: 0px;
+        margin: 0px 0px;
+        padding-left: 0px;
         display: flex;
-        flex-direction: column;
         flex-wrap: wrap;
     }
 }
