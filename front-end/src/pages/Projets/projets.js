@@ -11,7 +11,7 @@ import FooterSmall from "../../components/Footers/FooterSmall.js";
 export default function Project(){
     const {projects}=useContext(ProjectContext)
     const radios=[
-        {title:"En_cours",value:0},
+        {title:"En cours",value:0},
         {title:"Valide",value:1}
     ]
     const [selectedRadio,setSelectedRadio]=useState("");
@@ -89,7 +89,6 @@ export default function Project(){
                                                         {project.valide?"100%":
                                                         <div>
                                                          <i className="fas  fa-cog fa-spin text-black"></i>
-                                                         <span>en_cours</span>
                                                          </div>}
                                                     </span>
                                                     <span className="text-xl text-white">Status</span>

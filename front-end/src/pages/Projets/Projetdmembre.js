@@ -87,8 +87,8 @@ export default function Project(){
                                     <div className="w-full px-4 text-center mt-10">
                                             <div className="flex justify-center py-4 lg:pt-4 pt-8">
                                                 <div className="mr-4 p-3 text-center">
-                                                    <span className="text-base font-bold block uppercase tracking-wide text-black">
-                                                        {project.valide?"100%":"En cours"}
+                                                    <span className="text-base font-bold block tracking-wide text-black">
+                                                        {project.valide?"100%": <i className="fas  fa-cog fa-spin text-black"></i>}
                                                     </span>
                                                     <span className="text-xl text-white">Status</span>
                                                 </div>

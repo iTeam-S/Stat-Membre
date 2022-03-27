@@ -31,11 +31,11 @@ export default function Index() {
                     <section name="stat">
                         <div className="mx-1/5">
                             <div className="container overflow-hidden pb-20 mt-32 ">
-                                    <h3 className="text-center text-3xl font-semibold text-blueGray-600 Statistique">
+                                    <h3 className="text-center text-3xl font-semibold text-blueGray-600 mt-5 mb-5 Statistique">
                                         Statistique de la communauté
                                     </h3>
                                     <div className=" mb-3  w-full">
-                                        <div className="w-full mb-5">
+                                        <div className="w-full mt-5 mb-5">
                                             <Simplestat/>
                                         </div>
                                     </div>
