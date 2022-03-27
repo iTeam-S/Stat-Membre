@@ -1,5 +1,5 @@
 /*eslint-disable*/
-import React, { useContext, useEffect,useState } from "react";
+import React from "react";
 
 
 
@@ -8,15 +8,13 @@ import Footer from "../../components/Footers/Footer.js";
 import Simplestat from "../../components/Cards/Statsimple";
 import CardLineChart from "../../components/Cards/CardLineChart.js";
 import CardProduction from "../../components/Cards/CardProduction.js";
-import MemberService from "../../utils/service/memberservice"
 import Main from "../../components/Cards/Main.js";
 
 
 import Topfive from "../Topfive/TopFive";
-
 import CardProjets from "../../components/Cards/CardProjets";
 import Specialite from "../../components/Cards/Specialite.js";
-
+import '../../assets/styles/style.css'
 
 export default function Index() {
 
@@ -29,15 +27,15 @@ export default function Index() {
             <Main/>
             <section className = "mt-48 md:mt-40 pb-40 relative bg-blueGray-100" >
                                
-                    <Specialite/>
+                    {/*<Specialite/>*/}
                     <section name="stat">
                         <div className="mx-1/5">
-                            <div className="container overflow-hidden pb-20 mt-32">
-                                    <h3 className="text-center text-3xl font-semibold text-blueGray-600">
+                            <div className="container overflow-hidden pb-20 mt-32 ">
+                                    <h3 className="text-center text-3xl font-semibold text-blueGray-600 Statistique">
                                         Statistique de la communauté
                                     </h3>
                                     <div className=" mb-3  w-full">
-                                        <div className="w-full">
+                                        <div className="w-full mb-5">
                                             <Simplestat/>
                                         </div>
                                     </div>
