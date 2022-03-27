@@ -2,11 +2,12 @@ import React, { useEffect } from "react";
 import { Link} from "react-router-dom";
 import {Link as Lscroll} from "react-scroll";
 import { createPopper } from "@popperjs/core";
+import { AuthService } from "utils/service/authservice";
 
 
 
 const IndexDropdown = () => {
-
+  const compte = AuthService.getCurrentUser();
   const [dropdownPopoverShow, setDropdownPopoverShow] = React.useState(false);
   const btnDropdownRef = React.createRef();
   const popoverDropdownRef = React.createRef();
@@ -118,12 +119,16 @@ const IndexDropdown = () => {
           
         </li>
         </ul>
-        <Link
-          to="/admin/project/addproject"
-          className="text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700"
-        >
-          Ajouter un projet
-        </Link>
+        { compte !== null && (
+           <Link
+              to="/admin/project/addproject"
+              className="text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700"
+            >
+              Ajouter un projet
+            </Link>
+        )
+
+        }
         <div className="h-0 mx-4 my-2 border border-solid border-blueGray-100" />
         <span
           className={

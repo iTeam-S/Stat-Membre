@@ -28,6 +28,7 @@ export default function FooterSmall(props) {
                                     <Link to="/developpeur">
                                         develloppeur
                                     </Link>
+                                    
                                 </li>
                             </ul> 
                         </div> 
