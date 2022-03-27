@@ -2,3 +2,13 @@
     margin-top: 60px;
     margin-bottom: 30px;
 }
+.card-profil:hover {
+    color: white;
+}
+.nom-card-profil{
+    height: 80px;
+}
+
+.fonction-card-profil{
+    height: 80px;
+}

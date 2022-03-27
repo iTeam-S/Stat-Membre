@@ -6,6 +6,7 @@ import FooterSmall from "../../components/Footers/FooterSmall.js";
 import { MemberContext } from "utils/context/MemberContext";
 import { Link } from "react-router-dom";
 import styles from "../../assets/styles/streak"
+import '../../assets/styles/style.css'
 
 
 
@@ -29,9 +30,9 @@ export default function MemberList(){
       
             <h1 className="animate-bounce cursor-pointer rounded-full mx-2/5 text-base mb-8 italic font-semibold bg-teal-700 text-white fas fa-angle-double-down text-center">Tous les membres iTeams-$</h1>
       </section>
-      <div className=" py-4 rounded-lg ml-5 flex flex-wrap   px-1/100 h-full border-blueGray-50 mx-auto">
+      <div className=" py-4 rounded-lg ml-5 flex flex-wrap px-1/100 h-full border-blueGray-50 mx-auto">
       {members.map((membre)=>(
-        <div key={membre.id} className="hover:mt-4 duration-300 w-1/3 mx-4 mt-1/2 rounded-lg bg-white px-6">
+        <div key={membre.id} className="hover:mt-4 duration-300 w-1/3 mx-4 mt-1/2 mb-4 rounded-lg bg-white px-6">
         <div className="px-6">
           <div className="flex flex-wrap justify-center">
             <div className="w-full px-4 flex justify-center">
@@ -75,11 +76,11 @@ export default function MemberList(){
                     />
           </div>
           <div className="text-center mt-12">
-            <h3 className="text-xl font-semibold leading-normal mb-2 text-blueGray-700 mb-2">
+            <h3 className="text-xl font-semibold leading-normal mb-2 hover:text-white mb-2 nom-card-profil">
              {membre.nom + " " +membre.prenom}
             </h3>
-            <div className="mb-2 text-blueGray-600 mt-10">
-              <i className="fas fa-briefcase mr-2 text-lg text-blueGray-400"></i>
+            <div className="mb-2 mt-10 fonction-card-profil">
+              <i className="fas fa-briefcase mr-2 text-lg hover:text-white"></i>
               {membre.fonction}
             </div>
             <div className="mb-2 text-blueGray-600">
