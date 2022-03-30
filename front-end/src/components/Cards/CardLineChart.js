@@ -16,8 +16,7 @@ export default function CardLineChart() {
           chartdata=(response.data);
       })
     } catch (error) {
-      console.log(error);
-      
+      console.log(error); 
     }
     
     const config = {
@@ -41,8 +40,8 @@ export default function CardLineChart() {
         datasets: [
           {
             label: new Date().getFullYear(),
-            backgroundColor: "#4c51bf",
-            borderColor: "#4c51bf",
+            backgroundColor: "#FEEAA1",
+            borderColor: "#FEEAA1",
             data: chartdata,
             fill: false,
           }
