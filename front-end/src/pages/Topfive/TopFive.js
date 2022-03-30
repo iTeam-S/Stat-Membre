@@ -27,9 +27,9 @@ export default function Topfive(){
                         <Link to="/views/public/memberlist">Tout voir</Link><span><a href="view/projet.html">
                         <i className="fa fa-chevron-right"></i></a></span>
                     </div>
-                    <div className="mx-auto w-8/12 rounded-lg mt-5 flex flex-wrap bg-white container h-full border-blueGray-50">
+                    <div className="mx-auto w-8/12 rounded-lg mt-5 flex flex-wrap bg-white container conteneur-card-top h-full border-blueGray-50">
                         {first &&(
-                        <div className="hover:-mt-2 duration-500 relative flex flex-row w-1/5 sm:w-full md:w-full break-words bg-lightBlue-600 rounded mt-1/2 h-1/4  shadow-lg">
+                        <div className="hover:-mt-2 duration-500 relative flex flex-row w-1/5 sm:w-full md:w-full break-words bg-lightBlue-600 rounded mt-1/2 h-1/4 card-top shadow-lg">
                             <div className=" w-full">
                                             <div className="relative w-10/12 pr-4 max-w-full flex flex-grow flex-1">
                                                 <span className = "h-12 w-12 text-sm text-white bg-blueGray-200 inline-flex items-center justify-center rounded-full" >
@@ -63,19 +63,19 @@ export default function Topfive(){
                                                 </div>
                                               </div>
                                             </div>
-                                        <div style={styles.content_streak}>
+                                             <div style={styles.content_streak}>
                                                 <p style={styles.nom_user}>Streak</p>
                                                 <img
                                                     src= { streak_url.trim()+first.user_github}
                                                     className="rounded-t-lg"
                                                     alt = "..."
                                                     />
-                                        </div>
-                                    </div>
+                                            </div>
                             </div>
+                        </div>
                         )}   
                         {second &&(
-                        <div className="hover:-mt-2 duration-500 relative flex flex-col w-1/5 break-words bg-blueGray-700 h-1/4 rounded mt-1/4 xl:mb-0 shadow-lg">
+                        <div className="hover:-mt-2 duration-500 relative flex flex-col w-1/5 break-words bg-blueGray-700 h-1/4 rounded card-top mt-1/4 xl:mb-0 shadow-lg">
                                 <div className=" w-full">
                                         <div className="relative w-10/12 pr-4 max-w-full flex-grow flex-1">
                                             <span className = "h-12 w-12 text-sm text-white bg-blueGray-200 inline-flex items-center justify-center rounded-full" >
@@ -121,7 +121,7 @@ export default function Topfive(){
                         </div>
                         )}
                         {third &&(
-                        <div className="hover:-mt-2 duration-500 relative flex flex-col w-1/5 break-words bg-orange-500 h-1/4 rounded mt-1/6 xl:mb-0 shadow-lg">
+                        <div className="hover:-mt-2 duration-500 relative flex flex-col w-1/5 break-words bg-orange-500 h-1/4 card-top rounded mt-1/6 xl:mb-0 shadow-lg">
                             <div className=" w-full">
                                         <div className="relative w-10/12 pr-4 max-w-full flex-grow flex-1">
                                             <span className = "h-12 w-12 text-sm text-white bg-blueGray-200 inline-flex items-center justify-center rounded-full" >
@@ -167,7 +167,7 @@ export default function Topfive(){
                         </div>
                         )}
                         {forth&&(
-                        <div className="hover:-mt-2 duration-500 relative flex flex-col w-1/5 break-words bg-teal-700 h-1/4 rounded mt-1/8 xl:mb-0 shadow-lg">
+                        <div className="hover:-mt-2 duration-500 relative flex flex-col w-1/5 break-words bg-teal-700 h-1/4 card-top rounded mt-1/8 xl:mb-0 shadow-lg">
                             <div className=" w-full">
                                         <div className="relative w-10/12 pr-4 max-w-full flex-grow flex-1">
                                             <span className = "h-12 w-12 text-sm text-white bg-blueGray-200 inline-flex items-center justify-center rounded-full" >
@@ -213,7 +213,7 @@ export default function Topfive(){
                         </div>
                         )}
                         {fifth&&(
-                        <div className="hover:-mt-2 duration-500 relative flex flex-col w-1/5 break-words bg-zinc-300 h-1/4 rounded mt-1/10 xl:mb-0 shadow-lg">
+                        <div className="hover:-mt-2 duration-500 relative flex flex-col w-1/5 break-words bg-zinc-300 h-1/4 card-top rounded mt-1/10 xl:mb-0 shadow-lg">
                             <div className=" w-full">
                                         <div className="relative w-10/12 pr-4 max-w-full flex-grow flex-1">
                                             <span className = "h-12 w-12 text-sm text-white bg-blueGray-200 inline-flex items-center justify-center rounded-full" >
